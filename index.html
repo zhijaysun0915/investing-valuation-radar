@@ -146,108 +146,110 @@
   <!-- Main Workspace -->
   <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
 
+    <!-- GLOBAL PERSISTENT SEARCH & INPUT BAR (ALWAYS VISIBLE IN ALL 3 VIEWS) -->
+    <section class="glass-panel rounded-2xl p-4 sm:p-5 shadow-xl space-y-3.5 relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+      <div class="flex items-center justify-between">
+        <label for="tickerInput" class="text-sm font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-magnifying-glass-dollar text-cyan-400"></i>
+          <span>輸入股票代碼或公司名稱即時撈取</span>
+        </label>
+        <span class="text-[11px] text-slate-400 font-mono">支援 2301 光寶科、1303 南亞、台化、美股、日股</span>
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex flex-col sm:flex-row gap-2">
+          <select
+            id="marketSelector"
+            class="bg-slate-900/95 border border-slate-700 hover:border-slate-600 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-cyan-400 font-medium cursor-pointer shrink-0"
+            title="選擇目標市場優先級"
+          >
+            <option value="AUTO" selected>🌐 自動判別 (預設)</option>
+            <option value="TW">🇹🇼 台股優先 (TWSE / 櫃買)</option>
+            <option value="US">🇺🇸 美股優先 (US / ADR)</option>
+            <option value="JP">🇯🇵 日股優先 (Tokyo)</option>
+            <option value="HK">🇭🇰 港股優先 (HKEX)</option>
+          </select>
+
+          <div class="relative flex-1">
+            <input
+              id="tickerInput"
+              type="text"
+              placeholder="輸入股號或名稱，如：2301、光寶科、1303 南亞、6488 環球晶、NVDA..."
+              class="w-full bg-slate-900/95 border border-slate-700 rounded-xl pl-3.5 pr-8 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 font-mono"
+              onkeydown="if(event.key === 'Enter') handleSearchSubmit()"
+            />
+            <button onclick="document.getElementById('tickerInput').value = ''; document.getElementById('tickerInput').focus();" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1" title="清空">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <button
+            id="btnFetchMain"
+            onclick="handleSearchSubmit()"
+            class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/20 transition flex items-center justify-center gap-1.5 shrink-0"
+          >
+            <i class="fa-solid fa-bolt"></i>
+            <span>即時撈取</span>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] text-slate-400 px-1 flex-wrap gap-2">
+          <span>支援格式：<code class="text-cyan-300">2301 光寶科</code>、<code class="text-cyan-300">1303 南亞</code>、<code class="text-cyan-300">台化</code>、<code class="text-cyan-300">2330</code>、<code class="text-cyan-300">NVDA</code></span>
+          <span class="text-emerald-400"><i class="fa-solid fa-shield-halved text-[10px] mr-1"></i>智慧交易所防撞：精準鎖定台股，不誤抓國外同代碼</span>
+        </div>
+      </div>
+
+      <!-- Live Sync Progress Indicator -->
+      <div id="syncProgressContainer" class="hidden bg-slate-900/90 border border-cyan-500/30 rounded-xl p-3 space-y-1.5">
+        <div class="flex items-center justify-between text-xs">
+          <span id="syncStatusText" class="text-cyan-300 flex items-center gap-1.5 font-medium">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+            正在連線 Investing.com 撈取最新數據...
+          </span>
+          <span id="syncCountText" class="font-mono text-slate-400">0/0</span>
+        </div>
+        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+          <div id="syncProgressBar" class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300" style="width: 15%"></div>
+        </div>
+      </div>
+
+      <!-- Popular Quick Chips -->
+      <div class="space-y-1.5 pt-1 border-t border-slate-800/80">
+        <div class="text-[11px] text-slate-400 flex items-center justify-between">
+          <span><i class="fa-solid fa-fire text-amber-400 mr-1"></i>熱門標的快速查（點擊立即查看）：</span>
+          <button onclick="syncAllStocks()" class="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1">
+            <i class="fa-solid fa-arrows-rotate text-[10px]"></i> 全部重新撈取
+          </button>
+        </div>
+        <div class="flex items-center gap-1.5 flex-wrap">
+          <button onclick="selectOrFetchTicker('2301', 'TW', '光寶科')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">2301 光寶科</button>
+          <button onclick="selectOrFetchTicker('1303', 'TW', '南亞')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">1303 南亞</button>
+          <button onclick="selectOrFetchTicker('1326', 'TW', '台化')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">1326 台化</button>
+          <button onclick="selectOrFetchTicker('3374', 'TW', '精材')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-cyan-200 hover:text-cyan-100 border border-cyan-500/30 transition font-mono">3374 精材</button>
+          <button onclick="selectOrFetchTicker('6488', 'TW', '環球晶')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-cyan-200 hover:text-cyan-100 border border-cyan-500/30 transition font-mono">6488 環球晶</button>
+          <button onclick="selectOrFetchTicker('2330')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2330 台積電</button>
+          <button onclick="selectOrFetchTicker('2327')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2327 國巨*</button>
+          <button onclick="selectOrFetchTicker('2454')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2454 聯發科</button>
+          <button onclick="selectOrFetchTicker('2317')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2317 鴻海</button>
+          <button onclick="selectOrFetchTicker('8299')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">8299 群聯</button>
+          <button onclick="selectOrFetchTicker('2492')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2492 華新科</button>
+          <button onclick="selectOrFetchTicker('3006')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">3006 晶豪科</button>
+          <button onclick="selectOrFetchTicker('2308')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2308 台達電</button>
+          <button onclick="selectOrFetchTicker('NVDA')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">NVDA 輝達</button>
+          <button onclick="selectOrFetchTicker('TSLA')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">TSLA 特斯拉</button>
+        </div>
+      </div>
+    </section>
+
     <!-- =================================================================== -->
-    <!-- LAYOUT 1: SPLIT VIEW (Left Input & Watchlist -> Right Valuation)    -->
+    <!-- LAYOUT 1: SPLIT VIEW (Left Watchlist -> Right Valuation Detail)     -->
     <!-- =================================================================== -->
     <section id="splitViewContainer" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
 
-      <!-- LEFT COLUMN (4 cols): Stock Input + Quick Picks + Watchlist -->
+      <!-- LEFT COLUMN (4 cols): Watchlist Sidebar Card -->
       <div class="lg:col-span-4 space-y-4 lg:sticky lg:top-20">
-        <!-- Input Box Card -->
-        <div class="glass-panel rounded-2xl p-4 sm:p-5 shadow-xl space-y-3.5 relative overflow-hidden">
-          <div class="absolute -right-10 -top-10 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
-
-          <div class="flex items-center justify-between">
-            <label for="tickerInput" class="text-sm font-bold text-white flex items-center gap-2">
-              <i class="fa-solid fa-magnifying-glass-dollar text-cyan-400"></i>
-              <span>輸入股票代碼或名稱</span>
-            </label>
-            <span class="text-[11px] text-slate-400 font-mono">支援全球市場精確識別</span>
-          </div>
-
-          <div class="space-y-2">
-            <div class="flex gap-2">
-              <select
-                id="marketSelector"
-                class="bg-slate-900/95 border border-slate-700 hover:border-slate-600 rounded-xl px-2.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-cyan-400 font-medium cursor-pointer shrink-0"
-                title="選擇目標市場優先級"
-              >
-                <option value="AUTO" selected>🌐 自動判別 (預設)</option>
-                <option value="TW">🇹🇼 台股優先 (TWSE/櫃買)</option>
-                <option value="US">🇺🇸 美股優先 (US/ADR)</option>
-                <option value="JP">🇯🇵 日股優先 (Tokyo)</option>
-                <option value="HK">🇭🇰 港股優先 (HKEX)</option>
-              </select>
-
-              <div class="relative flex-1">
-                <input
-                  id="tickerInput"
-                  type="text"
-                  placeholder="如：3374 精材、6488 環球晶、2330、NVDA..."
-                  class="w-full bg-slate-900/95 border border-slate-700 rounded-xl pl-3.5 pr-8 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 font-mono"
-                  onkeydown="if(event.key === 'Enter') handleSearchSubmit()"
-                />
-                <button onclick="document.getElementById('tickerInput').value = ''; document.getElementById('tickerInput').focus();" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1" title="清空">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-
-              <button
-                id="btnFetchMain"
-                onclick="handleSearchSubmit()"
-                class="px-3.5 sm:px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/20 transition flex items-center justify-center gap-1.5 shrink-0"
-              >
-                <i class="fa-solid fa-bolt"></i>
-                <span>即時撈取</span>
-              </button>
-            </div>
-            <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
-              <span>可輸入代碼+名稱：<code class="text-cyan-300">3374 精材</code>、<code class="text-cyan-300">6488 環球晶</code></span>
-              <span class="text-emerald-400"><i class="fa-solid fa-shield-halved text-[10px] mr-1"></i>智慧交易所防撞</span>
-            </div>
-          </div>
-
-          <!-- Live Sync Progress Indicator -->
-          <div id="syncProgressContainer" class="hidden bg-slate-900/90 border border-cyan-500/30 rounded-xl p-3 space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span id="syncStatusText" class="text-cyan-300 flex items-center gap-1.5 font-medium">
-                <i class="fa-solid fa-circle-notch fa-spin"></i>
-                正在連線 Investing.com 撈取最新數據...
-              </span>
-              <span id="syncCountText" class="font-mono text-slate-400">0/0</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="syncProgressBar" class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300" style="width: 15%"></div>
-            </div>
-          </div>
-
-          <!-- Popular Quick Chips -->
-          <div class="space-y-1.5 pt-1">
-            <div class="text-[11px] text-slate-400 flex items-center justify-between">
-              <span><i class="fa-solid fa-fire text-amber-400 mr-1"></i>點擊熱門股立即在右側查看：</span>
-              <button onclick="syncAllStocks()" class="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1">
-                <i class="fa-solid fa-arrows-rotate text-[10px]"></i> 全部重新撈取
-              </button>
-            </div>
-            <div class="flex items-center gap-1.5 flex-wrap">
-              <button onclick="selectOrFetchTicker('1303', 'TW', '南亞')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">1303 南亞</button>
-              <button onclick="selectOrFetchTicker('1326', 'TW', '台化')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">1326 台化</button>
-              <button onclick="selectOrFetchTicker('3374', 'TW', '精材')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-cyan-200 hover:text-cyan-100 border border-cyan-500/30 transition font-mono">3374 精材</button>
-              <button onclick="selectOrFetchTicker('6488', 'TW', '環球晶')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-cyan-200 hover:text-cyan-100 border border-cyan-500/30 transition font-mono">6488 環球晶</button>
-              <button onclick="selectOrFetchTicker('2330')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2330 台積電</button>
-              <button onclick="selectOrFetchTicker('2327')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2327 國巨*</button>
-              <button onclick="selectOrFetchTicker('2454')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2454 聯發科</button>
-              <button onclick="selectOrFetchTicker('2317')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2317 鴻海</button>
-              <button onclick="selectOrFetchTicker('8299')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">8299 群聯</button>
-              <button onclick="selectOrFetchTicker('2492')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2492 華新科</button>
-              <button onclick="selectOrFetchTicker('3006')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">3006 晶豪科</button>
-              <button onclick="selectOrFetchTicker('2308')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2308 台達電</button>
-              <button onclick="selectOrFetchTicker('NVDA')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">NVDA 輝達</button>
-              <button onclick="selectOrFetchTicker('TSLA')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">TSLA 特斯拉</button>
-            </div>
-          </div>
-        </div>
-
         <!-- Watchlist Sidebar Card -->
         <div class="glass-panel rounded-2xl p-4 shadow-xl space-y-3">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
@@ -268,14 +270,15 @@
             <input
               id="sidebarSearch"
               type="text"
-              oninput="renderApp()"
-              placeholder="過濾清單內股票..."
-              class="w-full bg-slate-950/90 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+              oninput="renderWatchlistSidebar()"
+              onkeydown="if(event.key === 'Enter') handleSidebarSearchSubmit()"
+              placeholder="過濾清單或輸入代碼按 Enter..."
+              class="w-full bg-slate-950/90 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-mono"
             />
           </div>
 
           <!-- Scrollable Stock Items -->
-          <div id="watchlistSidebarItems" class="space-y-2 max-h-[460px] overflow-y-auto pr-1">
+          <div id="watchlistSidebarItems" class="space-y-2 max-h-[580px] overflow-y-auto pr-1">
             <!-- Populated via JS -->
           </div>
         </div>
@@ -520,8 +523,17 @@
       '6274': { slug: 'taiwan-union-technology', name: '台燿', market: 'TPEX' },
       '3374': { slug: 'xintec', name: '精材', market: 'TPEX', currency: 'NT$' },
       '6488': { slug: 'globalwafers-co-ltd', name: '環球晶', market: 'TPEX', currency: 'NT$' },
+      '2301': { slug: 'lite-on-tech', name: '光寶科', market: 'TWSE', currency: 'NT$' },
+      '1301': { slug: 'formosa-plastic', name: '台塑', market: 'TWSE', currency: 'NT$' },
       '1303': { slug: 'nan-ya-plastic', name: '南亞', market: 'TWSE', currency: 'NT$' },
       '1326': { slug: 'formosa-chem-f', name: '台化', market: 'TWSE', currency: 'NT$' },
+      '6505': { slug: 'formosa-petrochem', name: '台塑化', market: 'TWSE', currency: 'NT$' },
+      '2881': { slug: 'fubon-financial', name: '富邦金', market: 'TWSE', currency: 'NT$' },
+      '2882': { slug: 'cathay-financial', name: '國泰金', market: 'TWSE', currency: 'NT$' },
+      '3443': { slug: 'global-unichip', name: '創意', market: 'TWSE', currency: 'NT$' },
+      '3661': { slug: 'alchip-technologies', name: '世芯-KY', market: 'TWSE', currency: 'NT$' },
+      '2345': { slug: 'accton-tech', name: '智邦', market: 'TWSE', currency: 'NT$' },
+      '6669': { slug: 'wiwynn-corp', name: '緯穎', market: 'TWSE', currency: 'NT$' },
       '7203': { slug: 'toyota-motor-corporation', name: '豐田汽車 (Toyota)', market: 'TSE', currency: '¥' },
       '0700': { slug: 'tencent-holdings-hk', name: '騰訊控股', market: 'HKEX', currency: 'HK$' },
       'NVDA': { slug: 'nvidia-corp', name: '英偉達 (NVIDIA)', market: 'NASDAQ', currency: 'USD' },
@@ -977,9 +989,9 @@
         }
       }
 
-      // Search query on Investing.com
+      // Search query on Investing.com (ensure trailing slash /search/?q= to avoid 301 redirect)
       const searchQuery = cleanQuery || hint;
-      const searchUrl = `https://r.jina.ai/https://hk.investing.com/search?q=${encodeURIComponent(searchQuery)}`;
+      const searchUrl = `https://r.jina.ai/https://hk.investing.com/search/?q=${encodeURIComponent(searchQuery)}`;
       const resp = await fetch(searchUrl, {
         headers: { 'X-Wait-For-Selector': 'h1' }
       });
@@ -1475,6 +1487,18 @@
       await processTickers(items, market);
     }
 
+    function handleSidebarSearchSubmit() {
+      const inputEl = document.getElementById('sidebarSearch');
+      const raw = (inputEl?.value || '').trim();
+      if (!raw) return;
+      inputEl.value = '';
+      const market = document.getElementById('marketSelector')?.value || 'AUTO';
+      const items = parseSearchQueryItems(raw);
+      if (items.length > 0) {
+        processTickers(items, market);
+      }
+    }
+
     async function processTickers(queryItems, defaultMarket = null) {
       const selectedMarket = defaultMarket || document.getElementById('marketSelector')?.value || 'AUTO';
       const items = (queryItems || []).map(it => {
@@ -1496,19 +1520,20 @@
       let completed = 0;
       const total = items.length;
 
-      // Optimistic placeholder additions for UI responsiveness
+      // Optimistic placeholder additions for UI responsiveness (preserve input order)
+      const newPlaceholders = [];
       items.forEach(item => {
         const placeholderCode = item.code || item.query;
         loadingCodes.add(placeholderCode);
         const exists = stocks.find(s => s.code === placeholderCode);
         if (!exists) {
           const known = KNOWN_SLUGS[placeholderCode] || {};
-          stocks.unshift({
+          newPlaceholders.push({
             code: placeholderCode,
             name: item.hint || known.name || `股票 ${placeholderCode}`,
             slug: known.slug || '',
-            market: known.market || 'TWSE',
-            currency: known.currency || 'NT$',
+            market: known.market || (item.market === 'JP' ? 'TSE' : (item.market === 'US' ? 'NASDAQ' : (item.market === 'HK' ? 'HKEX' : 'TWSE'))),
+            currency: known.currency || (item.market === 'JP' ? '¥' : (item.market === 'US' ? 'USD' : (item.market === 'HK' ? 'HK$' : 'NT$'))),
             price: 0,
             prevClose: 0,
             fairValue: known.proFairValue || 0,
@@ -1531,6 +1556,9 @@
           });
         }
       });
+      if (newPlaceholders.length > 0) {
+        stocks = [...newPlaceholders, ...stocks];
+      }
       renderApp();
 
       for (const item of items) {
@@ -1630,8 +1658,12 @@
 
       if (filtered.length === 0) {
         container.innerHTML = `
-          <div class="text-center py-6 text-xs text-slate-500">
-            沒有符合的股票，請在上方輸入代碼查詢
+          <div class="text-center py-6 text-xs text-slate-400 space-y-2.5">
+            <div>清單內尚無「<strong class="text-white">${filterQ}</strong>」</div>
+            <button onclick="handleSidebarSearchSubmit()" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 hover:from-cyan-500/30 hover:to-emerald-500/30 text-cyan-300 border border-cyan-500/30 text-xs font-medium transition inline-flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-bolt text-amber-400"></i>
+              <span>立即去 Investing.com 撈取</span>
+            </button>
           </div>
         `;
         return;
