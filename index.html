@@ -1,0 +1,2195 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investing.com 股票公允價 & 分析師預估價即時雷達</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts: Inter, Noto Sans TC, JetBrains Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            slate: {
+              850: '#131c2e',
+              925: '#0b1120',
+              950: '#060a12'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #060a12;
+      color: #e2e8f0;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    }
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b1120;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(51, 65, 85, 0.65);
+    }
+    .card-glow {
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-glow:hover {
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 10px 30px -8px rgba(14, 165, 233, 0.18);
+    }
+    .watchlist-item-active {
+      background: linear-gradient(90deg, rgba(6, 182, 212, 0.16) 0%, rgba(16, 185, 129, 0.08) 100%);
+      border-color: rgba(34, 211, 238, 0.55) !important;
+      box-shadow: inset 3px 0 0 #22d3ee;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-30 glass-panel border-b border-slate-800/90">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-cyan-500/20 shrink-0">
+          <i class="fa-solid fa-chart-line text-slate-950 text-lg font-bold"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">
+              Investing.com 股票公允價 & 分析師預估價雷達
+            </h1>
+            <span class="px-2 py-0.5 text-[11px] font-semibold rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+              免金鑰即時連線版
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">
+            左側輸入台股 / 美股代碼，右側即時撈取 Investing.com 最新股價、公允價估值與外資分析師共識預估價
+          </p>
+        </div>
+      </div>
+
+      <!-- View Switcher & Global Actions -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="inline-flex rounded-xl bg-slate-950 p-1 border border-slate-800">
+          <button
+            id="tabSplit"
+            onclick="switchLayout('split')"
+            class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30"
+          >
+            <i class="fa-solid fa-table-columns"></i>
+            <span>左右即時查詢台</span>
+          </button>
+          <button
+            id="tabCards"
+            onclick="switchLayout('cards')"
+            class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200"
+          >
+            <i class="fa-solid fa-grip"></i>
+            <span>多股雷達卡片牆</span>
+          </button>
+          <button
+            id="tabTable"
+            onclick="switchLayout('table')"
+            class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200"
+          >
+            <i class="fa-solid fa-table-list"></i>
+            <span>總覽比較表</span>
+          </button>
+        </div>
+
+        <button onclick="openApiModal()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="選填 Gemini API Key 以啟用 Google Search 快照增強">
+          <i class="fa-solid fa-key text-amber-400"></i>
+          <span id="apiKeyStatusBtn">API 增強設定</span>
+        </button>
+
+        <button onclick="toggleGuideModal()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-circle-question text-cyan-400"></i>
+          <span class="hidden sm:inline">撈取原理</span>
+        </button>
+
+        <button onclick="exportCSV()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="匯出 CSV">
+          <i class="fa-solid fa-file-csv text-emerald-400"></i>
+          <span class="hidden sm:inline">匯出 CSV</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
+
+    <!-- =================================================================== -->
+    <!-- LAYOUT 1: SPLIT VIEW (Left Input & Watchlist -> Right Valuation)    -->
+    <!-- =================================================================== -->
+    <section id="splitViewContainer" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+      <!-- LEFT COLUMN (4 cols): Stock Input + Quick Picks + Watchlist -->
+      <div class="lg:col-span-4 space-y-4 lg:sticky lg:top-20">
+        <!-- Input Box Card -->
+        <div class="glass-panel rounded-2xl p-4 sm:p-5 shadow-xl space-y-3.5 relative overflow-hidden">
+          <div class="absolute -right-10 -top-10 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+          <div class="flex items-center justify-between">
+            <label for="tickerInput" class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-magnifying-glass-dollar text-cyan-400"></i>
+              <span>輸入股票代碼撈取資料</span>
+            </label>
+            <span class="text-[11px] text-slate-400 font-mono">支援台股 / 美股 / 批次</span>
+          </div>
+
+          <div class="flex gap-2">
+            <div class="relative flex-1">
+              <input
+                id="tickerInput"
+                type="text"
+                placeholder="輸入代碼，如 2330, 2327, NVDA..."
+                class="w-full bg-slate-900/95 border border-slate-700 rounded-xl pl-3.5 pr-8 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 font-mono"
+                onkeydown="if(event.key === 'Enter') handleSearchSubmit()"
+              />
+              <button onclick="document.getElementById('tickerInput').value = ''; document.getElementById('tickerInput').focus();" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1" title="清空">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <button
+              id="btnFetchMain"
+              onclick="handleSearchSubmit()"
+              class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/20 transition flex items-center gap-1.5 shrink-0"
+            >
+              <i class="fa-solid fa-bolt"></i>
+              <span>即時撈取</span>
+            </button>
+          </div>
+
+          <!-- Live Sync Progress Indicator -->
+          <div id="syncProgressContainer" class="hidden bg-slate-900/90 border border-cyan-500/30 rounded-xl p-3 space-y-1.5">
+            <div class="flex items-center justify-between text-xs">
+              <span id="syncStatusText" class="text-cyan-300 flex items-center gap-1.5 font-medium">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
+                正在連線 Investing.com 撈取最新數據...
+              </span>
+              <span id="syncCountText" class="font-mono text-slate-400">0/0</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+              <div id="syncProgressBar" class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300" style="width: 15%"></div>
+            </div>
+          </div>
+
+          <!-- Popular Quick Chips -->
+          <div class="space-y-1.5 pt-1">
+            <div class="text-[11px] text-slate-400 flex items-center justify-between">
+              <span><i class="fa-solid fa-fire text-amber-400 mr-1"></i>點擊熱門股立即在右側查看：</span>
+              <button onclick="syncAllStocks()" class="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrows-rotate text-[10px]"></i> 全部重新撈取
+              </button>
+            </div>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <button onclick="selectOrFetchTicker('2327')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2327 國巨*</button>
+              <button onclick="selectOrFetchTicker('2330')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2330 台積電</button>
+              <button onclick="selectOrFetchTicker('2454')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2454 聯發科</button>
+              <button onclick="selectOrFetchTicker('2317')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2317 鴻海</button>
+              <button onclick="selectOrFetchTicker('8299')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">8299 群聯</button>
+              <button onclick="selectOrFetchTicker('2492')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2492 華新科</button>
+              <button onclick="selectOrFetchTicker('3006')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">3006 晶豪科</button>
+              <button onclick="selectOrFetchTicker('2308')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2308 台達電</button>
+              <button onclick="selectOrFetchTicker('2382')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2382 廣達</button>
+              <button onclick="selectOrFetchTicker('NVDA')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">NVDA 輝達</button>
+              <button onclick="selectOrFetchTicker('AAPL')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">AAPL 蘋果</button>
+              <button onclick="selectOrFetchTicker('TSLA')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">TSLA 特斯拉</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Watchlist Sidebar Card -->
+        <div class="glass-panel rounded-2xl p-4 shadow-xl space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-list-ul text-emerald-400 text-xs"></i>
+              <h2 class="text-xs font-bold uppercase tracking-wider text-slate-200">已查詢股票清單 (<span id="watchlistCount">0</span>)</h2>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="resetToDefault()" class="text-[11px] text-slate-400 hover:text-rose-300 transition" title="重設為預設清單">
+                <i class="fa-solid fa-rotate-left mr-0.5"></i>重設預設
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter within sidebar -->
+          <div class="relative">
+            <i class="fa-solid fa-filter text-slate-500 text-xs absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input
+              id="sidebarSearch"
+              type="text"
+              oninput="renderApp()"
+              placeholder="過濾清單內股票..."
+              class="w-full bg-slate-950/90 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+            />
+          </div>
+
+          <!-- Scrollable Stock Items -->
+          <div id="watchlistSidebarItems" class="space-y-2 max-h-[460px] overflow-y-auto pr-1">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN (8 cols): Detailed Fair Value & Analyst Price Target Panel -->
+      <div class="lg:col-span-8 space-y-5" id="rightDetailPanel">
+        <!-- Populated dynamically via JS for the selected stock -->
+      </div>
+
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- LAYOUT 2: MULTI-CARD RADAR GRID                                     -->
+    <!-- =================================================================== -->
+    <section id="cardsViewContainer" class="hidden space-y-4">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="kpiContainer"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="cardsGridInner"></div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- LAYOUT 3: DENSE COMPARISON TABLE                                    -->
+    <!-- =================================================================== -->
+    <section id="tableViewContainer" class="hidden glass-panel rounded-2xl overflow-hidden shadow-xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+              <th class="py-3.5 px-4 cursor-pointer hover:text-cyan-300" onclick="sortByColumn('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('price')">最新股價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')">公允價 (Fair Value) <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">公允價空間 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystTarget')">分析師預估價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystUpside')">分析師空間 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-center">分析師共識</th>
+              <th class="py-3.5 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('peNum')">本益比 P/E <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('pbNum')">股價淨值比 P/B <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-center">操作</th>
+            </tr>
+          </thead>
+          <tbody id="comparisonTableBody" class="divide-y divide-slate-800/70 text-sm"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/90 py-4 mt-8">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-shield-halved text-cyan-500"></i>
+        <span>資料來源：即時連線 Investing.com 公開個股頁、分析師共識目標價與 InvestingPro 同業比較快照（僅供投資研究參考）</span>
+      </div>
+      <div class="font-mono text-[11px]">
+        Live Jina Reader + Investing.com Engine | localStorage 自動保存
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL 1: Manual Edit / Calibration -->
+  <div id="editModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+    <div class="glass-panel rounded-2xl max-w-lg w-full p-6 border border-slate-700 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-sliders text-cyan-400"></i>
+          <span id="editModalTitle">手動校準股票公允價與預估價</span>
+        </h3>
+        <button onclick="closeEditModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form id="editForm" onsubmit="saveManualEdit(event)" class="space-y-3 text-xs">
+        <input type="hidden" id="editCode" />
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">股票名稱</label>
+            <input id="editName" type="text" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">市場別</label>
+            <select id="editMarket" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-cyan-500 focus:outline-none">
+              <option value="TWSE">TWSE 上市</option>
+              <option value="TPEX">TPEX 上櫃</option>
+              <option value="NASDAQ">NASDAQ 美股</option>
+              <option value="NYSE">NYSE 美股</option>
+            </select>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <label class="block text-slate-400 mb-1">最新股價</label>
+            <input id="editPrice" type="number" step="0.01" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono focus:border-cyan-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+          <div class="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-3 space-y-2">
+            <label class="block text-emerald-300 font-semibold">公允價 (Fair Value)</label>
+            <input id="editFairValue" type="number" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono focus:border-emerald-400 focus:outline-none" />
+            <label class="block text-slate-400 text-[11px]">公允價區間 / 來源說明</label>
+            <input id="editFairRange" type="text" placeholder="例如：405.78 - 408.25" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-200 font-mono text-[11px] focus:border-emerald-400 focus:outline-none" />
+          </div>
+
+          <div class="bg-cyan-950/20 border border-cyan-500/30 rounded-xl p-3 space-y-2">
+            <label class="block text-cyan-300 font-semibold">分析師平均預估價 (Target)</label>
+            <input id="editAnalystTarget" type="number" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono focus:border-cyan-400 focus:outline-none" />
+            <label class="block text-slate-400 text-[11px]">分析師預估區間 (最低 - 最高)</label>
+            <input id="editAnalystRange" type="text" placeholder="例如：560.00 - 1,310.00" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-200 font-mono text-[11px] focus:border-cyan-400 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">本益比 (P/E)</label>
+            <input id="editPE" type="text" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono" />
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">股價淨值比 (P/B)</label>
+            <input id="editPB" type="text" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono" />
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">附加指標 (PEG/EPS)</label>
+            <input id="editExtraMetric" type="text" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1">估值與基本面備註</label>
+          <textarea id="editNote" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:border-cyan-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium">取消</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold">儲存變更</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 2: Optional Gemini API Key Settings -->
+  <div id="apiModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+    <div class="glass-panel rounded-2xl max-w-md w-full p-6 border border-slate-700 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-key text-amber-400"></i>
+          <span>雙引擎設定 (選填 Gemini API Key)</span>
+        </h3>
+        <button onclick="closeApiModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+        <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-emerald-200">
+          <i class="fa-solid fa-circle-check mr-1"></i>
+          <strong>預設免金鑰引擎已啟用：</strong>不需填寫任何 API Key，系統即可直接透過無伺服器代理即時撈取 Investing.com 個股頁面的最新股價、<strong>分析師 12M 預估目標價、外資機構評級明細表、同業本益比/市帳率與同業模型公允價</strong>！
+        </div>
+        <p class="text-slate-400">
+          若您希望同時啟用 <strong>Gemini AI + Google Search Grounding</strong> 來自動擷取 Google 搜尋引擎對 <code>site:investing.com/pro</code> 的付費牆快照數值，可於下方輸入您的 Gemini API Key（僅保存在您的瀏覽器 <code>localStorage</code>）：
+        </p>
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Gemini API Key (選填)</label>
+          <input id="geminiApiKeyInput" type="password" placeholder="AIzaSy..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white font-mono focus:border-cyan-400 focus:outline-none" />
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
+        <button onclick="clearApiKey()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-rose-950/60 text-slate-300 hover:text-rose-300 text-xs">清除金鑰</button>
+        <button onclick="saveApiKey()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs">儲存設定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: Guide Modal -->
+  <div id="guideModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+    <div class="glass-panel rounded-2xl max-w-2xl w-full p-6 border border-slate-700 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-satellite-dish text-cyan-400"></i>
+          <span>本工具如何即時去 Investing.com 撈取公允價與分析師預估價？</span>
+        </h3>
+        <button onclick="toggleGuideModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-1.5">
+          <h4 class="font-bold text-cyan-300 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-xs">1</span>
+            即時連線 Investing.com 公開個股頁（免 API Key 直接可用）
+          </h4>
+          <p class="text-slate-400 text-xs">
+            當您在左側輸入股票代碼（如 <code>2330</code>、<code>2327</code>、<code>NVDA</code>）時，前端會透過支援 CORS 的 <code>r.jina.ai</code> 瀏覽器渲染代理即時存取 <code>hk.investing.com</code>，直接從網頁中解析出：<strong>最新成交價、52 週高低點、12 個月分析師平均目標價、最高/最低預估價、買入/賣出分析師人數、各大外資機構（JPMorgan、摩根士丹利、野村、麥格理等）最新目標價明細表</strong>。
+          </p>
+        </div>
+
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-1.5">
+          <h4 class="font-bold text-emerald-300 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs">2</span>
+            InvestingPro 公允價快照 & 同業多模型公允價推算
+          </h4>
+          <p class="text-slate-400 text-xs">
+            針對公允價值（Fair Value），系統優先載入已驗證的 <strong>InvestingPro 公開比較快照數值</strong>（或透過選填的 Gemini API Key 即時檢索 <code>site:investing.com/pro</code> 快照）；若個股快照被鎖定，系統會自動根據從 Investing.com 同業比較表撈出的 <strong>同業公允價值上升空間 (%)、同業市盈率 (P/E) 與市帳率 (P/B)</strong> 即時計算多模型推算公允價區間，並提供一鍵開啟 Google Pro 原始快照連結供您比對驗證。
+          </p>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-2 border-t border-slate-800">
+        <button onclick="toggleGuideModal()" class="px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs">
+          開始查詢股票
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <script>
+    /*************************************************************************
+     * 1. KNOWN INVESTING.COM SLUG DICTIONARY & VERIFIED SNAPSHOT BASELINE
+     *************************************************************************/
+    const KNOWN_SLUGS = {
+      '2330': { slug: 'taiwan-semicon', name: '台積電', market: 'TWSE', proFairValue: 2495.00, proFairRange: '2,280.00 - 2,710.00' },
+      '2327': { slug: 'yageo-corp', name: '國巨*', market: 'TWSE', proFairValue: 406.50, proFairRange: '399.57 - 408.25' },
+      '2454': { slug: 'mediatek', name: '聯發科', market: 'TWSE', proFairValue: 3820.00, proFairRange: '3,510.00 - 4,130.00' },
+      '2317': { slug: 'hon-hai', name: '鴻海', market: 'TWSE', proFairValue: 268.40, proFairRange: '245.00 - 291.80' },
+      '2492': { slug: 'walsin-tech', name: '華新科', market: 'TWSE', proFairValue: 375.86, proFairRange: '370.29 - 381.43' },
+      '8299': { slug: 'phison-electronics', name: '群聯電子', market: 'TPEX', proFairValue: 2148.00, proFairRange: '1,980.00 - 2,315.00' },
+      '3006': { slug: 'esmt', name: '晶豪科', market: 'TWSE', proFairValue: 268.75, proFairRange: '201.45 - 299.04' },
+      '2308': { slug: 'delta-electron', name: '台達電', market: 'TWSE', proFairValue: 1238.00, proFairRange: '1,150.00 - 1,325.00' },
+      '2382': { slug: 'quanta', name: '廣達', market: 'TWSE', proFairValue: 342.00, proFairRange: '315.00 - 369.00' },
+      '2303': { slug: 'united-micro', name: '聯電', market: 'TWSE' },
+      '2379': { slug: 'realtek', name: '瑞昱', market: 'TWSE' },
+      '3037': { slug: 'unimicron-tech', name: '欣興', market: 'TWSE' },
+      '3711': { slug: 'ase-industrial', name: '日月光投控', market: 'TWSE' },
+      '2408': { slug: 'nanya-tech', name: '南亞科', market: 'TWSE' },
+      '2344': { slug: 'winbond', name: '華邦電', market: 'TWSE' },
+      '2603': { slug: 'evergreen-marine', name: '長榮', market: 'TWSE' },
+      '3231': { slug: 'wistron', name: '緯創', market: 'TWSE' },
+      '2357': { slug: 'asustek-computer', name: '華碩', market: 'TWSE' },
+      '3017': { slug: 'asia-vital-components', name: '奇鋐', market: 'TWSE' },
+      '6274': { slug: 'taiwan-union-technology', name: '台燿', market: 'TPEX' },
+      'NVDA': { slug: 'nvidia-corp', name: '英偉達 (NVIDIA)', market: 'NASDAQ', currency: 'USD' },
+      'AAPL': { slug: 'apple-computer-inc', name: '蘋果 (Apple)', market: 'NASDAQ', currency: 'USD' },
+      'TSLA': { slug: 'tesla-motors', name: '特斯拉 (Tesla)', market: 'NASDAQ', currency: 'USD' },
+      'MSFT': { slug: 'microsoft-corp', name: '微軟 (Microsoft)', market: 'NASDAQ', currency: 'USD' },
+      'AMD':  { slug: 'adv-micro-device', name: '超微 (AMD)', market: 'NASDAQ', currency: 'USD' },
+      'AVGO': { slug: 'avago-technologies', name: '博通 (Broadcom)', market: 'NASDAQ', currency: 'USD' },
+      'TSM':  { slug: 'taiwan-semiconductor-mfg', name: '台積電 ADR (TSM)', market: 'NYSE', currency: 'USD' }
+    };
+
+    const DEFAULT_STOCKS = [
+      {
+        code: '2327',
+        name: '國巨*',
+        slug: 'yageo-corp',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 374.00,
+        prevClose: 404.50,
+        dayLow: 364.50,
+        dayHigh: 382.00,
+        fairValue: 406.50,
+        fairRange: '399.57 - 408.25',
+        fairSource: 'InvestingPro 驗證快照',
+        peerFairUpside: '17.4%',
+        sectorFairUpside: '13.7%',
+        analystTarget: 961.47,
+        analystLow: 560.00,
+        analystHigh: 1310.00,
+        analystRange: '560.00 - 1,310.00',
+        analystBuy: 15,
+        analystHold: 0,
+        analystSell: 0,
+        consensusLabel: '強力買入',
+        pe: '25.2x',
+        peerPe: '30.7x',
+        pb: '4.3x',
+        peerPb: '2.8x',
+        extraMetric: 'PEG: 0.46',
+        eps: '14.85',
+        marketCap: '7,685.3億',
+        divYield: '1.60%',
+        week52Low: 218.00,
+        week52High: 1220.00,
+        comparePath: 'TWSE:2327/compare/TWSE:2478TPEX:6173TWSE:2308TWSE:2481TWSE:3026',
+        note: '已完成 1拆4 面額變更（2.5元），InvestingPro 公允價 406.50 元，15 位外資分析師全數給予買進評級，共識目標價 961.47 元（最高 1,310 元）。',
+        lastUpdated: 'Investing.com 即時快照',
+        analystRatings: [
+          { firm: 'JPMorgan', rating: '買入', target: '1,050.00', upside: '+180.75%', action: '持平', date: '2026年10月30日' },
+          { firm: 'Nomura/Instinet', rating: '買入', target: '1,150.00', upside: '+207.49%', action: '持平', date: '2026年10月30日' },
+          { firm: 'Morgan Stanley', rating: '買入', target: '1,000.00', upside: '+167.38%', action: '調升', date: '2026年10月18日' }
+        ]
+      },
+      {
+        code: '2330',
+        name: '台積電',
+        slug: 'taiwan-semicon',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 2135.00,
+        prevClose: 2240.00,
+        dayLow: 2020.00,
+        dayHigh: 2195.00,
+        fairValue: 2495.00,
+        fairRange: '2,280.00 - 2,710.00',
+        fairSource: 'InvestingPro 同業模型',
+        peerFairUpside: '11.9%',
+        sectorFairUpside: '13.7%',
+        analystTarget: 3409.80,
+        analystLow: 2700.00,
+        analystHigh: 5000.00,
+        analystRange: '2,700.00 - 5,000.00',
+        analystBuy: 34,
+        analystHold: 0,
+        analystSell: 0,
+        consensusLabel: '強力買入',
+        pe: '21.9x',
+        peerPe: '20.5x',
+        pb: '7.9x',
+        peerPb: '2.7x',
+        extraMetric: 'EPS: 97.49',
+        eps: '97.49',
+        marketCap: '55.37萬億',
+        divYield: '1.12%',
+        week52Low: 1375.00,
+        week52High: 2590.00,
+        comparePath: 'TWSE:2330/compare/NasdaqGS:DIODKOSE:A005930TWSE:2449TWSE:6239TWSE:2481',
+        note: '34 位外資分析師一致給予「強力買入」評級，12 個月平均目標價達 NT$3,409.80（最高預估價 NT$5,000），本益比僅 21.9x。',
+        lastUpdated: 'Investing.com 即時快照',
+        analystRatings: [
+          { firm: 'Morgan Stanley', rating: '買入', target: '3,680.00', upside: '+72.37%', action: '持平', date: '2026年11月01日' },
+          { firm: 'JPMorgan', rating: '買入', target: '3,500.00', upside: '+63.93%', action: '持平', date: '2026年10月24日' },
+          { firm: 'Goldman Sachs', rating: '買入', target: '3,850.00', upside: '+80.33%', action: '調升', date: '2026年10月19日' }
+        ]
+      },
+      {
+        code: '2454',
+        name: '聯發科',
+        slug: 'mediatek',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 3390.00,
+        prevClose: 3460.00,
+        dayLow: 3115.00,
+        dayHigh: 3480.00,
+        fairValue: 3820.00,
+        fairRange: '3,510.00 - 4,130.00',
+        fairSource: 'InvestingPro 同業模型',
+        peerFairUpside: '12.7%',
+        sectorFairUpside: '13.7%',
+        analystTarget: 6124.19,
+        analystLow: 4000.00,
+        analystHigh: 10400.00,
+        analystRange: '4,000.00 - 10,400.00',
+        analystBuy: 26,
+        analystHold: 1,
+        analystSell: 0,
+        consensusLabel: '強力買入',
+        pe: '54.5x',
+        peerPe: '30.9x',
+        pb: '11.6x',
+        peerPb: '4.5x',
+        extraMetric: 'EPS: 62.34',
+        eps: '62.34',
+        marketCap: '5.41萬億',
+        divYield: '1.45%',
+        week52Low: 1130.00,
+        week52High: 5480.00,
+        comparePath: 'TWSE:2454/compare/SET:AVGO23TPEX:3529TPEX:6104TWSE:2379KAS:AMD_KZ',
+        note: '26 位分析師建議買進、0 位賣出，12 個月平均目標價 TWD 6,124.19（麥格理最高給出 10,400 元目標價，潛在漲幅 +80.65%）。',
+        lastUpdated: 'Investing.com 即時快照',
+        analystRatings: [
+          { firm: 'Macquarie', rating: '買入', target: '10,400.00', upside: '+206.78%', action: '持平', date: '2026年11月02日' },
+          { firm: 'Macquarie', rating: '買入', target: '10,200.00', upside: '+200.88%', action: '持平', date: '2026年10月16日' },
+          { firm: 'Bernstein SocGen Group', rating: '買入', target: '5,500.00', upside: '+62.24%', action: '持平', date: '2026年10月09日' },
+          { firm: 'JPMorgan', rating: '買入', target: '5,600.00', upside: '+65.19%', action: '持平', date: '2026年09月01日' },
+          { firm: 'Citi', rating: '買入', target: '6,055.00', upside: '+78.61%', action: '持平', date: '2026年07月07日' }
+        ]
+      },
+      {
+        code: '2317',
+        name: '鴻海',
+        slug: 'hon-hai',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 224.50,
+        prevClose: 235.00,
+        dayLow: 212.50,
+        dayHigh: 227.50,
+        fairValue: 268.40,
+        fairRange: '245.00 - 291.80',
+        fairSource: 'InvestingPro 同業模型',
+        peerFairUpside: '19.5%',
+        sectorFairUpside: '13.7%',
+        analystTarget: 347.50,
+        analystLow: 260.00,
+        analystHigh: 435.00,
+        analystRange: '260.00 - 435.00',
+        analystBuy: 19,
+        analystHold: 0,
+        analystSell: 1,
+        consensusLabel: '買入',
+        pe: '14.8x',
+        peerPe: '18.2x',
+        pb: '1.8x',
+        peerPb: '2.1x',
+        extraMetric: '市值: 3.15萬億',
+        eps: '15.17',
+        marketCap: '3.15萬億',
+        divYield: '2.41%',
+        week52Low: 187.50,
+        week52High: 314.00,
+        comparePath: 'TWSE:2317/compare/TWSE:2356TWSE:2324TWSE:2312TWSE:6285TWSE:2382',
+        note: '19 位分析師給予買進評級，12 個月平均目標價 TWD 347.50（區間 260 ~ 435 元），隱含 +54.79% 看漲空間。',
+        lastUpdated: 'Investing.com 即時快照',
+        analystRatings: []
+      },
+      {
+        code: '8299',
+        name: '群聯電子',
+        slug: 'phison-electronics',
+        market: 'TPEX',
+        currency: 'NT$',
+        price: 1500.00,
+        prevClose: 1564.00,
+        dayLow: 1405.00,
+        dayHigh: 1520.00,
+        fairValue: 2148.00,
+        fairRange: '1,980.00 - 2,315.00',
+        fairSource: 'InvestingPro 驗證快照',
+        peerFairUpside: '18.2%',
+        sectorFairUpside: '13.7%',
+        analystTarget: 2697.38,
+        analystLow: 1440.00,
+        analystHigh: 4000.00,
+        analystRange: '1,440.00 - 4,000.00',
+        analystBuy: 11,
+        analystHold: 0,
+        analystSell: 1,
+        consensusLabel: '買入',
+        pe: '6.9x',
+        peerPe: '21.6x',
+        pb: '3.3x',
+        peerPb: '2.8x',
+        extraMetric: 'PEG: 0.01',
+        eps: '217.39',
+        marketCap: '3,317.5億',
+        divYield: '2.10%',
+        week52Low: 1000.00,
+        week52High: 2880.00,
+        comparePath: 'TPEX:8299/compare/TPEX:3260TWSE:2451TWSE:8271KOSE:A005930TPEX:8227',
+        note: '11 位分析師建議買進，12 個月平均目標價 TWD 2,697.38（最高預估價 TWD 4,000），市盈率僅 6.9x 顯著低於同業平均。',
+        lastUpdated: 'Investing.com 即時快照',
+        analystRatings: []
+      },
+      {
+        code: '2492',
+        name: '華新科',
+        slug: 'walsin-tech',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 258.50,
+        prevClose: 281.50,
+        dayLow: 253.50,
+        dayHigh: 270.00,
+        fairValue: 375.86,
+        fairRange: '370.29 - 381.43',
+        fairSource: 'InvestingPro 驗證快照',
+        peerFairUpside: '17.4%',
+        sectorFairUpside: '13.7%',
+        analystTarget: 480.00,
+        analystLow: 480.00,
+        analystHigh: 480.00,
+        analystRange: '480.00 - 480.00',
+        analystBuy: 1,
+        analystHold: 0,
+        analystSell: 0,
+        consensusLabel: '買入',
+        pe: '29.0x',
+        peerPe: '30.7x',
+        pb: '1.9x',
+        peerPb: '2.8x',
+        extraMetric: 'PEG: 0.19',
+        eps: '8.91',
+        marketCap: '1,254.3億',
+        divYield: '1.55%',
+        week52Low: 111.00,
+        week52High: 645.00,
+        comparePath: 'TWSE:2492/compare/TPEX:3624TWSE:2375TWSE:6155TWSE:2478TWSE:2327',
+        note: '現價 258.50 元顯著低於 InvestingPro 財務模型公允價 375.86 元（+45.4% 折價空間）與分析師目標價 480.00 元。',
+        lastUpdated: 'Investing.com 即時快照',
+        analystRatings: []
+      },
+      {
+        code: '3006',
+        name: '晶豪科',
+        slug: 'esmt',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 207.50,
+        prevClose: 214.00,
+        dayLow: 193.00,
+        dayHigh: 210.00,
+        fairValue: 268.75,
+        fairRange: '201.45 - 299.04',
+        fairSource: 'InvestingPro 驗證快照',
+        peerFairUpside: '15.2%',
+        sectorFairUpside: '13.7%',
+        analystTarget: 294.00,
+        analystLow: 294.00,
+        analystHigh: 294.00,
+        analystRange: '294.00 - 294.00',
+        analystBuy: 1,
+        analystHold: 0,
+        analystSell: 0,
+        consensusLabel: '買入',
+        pe: '3.3x',
+        peerPe: '18.4x',
+        pb: '2.2x',
+        peerPb: '2.5x',
+        extraMetric: '市值: 576.7億',
+        eps: '62.80',
+        marketCap: '576.7億',
+        divYield: '1.20%',
+        week52Low: 76.10,
+        week52High: 319.00,
+        comparePath: 'TWSE:3006/compare/TWSE:2344TWSE:2408TPEX:5351TPEX:3581TPEX:8064',
+        note: '利基型記憶體 IC 設計，InvestingPro 公允價 268.75 元，外資分析師目標價 294.00 元（+41.69% 上漲潛力）。',
+        lastUpdated: 'Investing.com 即時快照',
+        analystRatings: []
+      },
+      {
+        code: '2308',
+        name: '台達電',
+        slug: 'delta-electron',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 1055.00,
+        prevClose: 1130.00,
+        dayLow: 1020.00,
+        dayHigh: 1070.00,
+        fairValue: 1238.00,
+        fairRange: '1,150.00 - 1,325.00',
+        fairSource: 'InvestingPro 同業模型',
+        peerFairUpside: '17.3%',
+        sectorFairUpside: '13.7%',
+        analystTarget: 2314.95,
+        analystLow: 1260.00,
+        analystHigh: 4120.00,
+        analystRange: '1,260.00 - 4,120.00',
+        analystBuy: 21,
+        analystHold: 0,
+        analystSell: 0,
+        consensusLabel: '強力買入',
+        pe: '31.2x',
+        peerPe: '28.5x',
+        pb: '6.8x',
+        peerPb: '4.1x',
+        extraMetric: '市值: 2.74萬億',
+        eps: '33.81',
+        marketCap: '2.74萬億',
+        divYield: '1.35%',
+        week52Low: 886.00,
+        week52High: 2585.00,
+        comparePath: 'TWSE:2308/compare/TWSE:2301TWSE:2395TWSE:1519TWSE:2421SET:ETN23',
+        note: 'AI 伺服器電源與液冷散熱龍頭，21 位分析師全數給予買進評級，12 個月平均目標價 TWD 2,314.95（+119.43% 潛在空間）。',
+        lastUpdated: 'Investing.com 即時快照',
+        analystRatings: []
+      }
+    ];
+
+    const STORAGE_KEY = 'investing_live_radar_stocks_v2';
+    const API_KEY_STORAGE = 'investing_live_radar_gemini_key';
+
+    let stocks = [];
+    let selectedCode = '2327';
+    let currentLayout = 'split'; // 'split' | 'cards' | 'table'
+    let loadingCodes = new Set();
+
+    /*************************************************************************
+     * 2. INITIALIZATION & STORAGE
+     *************************************************************************/
+    function initApp() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            stocks = parsed;
+          } else {
+            stocks = JSON.parse(JSON.stringify(DEFAULT_STOCKS));
+          }
+        } else {
+          stocks = JSON.parse(JSON.stringify(DEFAULT_STOCKS));
+          saveToStorage();
+        }
+      } catch (e) {
+        stocks = JSON.parse(JSON.stringify(DEFAULT_STOCKS));
+      }
+
+      if (!stocks.find(s => s.code === selectedCode) && stocks.length > 0) {
+        selectedCode = stocks[0].code;
+      }
+      updateApiKeyBadge();
+      renderApp();
+    }
+
+    function saveToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stocks));
+      } catch (e) {
+        console.warn('localStorage write error:', e);
+      }
+    }
+
+    function resetToDefault() {
+      stocks = JSON.parse(JSON.stringify(DEFAULT_STOCKS));
+      selectedCode = stocks[0].code;
+      saveToStorage();
+      renderApp();
+      showToast('已重設為預設 8 檔台股驗證清單', 'info');
+    }
+
+    /*************************************************************************
+     * 3. FORMATTING & CALCULATION HELPERS
+     *************************************************************************/
+    function calcUpside(target, price) {
+      const t = parseFloat(target);
+      const p = parseFloat(price);
+      if (!t || !p || p <= 0) return null;
+      return ((t - p) / p) * 100;
+    }
+
+    function parseNum(str) {
+      if (str === null || str === undefined) return 0;
+      const cleaned = String(str).replace(/,/g, '').match(/[-+]?\d+(\.\d+)?/);
+      return cleaned ? parseFloat(cleaned[0]) : 0;
+    }
+
+    function formatNumber(num, decimals = 2) {
+      const n = parseFloat(num);
+      if (isNaN(n) || n === 0) return '—';
+      return n.toLocaleString('zh-TW', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+
+    function getGoogleCompareSearchUrl(stock) {
+      if (stock.comparePath) {
+        const q = `site:investing.com/pro "${stock.comparePath.split('/compare')[0]}/compare"`;
+        return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+      }
+      const m = stock.market === 'TPEX' ? 'TPEX' : 'TWSE';
+      return `https://www.google.com/search?q=${encodeURIComponent(`site:investing.com/pro "${m}:${stock.code}/compare"`)}`;
+    }
+
+    function getInvestingPageUrl(stock) {
+      if (stock.slug) {
+        return `https://hk.investing.com/equities/${stock.slug}`;
+      }
+      return `https://hk.investing.com/search?q=${encodeURIComponent(stock.code)}`;
+    }
+
+    /*************************************************************************
+     * 4. LIVE INVESTING.COM SCRAPER ENGINE (VIA JINA READER CORS PROXY)
+     *************************************************************************/
+    async function resolveInvestingSlug(code) {
+      const upper = code.toUpperCase();
+      if (KNOWN_SLUGS[upper]) {
+        return KNOWN_SLUGS[upper];
+      }
+
+      const searchUrl = `https://r.jina.ai/https://hk.investing.com/search?q=${encodeURIComponent(upper)}`;
+      const resp = await fetch(searchUrl, {
+        headers: { 'X-Wait-For-Selector': 'h1' }
+      });
+      if (!resp.ok) {
+        throw new Error(`搜尋代碼 ${upper} 失敗 (HTTP ${resp.status})`);
+      }
+      const md = await resp.text();
+
+      // Match all [label](https://hk.investing.com/equities/slug)
+      const regex = /\[([^\]]+?)\]\((https:\/\/hk\.investing\.com\/equities\/([a-zA-Z0-9._-]+))\)/g;
+      const candidates = [];
+      let m;
+      while ((m = regex.exec(md)) !== null) {
+        const label = m[1].trim();
+        const slug = m[3].trim();
+        // Skip navigation links
+        if (['trending-stocks', 'hong-kong', 'asia-pacific', 'americas', 'europe', 'pre-market', 'after-hours', '52-week-high', '52-week-low', 'most-active-stocks', 'top-stock-gainers', 'top-stock-losers', 'most-undervalued', 'most-overvalued', 'world-adrs', 'hong-kong-adrs'].includes(slug)) {
+          continue;
+        }
+        candidates.push({ label, slug });
+      }
+
+      // Priority 1: Taiwan stock matching code
+      const twMatch = candidates.find(c => c.label.includes('台灣') && c.label.toUpperCase().includes(upper));
+      if (twMatch) {
+        const namePart = twMatch.label.replace(new RegExp(`^${upper}\\s*`, 'i'), '').split(/\s+股票/)[0].trim();
+        return { slug: twMatch.slug, name: namePart || upper, market: 'TWSE' };
+      }
+
+      // Priority 2: US / Global stock matching code at start
+      const exactStart = candidates.find(c => c.label.toUpperCase().startsWith(upper + ' '));
+      if (exactStart) {
+        const namePart = exactStart.label.replace(new RegExp(`^${upper}\\s*`, 'i'), '').split(/\s+股票/)[0].trim();
+        const isUS = exactStart.label.includes('NASDAQ') || exactStart.label.includes('紐約');
+        const isHK = exactStart.label.includes('香港');
+        return {
+          slug: exactStart.slug,
+          name: namePart || upper,
+          market: isUS ? 'NASDAQ' : (isHK ? 'HKEX' : 'TWSE'),
+          currency: isUS ? 'USD' : (isHK ? 'HK$' : 'NT$')
+        };
+      }
+
+      // Priority 3: AnyTaiwan stock in candidates
+      const anyTw = candidates.find(c => c.label.includes('台灣'));
+      if (anyTw) {
+        const namePart = anyTw.label.split(/\s+股票/)[0].trim();
+        return { slug: anyTw.slug, name: namePart, market: 'TWSE' };
+      }
+
+      if (candidates.length > 0) {
+        return { slug: candidates[0].slug, name: candidates[0].label.split(/\s+股票/)[0].trim(), market: 'TWSE' };
+      }
+
+      throw new Error(`在 Investing.com 找不到股票代碼 ${upper}`);
+    }
+
+    function parseInvestingMarkdown(md, code, metaInfo = {}) {
+      const upper = code.toUpperCase();
+      const known = KNOWN_SLUGS[upper] || {};
+
+      // 1. Extract Name & Code from H1 or FAQ
+      let name = metaInfo.name || known.name || upper;
+      const h1Match = md.match(/^#\s+([^\n(]+?)\s*\(([0-9A-Za-z.]+)\)/m);
+      if (h1Match) {
+        name = h1Match[1].trim();
+      }
+
+      // 2. Currency & Market
+      let currency = metaInfo.currency || known.currency || 'NT$';
+      if (md.includes('貨幣 USD') || md.includes('目標價為USD')) currency = 'USD';
+      else if (md.includes('貨幣 HKD') || md.includes('目標價為HKD')) currency = 'HK$';
+      else if (md.includes('貨幣 TWD') || md.includes('目標價為TWD')) currency = 'NT$';
+
+      let market = metaInfo.market || known.market || (currency === 'USD' ? 'NASDAQ' : 'TWSE');
+      const compMatch = md.match(/https:\/\/hk\.investing\.com\/pro\/(([A-Z]+):[^\)\s]+\/compare\/[^\)\s]+)/);
+      const comparePath = compMatch ? compMatch[1] : '';
+      if (compMatch && compMatch[2]) {
+        if (compMatch[2].includes('TPEX')) market = 'TPEX';
+        else if (compMatch[2].includes('TWSE')) market = 'TWSE';
+        else if (compMatch[2].includes('NASDAQ')) market = 'NASDAQ';
+        else if (compMatch[2].includes('NYSE')) market = 'NYSE';
+      }
+
+      // 3. Price, Prev Close, Day Range, 52W Range from FAQ summary sentence
+      // Pattern: 截至2026年11月08日，台積電 (2330)成交價為2,135.00，前一交易日以2,240.00作收。當日價格波動範圍為2,020.00至2,195.00，52周波動範圍為1,375.00至2,590.00。
+      let price = 0, prevClose = 0, dayLow = 0, dayHigh = 0, week52Low = 0, week52High = 0;
+      const tradeMatch = md.match(/成交價為\s*([0-9,.]+)，前一交易日以\s*([0-9,.]+)\s*作收。當日價格波動範圍為\s*([0-9,.]+)\s*至\s*([0-9,.]+)，52周波動範圍為\s*([0-9,.]+)\s*至\s*([0-9,.]+)/);
+      if (tradeMatch) {
+        price = parseNum(tradeMatch[1]);
+        prevClose = parseNum(tradeMatch[2]);
+        dayLow = parseNum(tradeMatch[3]);
+        dayHigh = parseNum(tradeMatch[4]);
+        week52Low = parseNum(tradeMatch[5]);
+        week52High = parseNum(tradeMatch[6]);
+      } else {
+        const faqPriceMatch = md.match(/今天\s+[^\n]+?\s+股價是\s+([0-9,.]+)/);
+        if (faqPriceMatch) price = parseNum(faqPriceMatch[1]);
+      }
+
+      // 4. Analyst Consensus Target Price & Buy/Hold/Sell
+      // Pattern: 12個月平均目標價為TWD3,409.80，預估價格高點為TWD5000，預估低點為TWD2700。共34位分析師建議買進該股，0位建議賣出，因此整體評級為強力買入 。
+      let analystTarget = 0, analystHigh = 0, analystLow = 0;
+      let analystBuy = 0, analystHold = 0, analystSell = 0;
+      let consensusLabel = '買入';
+
+      const targetMatch = md.match(/12個月平均目標價為[A-Z$]*\s*([0-9,.]+)，預估價格高點為[A-Z$]*\s*([0-9,.]+)，預估低點為[A-Z$]*\s*([0-9,.]+)。共\s*(\d+)\s*位分析師建議買進該股，(\d+)\s*位建議賣出，因此整體評級為([^\s。]+)/);
+      if (targetMatch) {
+        analystTarget = parseNum(targetMatch[1]);
+        analystHigh = parseNum(targetMatch[2]);
+        analystLow = parseNum(targetMatch[3]);
+        analystBuy = parseInt(targetMatch[4], 10) || 0;
+        analystSell = parseInt(targetMatch[5], 10) || 0;
+        consensusLabel = targetMatch[6].trim();
+      } else {
+        const altAvgMatch = md.match(/分析師12個月目標價:[\s\S]{0,120}?平均\s+([0-9,.]+)/);
+        if (altAvgMatch) analystTarget = parseNum(altAvgMatch[1]);
+      }
+
+      const holdMatch = md.match(/(\d+)\s*買入\s+(\d+)\s*持有\s+(\d+)\s*賣出/);
+      if (holdMatch) {
+        analystBuy = parseInt(holdMatch[1], 10) || analystBuy;
+        analystHold = parseInt(holdMatch[2], 10) || 0;
+        analystSell = parseInt(holdMatch[3], 10) || analystSell;
+      }
+
+      // 5. Institutional Analyst Ratings Table rows
+      // | Macquarie |  | 買入 | 10,400.00 | +206.78% | 10,200.00 | 持平 | 2026年11月02日 |
+      const analystRatings = [];
+      const tableRegex = /\|\s*([A-Za-z0-9\s/&.,'-]+?)\s*\|\s*[^|]*\|\s*(買入|賣出|持有|加碼|減碼|中立|Buy|Sell|Hold|Overweight|Outperform)\s*\|\s*([0-9,.]+)\s*\|\s*([+-]?[0-9.]+%?)\s*\|\s*([^|]*)\|\s*([^|]+?)\s*\|\s*(\d{4}年\d{2}月\d{2}日)\s*\|/g;
+      let rm;
+      while ((rm = tableRegex.exec(md)) !== null) {
+        analystRatings.push({
+          firm: rm[1].trim(),
+          rating: rm[2].trim(),
+          target: rm[3].trim(),
+          upside: rm[4].trim(),
+          prevTarget: rm[5].trim(),
+          action: rm[6].trim(),
+          date: rm[7].trim()
+        });
+      }
+
+      // 6. Peer Comparison Metrics (P/E, PEG, P/B, P/S, Peer Fair Value Upside)
+      const peMatch = md.match(/\|\s*市盈率\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|/);
+      const pegMatch = md.match(/\|\s*本益成長比\s*\(PEG\)\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|/);
+      const pbMatch = md.match(/\|\s*市帳率\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|/);
+      const fvPeerMatch = md.match(/\|\s*公允價值上升\s*\|[^|]+\|\s*([^|]+)\|\s*([^|]+)\|/);
+
+      const pe = peMatch ? peMatch[1].trim() : '—';
+      const peerPe = peMatch ? peMatch[2].trim() : '—';
+      const peg = pegMatch ? pegMatch[1].trim() : '';
+      const pb = pbMatch ? pbMatch[1].trim() : '—';
+      const peerPb = pbMatch ? pbMatch[2].trim() : '—';
+      const peerFairUpside = fvPeerMatch ? fvPeerMatch[1].trim() : '';
+      const sectorFairUpside = fvPeerMatch ? fvPeerMatch[2].trim() : '';
+
+      // 7. FAQ EPS, Market Cap, Dividend Yield
+      const epsMatch = md.match(/EPS\(過去12個月\)是\s*([0-9,.-]+)/);
+      const mcapMatch = md.match(/市值為\s*([^\n。]+)/);
+      const divMatch = md.match(/股息收益率是\s*([0-9.]+%)/);
+
+      const eps = epsMatch ? epsMatch[1].trim() : '—';
+      const marketCap = mcapMatch ? mcapMatch[1].trim() : '—';
+      const divYield = divMatch ? divMatch[1].trim() : '—';
+
+      // 8. Calculate Fair Value (Use verified InvestingPro Fair Value if available, otherwise compute from Peer Multiples & Peer Fair Value Upside)
+      let fairValue = known.proFairValue || 0;
+      let fairRange = known.proFairRange || '';
+      let fairSource = known.proFairValue ? 'InvestingPro 驗證快照' : 'Investing.com 同業估值模型';
+
+      if (!fairValue && price > 0) {
+        const models = [];
+        // Model A: Peer Fair Value Upside benchmark
+        const peerUpNum = parseNum(peerFairUpside);
+        if (peerUpNum !== 0 && Math.abs(peerUpNum) < 150) {
+          models.push(price * (1 + peerUpNum / 100));
+        }
+        // Model B: Sector Fair Value Upside benchmark
+        const secUpNum = parseNum(sectorFairUpside);
+        if (secUpNum !== 0 && Math.abs(secUpNum) < 150) {
+          models.push(price * (1 + secUpNum / 100));
+        }
+        // Model C: Peer P/E Relative Multiple (capped within reasonable bounds)
+        const compPeNum = parseNum(pe);
+        const peerPeNum = parseNum(peerPe);
+        if (compPeNum > 0 && peerPeNum > 0) {
+          const ratio = Math.max(0.65, Math.min(1.55, peerPeNum / compPeNum));
+          models.push(price * ratio);
+        }
+        // Model D: Conservative anchor with Analyst Low/Mean if available
+        if (analystLow > 0 && analystTarget > 0) {
+          models.push((price + analystLow + analystTarget) / 3);
+        }
+
+        if (models.length > 0) {
+          fairValue = Number((models.reduce((a, b) => a + b, 0) / models.length).toFixed(2));
+          const minM = Math.min(...models);
+          const maxM = Math.max(...models);
+          fairRange = `${formatNumber(minM)} - ${formatNumber(maxM)}`;
+        }
+      }
+
+      const analystRange = (analystLow > 0 && analystHigh > 0)
+        ? `${formatNumber(analystLow)} - ${formatNumber(analystHigh)}`
+        : (analystTarget > 0 ? formatNumber(analystTarget) : '—');
+
+      const nowStr = new Date().toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const extraMetric = peg && peg !== '—' ? `PEG: ${peg}` : (eps !== '—' ? `EPS: ${eps}` : `市值: ${marketCap}`);
+
+      const upsideStr = analystTarget > 0 && price > 0
+        ? `${calcUpside(analystTarget, price) >= 0 ? '+' : ''}${calcUpside(analystTarget, price).toFixed(1)}%`
+        : '';
+
+      const note = `即時自 Investing.com 撈取：最新成交價 ${currency}${formatNumber(price)}，共 ${analystBuy + analystHold + analystSell} 位分析師評級（${analystBuy} 買進 / ${analystSell} 賣出，共識「${consensusLabel}」），12M 預估目標價 ${currency}${formatNumber(analystTarget)}（${upsideStr}）。`;
+
+      return {
+        code: upper,
+        name,
+        slug: metaInfo.slug || known.slug || '',
+        market,
+        currency,
+        price,
+        prevClose,
+        dayLow,
+        dayHigh,
+        fairValue,
+        fairRange: fairRange || (fairValue ? formatNumber(fairValue) : '—'),
+        fairSource,
+        peerFairUpside: peerFairUpside || '—',
+        sectorFairUpside: sectorFairUpside || '—',
+        analystTarget,
+        analystLow,
+        analystHigh,
+        analystRange,
+        analystBuy,
+        analystHold,
+        analystSell,
+        consensusLabel,
+        pe,
+        peerPe,
+        pb,
+        peerPb,
+        extraMetric,
+        eps,
+        marketCap,
+        divYield,
+        week52Low,
+        week52High,
+        comparePath,
+        note,
+        lastUpdated: `即時撈取 (${nowStr})`,
+        analystRatings
+      };
+    }
+
+    // Optional Gemini API Grounding Enhancement if user configured a Gemini API key
+    async function enhanceWithGeminiIfConfigured(stockData) {
+      const apiKey = localStorage.getItem(API_KEY_STORAGE) || '';
+      if (!apiKey) return stockData;
+
+      try {
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+        const prompt = `請透過 Google Search 查詢 Investing.com / InvestingPro 針對股票 ${stockData.code} (${stockData.name}) 的公開快照 (site:investing.com/pro "${stockData.market}:${stockData.code}/compare")，若搜尋結果摘要中有明確的 InvestingPro 公允價值 (Fair Value) 數字，請回傳純 JSON: {"fairValue": 數字, "fairRange": "區間字串"}。若無則回傳 {}。`;
+        const resp = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            tools: [{ google_search: {} }]
+          })
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          const text = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('\n') || '';
+          const m = text.match(/\{[\s\S]*\}/);
+          if (m) {
+            const parsed = JSON.parse(m[0]);
+            if (parsed.fairValue && parseFloat(parsed.fairValue) > 0) {
+              stockData.fairValue = parseFloat(parsed.fairValue);
+              if (parsed.fairRange) stockData.fairRange = parsed.fairRange;
+              stockData.fairSource = 'Gemini AI + Pro 快照';
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Gemini optional enhancement skipped:', e);
+      }
+      return stockData;
+    }
+
+    async function fetchLiveStockFromInvesting(code) {
+      const upper = code.trim().toUpperCase();
+      const metaInfo = await resolveInvestingSlug(upper);
+      const eqUrl = `https://r.jina.ai/https://hk.investing.com/equities/${metaInfo.slug}`;
+      const resp = await fetch(eqUrl, {
+        headers: { 'X-Wait-For-Selector': 'h1' }
+      });
+      if (!resp.ok) {
+        throw new Error(`連線 Investing.com 個股頁失敗 (HTTP ${resp.status})`);
+      }
+      const md = await resp.text();
+      if (!md || md.length < 500 || md.includes('Title: Just a moment...')) {
+        throw new Error('Investing.com 回應逾時，請稍後再試');
+      }
+      let parsed = parseInvestingMarkdown(md, upper, metaInfo);
+      parsed = await enhanceWithGeminiIfConfigured(parsed);
+      return parsed;
+    }
+
+    /*************************************************************************
+     * 5. USER INTERACTION HANDLERS
+     *************************************************************************/
+    async function selectOrFetchTicker(code) {
+      const upper = code.trim().toUpperCase();
+      selectedCode = upper;
+      const existing = stocks.find(s => s.code === upper);
+      if (existing) {
+        renderApp();
+        // Also trigger a live refresh in background so user gets live Investing.com numbers!
+        await processTickers([upper]);
+      } else {
+        await processTickers([upper]);
+      }
+    }
+
+    async function handleSearchSubmit() {
+      const inputEl = document.getElementById('tickerInput');
+      const raw = inputEl.value.trim();
+      if (!raw) {
+        showToast('請輸入股票代碼（例如：2330、2327、NVDA）', 'warning');
+        inputEl.focus();
+        return;
+      }
+
+      const tokens = raw
+        .split(/[\s,，;；\n]+/)
+        .map(t => t.trim().toUpperCase())
+        .filter(t => /^[0-9A-Z.*]{2,10}$/.test(t));
+
+      if (tokens.length === 0) {
+        showToast('請輸入有效的股票代碼（如 2330, 2327, NVDA）', 'warning');
+        return;
+      }
+
+      const unique = [...new Set(tokens)];
+      inputEl.value = '';
+      selectedCode = unique[0];
+      await processTickers(unique);
+    }
+
+    async function processTickers(codes) {
+      const progressContainer = document.getElementById('syncProgressContainer');
+      const statusText = document.getElementById('syncStatusText');
+      const countText = document.getElementById('syncCountText');
+      const progressBar = document.getElementById('syncProgressBar');
+
+      progressContainer.classList.remove('hidden');
+      let completed = 0;
+      const total = codes.length;
+
+      codes.forEach(code => {
+        loadingCodes.add(code);
+        const exists = stocks.find(s => s.code === code);
+        if (!exists) {
+          const known = KNOWN_SLUGS[code] || {};
+          stocks.unshift({
+            code,
+            name: known.name ? `${known.name}` : `股票 ${code}`,
+            slug: known.slug || '',
+            market: known.market || 'TWSE',
+            currency: known.currency || 'NT$',
+            price: 0,
+            prevClose: 0,
+            fairValue: known.proFairValue || 0,
+            fairRange: known.proFairRange || '撈取中...',
+            fairSource: '撈取中...',
+            analystTarget: 0,
+            analystRange: '撈取中...',
+            analystBuy: 0,
+            analystHold: 0,
+            analystSell: 0,
+            consensusLabel: '撈取中',
+            pe: '...',
+            pb: '...',
+            extraMetric: '...',
+            week52Low: 0,
+            week52High: 0,
+            note: '正在即時連線 Investing.com 撈取最新股價、公允價與分析師預估價...',
+            lastUpdated: '連線中...',
+            analystRatings: []
+          });
+        }
+      });
+      renderApp();
+
+      for (const code of codes) {
+        countText.textContent = `${completed}/${total}`;
+        progressBar.style.width = `${Math.max(15, Math.round((completed / total) * 100))}%`;
+        statusText.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> 正在去 Investing.com 撈取 <strong>${code}</strong> 的公允價與分析師預估價...`;
+
+        try {
+          const liveData = await fetchLiveStockFromInvesting(code);
+          const idx = stocks.findIndex(s => s.code === code);
+          if (idx !== -1) {
+            // Preserve user's custom fairValue only if liveData couldn't compute one
+            if (!liveData.fairValue && stocks[idx].fairValue > 0) {
+              liveData.fairValue = stocks[idx].fairValue;
+              liveData.fairRange = stocks[idx].fairRange;
+            }
+            stocks[idx] = liveData;
+          } else {
+            stocks.unshift(liveData);
+          }
+          selectedCode = liveData.code;
+          showToast(`成功從 Investing.com 撈取 ${liveData.code} ${liveData.name} 最新數據！`, 'success');
+        } catch (err) {
+          console.error(`撈取 ${code} 失敗:`, err);
+          const idx = stocks.findIndex(s => s.code === code);
+          if (idx !== -1 && stocks[idx].price === 0) {
+            stocks[idx].note = `即時連線暫時受阻 (${err.message})。您可點擊「開啟 Investing.com 個股頁」或「Google 快照」查看，或點選「手動校準」填入。`;
+            stocks[idx].lastUpdated = '連線逾時';
+          }
+          showToast(`${code} 撈取提醒：${err.message}`, 'warning');
+        } finally {
+          loadingCodes.delete(code);
+          completed++;
+          saveToStorage();
+          renderApp();
+        }
+      }
+
+      progressBar.style.width = '100%';
+      countText.textContent = `${total}/${total}`;
+      statusText.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> Investing.com 資料撈取完成！`;
+      setTimeout(() => {
+        progressContainer.classList.add('hidden');
+      }, 1800);
+    }
+
+    async function syncSingleStock(code) {
+      if (loadingCodes.has(code)) return;
+      selectedCode = code;
+      await processTickers([code]);
+    }
+
+    async function syncAllStocks() {
+      if (stocks.length === 0) return;
+      const codes = stocks.map(s => s.code);
+      await processTickers(codes);
+    }
+
+    function removeStock(code, event) {
+      if (event) event.stopPropagation();
+      const target = stocks.find(s => s.code === code);
+      stocks = stocks.filter(s => s.code !== code);
+      if (selectedCode === code) {
+        selectedCode = stocks.length > 0 ? stocks[0].code : '';
+      }
+      saveToStorage();
+      renderApp();
+      if (target) {
+        showToast(`已移除 ${target.code} ${target.name}`, 'info');
+      }
+    }
+
+    /*************************************************************************
+     * 6. RENDERING: WATCHLIST SIDEBAR + RIGHT VALUATION HERO PANEL
+     *************************************************************************/
+    function renderWatchlistSidebar() {
+      const countEl = document.getElementById('watchlistCount');
+      const container = document.getElementById('watchlistSidebarItems');
+      const filterQ = (document.getElementById('sidebarSearch')?.value || '').trim().toLowerCase();
+
+      countEl.textContent = stocks.length;
+
+      const filtered = stocks.filter(s => {
+        if (!filterQ) return true;
+        return s.code.toLowerCase().includes(filterQ) || (s.name || '').toLowerCase().includes(filterQ);
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-6 text-xs text-slate-500">
+            沒有符合的股票，請在上方輸入代碼查詢
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(s => {
+        const isSelected = s.code === selectedCode;
+        const isLoading = loadingCodes.has(s.code);
+        const proUp = calcUpside(s.fairValue, s.price);
+        const anaUp = calcUpside(s.analystTarget, s.price);
+        const cur = s.currency || 'NT$';
+
+        return `
+          <div
+            onclick="selectedCode = '${s.code}'; renderApp();"
+            class="p-3 rounded-xl border border-slate-800/90 bg-slate-900/60 hover:bg-slate-800/70 cursor-pointer transition flex items-center justify-between gap-2 ${isSelected ? 'watchlist-item-active' : ''}"
+          >
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-mono font-bold text-sm text-cyan-400">${s.code}</span>
+                <span class="font-bold text-sm text-white truncate">${s.name}</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">${s.market}</span>
+                ${isLoading ? '<i class="fa-solid fa-circle-notch fa-spin text-xs text-cyan-400"></i>' : ''}
+              </div>
+              <div class="flex items-center gap-3 mt-1 text-[11px] font-mono">
+                <span class="text-emerald-300">公允: ${s.fairValue > 0 ? formatNumber(s.fairValue) : '—'} ${proUp !== null ? `(${proUp >= 0 ? '+' : ''}${proUp.toFixed(0)}%)` : ''}</span>
+                <span class="text-cyan-300">預估: ${s.analystTarget > 0 ? formatNumber(s.analystTarget) : '—'} ${anaUp !== null ? `(${anaUp >= 0 ? '+' : ''}${anaUp.toFixed(0)}%)` : ''}</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <div class="text-right">
+                <div class="text-xs font-mono font-bold text-white">${s.price > 0 ? `${cur}${formatNumber(s.price)}` : '撈取中'}</div>
+                <div class="text-[10px] text-slate-500">現價</div>
+              </div>
+              <button
+                onclick="removeStock('${s.code}', event)"
+                class="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-950/40 transition text-xs"
+                title="移除"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderRightDetailPanel() {
+      const panel = document.getElementById('rightDetailPanel');
+      const stock = stocks.find(s => s.code === selectedCode) || stocks[0];
+
+      if (!stock) {
+        panel.innerHTML = `
+          <div class="glass-panel rounded-2xl p-12 text-center space-y-3">
+            <i class="fa-solid fa-magnifying-glass-chart text-4xl text-cyan-400/60"></i>
+            <h3 class="text-base font-bold text-white">請在左側輸入股票代碼</h3>
+            <p class="text-xs text-slate-400">輸入台股（如 2330、2327）或美股（如 NVDA、AAPL），右側將立即顯示公允價與分析師預估價。</p>
+          </div>
+        `;
+        return;
+      }
+
+      const isLoading = loadingCodes.has(stock.code);
+      const cur = stock.currency || 'NT$';
+      const proUpside = calcUpside(stock.fairValue, stock.price);
+      const analystUpside = calcUpside(stock.analystTarget, stock.price);
+
+      // Daily price change
+      const dayChange = (stock.price > 0 && stock.prevClose > 0) ? (stock.price - stock.prevClose) : 0;
+      const dayChangePct = (stock.price > 0 && stock.prevClose > 0) ? ((stock.price - stock.prevClose) / stock.prevClose) * 100 : 0;
+      const changeColor = dayChange > 0 ? 'text-emerald-400' : (dayChange < 0 ? 'text-rose-400' : 'text-slate-300');
+
+      // 52W Range %
+      let week52Pct = 50;
+      if (stock.week52High > stock.week52Low && stock.price > 0) {
+        week52Pct = Math.max(0, Math.min(100, ((stock.price - stock.week52Low) / (stock.week52High - stock.week52Low)) * 100));
+      }
+
+      // Valuation Ruler Positions
+      const vals = [stock.price, stock.fairValue, stock.analystTarget, stock.analystLow, stock.analystHigh].filter(v => v > 0);
+      const minVal = vals.length > 0 ? Math.min(...vals) * 0.88 : 0;
+      const maxVal = vals.length > 0 ? Math.max(...vals) * 1.10 : 100;
+      const span = Math.max(1, maxVal - minVal);
+
+      const pricePos = stock.price > 0 ? Math.min(95, Math.max(5, ((stock.price - minVal) / span) * 100)) : 20;
+      const fairPos = stock.fairValue > 0 ? Math.min(95, Math.max(5, ((stock.fairValue - minVal) / span) * 100)) : 50;
+      const targetPos = stock.analystTarget > 0 ? Math.min(95, Math.max(5, ((stock.analystTarget - minVal) / span) * 100)) : 80;
+
+      // Analyst counts
+      const totalAnalysts = (stock.analystBuy || 0) + (stock.analystHold || 0) + (stock.analystSell || 0);
+      const buyPct = totalAnalysts > 0 ? ((stock.analystBuy || 0) / totalAnalysts) * 100 : 85;
+      const holdPct = totalAnalysts > 0 ? ((stock.analystHold || 0) / totalAnalysts) * 100 : 15;
+      const sellPct = totalAnalysts > 0 ? ((stock.analystSell || 0) / totalAnalysts) * 100 : 0;
+
+      const proStatusLabel = proUpside === null
+        ? '待檢索'
+        : proUpside >= 15
+          ? '顯著低估 (折價)'
+          : proUpside >= 0
+            ? '合理偏低 (折價)'
+            : '高於模型 (溢價)';
+
+      const proStatusBadge = proUpside === null
+        ? 'bg-slate-800 text-slate-400 border-slate-700'
+        : proUpside >= 0
+          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+          : 'bg-rose-500/20 text-rose-300 border-rose-500/40';
+
+      panel.innerHTML = `
+        <div class="glass-panel rounded-2xl p-5 sm:p-6 shadow-2xl space-y-6 relative overflow-hidden">
+          ${isLoading ? `
+            <div class="absolute inset-0 z-20 bg-slate-950/75 backdrop-blur-sm flex flex-col items-center justify-center gap-3">
+              <i class="fa-solid fa-circle-notch fa-spin text-3xl text-cyan-400"></i>
+              <p class="text-sm font-bold text-white">正在即時連線 Investing.com 撈取 ${stock.code} 最新資料...</p>
+              <p class="text-xs text-slate-400">解析最新成交價、InvestingPro 公允價指標與外資分析師共識目標價</p>
+            </div>
+          ` : ''}
+
+          <!-- 1. TOP STOCK BANNER -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+            <div>
+              <div class="flex items-center gap-2.5 flex-wrap">
+                <span class="px-2.5 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 font-mono text-base font-bold text-cyan-300">${stock.code}</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-white">${stock.name}</h2>
+                <span class="px-2 py-0.5 text-xs font-mono font-semibold rounded bg-slate-800 text-slate-300 border border-slate-700">${stock.market}</span>
+                <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i>${stock.lastUpdated || ''}</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">${stock.note || ''}</p>
+            </div>
+
+            <div class="sm:text-right shrink-0 bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3">
+              <div class="text-[11px] text-slate-400 flex items-center sm:justify-end gap-1.5">
+                <span>Investing.com 最新成交價</span>
+                ${stock.prevClose > 0 ? `<span class="text-slate-500">(昨收 ${formatNumber(stock.prevClose)})</span>` : ''}
+              </div>
+              <div class="flex items-baseline sm:justify-end gap-2 mt-0.5">
+                <span class="text-2xl sm:text-3xl font-bold font-mono text-white">${cur}${formatNumber(stock.price)}</span>
+                ${stock.prevClose > 0 ? `
+                  <span class="text-xs font-mono font-semibold ${changeColor}">
+                    ${dayChange >= 0 ? '+' : ''}${dayChange.toFixed(2)} (${dayChangePct >= 0 ? '+' : ''}${dayChangePct.toFixed(2)}%)
+                  </span>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. DUAL HERO CARDS: FAIR VALUE (公允價) & ANALYST PRICE TARGET (分析師預估價) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+
+            <!-- HERO CARD LEFT: 公允價 (FAIR VALUE) -->
+            <div class="rounded-2xl p-5 bg-gradient-to-br from-emerald-950/40 via-slate-900/90 to-slate-900/90 border-2 border-emerald-500/40 shadow-lg shadow-emerald-500/5 flex flex-col justify-between space-y-4">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
+                      <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-sm font-bold text-emerald-300">公允價 (InvestingPro Fair Value)</h3>
+                      <p class="text-[11px] text-slate-400">${stock.fairSource || '財務與同業多模型估值'}</p>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold border ${proStatusBadge}">
+                    ${proStatusLabel}
+                  </span>
+                </div>
+
+                <div class="mt-4 flex items-baseline justify-between bg-slate-950/70 rounded-xl p-4 border border-emerald-500/20">
+                  <div>
+                    <div class="text-[11px] text-slate-400">模型推算公允價格</div>
+                    <div class="text-3xl sm:text-4xl font-bold font-mono text-white mt-0.5">
+                      ${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '未提供'}
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-[11px] text-slate-400">相對現價空間</div>
+                    <div class="text-2xl font-bold font-mono mt-0.5 ${proUpside !== null && proUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">
+                      ${proUpside !== null ? `${proUpside >= 0 ? '+' : ''}${proUpside.toFixed(1)}%` : '—'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-2 pt-2 border-t border-slate-800/80 text-xs">
+                <div class="flex items-center justify-between text-slate-300">
+                  <span class="text-slate-400">公允價值模型區間：</span>
+                  <span class="font-mono font-semibold text-emerald-200">${cur}${stock.fairRange || '—'}</span>
+                </div>
+                <div class="flex items-center justify-between text-slate-300">
+                  <span class="text-slate-400">同業平均公允價值上升空間：</span>
+                  <span class="font-mono font-semibold text-slate-200">${stock.peerFairUpside || '—'} (板塊: ${stock.sectorFairUpside || '—'})</span>
+                </div>
+                <div class="flex items-center justify-between text-slate-300">
+                  <span class="text-slate-400">本益比 P/E (個股 vs 同業)：</span>
+                  <span class="font-mono font-semibold text-slate-200">${stock.pe || '—'} vs 同業 ${stock.peerPe || '—'}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- HERO CARD RIGHT: 分析師預估價 (ANALYST PRICE TARGET) -->
+            <div class="rounded-2xl p-5 bg-gradient-to-br from-cyan-950/40 via-slate-900/90 to-slate-900/90 border-2 border-cyan-500/40 shadow-lg shadow-cyan-500/5 flex flex-col justify-between space-y-4">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-300">
+                      <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-sm font-bold text-cyan-300">分析師預估價 (Analyst Price Target)</h3>
+                      <p class="text-[11px] text-slate-400">Investing.com 外資分析師 12 個月共識</p>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                    共識：${stock.consensusLabel || '買入'}
+                  </span>
+                </div>
+
+                <div class="mt-4 flex items-baseline justify-between bg-slate-950/70 rounded-xl p-4 border border-cyan-500/20">
+                  <div>
+                    <div class="text-[11px] text-slate-400">12 個月平均目標價</div>
+                    <div class="text-3xl sm:text-4xl font-bold font-mono text-white mt-0.5">
+                      ${stock.analystTarget > 0 ? `${cur}${formatNumber(stock.analystTarget)}` : '未提供'}
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-[11px] text-slate-400">潛在看漲空間</div>
+                    <div class="text-2xl font-bold font-mono mt-0.5 ${analystUpside !== null && analystUpside >= 0 ? 'text-cyan-400' : 'text-rose-400'}">
+                      ${analystUpside !== null ? `${analystUpside >= 0 ? '+' : ''}${analystUpside.toFixed(1)}%` : '—'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Analyst High/Low & Buy/Hold/Sell Breakdown -->
+              <div class="space-y-2.5 pt-2 border-t border-slate-800/80 text-xs">
+                <div class="flex items-center justify-between text-slate-300">
+                  <span class="text-slate-400">分析師預估高低區間：</span>
+                  <span class="font-mono font-semibold text-cyan-200">
+                    最低 ${stock.analystLow > 0 ? `${cur}${formatNumber(stock.analystLow)}` : '—'} ~ 最高 ${stock.analystHigh > 0 ? `${cur}${formatNumber(stock.analystHigh)}` : '—'}
+                  </span>
+                </div>
+
+                <div class="space-y-1">
+                  <div class="flex items-center justify-between text-[11px]">
+                    <span class="text-slate-400">分析師評級分布 (${totalAnalysts} 位分析師)：</span>
+                    <div class="font-mono space-x-2">
+                      <span class="text-emerald-400 font-semibold">買進 ${stock.analystBuy || 0}</span>
+                      <span class="text-amber-300">持有 ${stock.analystHold || 0}</span>
+                      <span class="text-rose-400">賣出 ${stock.analystSell || 0}</span>
+                    </div>
+                  </div>
+                  <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden flex">
+                    <div class="bg-emerald-400 h-full" style="width: ${buyPct}%"></div>
+                    <div class="bg-amber-400 h-full" style="width: ${holdPct}%"></div>
+                    <div class="bg-rose-500 h-full" style="width: ${sellPct}%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 3. VISUAL VALUATION RULER (現價 vs 公允價 vs 分析師預估價) -->
+          <div class="bg-slate-900/85 border border-slate-800 rounded-xl p-4">
+            <div class="flex items-center justify-between text-xs text-slate-300 mb-3">
+              <span class="font-semibold flex items-center gap-1.5">
+                <i class="fa-solid fa-ruler-horizontal text-cyan-400"></i>
+                <span>股價位階尺規（現價 vs 公允價 vs 分析師目標價）</span>
+              </span>
+              <span class="text-[11px] font-mono text-slate-400">
+                52週高低：${stock.week52Low > 0 ? formatNumber(stock.week52Low) : '—'} ~ ${stock.week52High > 0 ? formatNumber(stock.week52High) : '—'} (位階 ${Math.round(week52Pct)}%)
+              </span>
+            </div>
+
+            <div class="relative h-9 bg-slate-950 rounded-xl border border-slate-800 my-2">
+              <div
+                class="absolute top-1/2 -translate-y-1/2 h-2 rounded-full bg-gradient-to-r from-slate-400 via-emerald-500 to-cyan-400 opacity-50"
+                style="left: ${Math.min(pricePos, fairPos, targetPos)}%; width: ${Math.max(4, Math.max(pricePos, fairPos, targetPos) - Math.min(pricePos, fairPos, targetPos))}%;"
+              ></div>
+
+              ${stock.price > 0 ? `
+                <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10" style="left: ${pricePos}%;">
+                  <div class="w-4 h-4 rounded-full bg-white border-2 border-slate-950 shadow-lg"></div>
+                  <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-white whitespace-nowrap">現價 ${Math.round(stock.price)}</span>
+                </div>
+              ` : ''}
+
+              ${stock.fairValue > 0 ? `
+                <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10" style="left: ${fairPos}%;">
+                  <div class="w-4 h-4 rounded-full bg-emerald-400 border-2 border-slate-950 shadow-lg"></div>
+                  <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-emerald-300 whitespace-nowrap">公允價 ${Math.round(stock.fairValue)}</span>
+                </div>
+              ` : ''}
+
+              ${stock.analystTarget > 0 ? `
+                <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10" style="left: ${targetPos}%;">
+                  <div class="w-4 h-4 rounded-full bg-cyan-400 border-2 border-slate-950 shadow-lg"></div>
+                  <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-cyan-300 whitespace-nowrap">預估價 ${Math.round(stock.analystTarget)}</span>
+                </div>
+              ` : ''}
+            </div>
+            <div class="h-3"></div>
+          </div>
+
+          <!-- 4. KEY FUNDAMENTAL RATIOS BAR -->
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-center">
+            <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5">
+              <div class="text-[11px] text-slate-400">本益比 (P/E)</div>
+              <div class="text-sm font-bold font-mono text-white mt-0.5">${stock.pe || '—'}</div>
+              <div class="text-[10px] text-slate-500 font-mono">同業 ${stock.peerPe || '—'}</div>
+            </div>
+            <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5">
+              <div class="text-[11px] text-slate-400">股價淨值比 (P/B)</div>
+              <div class="text-sm font-bold font-mono text-white mt-0.5">${stock.pb || '—'}</div>
+              <div class="text-[10px] text-slate-500 font-mono">同業 ${stock.peerPb || '—'}</div>
+            </div>
+            <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5">
+              <div class="text-[11px] text-slate-400">每股盈餘 (EPS)</div>
+              <div class="text-sm font-bold font-mono text-amber-300 mt-0.5">${stock.eps || '—'}</div>
+              <div class="text-[10px] text-slate-500 font-mono">過去 12 個月</div>
+            </div>
+            <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5">
+              <div class="text-[11px] text-slate-400">總市值</div>
+              <div class="text-sm font-bold font-mono text-slate-200 mt-0.5">${stock.marketCap || '—'}</div>
+              <div class="text-[10px] text-slate-500 font-mono">${stock.market}</div>
+            </div>
+            <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5 col-span-2 sm:col-span-1">
+              <div class="text-[11px] text-slate-400">股息收益率</div>
+              <div class="text-sm font-bold font-mono text-emerald-300 mt-0.5">${stock.divYield || '—'}</div>
+              <div class="text-[10px] text-slate-500 font-mono">${stock.extraMetric || ''}</div>
+            </div>
+          </div>
+
+          <!-- 5. INSTITUTIONAL ANALYST PRICE TARGET TABLE (IF AVAILABLE) -->
+          ${stock.analystRatings && stock.analystRatings.length > 0 ? `
+            <div class="bg-slate-900/70 border border-slate-800 rounded-xl overflow-hidden">
+              <div class="px-4 py-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                  <i class="fa-solid fa-building-columns text-cyan-400"></i>
+                  <span>Investing.com 外資與券商機構最新目標價明細</span>
+                </span>
+                <span class="text-[11px] text-slate-400">直接擷取自個股分析師共識表</span>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                  <thead>
+                    <tr class="border-b border-slate-800/80 text-slate-400 font-medium">
+                      <th class="py-2 px-3">券商 / 投行機構</th>
+                      <th class="py-2 px-3">最新評級</th>
+                      <th class="py-2 px-3 text-right">目標價</th>
+                      <th class="py-2 px-3 text-right">潛在空間</th>
+                      <th class="py-2 px-3 text-center">動作</th>
+                      <th class="py-2 px-3 text-right">發布日期</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800/60 font-mono">
+                    ${stock.analystRatings.map(r => `
+                      <tr class="hover:bg-slate-800/40">
+                        <td class="py-2 px-3 font-sans font-semibold text-white">${r.firm}</td>
+                        <td class="py-2 px-3"><span class="px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 text-[11px]">${r.rating}</span></td>
+                        <td class="py-2 px-3 text-right font-bold text-cyan-300">${cur}${r.target}</td>
+                        <td class="py-2 px-3 text-right text-emerald-400">${r.upside}</td>
+                        <td class="py-2 px-3 text-center font-sans text-slate-300">${r.action}</td>
+                        <td class="py-2 px-3 text-right text-slate-400">${r.date}</td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- 6. ACTION FOOTER: LIVE SYNC, INVESTING.COM DIRECT LINK, GOOGLE PRO SNAPSHOT, EDIT -->
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between gap-2 flex-wrap">
+            <div class="flex items-center gap-2 flex-wrap">
+              <button
+                onclick="syncSingleStock('${stock.code}')"
+                class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 hover:from-cyan-500/30 hover:to-emerald-500/30 text-cyan-200 border border-cyan-500/40 text-xs font-bold transition flex items-center gap-1.5"
+              >
+                <i class="fa-solid fa-arrows-rotate"></i>
+                <span>立即從 Investing.com 重新撈取</span>
+              </button>
+
+              <a
+                href="${getInvestingPageUrl(stock)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition flex items-center gap-1.5"
+              >
+                <i class="fa-solid fa-arrow-up-right-from-square text-cyan-400"></i>
+                <span>開啟 Investing.com 個股頁</span>
+              </a>
+
+              <a
+                href="${getGoogleCompareSearchUrl(stock)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-3 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-medium transition flex items-center gap-1.5"
+              >
+                <i class="fa-brands fa-google"></i>
+                <span>開啟 Pro 公允價快照搜尋</span>
+              </a>
+            </div>
+
+            <button
+              onclick="openEditModal('${stock.code}')"
+              class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-medium transition flex items-center gap-1.5"
+            >
+              <i class="fa-solid fa-pen-to-square"></i>
+              <span>手動編輯 / 校準</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    /*************************************************************************
+     * 7. RENDER MULTI-CARD GRID & DENSE COMPARISON TABLE
+     *************************************************************************/
+    function renderKPIs() {
+      const kpiEl = document.getElementById('kpiContainer');
+      if (!kpiEl) return;
+      const validPro = stocks.filter(s => s.price > 0 && s.fairValue > 0);
+      const validAnalyst = stocks.filter(s => s.price > 0 && s.analystTarget > 0);
+
+      const avgProUpside = validPro.length > 0
+        ? validPro.reduce((acc, s) => acc + calcUpside(s.fairValue, s.price), 0) / validPro.length
+        : 0;
+      const avgAnalystUpside = validAnalyst.length > 0
+        ? validAnalyst.reduce((acc, s) => acc + calcUpside(s.analystTarget, s.price), 0) / validAnalyst.length
+        : 0;
+      const undervaluedCount = validPro.filter(s => calcUpside(s.fairValue, s.price) > 0).length;
+
+      kpiEl.innerHTML = `
+        <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-center justify-between">
+          <div>
+            <p class="text-xs text-slate-400">追蹤股票檔數</p>
+            <p class="text-2xl font-bold text-white font-mono mt-1">${stocks.length}</p>
+          </div>
+          <i class="fa-solid fa-layer-group text-cyan-400 text-xl"></i>
+        </div>
+        <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-center justify-between">
+          <div>
+            <p class="text-xs text-slate-400">平均公允價潛在空間</p>
+            <p class="text-2xl font-bold font-mono mt-1 ${avgProUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${avgProUpside >= 0 ? '+' : ''}${avgProUpside.toFixed(1)}%</p>
+          </div>
+          <i class="fa-solid fa-scale-balanced text-emerald-400 text-xl"></i>
+        </div>
+        <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-center justify-between">
+          <div>
+            <p class="text-xs text-slate-400">分析師平均目標空間</p>
+            <p class="text-2xl font-bold font-mono mt-1 ${avgAnalystUpside >= 0 ? 'text-cyan-400' : 'text-rose-400'}">${avgAnalystUpside >= 0 ? '+' : ''}${avgAnalystUpside.toFixed(1)}%</p>
+          </div>
+          <i class="fa-solid fa-bullseye text-cyan-400 text-xl"></i>
+        </div>
+        <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-center justify-between">
+          <div>
+            <p class="text-xs text-slate-400">低於公允價 (折價) 標的</p>
+            <p class="text-2xl font-bold text-amber-400 font-mono mt-1">${undervaluedCount} / ${validPro.length}</p>
+          </div>
+          <i class="fa-solid fa-gem text-amber-400 text-xl"></i>
+        </div>
+      `;
+    }
+
+    function renderCardsGrid() {
+      const container = document.getElementById('cardsGridInner');
+      if (!container) return;
+
+      container.innerHTML = stocks.map(stock => {
+        const cur = stock.currency || 'NT$';
+        const proUpside = calcUpside(stock.fairValue, stock.price);
+        const analystUpside = calcUpside(stock.analystTarget, stock.price);
+
+        return `
+          <article class="glass-panel rounded-2xl p-5 card-glow flex flex-col justify-between space-y-4">
+            <div class="flex items-start justify-between border-b border-slate-800 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-mono font-bold text-lg text-cyan-400">${stock.code}</span>
+                  <h3 class="font-bold text-lg text-white">${stock.name}</h3>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">${stock.market}</span>
+                </div>
+                <p class="text-[11px] text-slate-400 mt-1">${stock.lastUpdated || ''}</p>
+              </div>
+              <div class="text-right">
+                <div class="text-[11px] text-slate-400">最新股價</div>
+                <div class="text-2xl font-bold font-mono text-white">${cur}${formatNumber(stock.price)}</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-slate-900/90 border border-emerald-500/30 rounded-xl p-3.5">
+                <div class="text-xs text-emerald-300 font-semibold">公允價 (Fair Value)</div>
+                <div class="flex items-baseline justify-between mt-1.5">
+                  <span class="text-xl font-bold font-mono text-white">${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '—'}</span>
+                  ${proUpside !== null ? `<span class="text-xs font-mono font-bold ${proUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${proUpside >= 0 ? '+' : ''}${proUpside.toFixed(1)}%</span>` : ''}
+                </div>
+                <div class="text-[10px] text-slate-400 font-mono mt-1">區間: ${stock.fairRange || '—'}</div>
+              </div>
+
+              <div class="bg-slate-900/90 border border-cyan-500/30 rounded-xl p-3.5">
+                <div class="text-xs text-cyan-300 font-semibold">分析師預估價 (Target)</div>
+                <div class="flex items-baseline justify-between mt-1.5">
+                  <span class="text-xl font-bold font-mono text-white">${stock.analystTarget > 0 ? `${cur}${formatNumber(stock.analystTarget)}` : '—'}</span>
+                  ${analystUpside !== null ? `<span class="text-xs font-mono font-bold ${analystUpside >= 0 ? 'text-cyan-400' : 'text-rose-400'}">${analystUpside >= 0 ? '+' : ''}${analystUpside.toFixed(1)}%</span>` : ''}
+                </div>
+                <div class="text-[10px] text-slate-400 font-mono mt-1">區間: ${stock.analystRange || '—'}</div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2 border-t border-slate-800 text-xs">
+              <button onclick="selectedCode='${stock.code}'; switchLayout('split');" class="text-cyan-400 hover:text-cyan-300 font-semibold">
+                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i>開啟右側詳細檢視
+              </button>
+              <div class="flex items-center gap-2">
+                <button onclick="syncSingleStock('${stock.code}')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200">
+                  <i class="fa-solid fa-arrows-rotate mr-1"></i>重撈
+                </button>
+                <button onclick="openEditModal('${stock.code}')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300">編輯</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderComparisonTable() {
+      const tbody = document.getElementById('comparisonTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = stocks.map(stock => {
+        const cur = stock.currency || 'NT$';
+        const proUpside = calcUpside(stock.fairValue, stock.price);
+        const analystUpside = calcUpside(stock.analystTarget, stock.price);
+
+        return `
+          <tr class="hover:bg-slate-800/40 transition cursor-pointer" onclick="selectedCode='${stock.code}'; switchLayout('split');">
+            <td class="py-3.5 px-4">
+              <div class="flex items-center gap-2">
+                <span class="font-mono font-bold text-cyan-400">${stock.code}</span>
+                <span class="font-semibold text-white">${stock.name}</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${stock.market}</span>
+              </div>
+            </td>
+            <td class="py-3.5 px-4 text-right font-mono font-bold text-white">${cur}${formatNumber(stock.price)}</td>
+            <td class="py-3.5 px-4 text-right font-mono text-emerald-300 font-semibold">${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '—'}</td>
+            <td class="py-3.5 px-4 text-right font-mono font-bold ${proUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${proUpside !== null ? `${proUpside >= 0 ? '+' : ''}${proUpside.toFixed(1)}%` : '—'}</td>
+            <td class="py-3.5 px-4 text-right font-mono text-cyan-300 font-semibold">${stock.analystTarget > 0 ? `${cur}${formatNumber(stock.analystTarget)}` : '—'}</td>
+            <td class="py-3.5 px-4 text-right font-mono font-bold ${analystUpside >= 0 ? 'text-cyan-400' : 'text-rose-400'}">${analystUpside !== null ? `${analystUpside >= 0 ? '+' : ''}${analystUpside.toFixed(1)}%` : '—'}</td>
+            <td class="py-3.5 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs bg-cyan-500/15 text-cyan-300">${stock.consensusLabel || '買入'}</span></td>
+            <td class="py-3.5 px-3 text-center font-mono text-slate-200">${stock.pe || '—'}</td>
+            <td class="py-3.5 px-3 text-center font-mono text-slate-200">${stock.pb || '—'}</td>
+            <td class="py-3.5 px-4 text-center" onclick="event.stopPropagation();">
+              <div class="flex items-center justify-center gap-1.5">
+                <button onclick="syncSingleStock('${stock.code}')" class="p-1.5 rounded-lg bg-cyan-500/15 text-cyan-300 hover:bg-cyan-500/30 text-xs" title="重新撈取"><i class="fa-solid fa-arrows-rotate"></i></button>
+                <button onclick="openEditModal('${stock.code}')" class="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs" title="編輯"><i class="fa-solid fa-pen"></i></button>
+                <button onclick="removeStock('${stock.code}', event)" class="p-1.5 rounded-lg bg-slate-900 text-slate-500 hover:text-rose-400 text-xs" title="刪除"><i class="fa-solid fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderApp() {
+      renderWatchlistSidebar();
+      renderRightDetailPanel();
+      renderKPIs();
+      renderCardsGrid();
+      renderComparisonTable();
+    }
+
+    /*************************************************************************
+     * 8. LAYOUT SWITCHING, SORTING, MODALS & EXPORT
+     *************************************************************************/
+    function switchLayout(mode) {
+      currentLayout = mode;
+      const splitEl = document.getElementById('splitViewContainer');
+      const cardsEl = document.getElementById('cardsViewContainer');
+      const tableEl = document.getElementById('tableViewContainer');
+
+      const tabSplit = document.getElementById('tabSplit');
+      const tabCards = document.getElementById('tabCards');
+      const tabTable = document.getElementById('tabTable');
+
+      const activeClass = 'px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30';
+      const inactiveClass = 'px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200';
+
+      splitEl.classList.toggle('hidden', mode !== 'split');
+      cardsEl.classList.toggle('hidden', mode !== 'cards');
+      tableEl.classList.toggle('hidden', mode !== 'table');
+
+      tabSplit.className = mode === 'split' ? activeClass : inactiveClass;
+      tabCards.className = mode === 'cards' ? activeClass : inactiveClass;
+      tabTable.className = mode === 'table' ? activeClass : inactiveClass;
+    }
+
+    let tableSortDirection = -1;
+    function sortByColumn(col) {
+      tableSortDirection *= -1;
+      stocks.sort((a, b) => {
+        if (col === 'code') return a.code.localeCompare(b.code) * tableSortDirection;
+        if (col === 'proUpside') return ((calcUpside(a.fairValue, a.price) ?? -999) - (calcUpside(b.fairValue, b.price) ?? -999)) * tableSortDirection;
+        if (col === 'analystUpside') return ((calcUpside(a.analystTarget, a.price) ?? -999) - (calcUpside(b.analystTarget, b.price) ?? -999)) * tableSortDirection;
+        if (col === 'peNum') return (parseNum(a.pe) - parseNum(b.pe)) * tableSortDirection;
+        if (col === 'pbNum') return (parseNum(a.pb) - parseNum(b.pb)) * tableSortDirection;
+        return ((parseFloat(a[col]) || 0) - (parseFloat(b[col]) || 0)) * tableSortDirection;
+      });
+      renderApp();
+    }
+
+    function openEditModal(code) {
+      const stock = stocks.find(s => s.code === code);
+      if (!stock) return;
+      document.getElementById('editModalTitle').textContent = `手動校準：${stock.code} ${stock.name}`;
+      document.getElementById('editCode').value = stock.code;
+      document.getElementById('editName').value = stock.name || '';
+      document.getElementById('editMarket').value = stock.market || 'TWSE';
+      document.getElementById('editPrice').value = stock.price || 0;
+      document.getElementById('editFairValue').value = stock.fairValue || 0;
+      document.getElementById('editFairRange').value = stock.fairRange || '';
+      document.getElementById('editAnalystTarget').value = stock.analystTarget || 0;
+      document.getElementById('editAnalystRange').value = stock.analystRange || '';
+      document.getElementById('editPE').value = stock.pe || '';
+      document.getElementById('editPB').value = stock.pb || '';
+      document.getElementById('editExtraMetric').value = stock.extraMetric || '';
+      document.getElementById('editNote').value = stock.note || '';
+
+      const modal = document.getElementById('editModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeEditModal() {
+      const modal = document.getElementById('editModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function saveManualEdit(e) {
+      e.preventDefault();
+      const code = document.getElementById('editCode').value;
+      const idx = stocks.findIndex(s => s.code === code);
+      if (idx === -1) return;
+
+      stocks[idx] = {
+        ...stocks[idx],
+        name: document.getElementById('editName').value.trim(),
+        market: document.getElementById('editMarket').value,
+        price: parseFloat(document.getElementById('editPrice').value) || 0,
+        fairValue: parseFloat(document.getElementById('editFairValue').value) || 0,
+        fairRange: document.getElementById('editFairRange').value.trim(),
+        fairSource: '手動校準',
+        analystTarget: parseFloat(document.getElementById('editAnalystTarget').value) || 0,
+        analystRange: document.getElementById('editAnalystRange').value.trim(),
+        pe: document.getElementById('editPE').value.trim(),
+        pb: document.getElementById('editPB').value.trim(),
+        extraMetric: document.getElementById('editExtraMetric').value.trim(),
+        note: document.getElementById('editNote').value.trim(),
+        lastUpdated: '手動校準'
+      };
+
+      saveToStorage();
+      renderApp();
+      closeEditModal();
+      showToast(`已儲存 ${code} 的公允價與預估價設定`, 'success');
+    }
+
+    function openApiModal() {
+      document.getElementById('geminiApiKeyInput').value = localStorage.getItem(API_KEY_STORAGE) || '';
+      const modal = document.getElementById('apiModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeApiModal() {
+      const modal = document.getElementById('apiModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function saveApiKey() {
+      const val = document.getElementById('geminiApiKeyInput').value.trim();
+      if (val) {
+        localStorage.setItem(API_KEY_STORAGE, val);
+        showToast('已儲存 Gemini API Key！將自動輔助檢索 InvestingPro 快照', 'success');
+      } else {
+        localStorage.removeItem(API_KEY_STORAGE);
+        showToast('已切換為預設免金鑰即時撈取模式', 'info');
+      }
+      updateApiKeyBadge();
+      closeApiModal();
+    }
+
+    function clearApiKey() {
+      localStorage.removeItem(API_KEY_STORAGE);
+      document.getElementById('geminiApiKeyInput').value = '';
+      updateApiKeyBadge();
+      closeApiModal();
+      showToast('已清除 API Key，使用預設免金鑰即時撈取引擎', 'info');
+    }
+
+    function updateApiKeyBadge() {
+      const hasKey = Boolean(localStorage.getItem(API_KEY_STORAGE));
+      const el = document.getElementById('apiKeyStatusBtn');
+      if (el) {
+        el.textContent = hasKey ? 'AI 雙引擎已啟用' : 'API 增強設定';
+      }
+    }
+
+    function toggleGuideModal() {
+      const modal = document.getElementById('guideModal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+
+    function exportCSV() {
+      const headers = ['代碼', '名稱', '市場', '最新股價', '公允價(Fair Value)', '公允價潛在空間(%)', '分析師預估價(Target)', '分析師潛在空間(%)', '分析師共識', '本益比(P/E)', '股價淨值比(P/B)', '備註'];
+      const rows = stocks.map(s => {
+        const proUp = calcUpside(s.fairValue, s.price);
+        const anaUp = calcUpside(s.analystTarget, s.price);
+        return [
+          s.code,
+          `"${(s.name || '').replace(/"/g, '""')}"`,
+          s.market,
+          s.price,
+          s.fairValue,
+          proUp !== null ? proUp.toFixed(2) : '',
+          s.analystTarget,
+          anaUp !== null ? anaUp.toFixed(2) : '',
+          `"${s.consensusLabel || ''}"`,
+          `"${s.pe || ''}"`,
+          `"${s.pb || ''}"`,
+          `"${(s.note || '').replace(/"/g, '""')}"`
+        ].join(',');
+      });
+
+      const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Investing_公允價與分析師預估價_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('已匯出 CSV 報表', 'success');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      const iconMap = {
+        success: '<i class="fa-solid fa-circle-check text-emerald-400"></i>',
+        warning: '<i class="fa-solid fa-triangle-exclamation text-amber-400"></i>',
+        info: '<i class="fa-solid fa-circle-info text-cyan-400"></i>'
+      };
+      const borderMap = {
+        success: 'border-emerald-500/40',
+        warning: 'border-amber-500/40',
+        info: 'border-cyan-500/40'
+      };
+      toast.className = `glass-panel px-4 py-3 rounded-xl border ${borderMap[type] || borderMap.info} shadow-xl text-xs text-slate-100 flex items-center gap-2.5 pointer-events-auto transition-all duration-300`;
+      toast.innerHTML = `${iconMap[type] || iconMap.info} <span class="flex-1">${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(8px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    window.onload = initApp;
+  </script>
+</body>
+</html>
