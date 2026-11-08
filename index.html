@@ -224,6 +224,7 @@
           </button>
         </div>
         <div class="flex items-center gap-1.5 flex-wrap">
+          <button onclick="selectOrFetchTicker('3701', 'TW', '大眾控')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-rose-950/80 text-rose-300 hover:text-rose-100 border border-rose-500/40 transition font-mono">3701 大眾控</button>
           <button onclick="selectOrFetchTicker('2301', 'TW', '光寶科')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">2301 光寶科</button>
           <button onclick="selectOrFetchTicker('1303', 'TW', '南亞')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">1303 南亞</button>
           <button onclick="selectOrFetchTicker('1326', 'TW', '台化')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">1326 台化</button>
@@ -503,7 +504,12 @@
     const KNOWN_SLUGS = {
       '2330': { slug: 'taiwan-semicon', name: '台積電', market: 'TWSE', proFairValue: 2495.00, proFairRange: '2,280.00 - 2,710.00' },
       '2327': { slug: 'yageo-corp', name: '國巨*', market: 'TWSE', proFairValue: 406.50, proFairRange: '399.57 - 408.25' },
-      '2454': { slug: 'mediatek', name: '聯發科', market: 'TWSE', proFairValue: 3820.00, proFairRange: '3,510.00 - 4,130.00' },
+      '2454': { slug: 'mediatek', name: '聯發科', market: 'TWSE', proFairValue: 3171.00, proFairRange: '2,950.00 - 3,380.00' },
+      '2342': { slug: 'mosel', name: '茂矽', market: 'TWSE', proFairValue: 27.41, proFairRange: '24.00 - 30.50' },
+      '3701': { slug: 'fic-global-inc', name: '大眾控', market: 'TWSE', proFairValue: 36.03, proFairRange: '32.00 - 39.50' },
+      '4716': { slug: 'daily-polymer', name: '大立高', market: 'TPEX', proFairValue: 12.85, proFairRange: '11.00 - 14.50' },
+      '4989': { slug: 'lcy-tech', name: '榮科', market: 'TWSE', proFairValue: 36.57, proFairRange: '32.00 - 41.00' },
+      '6443': { slug: 'tsec-corp', name: '元晶', market: 'TWSE', proFairValue: 17.00, proFairRange: '14.50 - 19.50' },
       '2317': { slug: 'hon-hai', name: '鴻海', market: 'TWSE', proFairValue: 268.40, proFairRange: '245.00 - 291.80' },
       '2492': { slug: 'walsin-tech', name: '華新科', market: 'TWSE', proFairValue: 375.86, proFairRange: '370.29 - 381.43' },
       '8299': { slug: 'phison-electronics', name: '群聯電子', market: 'TPEX', proFairValue: 2148.00, proFairRange: '1,980.00 - 2,315.00' },
@@ -898,6 +904,18 @@
       if (!stocks.find(s => s.code === selectedCode) && stocks.length > 0) {
         selectedCode = stocks[0].code;
       }
+
+      // Auto-sync verified InvestingPro official benchmarks from KNOWN_SLUGS (ensuring 3701 etc. are updated)
+      stocks.forEach(s => {
+        const known = KNOWN_SLUGS[s.code];
+        if (known && known.proFairValue && s.fairSource !== '手動校準') {
+          s.fairValue = known.proFairValue;
+          if (known.proFairRange) s.fairRange = known.proFairRange;
+          s.fairSource = 'InvestingPro 官方基準';
+        }
+      });
+      saveToStorage();
+
       updateApiKeyBadge();
       renderApp();
     }
