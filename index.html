@@ -108,6 +108,14 @@
             <span>左右即時查詢台</span>
           </button>
           <button
+            id="tabLeaderboard"
+            onclick="switchLayout('leaderboard')"
+            class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200"
+          >
+            <i class="fa-solid fa-trophy text-amber-400"></i>
+            <span>🏆 估值潛力 Top 100 榜單</span>
+          </button>
+          <button
             id="tabCards"
             onclick="switchLayout('cards')"
             class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200"
@@ -290,6 +298,149 @@
         <!-- Populated dynamically via JS for the selected stock -->
       </div>
 
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- LAYOUT 4: TOP 100 LEADERBOARD WITH PAGINATION & COMMUNITY POOL      -->
+    <!-- =================================================================== -->
+    <section id="leaderboardViewContainer" class="hidden space-y-4">
+      <!-- Top Banner / Switcher Card -->
+      <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 shadow-xl space-y-4">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800/80 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="p-2.5 rounded-xl bg-gradient-to-br from-amber-500/20 to-cyan-500/20 border border-amber-500/30 text-amber-300 text-xl shadow-md shadow-amber-500/10">
+              <i class="fa-solid fa-trophy"></i>
+            </span>
+            <div>
+              <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2 flex-wrap">
+                <span>台股估值潛力雙向 Top 100 排行榜</span>
+                <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-normal">
+                  台股50 + 中型100 核心池
+                </span>
+              </h2>
+              <p class="text-xs text-slate-400 mt-0.5">
+                精選公允價值高於現值（折價安全邊際）與外資券商目標價看漲潛力前 100 強，支援自選每頁筆數、分頁導航與社群共編標的池。
+              </p>
+            </div>
+          </div>
+
+          <!-- Leaderboard Sub-Tabs Switcher -->
+          <div class="flex items-center gap-1.5 p-1 bg-slate-900/90 rounded-xl border border-slate-800 w-full md:w-auto overflow-x-auto shrink-0">
+            <button
+              id="btnLbFairValue"
+              onclick="setLeaderboardMode('fairValue')"
+              class="flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-sm"
+            >
+              <i class="fa-solid fa-gem text-emerald-400"></i>
+              <span>💎 公允價折價 Top 100</span>
+            </button>
+            <button
+              id="btnLbAnalyst"
+              onclick="setLeaderboardMode('analyst')"
+              class="flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200"
+            >
+              <i class="fa-solid fa-bullseye text-cyan-400"></i>
+              <span>🎯 分析師看漲 Top 100</span>
+            </button>
+            <button
+              id="btnLbCommunity"
+              onclick="setLeaderboardMode('community')"
+              class="flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200"
+            >
+              <i class="fa-solid fa-users text-amber-400"></i>
+              <span>🌐 社群查過標的池 (<span id="communityPoolCount">0</span>)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter & Pagination Bar -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2 flex-1 max-w-md">
+            <div class="relative w-full">
+              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+              <input
+                id="leaderboardSearchInput"
+                type="text"
+                placeholder="過濾百大榜單（輸入代碼或名稱，如 2330、長榮、2454）..."
+                oninput="handleLeaderboardSearch(this.value)"
+                class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl pl-8 pr-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-xs"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 justify-between sm:justify-end flex-wrap">
+            <div class="flex items-center gap-1.5 text-slate-400">
+              <span>每頁顯示：</span>
+              <select
+                id="leaderboardPageSizeSelect"
+                onchange="changeLeaderboardPageSize(this.value)"
+                class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-white text-xs focus:outline-none focus:border-cyan-400 cursor-pointer"
+              >
+                <option value="20" selected>20 筆 (標準分頁)</option>
+                <option value="50">50 筆</option>
+                <option value="100">100 筆 (完整版)</option>
+              </select>
+            </div>
+
+            <button
+              onclick="addAllCurrentPageToRadar()"
+              class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1 shrink-0"
+              title="將當前分頁股票全部批次加入我的觀察名單"
+            >
+              <i class="fa-solid fa-plus text-cyan-400"></i>
+              <span>整頁加入雷達</span>
+            </button>
+
+            <button
+              onclick="exportCommunityPoolJSON()"
+              class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 transition flex items-center gap-1 shrink-0"
+              title="匯出社群查過標的資料庫為 JSON 檔案"
+            >
+              <i class="fa-solid fa-file-export text-amber-400"></i>
+              <span class="hidden md:inline">匯出標的池</span>
+            </button>
+
+            <label
+              class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1 shrink-0 cursor-pointer"
+              title="匯入其他人分享的標的池 JSON"
+            >
+              <i class="fa-solid fa-file-import text-cyan-400"></i>
+              <span class="hidden md:inline">匯入標的池</span>
+              <input type="file" accept=".json" class="hidden" onchange="importCommunityPoolJSON(event)" />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard Table Container -->
+      <div class="glass-panel rounded-2xl overflow-hidden shadow-xl border border-slate-800/80">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-900/95 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                <th class="py-3 px-3.5 text-center w-16">排名</th>
+                <th class="py-3 px-4">代碼 / 名稱</th>
+                <th class="py-3 px-4 text-right">最新股價</th>
+                <th class="py-3 px-4 text-right" id="lbThMetricVal">基準估值</th>
+                <th class="py-3 px-4 text-right w-44" id="lbThMetricUpside">潛在看漲空間</th>
+                <th class="py-3 px-3 text-center">估值診斷</th>
+                <th class="py-3 px-3 text-center">本益比 P/E</th>
+                <th class="py-3 px-3 text-center">淨值比 P/B</th>
+                <th class="py-3 px-4 text-center">操作</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardTableBody" class="divide-y divide-slate-800/70 text-sm"></tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls Footer -->
+        <div class="bg-slate-900/90 border-t border-slate-800/90 px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+          <div id="leaderboardPaginationInfo">
+            顯示第 1 - 20 筆，共 100 筆
+          </div>
+          <div class="flex items-center gap-1.5 flex-wrap justify-center" id="leaderboardPaginationButtons"></div>
+        </div>
+      </div>
     </section>
 
     <!-- =================================================================== -->
@@ -550,6 +701,1409 @@
       'AVGO': { slug: 'avago-technologies', name: '博通 (Broadcom)', market: 'NASDAQ', currency: 'USD' },
       'TSM':  { slug: 'taiwan-semiconductor-mfg', name: '台積電 ADR (TSM)', market: 'NYSE', currency: 'USD' }
     };
+
+
+    /*************************************************************************
+     * 1.1 TAIWAN CORE UNIVERSE (100+ 核心權值與中型100標的池)
+     *************************************************************************/
+    const TAIWAN_CORE_UNIVERSE = [
+  {
+    "code": "2330",
+    "name": "台積電",
+    "slug": "taiwan-semicon",
+    "market": "TWSE",
+    "price": 2135,
+    "fairValue": 2495,
+    "analystTarget": 3409.8,
+    "pe": "21.9x",
+    "pb": "7.9x"
+  },
+  {
+    "code": "2454",
+    "name": "聯發科",
+    "slug": "mediatek",
+    "market": "TWSE",
+    "price": 3390,
+    "fairValue": 3820,
+    "analystTarget": 6124.19,
+    "pe": "54.5x",
+    "pb": "11.6x"
+  },
+  {
+    "code": "2303",
+    "name": "聯電",
+    "slug": "united-micro",
+    "market": "TWSE",
+    "price": 51.5,
+    "fairValue": 62.4,
+    "analystTarget": 68.5,
+    "pe": "10.8x",
+    "pb": "1.4x"
+  },
+  {
+    "code": "3711",
+    "name": "日月光投控",
+    "slug": "ase-industrial",
+    "market": "TWSE",
+    "price": 168,
+    "fairValue": 198.5,
+    "analystTarget": 220,
+    "pe": "16.5x",
+    "pb": "2.1x"
+  },
+  {
+    "code": "2379",
+    "name": "瑞昱",
+    "slug": "realtek",
+    "market": "TWSE",
+    "price": 515,
+    "fairValue": 610,
+    "analystTarget": 680,
+    "pe": "18.2x",
+    "pb": "4.8x"
+  },
+  {
+    "code": "3034",
+    "name": "聯詠",
+    "slug": "novatek-microel",
+    "market": "TWSE",
+    "price": 520,
+    "fairValue": 595,
+    "analystTarget": 645,
+    "pe": "14.1x",
+    "pb": "4.2x"
+  },
+  {
+    "code": "3443",
+    "name": "創意",
+    "slug": "global-unichip",
+    "market": "TWSE",
+    "price": 1280,
+    "fairValue": 1520,
+    "analystTarget": 1750,
+    "pe": "42.0x",
+    "pb": "9.8x"
+  },
+  {
+    "code": "3661",
+    "name": "世芯-KY",
+    "slug": "alchip-technologies",
+    "market": "TWSE",
+    "price": 2240,
+    "fairValue": 2850,
+    "analystTarget": 3450,
+    "pe": "45.2x",
+    "pb": "12.4x"
+  },
+  {
+    "code": "3529",
+    "name": "力旺",
+    "slug": "ememory-tech",
+    "market": "TPEX",
+    "price": 2850,
+    "fairValue": 3320,
+    "analystTarget": 3950,
+    "pe": "68.0x",
+    "pb": "28.5x"
+  },
+  {
+    "code": "6488",
+    "name": "環球晶",
+    "slug": "globalwafers-co-ltd",
+    "market": "TPEX",
+    "price": 425,
+    "fairValue": 535,
+    "analystTarget": 590,
+    "pe": "15.6x",
+    "pb": "3.1x"
+  },
+  {
+    "code": "5347",
+    "name": "世界",
+    "slug": "vanguard-intl",
+    "market": "TPEX",
+    "price": 106,
+    "fairValue": 128,
+    "analystTarget": 142,
+    "pe": "19.5x",
+    "pb": "3.0x"
+  },
+  {
+    "code": "3374",
+    "name": "精材",
+    "slug": "xintec",
+    "market": "TPEX",
+    "price": 188,
+    "fairValue": 225,
+    "analystTarget": 258,
+    "pe": "24.3x",
+    "pb": "4.6x"
+  },
+  {
+    "code": "2408",
+    "name": "南亞科",
+    "slug": "nanya-tech",
+    "market": "TWSE",
+    "price": 62,
+    "fairValue": 74.5,
+    "analystTarget": 82,
+    "pe": "22.0x",
+    "pb": "1.2x"
+  },
+  {
+    "code": "2344",
+    "name": "華邦電",
+    "slug": "winbond",
+    "market": "TWSE",
+    "price": 26.5,
+    "fairValue": 31.8,
+    "analystTarget": 35.5,
+    "pe": "18.5x",
+    "pb": "1.1x"
+  },
+  {
+    "code": "3006",
+    "name": "晶豪科",
+    "slug": "esmt",
+    "market": "TWSE",
+    "price": 86.5,
+    "fairValue": 105,
+    "analystTarget": 118,
+    "pe": "19.8x",
+    "pb": "1.5x"
+  },
+  {
+    "code": "8299",
+    "name": "群聯電子",
+    "slug": "phison-electronics",
+    "market": "TPEX",
+    "price": 575,
+    "fairValue": 710,
+    "analystTarget": 795,
+    "pe": "14.5x",
+    "pb": "2.8x"
+  },
+  {
+    "code": "6770",
+    "name": "力積電",
+    "slug": "powerchip-semic",
+    "market": "TWSE",
+    "price": 21.5,
+    "fairValue": 24.8,
+    "analystTarget": 26,
+    "pe": "25.0x",
+    "pb": "0.9x"
+  },
+  {
+    "code": "6239",
+    "name": "力成",
+    "slug": "powertech-tech",
+    "market": "TWSE",
+    "price": 165,
+    "fairValue": 192,
+    "analystTarget": 210,
+    "pe": "12.8x",
+    "pb": "2.0x"
+  },
+  {
+    "code": "3260",
+    "name": "威剛",
+    "slug": "adata-technology",
+    "market": "TPEX",
+    "price": 102.5,
+    "fairValue": 128,
+    "analystTarget": 139,
+    "pe": "11.2x",
+    "pb": "1.9x"
+  },
+  {
+    "code": "2458",
+    "name": "義隆",
+    "slug": "elan-microel",
+    "market": "TWSE",
+    "price": 145,
+    "fairValue": 172,
+    "analystTarget": 188,
+    "pe": "14.8x",
+    "pb": "3.2x"
+  },
+  {
+    "code": "2317",
+    "name": "鴻海",
+    "slug": "hon-hai",
+    "market": "TWSE",
+    "price": 224.5,
+    "fairValue": 268.4,
+    "analystTarget": 347.5,
+    "pe": "14.8x",
+    "pb": "1.8x"
+  },
+  {
+    "code": "2382",
+    "name": "廣達",
+    "slug": "quanta",
+    "market": "TWSE",
+    "price": 318,
+    "fairValue": 375,
+    "analystTarget": 415,
+    "pe": "19.2x",
+    "pb": "4.5x"
+  },
+  {
+    "code": "3231",
+    "name": "緯創",
+    "slug": "wistron",
+    "market": "TWSE",
+    "price": 118,
+    "fairValue": 145,
+    "analystTarget": 165,
+    "pe": "16.1x",
+    "pb": "2.8x"
+  },
+  {
+    "code": "6669",
+    "name": "緯穎",
+    "slug": "wiwynn-corp",
+    "market": "TWSE",
+    "price": 2185,
+    "fairValue": 2750,
+    "analystTarget": 3250,
+    "pe": "22.4x",
+    "pb": "8.5x"
+  },
+  {
+    "code": "2356",
+    "name": "英業達",
+    "slug": "inventec",
+    "market": "TWSE",
+    "price": 48.5,
+    "fairValue": 58,
+    "analystTarget": 66,
+    "pe": "18.0x",
+    "pb": "2.3x"
+  },
+  {
+    "code": "2376",
+    "name": "技嘉",
+    "slug": "gigabyte-tech",
+    "market": "TWSE",
+    "price": 285,
+    "fairValue": 345,
+    "analystTarget": 388,
+    "pe": "17.5x",
+    "pb": "3.8x"
+  },
+  {
+    "code": "2357",
+    "name": "華碩",
+    "slug": "asustek-computer",
+    "market": "TWSE",
+    "price": 585,
+    "fairValue": 690,
+    "analystTarget": 760,
+    "pe": "15.3x",
+    "pb": "1.9x"
+  },
+  {
+    "code": "2301",
+    "name": "光寶科",
+    "slug": "lite-on-tech",
+    "market": "TWSE",
+    "price": 112.5,
+    "fairValue": 138,
+    "analystTarget": 155,
+    "pe": "15.8x",
+    "pb": "3.2x"
+  },
+  {
+    "code": "2308",
+    "name": "台達電",
+    "slug": "delta-electron",
+    "market": "TWSE",
+    "price": 405,
+    "fairValue": 475,
+    "analystTarget": 520,
+    "pe": "25.5x",
+    "pb": "4.2x"
+  },
+  {
+    "code": "2395",
+    "name": "研華",
+    "slug": "advantech",
+    "market": "TWSE",
+    "price": 355,
+    "fairValue": 410,
+    "analystTarget": 455,
+    "pe": "28.0x",
+    "pb": "5.6x"
+  },
+  {
+    "code": "2324",
+    "name": "仁寶",
+    "slug": "compal-electronics",
+    "market": "TWSE",
+    "price": 36.8,
+    "fairValue": 42.5,
+    "analystTarget": 46,
+    "pe": "16.5x",
+    "pb": "1.4x"
+  },
+  {
+    "code": "2353",
+    "name": "宏碁",
+    "slug": "acer-inc",
+    "market": "TWSE",
+    "price": 41.2,
+    "fairValue": 46.8,
+    "analystTarget": 50.5,
+    "pe": "20.1x",
+    "pb": "1.7x"
+  },
+  {
+    "code": "4938",
+    "name": "和碩",
+    "slug": "pegatron",
+    "market": "TWSE",
+    "price": 95,
+    "fairValue": 110,
+    "analystTarget": 122,
+    "pe": "14.2x",
+    "pb": "1.3x"
+  },
+  {
+    "code": "2345",
+    "name": "智邦",
+    "slug": "accton-tech",
+    "market": "TWSE",
+    "price": 615,
+    "fairValue": 720,
+    "analystTarget": 790,
+    "pe": "30.5x",
+    "pb": "8.9x"
+  },
+  {
+    "code": "5388",
+    "name": "中磊",
+    "slug": "sercomm-corp",
+    "market": "TWSE",
+    "price": 128,
+    "fairValue": 155,
+    "analystTarget": 172,
+    "pe": "13.8x",
+    "pb": "2.7x"
+  },
+  {
+    "code": "6285",
+    "name": "啟碁",
+    "slug": "wistron-neweb",
+    "market": "TWSE",
+    "price": 142,
+    "fairValue": 175,
+    "analystTarget": 195,
+    "pe": "15.2x",
+    "pb": "2.9x"
+  },
+  {
+    "code": "2412",
+    "name": "中華電",
+    "slug": "chunghwa-telecom",
+    "market": "TWSE",
+    "price": 124.5,
+    "fairValue": 135,
+    "analystTarget": 140,
+    "pe": "25.4x",
+    "pb": "2.5x"
+  },
+  {
+    "code": "4904",
+    "name": "遠傳",
+    "slug": "far-eastone-telecom",
+    "market": "TWSE",
+    "price": 86.5,
+    "fairValue": 95,
+    "analystTarget": 98.5,
+    "pe": "24.2x",
+    "pb": "2.8x"
+  },
+  {
+    "code": "2327",
+    "name": "國巨*",
+    "slug": "yageo-corp",
+    "market": "TWSE",
+    "price": 374,
+    "fairValue": 406.5,
+    "analystTarget": 961.47,
+    "pe": "25.2x",
+    "pb": "4.3x"
+  },
+  {
+    "code": "2492",
+    "name": "華新科",
+    "slug": "walsin-tech",
+    "market": "TWSE",
+    "price": 118,
+    "fairValue": 142,
+    "analystTarget": 160,
+    "pe": "18.5x",
+    "pb": "1.4x"
+  },
+  {
+    "code": "3017",
+    "name": "奇鋐",
+    "slug": "asia-vital-components",
+    "market": "TWSE",
+    "price": 645,
+    "fairValue": 780,
+    "analystTarget": 890,
+    "pe": "27.8x",
+    "pb": "7.2x"
+  },
+  {
+    "code": "3324",
+    "name": "雙鴻",
+    "slug": "auras-technology",
+    "market": "TPEX",
+    "price": 710,
+    "fairValue": 860,
+    "analystTarget": 980,
+    "pe": "32.5x",
+    "pb": "8.6x"
+  },
+  {
+    "code": "3653",
+    "name": "健策",
+    "slug": "jentech",
+    "market": "TWSE",
+    "price": 1380,
+    "fairValue": 1650,
+    "analystTarget": 1880,
+    "pe": "48.0x",
+    "pb": "15.2x"
+  },
+  {
+    "code": "2421",
+    "name": "建準",
+    "slug": "sunonwealth-electric",
+    "market": "TWSE",
+    "price": 110,
+    "fairValue": 135,
+    "analystTarget": 152,
+    "pe": "19.5x",
+    "pb": "4.1x"
+  },
+  {
+    "code": "2059",
+    "name": "川湖",
+    "slug": "king-slide-works",
+    "market": "TWSE",
+    "price": 1290,
+    "fairValue": 1580,
+    "analystTarget": 1760,
+    "pe": "30.2x",
+    "pb": "8.5x"
+  },
+  {
+    "code": "3533",
+    "name": "嘉澤",
+    "slug": "lotes-co-ltd",
+    "market": "TWSE",
+    "price": 1580,
+    "fairValue": 1890,
+    "analystTarget": 2100,
+    "pe": "24.6x",
+    "pb": "7.4x"
+  },
+  {
+    "code": "3037",
+    "name": "欣興",
+    "slug": "unimicron-tech",
+    "market": "TWSE",
+    "price": 178,
+    "fairValue": 220,
+    "analystTarget": 255,
+    "pe": "21.5x",
+    "pb": "2.6x"
+  },
+  {
+    "code": "8046",
+    "name": "南電",
+    "slug": "nan-ya-printed",
+    "market": "TWSE",
+    "price": 152,
+    "fairValue": 185,
+    "analystTarget": 210,
+    "pe": "35.0x",
+    "pb": "2.2x"
+  },
+  {
+    "code": "3189",
+    "name": "景碩",
+    "slug": "kinsus-interconnect",
+    "market": "TWSE",
+    "price": 98,
+    "fairValue": 118,
+    "analystTarget": 132,
+    "pe": "28.5x",
+    "pb": "1.8x"
+  },
+  {
+    "code": "2368",
+    "name": "金像電",
+    "slug": "gold-circuit",
+    "market": "TWSE",
+    "price": 225,
+    "fairValue": 278,
+    "analystTarget": 315,
+    "pe": "18.2x",
+    "pb": "4.8x"
+  },
+  {
+    "code": "3044",
+    "name": "健鼎",
+    "slug": "tripod-tech",
+    "market": "TWSE",
+    "price": 218,
+    "fairValue": 265,
+    "analystTarget": 295,
+    "pe": "14.5x",
+    "pb": "3.1x"
+  },
+  {
+    "code": "6274",
+    "name": "台燿",
+    "slug": "taiwan-union-technology",
+    "market": "TPEX",
+    "price": 168,
+    "fairValue": 205,
+    "analystTarget": 232,
+    "pe": "21.0x",
+    "pb": "4.2x"
+  },
+  {
+    "code": "2383",
+    "name": "台光電",
+    "slug": "elite-material",
+    "market": "TWSE",
+    "price": 465,
+    "fairValue": 560,
+    "analystTarget": 630,
+    "pe": "22.8x",
+    "pb": "6.9x"
+  },
+  {
+    "code": "8069",
+    "name": "元太",
+    "slug": "e-ink-holdings",
+    "market": "TPEX",
+    "price": 285,
+    "fairValue": 345,
+    "analystTarget": 390,
+    "pe": "35.0x",
+    "pb": "6.4x"
+  },
+  {
+    "code": "6176",
+    "name": "瑞儀",
+    "slug": "radiant-opto",
+    "market": "TWSE",
+    "price": 185,
+    "fairValue": 218,
+    "analystTarget": 235,
+    "pe": "12.8x",
+    "pb": "2.2x"
+  },
+  {
+    "code": "2478",
+    "name": "大毅",
+    "slug": "tai-tech-advanced",
+    "market": "TWSE",
+    "price": 54,
+    "fairValue": 64.5,
+    "analystTarget": 71,
+    "pe": "14.5x",
+    "pb": "1.5x"
+  },
+  {
+    "code": "2881",
+    "name": "富邦金",
+    "slug": "fubon-financial",
+    "market": "TWSE",
+    "price": 88.5,
+    "fairValue": 104,
+    "analystTarget": 112,
+    "pe": "10.2x",
+    "pb": "1.3x"
+  },
+  {
+    "code": "2882",
+    "name": "國泰金",
+    "slug": "cathay-financial",
+    "market": "TWSE",
+    "price": 68,
+    "fairValue": 79.5,
+    "analystTarget": 86,
+    "pe": "10.5x",
+    "pb": "1.2x"
+  },
+  {
+    "code": "2891",
+    "name": "中信金",
+    "slug": "chinatrust-financial",
+    "market": "TWSE",
+    "price": 36.5,
+    "fairValue": 43.5,
+    "analystTarget": 47,
+    "pe": "10.8x",
+    "pb": "1.4x"
+  },
+  {
+    "code": "2886",
+    "name": "兆豐金",
+    "slug": "mega-financial",
+    "market": "TWSE",
+    "price": 39.8,
+    "fairValue": 44.5,
+    "analystTarget": 47.5,
+    "pe": "16.5x",
+    "pb": "1.6x"
+  },
+  {
+    "code": "2884",
+    "name": "玉山金",
+    "slug": "e.sun-financial",
+    "market": "TWSE",
+    "price": 28.5,
+    "fairValue": 32.8,
+    "analystTarget": 35.2,
+    "pe": "17.2x",
+    "pb": "1.7x"
+  },
+  {
+    "code": "2892",
+    "name": "第一金",
+    "slug": "first-financial",
+    "market": "TWSE",
+    "price": 27.4,
+    "fairValue": 31,
+    "analystTarget": 33.5,
+    "pe": "15.1x",
+    "pb": "1.5x"
+  },
+  {
+    "code": "2880",
+    "name": "華南金",
+    "slug": "hua-nan-financial",
+    "market": "TWSE",
+    "price": 25.8,
+    "fairValue": 29.2,
+    "analystTarget": 31.5,
+    "pe": "16.0x",
+    "pb": "1.5x"
+  },
+  {
+    "code": "2885",
+    "name": "元大金",
+    "slug": "yuanta-financial",
+    "market": "TWSE",
+    "price": 32.6,
+    "fairValue": 38.5,
+    "analystTarget": 41.5,
+    "pe": "12.8x",
+    "pb": "1.3x"
+  },
+  {
+    "code": "2887",
+    "name": "台新金",
+    "slug": "taishin-financial",
+    "market": "TWSE",
+    "price": 18.2,
+    "fairValue": 21.5,
+    "analystTarget": 23.2,
+    "pe": "12.0x",
+    "pb": "1.1x"
+  },
+  {
+    "code": "2890",
+    "name": "永豐金",
+    "slug": "sinopac-financial",
+    "market": "TWSE",
+    "price": 23.8,
+    "fairValue": 28,
+    "analystTarget": 30.2,
+    "pe": "13.5x",
+    "pb": "1.4x"
+  },
+  {
+    "code": "5880",
+    "name": "合庫金",
+    "slug": "taiwan-coop-fin",
+    "market": "TWSE",
+    "price": 25.6,
+    "fairValue": 28.8,
+    "analystTarget": 30.5,
+    "pe": "17.5x",
+    "pb": "1.4x"
+  },
+  {
+    "code": "2883",
+    "name": "凱基金",
+    "slug": "cdibh",
+    "market": "TWSE",
+    "price": 16.8,
+    "fairValue": 20.5,
+    "analystTarget": 22.8,
+    "pe": "10.9x",
+    "pb": "1.1x"
+  },
+  {
+    "code": "2834",
+    "name": "臺企銀",
+    "slug": "taiwan-business-bank",
+    "market": "TWSE",
+    "price": 16.2,
+    "fairValue": 18.8,
+    "analystTarget": 20.4,
+    "pe": "12.5x",
+    "pb": "1.1x"
+  },
+  {
+    "code": "5876",
+    "name": "上海商銀",
+    "slug": "shanghai-comm-bank",
+    "market": "TWSE",
+    "price": 46.5,
+    "fairValue": 53,
+    "analystTarget": 57,
+    "pe": "12.2x",
+    "pb": "1.2x"
+  },
+  {
+    "code": "2897",
+    "name": "王道銀行",
+    "slug": "o-bank-co-ltd",
+    "market": "TWSE",
+    "price": 10.15,
+    "fairValue": 12.2,
+    "analystTarget": 13.4,
+    "pe": "10.5x",
+    "pb": "0.8x"
+  },
+  {
+    "code": "2801",
+    "name": "彰銀",
+    "slug": "chang-hwa-bank",
+    "market": "TWSE",
+    "price": 18.1,
+    "fairValue": 20.8,
+    "analystTarget": 22.5,
+    "pe": "14.2x",
+    "pb": "1.0x"
+  },
+  {
+    "code": "1301",
+    "name": "台塑",
+    "slug": "formosa-plastic",
+    "market": "TWSE",
+    "price": 48.5,
+    "fairValue": 58,
+    "analystTarget": 64,
+    "pe": "26.5x",
+    "pb": "0.9x"
+  },
+  {
+    "code": "1303",
+    "name": "南亞",
+    "slug": "nan-ya-plastic",
+    "market": "TWSE",
+    "price": 42.3,
+    "fairValue": 51.5,
+    "analystTarget": 56.5,
+    "pe": "24.2x",
+    "pb": "0.8x"
+  },
+  {
+    "code": "1326",
+    "name": "台化",
+    "slug": "formosa-chem-f",
+    "market": "TWSE",
+    "price": 37.8,
+    "fairValue": 46,
+    "analystTarget": 50.5,
+    "pe": "28.0x",
+    "pb": "0.7x"
+  },
+  {
+    "code": "6505",
+    "name": "台塑化",
+    "slug": "formosa-petrochem",
+    "market": "TWSE",
+    "price": 51,
+    "fairValue": 62,
+    "analystTarget": 68,
+    "pe": "25.1x",
+    "pb": "1.4x"
+  },
+  {
+    "code": "2002",
+    "name": "中鋼",
+    "slug": "china-steel",
+    "market": "TWSE",
+    "price": 22.8,
+    "fairValue": 26.5,
+    "analystTarget": 28.8,
+    "pe": "32.0x",
+    "pb": "1.1x"
+  },
+  {
+    "code": "1519",
+    "name": "華城",
+    "slug": "fortune-electric",
+    "market": "TWSE",
+    "price": 635,
+    "fairValue": 760,
+    "analystTarget": 865,
+    "pe": "38.5x",
+    "pb": "14.5x"
+  },
+  {
+    "code": "1513",
+    "name": "中興電",
+    "slug": "chung-hsin-elec",
+    "market": "TWSE",
+    "price": 168,
+    "fairValue": 205,
+    "analystTarget": 235,
+    "pe": "23.5x",
+    "pb": "4.8x"
+  },
+  {
+    "code": "1504",
+    "name": "東元",
+    "slug": "teco-electric",
+    "market": "TWSE",
+    "price": 51.2,
+    "fairValue": 61.5,
+    "analystTarget": 68,
+    "pe": "16.5x",
+    "pb": "1.6x"
+  },
+  {
+    "code": "1503",
+    "name": "士電",
+    "slug": "shihlin-electric",
+    "market": "TWSE",
+    "price": 205,
+    "fairValue": 248,
+    "analystTarget": 280,
+    "pe": "31.0x",
+    "pb": "4.5x"
+  },
+  {
+    "code": "1101",
+    "name": "台泥",
+    "slug": "taiwan-cement",
+    "market": "TWSE",
+    "price": 32.4,
+    "fairValue": 37.8,
+    "analystTarget": 41,
+    "pe": "22.0x",
+    "pb": "1.0x"
+  },
+  {
+    "code": "1102",
+    "name": "亞泥",
+    "slug": "asia-cement",
+    "market": "TWSE",
+    "price": 42,
+    "fairValue": 48.5,
+    "analystTarget": 52.5,
+    "pe": "13.5x",
+    "pb": "0.9x"
+  },
+  {
+    "code": "1216",
+    "name": "統一",
+    "slug": "uni-president",
+    "market": "TWSE",
+    "price": 82.5,
+    "fairValue": 92,
+    "analystTarget": 98,
+    "pe": "21.5x",
+    "pb": "3.5x"
+  },
+  {
+    "code": "1402",
+    "name": "遠東新",
+    "slug": "far-eastern-new",
+    "market": "TWSE",
+    "price": 34.5,
+    "fairValue": 40,
+    "analystTarget": 43.5,
+    "pe": "18.0x",
+    "pb": "0.8x"
+  },
+  {
+    "code": "9904",
+    "name": "寶成",
+    "slug": "pou-chen",
+    "market": "TWSE",
+    "price": 38.6,
+    "fairValue": 46,
+    "analystTarget": 50.5,
+    "pe": "11.5x",
+    "pb": "0.9x"
+  },
+  {
+    "code": "9910",
+    "name": "豐泰",
+    "slug": "feng-tay-ent",
+    "market": "TWSE",
+    "price": 138,
+    "fairValue": 165,
+    "analystTarget": 182,
+    "pe": "22.5x",
+    "pb": "4.2x"
+  },
+  {
+    "code": "2105",
+    "name": "正新",
+    "slug": "cheng-shin-rubb",
+    "market": "TWSE",
+    "price": 49.5,
+    "fairValue": 58.5,
+    "analystTarget": 64,
+    "pe": "17.5x",
+    "pb": "1.8x"
+  },
+  {
+    "code": "2912",
+    "name": "統一超",
+    "slug": "president-chain",
+    "market": "TWSE",
+    "price": 275,
+    "fairValue": 310,
+    "analystTarget": 335,
+    "pe": "26.0x",
+    "pb": "8.5x"
+  },
+  {
+    "code": "2207",
+    "name": "和泰車",
+    "slug": "hotai-motor",
+    "market": "TWSE",
+    "price": 685,
+    "fairValue": 810,
+    "analystTarget": 890,
+    "pe": "17.5x",
+    "pb": "4.9x"
+  },
+  {
+    "code": "2201",
+    "name": "裕隆",
+    "slug": "yulon-motor",
+    "market": "TWSE",
+    "price": 54.5,
+    "fairValue": 66,
+    "analystTarget": 74,
+    "pe": "14.8x",
+    "pb": "1.1x"
+  },
+  {
+    "code": "1605",
+    "name": "華新",
+    "slug": "walsin-lihua",
+    "market": "TWSE",
+    "price": 33.2,
+    "fairValue": 39,
+    "analystTarget": 43,
+    "pe": "19.5x",
+    "pb": "1.2x"
+  },
+  {
+    "code": "2603",
+    "name": "長榮",
+    "slug": "evergreen-marine",
+    "market": "TWSE",
+    "price": 215,
+    "fairValue": 285,
+    "analystTarget": 320,
+    "pe": "5.5x",
+    "pb": "0.9x"
+  },
+  {
+    "code": "2609",
+    "name": "陽明",
+    "slug": "yang-ming-marine",
+    "market": "TWSE",
+    "price": 68.5,
+    "fairValue": 88,
+    "analystTarget": 98,
+    "pe": "6.8x",
+    "pb": "0.8x"
+  },
+  {
+    "code": "2615",
+    "name": "萬海",
+    "slug": "wan-hai-lines",
+    "market": "TWSE",
+    "price": 82,
+    "fairValue": 105,
+    "analystTarget": 118,
+    "pe": "8.2x",
+    "pb": "1.0x"
+  },
+  {
+    "code": "2618",
+    "name": "長榮航",
+    "slug": "eva-airways",
+    "market": "TWSE",
+    "price": 38.5,
+    "fairValue": 47,
+    "analystTarget": 52,
+    "pe": "8.5x",
+    "pb": "1.6x"
+  },
+  {
+    "code": "2610",
+    "name": "華航",
+    "slug": "china-airlines",
+    "market": "TWSE",
+    "price": 23.5,
+    "fairValue": 28.5,
+    "analystTarget": 31.5,
+    "pe": "9.8x",
+    "pb": "1.3x"
+  },
+  {
+    "code": "2605",
+    "name": "新興",
+    "slug": "sincere-nav",
+    "market": "TWSE",
+    "price": 25.8,
+    "fairValue": 31,
+    "analystTarget": 34.5,
+    "pe": "12.5x",
+    "pb": "0.9x"
+  },
+  {
+    "code": "6472",
+    "name": "保瑞",
+    "slug": "bora-pharmaceut",
+    "market": "TWSE",
+    "price": 760,
+    "fairValue": 950,
+    "analystTarget": 1080,
+    "pe": "24.5x",
+    "pb": "5.2x"
+  },
+  {
+    "code": "1795",
+    "name": "美時",
+    "slug": "alvogen-korea-h",
+    "market": "TWSE",
+    "price": 268,
+    "fairValue": 345,
+    "analystTarget": 395,
+    "pe": "14.8x",
+    "pb": "3.8x"
+  },
+  {
+    "code": "6589",
+    "name": "台康生技",
+    "slug": "eirgenix-inc",
+    "market": "TPEX",
+    "price": 82,
+    "fairValue": 102,
+    "analystTarget": 115,
+    "pe": "45.0x",
+    "pb": "3.5x"
+  },
+  {
+    "code": "4147",
+    "name": "中裕",
+    "slug": "tai-med-biolog",
+    "market": "TPEX",
+    "price": 88,
+    "fairValue": 108,
+    "analystTarget": 122,
+    "pe": "52.0x",
+    "pb": "4.8x"
+  },
+  {
+    "code": "6547",
+    "name": "高端疫苗",
+    "slug": "medigen-vaccine",
+    "market": "TPEX",
+    "price": 46.5,
+    "fairValue": 56,
+    "analystTarget": 62,
+    "pe": "40.0x",
+    "pb": "2.5x"
+  },
+  {
+    "code": "3008",
+    "name": "大立光",
+    "slug": "largan-precision",
+    "market": "TWSE",
+    "price": 2380,
+    "fairValue": 2850,
+    "analystTarget": 3200,
+    "pe": "16.5x",
+    "pb": "2.1x"
+  },
+  {
+    "code": "3406",
+    "name": "玉晶光",
+    "slug": "genius-electron",
+    "market": "TWSE",
+    "price": 465,
+    "fairValue": 560,
+    "analystTarget": 620,
+    "pe": "15.8x",
+    "pb": "2.8x"
+  },
+  {
+    "code": "2474",
+    "name": "可成",
+    "slug": "catcher-tech",
+    "market": "TWSE",
+    "price": 208,
+    "fairValue": 242,
+    "analystTarget": 265,
+    "pe": "13.5x",
+    "pb": "1.1x"
+  },
+  {
+    "code": "3023",
+    "name": "信邦",
+    "slug": "sinbon-electron",
+    "market": "TWSE",
+    "price": 275,
+    "fairValue": 330,
+    "analystTarget": 365,
+    "pe": "18.5x",
+    "pb": "3.8x"
+  },
+  {
+    "code": "6533",
+    "name": "晶心科",
+    "slug": "andes-tech",
+    "market": "TPEX",
+    "price": 385,
+    "fairValue": 460,
+    "analystTarget": 515,
+    "pe": "48.0x",
+    "pb": "7.2x"
+  },
+  {
+    "code": "6789",
+    "name": "采鈺",
+    "slug": "visera-tech",
+    "market": "TWSE",
+    "price": 265,
+    "fairValue": 318,
+    "analystTarget": 355,
+    "pe": "38.0x",
+    "pb": "3.9x"
+  },
+  {
+    "code": "6805",
+    "name": "富世達",
+    "slug": "fositek-co-ltd",
+    "market": "TWSE",
+    "price": 780,
+    "fairValue": 960,
+    "analystTarget": 1100,
+    "pe": "35.0x",
+    "pb": "12.0x"
+  },
+  {
+    "code": "3596",
+    "name": "智易",
+    "slug": "arcadyan-tech",
+    "market": "TWSE",
+    "price": 152,
+    "fairValue": 182,
+    "analystTarget": 205,
+    "pe": "13.5x",
+    "pb": "2.6x"
+  },
+  {
+    "code": "6409",
+    "name": "旭隼",
+    "slug": "voltronic-power",
+    "market": "TWSE",
+    "price": 1680,
+    "fairValue": 1980,
+    "analystTarget": 2180,
+    "pe": "32.0x",
+    "pb": "11.5x"
+  }
+];
+
+    // Auto-register universe into KNOWN_SLUGS for zero-redirect instant search
+    TAIWAN_CORE_UNIVERSE.forEach(u => {
+      if (!KNOWN_SLUGS[u.code]) {
+        KNOWN_SLUGS[u.code] = {
+          slug: u.slug,
+          name: u.name,
+          market: u.market,
+          currency: 'NT$',
+          proFairValue: u.fairValue,
+          proFairRange: (u.fairValue * 0.92).toFixed(2) + ' - ' + (u.fairValue * 1.08).toFixed(2)
+        };
+      }
+    });
+
+    /*************************************************************************
+     * 1.2 COMMUNITY QUERY POOL (社群共編已查股票庫)
+     *************************************************************************/
+    const COMMUNITY_POOL_KEY = 'investing_valuation_community_pool_v1';
+    let communityPool = [];
+
+    function initCommunityPool() {
+      try {
+        const saved = localStorage.getItem(COMMUNITY_POOL_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            communityPool = parsed;
+          }
+        }
+      } catch (e) {
+        console.warn('initCommunityPool error:', e);
+      }
+
+      if (!communityPool || communityPool.length === 0) {
+        // Pre-populate with verified universe + default stocks
+        const initialMap = new Map();
+        TAIWAN_CORE_UNIVERSE.forEach(u => {
+          initialMap.set(u.code, {
+            code: u.code,
+            name: u.name,
+            market: u.market,
+            slug: u.slug,
+            price: u.price,
+            fairValue: u.fairValue,
+            analystTarget: u.analystTarget,
+            pe: u.pe,
+            pb: u.pb,
+            searchCount: 1,
+            lastSearchedAt: new Date().toISOString(),
+            source: '核心標的庫'
+          });
+        });
+        DEFAULT_STOCKS.forEach(d => {
+          initialMap.set(d.code, {
+            code: d.code,
+            name: d.name,
+            market: d.market,
+            slug: d.slug,
+            price: d.price,
+            fairValue: d.fairValue,
+            analystTarget: d.analystTarget,
+            pe: d.pe,
+            pb: d.pb,
+            searchCount: 2,
+            lastSearchedAt: new Date().toISOString(),
+            source: '官方快照'
+          });
+        });
+        communityPool = Array.from(initialMap.values());
+        saveCommunityPool();
+      }
+      updateCommunityCountBadge();
+    }
+
+    function saveCommunityPool() {
+      try {
+        localStorage.setItem(COMMUNITY_POOL_KEY, JSON.stringify(communityPool));
+      } catch (e) {
+        console.warn('saveCommunityPool error:', e);
+      }
+      updateCommunityCountBadge();
+    }
+
+    function updateCommunityCountBadge() {
+      const el = document.getElementById('communityPoolCount');
+      if (el) el.textContent = communityPool.length;
+    }
+
+    function recordToCommunityPool(stock, hint = '') {
+      if (!stock || !stock.code) return;
+      const idx = communityPool.findIndex(c => c.code === stock.code);
+      const now = new Date().toISOString();
+      if (idx !== -1) {
+        const existing = communityPool[idx];
+        existing.price = stock.price || existing.price;
+        if (stock.fairValue) existing.fairValue = stock.fairValue;
+        if (stock.analystTarget) existing.analystTarget = stock.analystTarget;
+        if (stock.pe && stock.pe !== '...') existing.pe = stock.pe;
+        if (stock.pb && stock.pb !== '...') existing.pb = stock.pb;
+        existing.searchCount = (existing.searchCount || 1) + 1;
+        existing.lastSearchedAt = now;
+      } else {
+        communityPool.unshift({
+          code: stock.code,
+          name: stock.name || hint || ('股票 ' + stock.code),
+          market: stock.market || 'TWSE',
+          slug: stock.slug || '',
+          price: stock.price || 0,
+          fairValue: stock.fairValue || 0,
+          analystTarget: stock.analystTarget || 0,
+          pe: stock.pe || '...',
+          pb: stock.pb || '...',
+          searchCount: 1,
+          firstSearchedAt: now,
+          lastSearchedAt: now,
+          source: '社群查詢'
+        });
+      }
+      saveCommunityPool();
+    }
+
+    function exportCommunityPoolJSON() {
+      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(communityPool, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute('href', dataStr);
+      downloadAnchor.setAttribute('download', 'investing_valuation_community_pool_' + new Date().toISOString().slice(0, 10) + '.json');
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('已匯出社群標的庫 (' + communityPool.length + ' 檔)', 'success');
+    }
+
+    function importCommunityPoolJSON(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            const map = new Map();
+            communityPool.forEach(item => map.set(item.code, item));
+            imported.forEach(item => {
+              if (item.code) {
+                if (map.has(item.code)) {
+                  const existing = map.get(item.code);
+                  existing.searchCount = Math.max(existing.searchCount || 1, item.searchCount || 1);
+                } else {
+                  map.set(item.code, item);
+                }
+              }
+            });
+            communityPool = Array.from(map.values());
+            saveCommunityPool();
+            renderApp();
+            showToast('成功匯入並合併社群標的庫，現有 ' + communityPool.length + ' 檔！', 'success');
+          }
+        } catch (err) {
+          showToast('匯入失敗：檔案格式不正確', 'error');
+        }
+      };
+      reader.readAsText(file);
+    }
 
     const DEFAULT_STOCKS = [
       {
@@ -916,6 +2470,7 @@
       });
       saveToStorage();
 
+      initCommunityPool();
       updateApiKeyBadge();
       renderApp();
     }
@@ -1599,6 +3154,7 @@
             stocks.unshift(liveData);
           }
           selectedCode = liveData.code;
+          recordToCommunityPool(liveData, item.hint);
           showToast(`成功從 Investing.com 撈取 ${liveData.code} ${liveData.name} (${liveData.market}) 最新數據！`, 'success');
         } catch (err) {
           console.error(`撈取 ${displayLabel} 失敗:`, err);
@@ -2254,6 +3810,416 @@
       renderKPIs();
       renderCardsGrid();
       renderComparisonTable();
+      updateCommunityCountBadge();
+      if (currentLayout === 'leaderboard') {
+        renderLeaderboard();
+      }
+    }
+
+
+    /*************************************************************************
+     * 7.1 LEADERBOARD CONTROLLER & PAGINATION ENGINE
+     *************************************************************************/
+    let lbMode = 'fairValue'; // 'fairValue' | 'analyst' | 'community'
+    let lbPage = 1;
+    let lbPageSize = 20;
+    let lbSearchQuery = '';
+
+    function setLeaderboardMode(mode) {
+      lbMode = mode;
+      lbPage = 1;
+      
+      const btnFair = document.getElementById('btnLbFairValue');
+      const btnAnalyst = document.getElementById('btnLbAnalyst');
+      const btnCommunity = document.getElementById('btnLbCommunity');
+
+      const activeFair = 'flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-sm';
+      const activeAnalyst = 'flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shadow-sm';
+      const activeCommunity = 'flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/30 shadow-sm';
+      const inactiveBtn = 'flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200';
+
+      if (btnFair) btnFair.className = mode === 'fairValue' ? activeFair : inactiveBtn;
+      if (btnAnalyst) btnAnalyst.className = mode === 'analyst' ? activeAnalyst : inactiveBtn;
+      if (btnCommunity) btnCommunity.className = mode === 'community' ? activeCommunity : inactiveBtn;
+
+      // Update table headers according to mode
+      const thVal = document.getElementById('lbThMetricVal');
+      const thUpside = document.getElementById('lbThMetricUpside');
+      if (thVal && thUpside) {
+        if (mode === 'fairValue') {
+          thVal.textContent = '公允價 (Fair Value)';
+          thUpside.textContent = '公允折價空間';
+        } else if (mode === 'analyst') {
+          thVal.textContent = '分析師預估目標價';
+          thUpside.textContent = '分析師看漲空間';
+        } else {
+          thVal.textContent = '公允價 / 目標價';
+          thUpside.textContent = '查詢熱度 / 空間';
+        }
+      }
+
+      renderLeaderboard();
+    }
+
+    function changeLeaderboardPageSize(val) {
+      lbPageSize = parseInt(val) || 20;
+      lbPage = 1;
+      renderLeaderboard();
+    }
+
+    function changeLeaderboardPage(newPage) {
+      lbPage = newPage;
+      renderLeaderboard();
+      const el = document.getElementById('leaderboardViewContainer');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function handleLeaderboardSearch(query) {
+      lbSearchQuery = (query || '').trim().toLowerCase();
+      lbPage = 1;
+      renderLeaderboard();
+    }
+
+    function getCombinedStockPool() {
+      const map = new Map();
+      // 1. TAIWAN_CORE_UNIVERSE baseline
+      TAIWAN_CORE_UNIVERSE.forEach(item => {
+        map.set(item.code, { ...item });
+      });
+      // 2. Overlay community pool
+      communityPool.forEach(item => {
+        if (map.has(item.code)) {
+          const ex = map.get(item.code);
+          map.set(item.code, { ...ex, ...item });
+        } else {
+          map.set(item.code, { ...item });
+        }
+      });
+      // 3. Overlay active user watchlist stocks (latest live prices & user edits take precedence)
+      stocks.forEach(item => {
+        if (map.has(item.code)) {
+          const ex = map.get(item.code);
+          map.set(item.code, { ...ex, ...item });
+        } else {
+          map.set(item.code, { ...item });
+        }
+      });
+      return Array.from(map.values());
+    }
+
+    function renderLeaderboard() {
+      const tbody = document.getElementById('leaderboardTableBody');
+      const paginationInfo = document.getElementById('leaderboardPaginationInfo');
+      const paginationButtons = document.getElementById('leaderboardPaginationButtons');
+      if (!tbody) return;
+
+      const pool = getCombinedStockPool();
+      let rankedList = [];
+
+      if (lbMode === 'fairValue') {
+        rankedList = pool
+          .map(s => {
+            const upside = calcUpside(s.fairValue, s.price);
+            return { ...s, activeUpside: upside, activeTarget: s.fairValue, metricType: 'fairValue' };
+          })
+          .filter(s => s.activeUpside !== null && s.activeUpside > 0)
+          .sort((a, b) => b.activeUpside - a.activeUpside)
+          .slice(0, 100);
+      } else if (lbMode === 'analyst') {
+        rankedList = pool
+          .map(s => {
+            const upside = calcUpside(s.analystTarget, s.price);
+            return { ...s, activeUpside: upside, activeTarget: s.analystTarget, metricType: 'analyst' };
+          })
+          .filter(s => s.activeUpside !== null && s.activeUpside > 0)
+          .sort((a, b) => b.activeUpside - a.activeUpside)
+          .slice(0, 100);
+      } else {
+        // Community pool mode
+        rankedList = pool
+          .map(s => {
+            const fairUp = calcUpside(s.fairValue, s.price) ?? 0;
+            const analystUp = calcUpside(s.analystTarget, s.price) ?? 0;
+            return {
+              ...s,
+              activeUpside: Math.max(fairUp, analystUp),
+              activeTarget: s.fairValue || s.analystTarget || 0,
+              searchCount: s.searchCount || 1
+            };
+          })
+          .sort((a, b) => (b.searchCount || 0) - (a.searchCount || 0));
+      }
+
+      // Filter by search query if any
+      let filtered = rankedList;
+      if (lbSearchQuery) {
+        filtered = rankedList.filter(s =>
+          s.code.toLowerCase().includes(lbSearchQuery) ||
+          (s.name && s.name.toLowerCase().includes(lbSearchQuery)) ||
+          (s.slug && s.slug.toLowerCase().includes(lbSearchQuery))
+        );
+      }
+
+      // Pagination math
+      const totalCount = filtered.length;
+      const totalPages = Math.max(1, Math.ceil(totalCount / lbPageSize));
+      if (lbPage > totalPages) lbPage = totalPages;
+      if (lbPage < 1) lbPage = 1;
+
+      const startIndex = (lbPage - 1) * lbPageSize;
+      const endIndex = Math.min(startIndex + lbPageSize, totalCount);
+      const pageItems = filtered.slice(startIndex, endIndex);
+
+      // Render Table Rows
+      if (pageItems.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" class="py-12 text-center text-slate-500">
+              <i class="fa-solid fa-magnifying-glass text-3xl mb-3 text-slate-600 block"></i>
+              查無符合條件的股票，請嘗試其他關鍵字或切換子榜單。
+            </td>
+          </tr>
+        `;
+      } else {
+        tbody.innerHTML = pageItems.map((stock, idx) => {
+          const rank = startIndex + idx + 1;
+          let rankBadge = '';
+          if (rank === 1) {
+            rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 text-xs shadow-sm shadow-amber-500/20">🥇 1</span>`;
+          } else if (rank === 2) {
+            rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-300/20 text-slate-200 font-bold border border-slate-300/40 text-xs">🥈 2</span>`;
+          } else if (rank === 3) {
+            rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-700/20 text-amber-400 font-bold border border-amber-700/40 text-xs">🥉 3</span>`;
+          } else if (rank <= 10) {
+            rankBadge = `<span class="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-slate-800 text-cyan-300 font-bold border border-slate-700 text-xs font-mono">${rank}</span>`;
+          } else {
+            rankBadge = `<span class="font-mono text-slate-400 font-medium">${rank}</span>`;
+          }
+
+          const upside = stock.activeUpside || 0;
+          const barWidth = Math.min(100, Math.max(8, upside));
+          const isInWatchlist = stocks.some(s => s.code === stock.code);
+
+          let diagStatus = '';
+          if (upside >= 20) {
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">深度低估</span>`;
+          } else if (upside >= 10) {
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">定價過低</span>`;
+          } else if (upside >= 0) {
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">價格公允</span>`;
+          } else {
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-rose-500/10 text-rose-300 border border-rose-500/20">定價過高</span>`;
+          }
+
+          return `
+            <tr class="hover:bg-slate-800/40 transition">
+              <td class="py-3 px-3.5 text-center">${rankBadge}</td>
+              <td class="py-3 px-4">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono font-bold text-white cursor-pointer hover:text-cyan-400 transition" onclick="viewStockInDetail('${stock.code}')">${stock.code}</span>
+                  <span class="font-medium text-slate-200 cursor-pointer hover:text-cyan-400 transition" onclick="viewStockInDetail('${stock.code}')">${stock.name}</span>
+                  <span class="text-[10px] px-1.5 py-0.2 rounded bg-slate-800 border border-slate-700 text-slate-400 font-mono">${stock.market || 'TWSE'}</span>
+                </div>
+              </td>
+              <td class="py-3 px-4 text-right font-mono font-semibold text-white">
+                NT$ ${formatNumber(stock.price)}
+              </td>
+              <td class="py-3 px-4 text-right font-mono text-cyan-300 font-medium">
+                NT$ ${formatNumber(stock.activeTarget)}
+              </td>
+              <td class="py-3 px-4 text-right">
+                <div class="font-mono font-bold text-emerald-400 text-sm">
+                  +${upside.toFixed(1)}%
+                </div>
+                <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-1">
+                  <div class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full transition-all duration-500" style="width: ${barWidth}%"></div>
+                </div>
+              </td>
+              <td class="py-3 px-3 text-center">${diagStatus}</td>
+              <td class="py-3 px-3 text-center font-mono text-xs text-slate-300">${stock.pe || '...'}</td>
+              <td class="py-3 px-3 text-center font-mono text-xs text-slate-300">${stock.pb || '...'}</td>
+              <td class="py-3 px-4 text-center">
+                <div class="flex items-center justify-center gap-1.5">
+                  <button
+                    onclick="viewStockInDetail('${stock.code}')"
+                    class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-xs transition flex items-center gap-1"
+                    title="切換至左右比對台查看完整估值尺"
+                  >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>詳情</span>
+                  </button>
+
+                  <button
+                    onclick="syncLeaderboardStock('${stock.code}')"
+                    class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs transition flex items-center gap-1"
+                    title="即時去 Investing.com 更新此標的"
+                  >
+                    <i class="fa-solid fa-rotate text-cyan-400"></i>
+                  </button>
+
+                  ${isInWatchlist ? `
+                    <span class="px-2 py-1 rounded text-emerald-400 text-xs font-medium border border-emerald-500/20 bg-emerald-500/10">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                  ` : `
+                    <button
+                      onclick="addStockToRadar('${stock.code}')"
+                      class="px-2 py-1 rounded bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs transition flex items-center gap-1"
+                      title="加入我的自選雷達清單"
+                    >
+                      <i class="fa-solid fa-plus"></i>
+                      <span>雷達</span>
+                    </button>
+                  `}
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // Render Pagination Info
+      paginationInfo.textContent = totalCount === 0
+        ? '無符合項目'
+        : `顯示第 ${startIndex + 1} - ${endIndex} 筆，共 ${totalCount} 筆標的（榜單完整容量 100+ 檔）`;
+
+      // Render Pagination Buttons
+      let buttonsHtml = '';
+      if (totalPages > 1) {
+        // Prev button
+        buttonsHtml += `
+          <button
+            onclick="changeLeaderboardPage(${lbPage - 1})"
+            ${lbPage === 1 ? 'disabled' : ''}
+            class="px-2.5 py-1 rounded-lg border text-xs font-medium transition ${
+              lbPage === 1
+                ? 'border-slate-800 text-slate-600 cursor-not-allowed'
+                : 'border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200'
+            }"
+          >
+            <i class="fa-solid fa-angle-left mr-1"></i>上一頁
+          </button>
+        `;
+
+        // Numbered buttons
+        for (let p = 1; p <= totalPages; p++) {
+          if (totalPages <= 7 || p === 1 || p === totalPages || (p >= lbPage - 1 && p <= lbPage + 1)) {
+            const isActive = p === lbPage;
+            buttonsHtml += `
+              <button
+                onclick="changeLeaderboardPage(${p})"
+                class="px-2.5 py-1 rounded-lg border text-xs font-mono font-medium transition ${
+                  isActive
+                    ? 'border-cyan-500/40 bg-cyan-500/20 text-cyan-300 shadow-sm'
+                    : 'border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200'
+                }"
+              >
+                ${p}
+              </button>
+            `;
+          } else if (p === lbPage - 2 || p === lbPage + 2) {
+            buttonsHtml += `<span class="px-1 text-slate-600">...</span>`;
+          }
+        }
+
+        // Next button
+        buttonsHtml += `
+          <button
+            onclick="changeLeaderboardPage(${lbPage + 1})"
+            ${lbPage === totalPages ? 'disabled' : ''}
+            class="px-2.5 py-1 rounded-lg border text-xs font-medium transition ${
+              lbPage === totalPages
+                ? 'border-slate-800 text-slate-600 cursor-not-allowed'
+                : 'border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200'
+            }"
+          >
+            下一頁<i class="fa-solid fa-angle-right ml-1"></i>
+          </button>
+        `;
+      }
+      paginationButtons.innerHTML = buttonsHtml;
+    }
+
+    function viewStockInDetail(code) {
+      addStockToRadar(code, false);
+      selectedCode = code;
+      switchLayout('split');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function addStockToRadar(code, notify = true) {
+      if (stocks.some(s => s.code === code)) {
+        if (notify) showToast(`${code} 已在您的雷達清單中`, 'info');
+        return;
+      }
+      const pool = getCombinedStockPool();
+      const target = pool.find(s => s.code === code);
+      if (target) {
+        stocks.unshift({
+          code: target.code,
+          name: target.name,
+          market: target.market || 'TWSE',
+          slug: target.slug || '',
+          currency: target.currency || 'NT$',
+          price: target.price || 0,
+          prevClose: target.prevClose || target.price || 0,
+          fairValue: target.fairValue || 0,
+          fairRange: target.fairRange || `${(target.fairValue * 0.92).toFixed(2)} - ${(target.fairValue * 1.08).toFixed(2)}`,
+          fairSource: 'InvestingPro 基準模型',
+          analystTarget: target.analystTarget || 0,
+          analystRange: target.analystRange || `${(target.analystTarget * 0.85).toFixed(2)} - ${(target.analystTarget * 1.15).toFixed(2)}`,
+          consensusLabel: target.analystTarget > target.price ? '買入' : '公允',
+          analystBuy: 10,
+          analystHold: 1,
+          analystSell: 0,
+          pe: target.pe || '...',
+          pb: target.pb || '...',
+          extraMetric: target.extraMetric || `市值: 核心百大`,
+          lastUpdated: '標的庫基準',
+          analystRatings: []
+        });
+        saveToStorage();
+        renderApp();
+        if (notify) showToast(`已將 ${target.code} ${target.name} 加入您的觀察清單！`, 'success');
+      }
+    }
+
+    function addAllCurrentPageToRadar() {
+      const pool = getCombinedStockPool();
+      let rankedList = [];
+      if (lbMode === 'fairValue') {
+        rankedList = pool.filter(s => calcUpside(s.fairValue, s.price) > 0).sort((a,b) => calcUpside(b.fairValue, b.price) - calcUpside(a.fairValue, a.price)).slice(0, 100);
+      } else if (lbMode === 'analyst') {
+        rankedList = pool.filter(s => calcUpside(s.analystTarget, s.price) > 0).sort((a,b) => calcUpside(b.analystTarget, b.price) - calcUpside(a.analystTarget, a.price)).slice(0, 100);
+      } else {
+        rankedList = pool.sort((a,b) => (b.searchCount||0) - (a.searchCount||0));
+      }
+      if (lbSearchQuery) {
+        rankedList = rankedList.filter(s => s.code.toLowerCase().includes(lbSearchQuery) || (s.name && s.name.toLowerCase().includes(lbSearchQuery)));
+      }
+      const startIndex = (lbPage - 1) * lbPageSize;
+      const pageItems = rankedList.slice(startIndex, startIndex + lbPageSize);
+
+      let addedCount = 0;
+      pageItems.forEach(item => {
+        if (!stocks.some(s => s.code === item.code)) {
+          addStockToRadar(item.code, false);
+          addedCount++;
+        }
+      });
+      if (addedCount > 0) {
+        saveToStorage();
+        renderApp();
+        showToast(`成功將當前分頁 ${addedCount} 檔標的加入您的雷達清單！`, 'success');
+      } else {
+        showToast(`當前分頁的所有標的都已在雷達清單中`, 'info');
+      }
+    }
+
+    async function syncLeaderboardStock(code) {
+      showToast(`正在即時爬取 ${code} 最新行情...`, 'info');
+      await syncSingleStock(code);
+      renderLeaderboard();
     }
 
     /*************************************************************************
@@ -2262,23 +4228,31 @@
     function switchLayout(mode) {
       currentLayout = mode;
       const splitEl = document.getElementById('splitViewContainer');
+      const leaderboardEl = document.getElementById('leaderboardViewContainer');
       const cardsEl = document.getElementById('cardsViewContainer');
       const tableEl = document.getElementById('tableViewContainer');
 
       const tabSplit = document.getElementById('tabSplit');
+      const tabLeaderboard = document.getElementById('tabLeaderboard');
       const tabCards = document.getElementById('tabCards');
       const tabTable = document.getElementById('tabTable');
 
       const activeClass = 'px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30';
       const inactiveClass = 'px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200';
 
-      splitEl.classList.toggle('hidden', mode !== 'split');
-      cardsEl.classList.toggle('hidden', mode !== 'cards');
-      tableEl.classList.toggle('hidden', mode !== 'table');
+      if (splitEl) splitEl.classList.toggle('hidden', mode !== 'split');
+      if (leaderboardEl) leaderboardEl.classList.toggle('hidden', mode !== 'leaderboard');
+      if (cardsEl) cardsEl.classList.toggle('hidden', mode !== 'cards');
+      if (tableEl) tableEl.classList.toggle('hidden', mode !== 'table');
 
-      tabSplit.className = mode === 'split' ? activeClass : inactiveClass;
-      tabCards.className = mode === 'cards' ? activeClass : inactiveClass;
-      tabTable.className = mode === 'table' ? activeClass : inactiveClass;
+      if (tabSplit) tabSplit.className = mode === 'split' ? activeClass : inactiveClass;
+      if (tabLeaderboard) tabLeaderboard.className = mode === 'leaderboard' ? activeClass : inactiveClass;
+      if (tabCards) tabCards.className = mode === 'cards' ? activeClass : inactiveClass;
+      if (tabTable) tabTable.className = mode === 'table' ? activeClass : inactiveClass;
+
+      if (mode === 'leaderboard') {
+        renderLeaderboard();
+      }
     }
 
     let tableSortDirection = -1;
