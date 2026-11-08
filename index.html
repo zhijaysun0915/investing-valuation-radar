@@ -160,33 +160,51 @@
           <div class="flex items-center justify-between">
             <label for="tickerInput" class="text-sm font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-magnifying-glass-dollar text-cyan-400"></i>
-              <span>輸入股票代碼撈取資料</span>
+              <span>輸入股票代碼或名稱</span>
             </label>
-            <span class="text-[11px] text-slate-400 font-mono">支援台股 / 美股 / 批次</span>
+            <span class="text-[11px] text-slate-400 font-mono">支援全球市場精確識別</span>
           </div>
 
-          <div class="flex gap-2">
-            <div class="relative flex-1">
-              <input
-                id="tickerInput"
-                type="text"
-                placeholder="輸入代碼，如 2330, 2327, NVDA..."
-                class="w-full bg-slate-900/95 border border-slate-700 rounded-xl pl-3.5 pr-8 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 font-mono"
-                onkeydown="if(event.key === 'Enter') handleSearchSubmit()"
-              />
-              <button onclick="document.getElementById('tickerInput').value = ''; document.getElementById('tickerInput').focus();" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1" title="清空">
-                <i class="fa-solid fa-xmark"></i>
+          <div class="space-y-2">
+            <div class="flex gap-2">
+              <select
+                id="marketSelector"
+                class="bg-slate-900/95 border border-slate-700 hover:border-slate-600 rounded-xl px-2.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-cyan-400 font-medium cursor-pointer shrink-0"
+                title="選擇目標市場優先級"
+              >
+                <option value="AUTO" selected>🌐 自動判別 (預設)</option>
+                <option value="TW">🇹🇼 台股優先 (TWSE/櫃買)</option>
+                <option value="US">🇺🇸 美股優先 (US/ADR)</option>
+                <option value="JP">🇯🇵 日股優先 (Tokyo)</option>
+                <option value="HK">🇭🇰 港股優先 (HKEX)</option>
+              </select>
+
+              <div class="relative flex-1">
+                <input
+                  id="tickerInput"
+                  type="text"
+                  placeholder="如：3374 精材、6488 環球晶、2330、NVDA..."
+                  class="w-full bg-slate-900/95 border border-slate-700 rounded-xl pl-3.5 pr-8 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 font-mono"
+                  onkeydown="if(event.key === 'Enter') handleSearchSubmit()"
+                />
+                <button onclick="document.getElementById('tickerInput').value = ''; document.getElementById('tickerInput').focus();" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1" title="清空">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+
+              <button
+                id="btnFetchMain"
+                onclick="handleSearchSubmit()"
+                class="px-3.5 sm:px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/20 transition flex items-center justify-center gap-1.5 shrink-0"
+              >
+                <i class="fa-solid fa-bolt"></i>
+                <span>即時撈取</span>
               </button>
             </div>
-
-            <button
-              id="btnFetchMain"
-              onclick="handleSearchSubmit()"
-              class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/20 transition flex items-center gap-1.5 shrink-0"
-            >
-              <i class="fa-solid fa-bolt"></i>
-              <span>即時撈取</span>
-            </button>
+            <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+              <span>可輸入代碼+名稱：<code class="text-cyan-300">3374 精材</code>、<code class="text-cyan-300">6488 環球晶</code></span>
+              <span class="text-emerald-400"><i class="fa-solid fa-shield-halved text-[10px] mr-1"></i>智慧交易所防撞</span>
+            </div>
           </div>
 
           <!-- Live Sync Progress Indicator -->
@@ -212,17 +230,17 @@
               </button>
             </div>
             <div class="flex items-center gap-1.5 flex-wrap">
-              <button onclick="selectOrFetchTicker('2327')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2327 國巨*</button>
+              <button onclick="selectOrFetchTicker('3374', 'TW', '精材')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-cyan-200 hover:text-cyan-100 border border-cyan-500/30 transition font-mono">3374 精材</button>
+              <button onclick="selectOrFetchTicker('6488', 'TW', '環球晶')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-cyan-200 hover:text-cyan-100 border border-cyan-500/30 transition font-mono">6488 環球晶</button>
               <button onclick="selectOrFetchTicker('2330')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2330 台積電</button>
+              <button onclick="selectOrFetchTicker('2327')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2327 國巨*</button>
               <button onclick="selectOrFetchTicker('2454')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2454 聯發科</button>
               <button onclick="selectOrFetchTicker('2317')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2317 鴻海</button>
               <button onclick="selectOrFetchTicker('8299')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">8299 群聯</button>
               <button onclick="selectOrFetchTicker('2492')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2492 華新科</button>
               <button onclick="selectOrFetchTicker('3006')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">3006 晶豪科</button>
               <button onclick="selectOrFetchTicker('2308')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2308 台達電</button>
-              <button onclick="selectOrFetchTicker('2382')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-slate-200 hover:text-cyan-300 border border-slate-700/80 hover:border-cyan-500/40 transition font-mono">2382 廣達</button>
               <button onclick="selectOrFetchTicker('NVDA')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">NVDA 輝達</button>
-              <button onclick="selectOrFetchTicker('AAPL')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">AAPL 蘋果</button>
               <button onclick="selectOrFetchTicker('TSLA')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-amber-300 hover:text-amber-200 border border-slate-700/80 hover:border-amber-500/40 transition font-mono">TSLA 特斯拉</button>
             </div>
           </div>
@@ -498,6 +516,10 @@
       '2357': { slug: 'asustek-computer', name: '華碩', market: 'TWSE' },
       '3017': { slug: 'asia-vital-components', name: '奇鋐', market: 'TWSE' },
       '6274': { slug: 'taiwan-union-technology', name: '台燿', market: 'TPEX' },
+      '3374': { slug: 'xintec', name: '精材', market: 'TPEX', currency: 'NT$' },
+      '6488': { slug: 'globalwafers-co-ltd', name: '環球晶', market: 'TPEX', currency: 'NT$' },
+      '7203': { slug: 'toyota-motor-corporation', name: '豐田汽車 (Toyota)', market: 'TSE', currency: '¥' },
+      '0700': { slug: 'tencent-holdings-hk', name: '騰訊控股', market: 'HKEX', currency: 'HK$' },
       'NVDA': { slug: 'nvidia-corp', name: '英偉達 (NVIDIA)', market: 'NASDAQ', currency: 'USD' },
       'AAPL': { slug: 'apple-computer-inc', name: '蘋果 (Apple)', market: 'NASDAQ', currency: 'USD' },
       'TSLA': { slug: 'tesla-motors', name: '特斯拉 (Tesla)', market: 'NASDAQ', currency: 'USD' },
@@ -924,68 +946,175 @@
     /*************************************************************************
      * 4. LIVE INVESTING.COM SCRAPER ENGINE (VIA JINA READER CORS PROXY)
      *************************************************************************/
-    async function resolveInvestingSlug(code) {
-      const upper = code.toUpperCase();
-      if (KNOWN_SLUGS[upper]) {
-        return KNOWN_SLUGS[upper];
+    async function resolveInvestingSlug(query, preferredMarket = 'AUTO', hint = '') {
+      const cleanQuery = (query || '').trim();
+      const upper = cleanQuery.toUpperCase();
+
+      // Check KNOWN_SLUGS with market preference validation
+      if (upper && KNOWN_SLUGS[upper]) {
+        const known = KNOWN_SLUGS[upper];
+        const isTw = known.market === 'TWSE' || known.market === 'TPEX';
+        // Only bypass KNOWN_SLUGS if user explicitly specified a non-matching foreign market
+        const marketMismatch = (preferredMarket === 'JP' && isTw) ||
+                               (preferredMarket === 'US' && isTw) ||
+                               (preferredMarket === 'HK' && isTw) ||
+                               (preferredMarket === 'TW' && !isTw);
+        if (!marketMismatch) {
+          if (!hint || known.name.includes(hint) || hint.includes(known.name)) {
+            return {
+              slug: known.slug,
+              name: known.name,
+              code: upper,
+              market: known.market,
+              currency: known.currency || (isTw ? 'NT$' : 'USD'),
+              region: isTw ? 'TW' : (known.market === 'TSE' ? 'JP' : 'US')
+            };
+          }
+        }
       }
 
-      const searchUrl = `https://r.jina.ai/https://hk.investing.com/search?q=${encodeURIComponent(upper)}`;
+      // Search query on Investing.com
+      const searchQuery = cleanQuery || hint;
+      const searchUrl = `https://r.jina.ai/https://hk.investing.com/search?q=${encodeURIComponent(searchQuery)}`;
       const resp = await fetch(searchUrl, {
         headers: { 'X-Wait-For-Selector': 'h1' }
       });
       if (!resp.ok) {
-        throw new Error(`搜尋代碼 ${upper} 失敗 (HTTP ${resp.status})`);
+        throw new Error(`搜尋代碼 ${searchQuery} 失敗 (HTTP ${resp.status})`);
       }
       const md = await resp.text();
 
-      // Match all [label](https://hk.investing.com/equities/slug)
-      const regex = /\[([^\]]+?)\]\((https:\/\/hk\.investing\.com\/equities\/([a-zA-Z0-9._-]+))\)/g;
+      // Parse equity results with exchange tags, e.g. [3374 精材 股票 - 台北證券櫃檯買賣中心 equities](url)
+      const regex = /\[([^\]]+?)(?:\s*股票)?\s*-\s*([^\]]+?)\]\((https:\/\/hk\.investing\.com\/equities\/([a-zA-Z0-9._-]+))\)/g;
       const candidates = [];
+      const navSlugs = new Set([
+        'trending-stocks', 'hong-kong', 'asia-pacific', 'americas', 'europe',
+        'pre-market', 'after-hours', '52-week-high', '52-week-low',
+        'most-active-stocks', 'top-stock-gainers', 'top-stock-losers',
+        'most-undervalued', 'most-overvalued', 'world-adrs', 'hong-kong-adrs'
+      ]);
+
       let m;
       while ((m = regex.exec(md)) !== null) {
-        const label = m[1].trim();
-        const slug = m[3].trim();
-        // Skip navigation links
-        if (['trending-stocks', 'hong-kong', 'asia-pacific', 'americas', 'europe', 'pre-market', 'after-hours', '52-week-high', '52-week-low', 'most-active-stocks', 'top-stock-gainers', 'top-stock-losers', 'most-undervalued', 'most-overvalued', 'world-adrs', 'hong-kong-adrs'].includes(slug)) {
-          continue;
+        const rawLabel = m[1].trim();
+        const exchange = m[2].replace(/\s*equities$/i, '').trim();
+        const slug = m[4].trim();
+        if (navSlugs.has(slug)) continue;
+
+        // Classify geographic and exchange market
+        let region = 'OTHER';
+        if (/台灣|台北|櫃檯|櫃買|TPEX|TWSE|證券櫃檯買賣中心|證券交易所/i.test(exchange)) {
+          region = 'TW';
+        } else if (/東京|日本|TSE|TYO|JASDAQ/i.test(exchange)) {
+          region = 'JP';
+        } else if (/NASDAQ|紐約|NYSE|AMEX|BATS|美國/i.test(exchange)) {
+          region = 'US';
+        } else if (/香港|HKEX/i.test(exchange)) {
+          region = 'HK';
         }
-        candidates.push({ label, slug });
+
+        const parts = rawLabel.split(/\s+/);
+        const candCode = parts[0] || '';
+        const candName = parts.slice(1).join(' ') || rawLabel;
+
+        candidates.push({ rawLabel, exchange, slug, region, candCode, candName });
       }
 
-      // Priority 1: Taiwan stock matching code
-      const twMatch = candidates.find(c => c.label.includes('台灣') && c.label.toUpperCase().includes(upper));
-      if (twMatch) {
-        const namePart = twMatch.label.replace(new RegExp(`^${upper}\\s*`, 'i'), '').split(/\s+股票/)[0].trim();
-        return { slug: twMatch.slug, name: namePart || upper, market: 'TWSE' };
+      // Fallback: If no dashed exchange links matched, collect raw /equities/ links
+      if (candidates.length === 0) {
+        const fallbackRegex = /\[([^\]]+?)\]\((https:\/\/hk\.investing\.com\/equities\/([a-zA-Z0-9._-]+))\)/g;
+        let fm;
+        while ((fm = fallbackRegex.exec(md)) !== null) {
+          const rawLabel = fm[1].trim();
+          const slug = fm[3].trim();
+          if (navSlugs.has(slug)) continue;
+          candidates.push({
+            rawLabel,
+            exchange: '',
+            slug,
+            region: 'OTHER',
+            candCode: rawLabel.split(/\s+/)[0],
+            candName: rawLabel
+          });
+        }
       }
 
-      // Priority 2: US / Global stock matching code at start
-      const exactStart = candidates.find(c => c.label.toUpperCase().startsWith(upper + ' '));
-      if (exactStart) {
-        const namePart = exactStart.label.replace(new RegExp(`^${upper}\\s*`, 'i'), '').split(/\s+股票/)[0].trim();
-        const isUS = exactStart.label.includes('NASDAQ') || exactStart.label.includes('紐約');
-        const isHK = exactStart.label.includes('香港');
-        return {
-          slug: exactStart.slug,
-          name: namePart || upper,
-          market: isUS ? 'NASDAQ' : (isHK ? 'HKEX' : 'TWSE'),
-          currency: isUS ? 'USD' : (isHK ? 'HK$' : 'NT$')
-        };
+      if (candidates.length === 0) {
+        throw new Error(`在 Investing.com 找不到「${searchQuery}」相關股票`);
       }
 
-      // Priority 3: AnyTaiwan stock in candidates
-      const anyTw = candidates.find(c => c.label.includes('台灣'));
-      if (anyTw) {
-        const namePart = anyTw.label.split(/\s+股票/)[0].trim();
-        return { slug: anyTw.slug, name: namePart, market: 'TWSE' };
+      // Score candidates to guarantee the exact intended stock is chosen
+      function scoreCandidate(c) {
+        let score = 0;
+        const cCodeUpper = c.candCode.toUpperCase();
+        const qCodeUpper = upper;
+
+        // 1. Ticker Code matching
+        if (qCodeUpper) {
+          if (cCodeUpper === qCodeUpper) score += 100;
+          else if (cCodeUpper.includes(qCodeUpper)) score += 30;
+        }
+
+        // 2. Name hint matching (e.g. 精材, 環球晶)
+        if (hint) {
+          if (c.candName.includes(hint) || hint.includes(c.candName) || c.rawLabel.includes(hint)) {
+            score += 150;
+          }
+        }
+
+        // 3. Market preference & Regional anti-collision heuristics
+        if (preferredMarket === 'TW') {
+          score += (c.region === 'TW' ? 120 : -80);
+        } else if (preferredMarket === 'JP') {
+          score += (c.region === 'JP' ? 120 : -80);
+        } else if (preferredMarket === 'US') {
+          score += (c.region === 'US' ? 120 : -80);
+        } else if (preferredMarket === 'HK') {
+          score += (c.region === 'HK' ? 120 : -80);
+        } else {
+          // AUTO mode heuristics
+          if (qCodeUpper && /^\d{4}$/.test(qCodeUpper)) {
+            // 4-digit numeric code: Taiwan stocks take priority unless Tokyo/Japan explicitly selected
+            if (c.region === 'TW') score += 45;
+          } else if (qCodeUpper && /^[A-Z]{1,5}$/.test(qCodeUpper)) {
+            // Letter ticker: US stocks take priority
+            if (c.region === 'US') score += 45;
+          } else if (qCodeUpper && /^\d{5}$/.test(qCodeUpper)) {
+            // 5-digit code: Hong Kong stocks take priority
+            if (c.region === 'HK') score += 45;
+          }
+        }
+        return score;
       }
 
-      if (candidates.length > 0) {
-        return { slug: candidates[0].slug, name: candidates[0].label.split(/\s+股票/)[0].trim(), market: 'TWSE' };
+      candidates.sort((a, b) => scoreCandidate(b) - scoreCandidate(a));
+      const best = candidates[0];
+
+      let market = 'TWSE';
+      let currency = 'NT$';
+      if (best.region === 'TW') {
+        market = /櫃檯|櫃買|TPEX/i.test(best.exchange) ? 'TPEX' : 'TWSE';
+        currency = 'NT$';
+      } else if (best.region === 'JP') {
+        market = 'TSE';
+        currency = '¥';
+      } else if (best.region === 'US') {
+        market = best.exchange.includes('NASDAQ') ? 'NASDAQ' : (best.exchange.includes('紐約') ? 'NYSE' : 'US');
+        currency = 'USD';
+      } else if (best.region === 'HK') {
+        market = 'HKEX';
+        currency = 'HK$';
       }
 
-      throw new Error(`在 Investing.com 找不到股票代碼 ${upper}`);
+      return {
+        slug: best.slug,
+        name: best.candName || best.rawLabel,
+        code: best.candCode || upper,
+        market,
+        currency,
+        region: best.region,
+        exchange: best.exchange
+      };
     }
 
     function parseInvestingMarkdown(md, code, metaInfo = {}) {
@@ -1004,8 +1133,9 @@
       if (md.includes('貨幣 USD') || md.includes('目標價為USD')) currency = 'USD';
       else if (md.includes('貨幣 HKD') || md.includes('目標價為HKD')) currency = 'HK$';
       else if (md.includes('貨幣 TWD') || md.includes('目標價為TWD')) currency = 'NT$';
+      else if (md.includes('貨幣 JPY') || md.includes('目標價為JPY')) currency = '¥';
 
-      let market = metaInfo.market || known.market || (currency === 'USD' ? 'NASDAQ' : 'TWSE');
+      let market = metaInfo.market || known.market || (currency === 'USD' ? 'NASDAQ' : (currency === '¥' ? 'TSE' : (currency === 'HK$' ? 'HKEX' : 'TWSE')));
       const compMatch = md.match(/https:\/\/hk\.investing\.com\/pro\/(([A-Z]+):[^\)\s]+\/compare\/[^\)\s]+)/);
       const comparePath = compMatch ? compMatch[1] : '';
       if (compMatch && compMatch[2]) {
@@ -1013,6 +1143,8 @@
         else if (compMatch[2].includes('TWSE')) market = 'TWSE';
         else if (compMatch[2].includes('NASDAQ')) market = 'NASDAQ';
         else if (compMatch[2].includes('NYSE')) market = 'NYSE';
+        else if (compMatch[2].includes('TSE') || compMatch[2].includes('TYO')) market = 'TSE';
+        else if (compMatch[2].includes('HKEX') || compMatch[2].includes('HKG')) market = 'HKEX';
       }
 
       // 3. Price, Prev Close, Day Range, 52W Range from FAQ summary sentence
@@ -1148,7 +1280,7 @@
       const note = `即時自 Investing.com 撈取：最新成交價 ${currency}${formatNumber(price)}，共 ${analystBuy + analystHold + analystSell} 位分析師評級（${analystBuy} 買進 / ${analystSell} 賣出，共識「${consensusLabel}」），12M 預估目標價 ${currency}${formatNumber(analystTarget)}（${upsideStr}）。`;
 
       return {
-        code: upper,
+        code: metaInfo.code || upper,
         name,
         slug: metaInfo.slug || known.slug || '',
         market,
@@ -1222,9 +1354,8 @@
       return stockData;
     }
 
-    async function fetchLiveStockFromInvesting(code) {
-      const upper = code.trim().toUpperCase();
-      const metaInfo = await resolveInvestingSlug(upper);
+    async function fetchLiveStockFromInvesting(query, preferredMarket = 'AUTO', hint = '') {
+      const metaInfo = await resolveInvestingSlug(query, preferredMarket, hint);
       const eqUrl = `https://r.jina.ai/https://hk.investing.com/equities/${metaInfo.slug}`;
       const resp = await fetch(eqUrl, {
         headers: { 'X-Wait-For-Selector': 'h1' }
@@ -1236,24 +1367,82 @@
       if (!md || md.length < 500 || md.includes('Title: Just a moment...')) {
         throw new Error('Investing.com 回應逾時，請稍後再試');
       }
-      let parsed = parseInvestingMarkdown(md, upper, metaInfo);
+      let parsed = parseInvestingMarkdown(md, metaInfo.code || query, metaInfo);
       parsed = await enhanceWithGeminiIfConfigured(parsed);
       return parsed;
     }
 
     /*************************************************************************
-     * 5. USER INTERACTION HANDLERS
+     * 5. USER INTERACTION HANDLERS & SMART QUERY PARSER
      *************************************************************************/
-    async function selectOrFetchTicker(code) {
-      const upper = code.trim().toUpperCase();
+    function parseSearchQueryItems(raw) {
+      if (!raw || !raw.trim()) return [];
+      let lines = raw.split(/[,，;；\n\r]+/).map(s => s.trim()).filter(Boolean);
+
+      // Handle single-line multi-token inputs: e.g. "3374 精材 6488 環球晶" or "2330 NVDA 7203"
+      if (lines.length === 1) {
+        const text = lines[0];
+        const hasChinese = /[\u4e00-\u9fa5]/.test(text);
+        if (!hasChinese && /\s+/.test(text)) {
+          // Pure ASCII codes separated by space
+          lines = text.split(/\s+/).filter(Boolean);
+        } else if (hasChinese && /\s+/.test(text)) {
+          // Mixed pattern, e.g. "3374 精材 6488 環球晶"
+          const matches = text.match(/([0-9A-Za-z.*]{2,10}(?:\s+[\u4e00-\u9fa5]+)?|[\u4e00-\u9fa5]{2,10})/g);
+          if (matches && matches.length > 0) {
+            lines = matches;
+          }
+        }
+      }
+
+      const items = [];
+      for (const item of lines) {
+        const trimmed = item.trim();
+        if (!trimmed) continue;
+
+        // Pattern A: Code + Name Hint, e.g. "3374 精材", "6488 環球晶", "NVDA 英偉達"
+        const codeAndHint = trimmed.match(/^([0-9A-Za-z.*]{2,10})\s+([\u4e00-\u9fa5A-Za-z0-9._-]+)$/);
+        if (codeAndHint) {
+          items.push({
+            query: codeAndHint[1].toUpperCase(),
+            code: codeAndHint[1].toUpperCase(),
+            hint: codeAndHint[2].trim(),
+            raw: trimmed
+          });
+          continue;
+        }
+
+        // Pattern B: Pure code, e.g. "2330", "NVDA", "3374"
+        if (/^[0-9A-Za-z.*]{2,10}$/.test(trimmed)) {
+          items.push({
+            query: trimmed.toUpperCase(),
+            code: trimmed.toUpperCase(),
+            hint: '',
+            raw: trimmed
+          });
+          continue;
+        }
+
+        // Pattern C: Pure Chinese or Name, e.g. "精材", "環球晶"
+        items.push({
+          query: trimmed,
+          code: '',
+          hint: trimmed,
+          raw: trimmed
+        });
+      }
+      return items;
+    }
+
+    async function selectOrFetchTicker(code, preferredMarket = 'AUTO', hint = '') {
+      const upper = (code || '').trim().toUpperCase();
       selectedCode = upper;
       const existing = stocks.find(s => s.code === upper);
       if (existing) {
         renderApp();
-        // Also trigger a live refresh in background so user gets live Investing.com numbers!
-        await processTickers([upper]);
+        await processTickers([{ query: upper, code: upper, hint: hint || existing.name, market: preferredMarket }]);
       } else {
-        await processTickers([upper]);
+        await processTickers([{ query: upper, code: upper, hint, market: preferredMarket }]);
       }
     }
 
@@ -1261,28 +1450,39 @@
       const inputEl = document.getElementById('tickerInput');
       const raw = inputEl.value.trim();
       if (!raw) {
-        showToast('請輸入股票代碼（例如：2330、2327、NVDA）', 'warning');
+        showToast('請輸入股票代碼或名稱（例如：3374 精材、6488 環球晶、2330、NVDA）', 'warning');
         inputEl.focus();
         return;
       }
 
-      const tokens = raw
-        .split(/[\s,，;；\n]+/)
-        .map(t => t.trim().toUpperCase())
-        .filter(t => /^[0-9A-Z.*]{2,10}$/.test(t));
-
-      if (tokens.length === 0) {
-        showToast('請輸入有效的股票代碼（如 2330, 2327, NVDA）', 'warning');
+      const items = parseSearchQueryItems(raw);
+      if (items.length === 0) {
+        showToast('請輸入有效的股票代碼或名稱', 'warning');
         return;
       }
 
-      const unique = [...new Set(tokens)];
+      const market = document.getElementById('marketSelector')?.value || 'AUTO';
+      items.forEach(it => { it.market = market; });
+
       inputEl.value = '';
-      selectedCode = unique[0];
-      await processTickers(unique);
+      if (items[0].code) {
+        selectedCode = items[0].code;
+      }
+      await processTickers(items, market);
     }
 
-    async function processTickers(codes) {
+    async function processTickers(queryItems, defaultMarket = null) {
+      const selectedMarket = defaultMarket || document.getElementById('marketSelector')?.value || 'AUTO';
+      const items = (queryItems || []).map(it => {
+        if (typeof it === 'string') {
+          const parsed = parseSearchQueryItems(it)[0];
+          return parsed ? { ...parsed, market: selectedMarket } : { query: it, code: it, hint: '', market: selectedMarket };
+        }
+        return { ...it, market: it.market || selectedMarket };
+      });
+
+      if (items.length === 0) return;
+
       const progressContainer = document.getElementById('syncProgressContainer');
       const statusText = document.getElementById('syncStatusText');
       const countText = document.getElementById('syncCountText');
@@ -1290,16 +1490,18 @@
 
       progressContainer.classList.remove('hidden');
       let completed = 0;
-      const total = codes.length;
+      const total = items.length;
 
-      codes.forEach(code => {
-        loadingCodes.add(code);
-        const exists = stocks.find(s => s.code === code);
+      // Optimistic placeholder additions for UI responsiveness
+      items.forEach(item => {
+        const placeholderCode = item.code || item.query;
+        loadingCodes.add(placeholderCode);
+        const exists = stocks.find(s => s.code === placeholderCode);
         if (!exists) {
-          const known = KNOWN_SLUGS[code] || {};
+          const known = KNOWN_SLUGS[placeholderCode] || {};
           stocks.unshift({
-            code,
-            name: known.name ? `${known.name}` : `股票 ${code}`,
+            code: placeholderCode,
+            name: item.hint || known.name || `股票 ${placeholderCode}`,
             slug: known.slug || '',
             market: known.market || 'TWSE',
             currency: known.currency || 'NT$',
@@ -1327,16 +1529,17 @@
       });
       renderApp();
 
-      for (const code of codes) {
+      for (const item of items) {
+        const displayLabel = item.hint ? `${item.code || item.query} ${item.hint}` : (item.code || item.query);
+        const lookupKey = item.code || item.query;
         countText.textContent = `${completed}/${total}`;
         progressBar.style.width = `${Math.max(15, Math.round((completed / total) * 100))}%`;
-        statusText.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> 正在去 Investing.com 撈取 <strong>${code}</strong> 的公允價與分析師預估價...`;
+        statusText.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> 正在去 Investing.com 撈取 <strong>${displayLabel}</strong> 的公允價與分析師預估價...`;
 
         try {
-          const liveData = await fetchLiveStockFromInvesting(code);
-          const idx = stocks.findIndex(s => s.code === code);
+          const liveData = await fetchLiveStockFromInvesting(item.query, item.market, item.hint);
+          const idx = stocks.findIndex(s => s.code === liveData.code || s.code === lookupKey);
           if (idx !== -1) {
-            // Preserve user's custom fairValue only if liveData couldn't compute one
             if (!liveData.fairValue && stocks[idx].fairValue > 0) {
               liveData.fairValue = stocks[idx].fairValue;
               liveData.fairRange = stocks[idx].fairRange;
@@ -1346,17 +1549,17 @@
             stocks.unshift(liveData);
           }
           selectedCode = liveData.code;
-          showToast(`成功從 Investing.com 撈取 ${liveData.code} ${liveData.name} 最新數據！`, 'success');
+          showToast(`成功從 Investing.com 撈取 ${liveData.code} ${liveData.name} (${liveData.market}) 最新數據！`, 'success');
         } catch (err) {
-          console.error(`撈取 ${code} 失敗:`, err);
-          const idx = stocks.findIndex(s => s.code === code);
+          console.error(`撈取 ${displayLabel} 失敗:`, err);
+          const idx = stocks.findIndex(s => s.code === lookupKey);
           if (idx !== -1 && stocks[idx].price === 0) {
-            stocks[idx].note = `即時連線暫時受阻 (${err.message})。您可點擊「開啟 Investing.com 個股頁」或「Google 快照」查看，或點選「手動校準」填入。`;
+            stocks[idx].note = `即時連線暫時受阻 (${err.message})。您可點擊「開啟 Investing.com 個股頁」查看或手動校準。`;
             stocks[idx].lastUpdated = '連線逾時';
           }
-          showToast(`${code} 撈取提醒：${err.message}`, 'warning');
+          showToast(`${displayLabel} 撈取提醒：${err.message}`, 'warning');
         } finally {
-          loadingCodes.delete(code);
+          loadingCodes.delete(lookupKey);
           completed++;
           saveToStorage();
           renderApp();
@@ -1374,13 +1577,22 @@
     async function syncSingleStock(code) {
       if (loadingCodes.has(code)) return;
       selectedCode = code;
-      await processTickers([code]);
+      const target = stocks.find(s => s.code === code);
+      const market = target?.market === 'TSE' ? 'JP' :
+                     (target?.market === 'NASDAQ' || target?.market === 'NYSE' ? 'US' :
+                     (target?.market === 'HKEX' ? 'HK' : 'TW'));
+      await processTickers([{ query: code, code, hint: target?.name || '', market }]);
     }
 
     async function syncAllStocks() {
       if (stocks.length === 0) return;
-      const codes = stocks.map(s => s.code);
-      await processTickers(codes);
+      const items = stocks.map(s => {
+        const market = s.market === 'TSE' ? 'JP' :
+                       (s.market === 'NASDAQ' || s.market === 'NYSE' ? 'US' :
+                       (s.market === 'HKEX' ? 'HK' : 'TW'));
+        return { query: s.code, code: s.code, hint: s.name, market };
+      });
+      await processTickers(items);
     }
 
     function removeStock(code, event) {

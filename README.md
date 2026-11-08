@@ -105,16 +105,28 @@ open index.html
 - 用於台股代碼與 Investing.com URL slug（例如 `2330` ➔ `taiwan-semicon`、`2327` ➔ `yageo-corp`、`NVDA` ➔ `nvidia-corp`）的極速對應，並內建已驗證的 InvestingPro 公允價基底。
 - **擴充方式**：若要預設支援新的熱門股票，可在此字典新增對應的 `slug`、`name` 與 `market`。
 
-### 2. 即時爬蟲與資料解析器 (`resolveInvestingSlug` & `parseInvestingMarkdown`)
-- 定義於代碼約 **740~940 行**。
-- `resolveInvestingSlug(code)`：當使用者輸入字典外的新代碼時，自動前往 Investing.com 搜尋接口匹配最精準的個股 URL slug。
-- `parseInvestingMarkdown(md, code, metaInfo)`：核心正則表達式解析器，從 Markdown 文本精準擷取：
+### 2. 全球市場識別與候選股防撞評分演算法 (`resolveInvestingSlug` & `parseSearchQueryItems`)
+- 定義於代碼約 **950~1120 行**。
+- **跨國代碼防撞問題**：例如輸入 `3374` 可能同時命中台灣櫃買「精材 (3374)」與日本東京「Naigai Tec Corp (3374)」；輸入 `6488` 可能命中台灣櫃買「環球晶 (6488)」與日本東京「Yoshitake Inc (6488)」。
+- **解決方案**：
+  1. **輸入智慧剖析 (`parseSearchQueryItems`)**：支援 `3374 精材`、`6488 環球晶`（代碼+名稱提示）、純中文名稱（`精材`）、純代碼（`2330`）或多筆批次輸入。
+  2. **交易所標籤識別**：自 Investing.com 搜尋結果中精準過濾 `[3374 精材 股票 - 台北證券櫃檯買賣中心 equities]`，精確識別 `TWSE / TPEX / TSE (東京) / NASDAQ / NYSE / HKEX`。
+  3. **動態加權計分機制 (`scoreCandidate`)**：
+     - 代碼完全相符：+100 分
+     - 中文名稱/關鍵字相符：+150 分
+     - 目標市場偏好（台股/美股/日股/港股）：+120 分
+     - 四碼純數字啟發式優先權（自動模式下台股 +45 分，美股英文字母代碼 +45 分）
+     - 保證在任何搜尋情境下均能精確匹配到使用者所指的目標標的。
+
+### 3. 即時爬蟲與資料解析器 (`parseInvestingMarkdown`)
+- 定義於代碼約 **1120~1310 行**。
+- 核心正則表達式解析器，從 Markdown 文本精準擷取：
   - `成交價`、`昨收`、`當日高低`、`52週高低`
   - `12個月平均目標價`、`預估最高/最低價`、`分析師評級人數`
   - `分析師評級歷史明細表`（包含投行券商名稱、目標價、評級日期）
   - `同業市盈率 (P/E)`、`市帳率 (P/B)`、`同業公允價上升空間`
 
-### 3. 多模型公允價值推算邏輯
+### 4. 多模型公允價值推算邏輯
 - 當個股因付費牆限制未直接顯示特定公允數值時，系統啟動同業估值矩陣：
   1. **同業公允價上升空間模型 (Peer Upside Benchmark)**
   2. **板塊公允價上升空間模型 (Sector Upside Benchmark)**
@@ -122,7 +134,7 @@ open index.html
   4. **外資保守目標錨定模型 (Conservative Analyst Anchor)**
 - 綜合推算合理公允價與估值區間，並提供「開啟 Pro 公允價快照搜尋」按鈕直通 Google 原始快照。
 
-### 4. JavaScript 語法檢驗指令
+### 5. JavaScript 語法檢驗指令
 在提交或發布修改前，可執行以下指令進行語法安全檢查：
 
 ```bash
