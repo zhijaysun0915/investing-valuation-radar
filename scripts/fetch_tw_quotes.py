@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-Taiwan Stock Exchange (TWSE) & Taipei Exchange (TPEX) Real-time Quotes Fetcher
-Queries official TWSE MIS API in batches and computes official Market Cap (市值)
-from TWSE & TPEX official open data. Outputs `data/quotes.json`.
+Multi-Market Stock Quotes & Valuation Benchmarks Fetcher
+- TWSE / TPEX (Taiwan): Fetches batch quotes via TWSE MIS & official issued shares for Market Cap.
+- US (NASDAQ / NYSE) & Global (HKEX / TSE): Fetches live market prices via Yahoo Finance.
+- Detects local market session (OPEN / PRE / POST / CLOSED / WEEKEND).
+- Outputs `data/quotes.json`.
 Zero external dependencies (pure standard library python3).
 """
 
@@ -15,11 +17,61 @@ import urllib.request
 from datetime import datetime, timezone, timedelta
 
 TW_TZ = timezone(timedelta(hours=8))
+US_TZ = timezone(timedelta(hours=-5)) # Eastern Standard Time (EST)
+JP_TZ = timezone(timedelta(hours=9))
+
+def get_market_session(market, dt=None):
+    if dt is None:
+        dt = datetime.now(timezone.utc)
+    m = (market or 'TWSE').upper()
+
+    if m in ('TWSE', 'TPEX', 'OTC'):
+        tw_dt = dt.astimezone(TW_TZ)
+        if tw_dt.weekday() >= 5:
+            return 'WEEKEND', '週末休市', '09:00~13:30 (UTC+8)', False
+        hm = tw_dt.hour * 60 + tw_dt.minute
+        if 9 * 60 <= hm <= 13 * 60 + 30:
+            return 'OPEN', '盤中動態撮合', '09:00~13:30', True
+        if 8 * 60 + 30 <= hm < 9 * 60:
+            return 'PRE', '盤前試撮', '08:30~09:00', False
+        return 'CLOSED', '今日已收盤', '13:30 收盤', False
+
+    if m in ('NASDAQ', 'NYSE', 'AMEX'):
+        us_dt = dt.astimezone(US_TZ)
+        if us_dt.weekday() >= 5:
+            return 'WEEKEND', '美股週末休市', '美東 09:30~16:00', False
+        hm = us_dt.hour * 60 + us_dt.minute
+        if 9 * 60 + 30 <= hm <= 16 * 60:
+            return 'OPEN', '美股盤中交易', '美東 09:30~16:00 (台 22:30~05:00)', True
+        if 4 * 60 <= hm < 9 * 60 + 30:
+            return 'PRE', '美股盤前交易', '美東 04:00~09:30', True
+        if 16 * 60 < hm <= 20 * 60:
+            return 'POST', '美股盤後交易', '美東 16:00~20:00', False
+        return 'CLOSED', '美股已收盤', '美東 16:00 收盤', False
+
+    if m == 'HKEX':
+        hk_dt = dt.astimezone(TW_TZ)
+        if hk_dt.weekday() >= 5:
+            return 'WEEKEND', '港股週末休市', '09:30~16:00', False
+        hm = hk_dt.hour * 60 + hk_dt.minute
+        if (9 * 60 + 30 <= hm <= 12 * 60) or (13 * 60 <= hm <= 16 * 60):
+            return 'OPEN', '港股盤中交易', '09:30~16:00', True
+        return 'CLOSED', '港股已收盤', '16:00 收盤', False
+
+    if m == 'TSE':
+        jp_dt = dt.astimezone(JP_TZ)
+        if jp_dt.weekday() >= 5:
+            return 'WEEKEND', '日股週末休市', '09:00~15:30 (JST)', False
+        hm = jp_dt.hour * 60 + jp_dt.minute
+        if (9 * 60 <= hm <= 11 * 60 + 30) or (12 * 60 + 30 <= hm <= 15 * 60 + 30):
+            return 'OPEN', '日股盤中交易', '09:00~15:30 (JST)', True
+        return 'CLOSED', '日股已收盤', '15:30 收盤', False
+
+    return 'CLOSED', '休市', '—', False
 
 def get_shares_map():
     """Fetch official total issued shares from TWSE and TPEX open data."""
     shares = {}
-    # TWSE Listed Companies Base Info
     try:
         req = urllib.request.Request(
             'https://openapi.twse.com.tw/v1/opendata/t187ap03_L',
@@ -37,7 +89,6 @@ def get_shares_map():
     except Exception as e:
         print(f"Warning fetching TWSE shares: {e}", file=sys.stderr)
 
-    # TPEX OTC Companies Base Info
     try:
         req = urllib.request.Request(
             'https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O',
@@ -57,89 +108,27 @@ def get_shares_map():
 
     return shares
 
-def get_symbols_from_index_html(index_path):
-    symbols = {}
-    if not os.path.exists(index_path):
-        return symbols
-
-    with open(index_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    # 1. Parse TAIWAN_CORE_UNIVERSE
-    m_universe = re.search(r'const TAIWAN_CORE_UNIVERSE = (\[[\s\S]*?\]);', content)
-    if m_universe:
-        try:
-            universe = json.loads(m_universe.group(1))
-            for item in universe:
-                code = str(item.get('code', '')).strip()
-                if code:
-                    market = str(item.get('market', 'TWSE')).upper()
-                    symbols[code] = {
-                        'code': code,
-                        'name': item.get('name', ''),
-                        'market': market,
-                        'slug': item.get('slug', '')
-                    }
-        except Exception as e:
-            print(f"Warning parsing universe: {e}", file=sys.stderr)
-
-    # 2. Parse KNOWN_SLUGS
-    m_slugs = re.search(r'const KNOWN_SLUGS = \{([\s\S]*?)\};', content)
-    if m_slugs:
-        slug_matches = re.findall(r"'(\d+)':\s*\{\s*name:\s*'([^']+)',\s*slug:\s*'([^']+)',\s*market:\s*'([^']+)'", m_slugs.group(1))
-        for code, name, slug, market in slug_matches:
-            if code not in symbols:
-                symbols[code] = {
-                    'code': code,
-                    'name': name,
-                    'market': market.upper(),
-                    'slug': slug
-                }
-
-    # 3. Extra monitored stocks (like 3701, 2342, 4716, 4989, 6443)
-    extra_watchlist = {
-        '3701': {'name': '大眾控', 'market': 'TWSE', 'slug': 'fic-global-inc'},
-        '2342': {'name': '茂矽', 'market': 'TWSE', 'slug': 'mosel-vitelic'},
-        '4716': {'name': '大立高', 'market': 'TPEX', 'slug': 'dali-chemical'},
-        '4989': {'name': '榮科', 'market': 'TWSE', 'slug': 'unitech-printed'},
-        '6443': {'name': '元晶', 'market': 'TWSE', 'slug': 'tsec-corp'},
-        '2301': {'name': '光寶科', 'market': 'TWSE', 'slug': 'lite-on-techno'},
-    }
-    for code, info in extra_watchlist.items():
-        if code not in symbols:
-            symbols[code] = {
-                'code': code,
-                'name': info['name'],
-                'market': info['market'],
-                'slug': info['slug']
-            }
-
-    return symbols
-
 def fetch_quotes_batch(symbol_list):
-    """Fetch a list of symbols from TWSE MIS API. symbol_list is ['tse_2330.tw', 'otc_8299.tw', ...]"""
     joined = '|'.join(symbol_list)
     timestamp = int(time.time() * 1000)
     url = f"https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch={joined}&_={timestamp}"
     req = urllib.request.Request(
         url,
         headers={
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Accept': 'application/json, text/javascript, */*; q=0.01',
-            'Referer': 'https://mis.twse.com.tw/stock/fibest.jsp?lang=zh_tw'
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+            'Accept': 'application/json',
+            'Referer': 'https://mis.twse.com.tw/'
         }
     )
     with urllib.request.urlopen(req, timeout=15) as resp:
         return json.loads(resp.read().decode('utf-8'))
 
 def parse_price_item(item):
-    """Extract standard pricing numbers from TWSE MIS response item."""
     code = item.get('c', '').strip()
     if not code:
         return None
 
     name = item.get('n', '').strip()
-    
     y_raw = item.get('y', '0')
     try:
         prev_close = float(y_raw) if y_raw and y_raw != '-' else 0.0
@@ -199,8 +188,55 @@ def parse_price_item(item):
         'low': parse_float(item.get('l')),
         'volume': parse_int(item.get('v')),
         'time': item.get('t', ''),
-        'market': 'TWSE' if item.get('ex') == 'tse' else 'TPEX'
+        'market': 'TWSE' if item.get('ex') == 'tse' else 'TPEX',
+        'currency': 'NT$'
     }
+
+def fetch_global_quote(symbol, market, name, currency):
+    """Fetch global stock quote (US, HK, JP) via Yahoo Finance API."""
+    ticker_map = {
+        '0700': '0700.HK',
+        '7203': '7203.T'
+    }
+    y_ticker = ticker_map.get(symbol, symbol)
+    url = f"https://query2.finance.yahoo.com/v8/finance/chart/{y_ticker}?interval=1d&range=1d"
+    req = urllib.request.Request(
+        url,
+        headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=6) as resp:
+            data = json.loads(resp.read().decode('utf-8'))
+            meta = data['chart']['result'][0]['meta']
+            price = round(float(meta.get('regularMarketPrice', 0)), 2)
+            prev_close = round(float(meta.get('chartPreviousClose', price)), 2)
+            change = round(price - prev_close, 2)
+            change_pct = round((change / prev_close) * 100, 2) if prev_close > 0 else 0.0
+            
+            # Approximate Market Cap if available
+            market_cap_val = 0
+            cap_str = '—'
+            
+            return {
+                'code': symbol,
+                'name': name,
+                'price': price,
+                'prevClose': prev_close,
+                'change': change,
+                'changePct': change_pct,
+                'open': round(float(meta.get('regularMarketOpen', price)), 2),
+                'high': round(float(meta.get('regularMarketDayHigh', price)), 2),
+                'low': round(float(meta.get('regularMarketDayLow', price)), 2),
+                'volume': int(meta.get('regularMarketVolume', 0)),
+                'time': datetime.now(TW_TZ).strftime('%H:%M:%S'),
+                'market': market,
+                'currency': currency,
+                'marketCap': cap_str,
+                'marketCapVal': market_cap_val
+            }
+    except Exception as e:
+        print(f"Error fetching global quote {symbol}: {e}", file=sys.stderr)
+        return None
 
 def main():
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -209,45 +245,104 @@ def main():
     os.makedirs(data_dir, exist_ok=True)
     output_path = os.path.join(data_dir, 'quotes.json')
 
-    print(f"[{datetime.now(TW_TZ).strftime('%Y-%m-%d %H:%M:%S')}] Parsing stock universe from index.html...")
-    symbols_dict = get_symbols_from_index_html(index_html)
-    print(f"Found {len(symbols_dict)} unique stocks to monitor.")
+    now_utc = datetime.now(timezone.utc)
+    now_tw = now_utc.astimezone(TW_TZ)
 
-    # Fetch official total issued shares
-    print("Fetching official total shares from TWSE & TPEX...")
+    # 1. Evaluate Regional Markets status
+    market_sessions = {
+        'TWSE': get_market_session('TWSE', now_utc),
+        'TPEX': get_market_session('TPEX', now_utc),
+        'NASDAQ': get_market_session('NASDAQ', now_utc),
+        'NYSE': get_market_session('NYSE', now_utc),
+        'HKEX': get_market_session('HKEX', now_utc),
+        'TSE': get_market_session('TSE', now_utc),
+    }
+
+    print(f"[{now_tw.strftime('%Y-%m-%d %H:%M:%S')}] Regional Markets Status:")
+    for m, (stat, desc, hrs, is_live) in market_sessions.items():
+        print(f"  {m:7s}: {stat:7s} ({desc}) [{hrs}] Live: {is_live}")
+
+    # Fetch issued shares for Taiwan stocks
     shares_map = get_shares_map()
-    print(f"Retrieved shares data for {len(shares_map)} companies.")
 
-    query_symbols = []
-    for code, info in symbols_dict.items():
-        mkt = info.get('market', 'TWSE')
-        prefix = 'otc' if mkt in ('TPEX', 'OTC') else 'tse'
-        if code in ('6533', '6589'):
-            prefix = 'tse'
-        query_symbols.append(f"{prefix}_{code}.tw")
+    # Load known stocks from index.html
+    # ...
+    symbols_dict = {}
+    with open(index_html, 'r', encoding='utf-8') as f:
+        content = f.read()
 
-    chunk_size = 25
-    chunks = [query_symbols[i:i + chunk_size] for i in range(0, len(query_symbols), chunk_size)]
+    m_universe = re.search(r'const TAIWAN_CORE_UNIVERSE = (\[[\s\S]*?\]);', content)
+    if m_universe:
+        try:
+            for item in json.loads(m_universe.group(1)):
+                code = str(item.get('code', '')).strip()
+                if code:
+                    symbols_dict[code] = {
+                        'code': code,
+                        'name': item.get('name', ''),
+                        'market': str(item.get('market', 'TWSE')).upper(),
+                        'slug': item.get('slug', ''),
+                        'currency': 'NT$'
+                    }
+        except Exception as e:
+            print(f"Error: {e}", file=sys.stderr)
+
+    # Add global stocks
+    global_stocks = {
+        'NVDA': {'name': '英偉達 (NVIDIA)', 'market': 'NASDAQ', 'currency': 'USD'},
+        'AAPL': {'name': '蘋果 (Apple)', 'market': 'NASDAQ', 'currency': 'USD'},
+        'TSLA': {'name': '特斯拉 (Tesla)', 'market': 'NASDAQ', 'currency': 'USD'},
+        'MSFT': {'name': '微軟 (Microsoft)', 'market': 'NASDAQ', 'currency': 'USD'},
+        'AMD':  {'name': '超微 (AMD)', 'market': 'NASDAQ', 'currency': 'USD'},
+        'AVGO': {'name': '博通 (Broadcom)', 'market': 'NASDAQ', 'currency': 'USD'},
+        'TSM':  {'name': '台積電 ADR', 'market': 'NYSE', 'currency': 'USD'},
+        '0700': {'name': '騰訊控股', 'market': 'HKEX', 'currency': 'HK$'},
+        '7203': {'name': '豐田汽車 (Toyota)', 'market': 'TSE', 'currency': '¥'},
+        '3701': {'name': '大眾控', 'market': 'TWSE', 'currency': 'NT$'},
+        '2342': {'name': '茂矽', 'market': 'TWSE', 'currency': 'NT$'},
+        '4716': {'name': '大立高', 'market': 'TPEX', 'currency': 'NT$'},
+        '4989': {'name': '榮科', 'market': 'TWSE', 'currency': 'NT$'},
+        '6443': {'name': '元晶', 'market': 'TWSE', 'currency': 'NT$'},
+    }
+    for code, info in global_stocks.items():
+        if code not in symbols_dict:
+            symbols_dict[code] = {
+                'code': code,
+                'name': info['name'],
+                'market': info['market'],
+                'currency': info['currency']
+            }
+
     quotes = {}
 
-    print(f"Querying TWSE/TPEX MIS API across {len(chunks)} batches...")
-    for i, chunk in enumerate(chunks):
+    # Query Taiwan stocks in batches
+    tw_symbols = []
+    for code, info in symbols_dict.items():
+        mkt = info.get('market', 'TWSE')
+        if mkt in ('TWSE', 'TPEX', 'OTC'):
+            prefix = 'otc' if mkt in ('TPEX', 'OTC') else 'tse'
+            if code in ('6533', '6589'):
+                prefix = 'tse'
+            tw_symbols.append(f"{prefix}_{code}.tw")
+
+    chunk_size = 25
+    chunks = [tw_symbols[i:i + chunk_size] for i in range(0, len(tw_symbols), chunk_size)]
+
+    for chunk in chunks:
         try:
             resp_data = fetch_quotes_batch(chunk)
-            msg_array = resp_data.get('msgArray', [])
-            for item in msg_array:
+            for item in resp_data.get('msgArray', []):
                 parsed = parse_price_item(item)
                 if parsed and parsed.get('code'):
                     code = parsed['code']
                     if code in symbols_dict and symbols_dict[code].get('name'):
                         parsed['name'] = symbols_dict[code]['name']
                     
-                    # Calculate Market Capitalization
                     sh = shares_map.get(code, 0)
                     price = parsed['price']
                     market_cap_ntd = round(price * sh) if (sh > 0 and price > 0) else 0
-                    market_cap_yi = round(market_cap_ntd / 100_000_000, 1) # 億元
-                    market_cap_zhao = round(market_cap_ntd / 1_000_000_000_000, 2) # 兆元
+                    market_cap_yi = round(market_cap_ntd / 100_000_000, 1)
+                    market_cap_zhao = round(market_cap_ntd / 1_000_000_000_000, 2)
                     
                     if market_cap_zhao >= 1.0:
                         cap_str = f"{market_cap_zhao} 兆"
@@ -260,38 +355,58 @@ def main():
                     parsed['marketCapVal'] = market_cap_ntd
                     parsed['marketCap'] = cap_str
 
-                    quotes[code] = parsed
-            time.sleep(0.15)
-        except Exception as e:
-            print(f"Error fetching chunk {i}: {e}", file=sys.stderr)
+                    # Market session info
+                    stat, desc, hrs, is_live = market_sessions.get(parsed['market'], ('CLOSED', '已收盤', '', False))
+                    parsed['sessionStatus'] = stat
+                    parsed['sessionDesc'] = desc
+                    parsed['sessionHours'] = hrs
+                    parsed['isSessionLive'] = is_live
 
-    # Rank all stocks by Market Capitalization
-    sorted_by_cap = sorted(
-        quotes.values(),
+                    quotes[code] = parsed
+            time.sleep(0.12)
+        except Exception as e:
+            print(f"Error chunk: {e}", file=sys.stderr)
+
+    # Rank Taiwan stocks by marketCap
+    tw_stocks_sorted = sorted(
+        [q for q in quotes.values() if q.get('market') in ('TWSE', 'TPEX')],
         key=lambda x: x.get('marketCapVal', 0),
         reverse=True
     )
-
-    # Assign marketCapRank (1..N) and isTop100Cap flag
-    for rank_idx, item in enumerate(sorted_by_cap, 1):
+    for rank_idx, item in enumerate(tw_stocks_sorted, 1):
         code = item['code']
         quotes[code]['marketCapRank'] = rank_idx
         quotes[code]['isTop100Cap'] = (rank_idx <= 100)
 
-    now_tw = datetime.now(TW_TZ)
+    # Query Global Stocks
+    print("Fetching Global stocks (US, HK, JP)...")
+    for code, info in global_stocks.items():
+        if info['market'] not in ('TWSE', 'TPEX'):
+            gq = fetch_global_quote(code, info['market'], info['name'], info['currency'])
+            if gq:
+                stat, desc, hrs, is_live = market_sessions.get(info['market'], ('CLOSED', '已收盤', '', False))
+                gq['sessionStatus'] = stat
+                gq['sessionDesc'] = desc
+                gq['sessionHours'] = hrs
+                gq['isSessionLive'] = is_live
+                quotes[code] = gq
+
     output_data = {
-        'version': '2.6.0',
+        'version': '2.8.0',
         'updatedAt': now_tw.strftime('%Y-%m-%d %H:%M:%S'),
         'timestamp': int(now_tw.timestamp()),
         'total': len(quotes),
-        'marketStatus': 'OPEN' if (9 <= now_tw.hour < 13 or (now_tw.hour == 13 and now_tw.minute <= 30)) and now_tw.weekday() < 5 else 'CLOSED',
+        'marketSessions': {
+            m: {'status': s[0], 'desc': s[1], 'hours': s[2], 'isLive': s[3]}
+            for m, s in market_sessions.items()
+        },
         'quotes': quotes
     }
 
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
-    print(f"Successfully computed market caps and wrote {len(quotes)} live quotes to {output_path}!")
+    print(f"Successfully wrote {len(quotes)} regional quotes to {output_path}!")
 
 if __name__ == '__main__':
     main()

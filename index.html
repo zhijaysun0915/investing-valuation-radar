@@ -162,7 +162,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.7.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.8.0</span>
         </button>
 
         <button onclick="openIssueModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看已知問題修復與回報紀錄">
@@ -584,7 +584,7 @@
         <span>資料來源：即時連線 Investing.com 公開個股頁、分析師共識目標價與 InvestingPro 同業比較快照（僅供投資研究參考）</span>
       </div>
       <div class="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.7.0</span>
+        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.8.0</span>
         <span>•</span>
         <button onclick="openReleaseNotesModal()" class="text-slate-400 hover:text-cyan-300 underline underline-offset-2">Release Notes</button>
         <span>•</span>
@@ -795,7 +795,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.7.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.8.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -819,12 +819,12 @@
             </a>
           </div>
         </div>
-        <!-- v2.7.0 -->
+        <!-- v2.8.0 -->
         <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
           <div class="flex items-center justify-between flex-wrap gap-1">
             <div class="font-bold text-white text-sm flex items-center gap-2">
-              <span>v2.7.0</span>
+              <span>v2.8.0</span>
               <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
             </div>
             <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
@@ -3595,6 +3595,162 @@
     }
 
     /*************************************************************************
+     * 2.0 REGIONAL EXCHANGE SESSIONS & VALUATION REFRESH ENGINE
+     *************************************************************************/
+    function getMarketSessionInfo(market) {
+      const m = (market || 'TWSE').toUpperCase();
+      const now = new Date();
+      const utcNow = now.getTime() + (now.getTimezoneOffset() * 60000);
+
+      // Taiwan Time (UTC+8)
+      const twDate = new Date(utcNow + (3600000 * 8));
+      const twDay = twDate.getDay();
+      const twMin = twDate.getHours() * 60 + twDate.getMinutes();
+
+      if (m === 'TWSE' || m === 'TPEX' || m === 'OTC') {
+        if (twDay === 0 || twDay === 6) {
+          return { status: 'WEEKEND', label: '週末休市', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '09:00~13:30', isLive: false };
+        }
+        if (twMin >= 540 && twMin <= 810) {
+          return { status: 'OPEN', label: '台股盤中動態撮合', badgeClass: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 animate-pulse', dotClass: 'bg-emerald-400 animate-ping', hours: '09:00~13:30', isLive: true };
+        }
+        if (twMin >= 510 && twMin < 540) {
+          return { status: 'PRE', label: '台股盤前試撮', badgeClass: 'bg-amber-500/20 text-amber-300 border border-amber-500/40', dotClass: 'bg-amber-400', hours: '08:30~09:00', isLive: false };
+        }
+        return { status: 'CLOSED', label: '台股今日已收盤', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '13:30 收盤', isLive: false };
+      }
+
+      if (m === 'NASDAQ' || m === 'NYSE' || m === 'AMEX') {
+        const usDate = new Date(utcNow - (3600000 * 5)); // EST (UTC-5)
+        const usDay = usDate.getDay();
+        const usMin = usDate.getHours() * 60 + usDate.getMinutes();
+        if (usDay === 0 || usDay === 6) {
+          return { status: 'WEEKEND', label: '美股週末休市', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '美東 09:30~16:00', isLive: false };
+        }
+        if (usMin >= 570 && usMin <= 960) {
+          return { status: 'OPEN', label: '美股盤中交易', badgeClass: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 animate-pulse', dotClass: 'bg-emerald-400 animate-ping', hours: '美東 09:30~16:00 (台 22:30~05:00)', isLive: true };
+        }
+        if (usMin >= 240 && usMin < 570) {
+          return { status: 'PRE', label: '美股盤前交易', badgeClass: 'bg-amber-500/20 text-amber-300 border border-amber-500/40', dotClass: 'bg-amber-400', hours: '美東 04:00~09:30', isLive: true };
+        }
+        return { status: 'CLOSED', label: '美股已收盤', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '美東 16:00 收盤 (今晚 22:30 開盤)', isLive: false };
+      }
+
+      if (m === 'HKEX') {
+        if (twDay === 0 || twDay === 6) {
+          return { status: 'WEEKEND', label: '港股休市', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '09:30~16:00', isLive: false };
+        }
+        if ((twMin >= 570 && twMin <= 720) || (twMin >= 780 && twMin <= 960)) {
+          return { status: 'OPEN', label: '港股盤中交易', badgeClass: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 animate-pulse', dotClass: 'bg-emerald-400 animate-ping', hours: '09:30~16:00', isLive: true };
+        }
+        return { status: 'CLOSED', label: '港股已收盤', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '16:00 收盤', isLive: false };
+      }
+
+      if (m === 'TSE') {
+        const jpDate = new Date(utcNow + (3600000 * 9));
+        const jpDay = jpDate.getDay();
+        const jpMin = jpDate.getHours() * 60 + jpDate.getMinutes();
+        if (jpDay === 0 || jpDay === 6) {
+          return { status: 'WEEKEND', label: '日股休市', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '09:00~15:30 (JST)', isLive: false };
+        }
+        if ((jpMin >= 540 && jpMin <= 690) || (jpMin >= 750 && jpMin <= 930)) {
+          return { status: 'OPEN', label: '日股盤中交易', badgeClass: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 animate-pulse', dotClass: 'bg-emerald-400 animate-ping', hours: '09:00~15:30 (JST)', isLive: true };
+        }
+        return { status: 'CLOSED', label: '日股已收盤', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '15:30 收盤', isLive: false };
+      }
+
+      return { status: 'CLOSED', label: '市場已收盤', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '—', isLive: false };
+    }
+
+    // Single-stock Fair Value & Analyst Target deep sync
+    async function refreshStockValuation(code) {
+      const stock = stocks.find(s => s.code === code);
+      if (!stock) return;
+
+      loadingCodes.add(code);
+      renderApp();
+      showToast(`正在線上向 Investing.com 即時檢索 ${stock.name} (${stock.code}) 最新公允價值與外資目標價...`, 'info');
+
+      try {
+        const updated = await fetchLiveStockFromInvesting(stock.code, stock.market, stock.name);
+        if (updated) {
+          if (updated.fairValue) stock.fairValue = updated.fairValue;
+          if (updated.fairRange) stock.fairRange = updated.fairRange;
+          if (updated.fairSource) stock.fairSource = updated.fairSource;
+          if (updated.analystTarget) stock.analystTarget = updated.analystTarget;
+          if (updated.analystHigh) stock.analystHigh = updated.analystHigh;
+          if (updated.analystLow) stock.analystLow = updated.analystLow;
+          if (updated.analystBuy !== undefined) stock.analystBuy = updated.analystBuy;
+          if (updated.analystHold !== undefined) stock.analystHold = updated.analystHold;
+          if (updated.analystSell !== undefined) stock.analystSell = updated.analystSell;
+          if (updated.analystRatings) stock.analystRatings = updated.analystRatings;
+          if (updated.pe) stock.pe = updated.pe;
+          if (updated.pb) stock.pb = updated.pb;
+          if (updated.eps) stock.eps = updated.eps;
+          if (updated.dividendYield) stock.dividendYield = updated.dividendYield;
+
+          const nowStr = new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' });
+          stock.lastValuationUpdate = `${nowStr} 線上檢索`;
+          stock.lastUpdated = `${nowStr} 即時同步`;
+
+          // Sync to TAIWAN_CORE_UNIVERSE & communityPool
+          const u = TAIWAN_CORE_UNIVERSE.find(x => x.code === code);
+          if (u) {
+            if (updated.fairValue) u.fairValue = updated.fairValue;
+            if (updated.analystTarget) u.analystTarget = updated.analystTarget;
+          }
+          const c = communityPool.find(x => x.code === code);
+          if (c) {
+            if (updated.fairValue) c.fairValue = updated.fairValue;
+            if (updated.analystTarget) c.analystTarget = updated.analystTarget;
+            saveCommunityPool();
+          }
+
+          saveToStorage();
+          renderApp();
+          showToast(`✅ ${stock.name} (${stock.code}) 公允價與分析師目標價已更新！\n公允價: NT$ ${formatNumber(stock.fairValue)}，分析師目標價: NT$ ${formatNumber(stock.analystTarget)}`, 'success');
+        }
+      } catch (err) {
+        console.error('refreshStockValuation error:', err);
+        showToast(`⚠️ 線上檢索失敗 (${err.message})，已維持本機基準數值。`, 'error');
+      } finally {
+        loadingCodes.delete(code);
+        renderApp();
+      }
+    }
+
+    // Batch Fair Value & Analyst Target sync
+    let isBatchUpdatingValuations = false;
+    async function batchRefreshValuations() {
+      if (isBatchUpdatingValuations) return;
+      isBatchUpdatingValuations = true;
+      showToast(`開始依序線上檢索 ${stocks.length} 檔自選股公允價與外資目標價...`, 'info');
+
+      let successCount = 0;
+      for (let i = 0; i < stocks.length; i++) {
+        const s = stocks[i];
+        try {
+          showToast(`[${i + 1}/${stocks.length}] 正在檢索 ${s.name} (${s.code})...`, 'info');
+          const updated = await fetchLiveStockFromInvesting(s.code, s.market, s.name);
+          if (updated) {
+            if (updated.fairValue) s.fairValue = updated.fairValue;
+            if (updated.analystTarget) s.analystTarget = updated.analystTarget;
+            if (updated.fairRange) s.fairRange = updated.fairRange;
+            s.lastValuationUpdate = new Date().toLocaleDateString('zh-TW');
+            successCount++;
+          }
+          saveToStorage();
+          renderApp();
+          await new Promise(r => setTimeout(r, 1200));
+        } catch (e) {
+          console.warn(`Valuation fetch skipped for ${s.code}:`, e);
+        }
+      }
+      isBatchUpdatingValuations = false;
+      showToast(`🎉 已成功完成 ${successCount}/${stocks.length} 檔自選股 InvestingPro 公允價與分析師目標價線上檢索！`, 'success');
+    }
+
+    /*************************************************************************
      * 2.1 LIVE REALTIME QUOTES SYNC (PLAN A + B ENGINE)
      *************************************************************************/
     let autoPollTimer = null;
@@ -4618,6 +4774,11 @@
                 <span class="px-2.5 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 font-mono text-base font-bold text-cyan-300">${stock.code}</span>
                 <h2 class="text-xl sm:text-2xl font-bold text-white">${stock.name}</h2>
                 <span class="px-2 py-0.5 text-xs font-mono font-semibold rounded bg-slate-800 text-slate-300 border border-slate-700">${stock.market}</span>
+                <!-- Regional Exchange Session Status -->
+                <span class="px-2 py-0.5 text-[11px] font-mono font-semibold rounded ${getMarketSessionInfo(stock.market).badgeClass}" title="${getMarketSessionInfo(stock.market).hours}">
+                  <span class="inline-block w-1.5 h-1.5 rounded-full ${getMarketSessionInfo(stock.market).dotClass} mr-1"></span>
+                  ${getMarketSessionInfo(stock.market).label}
+                </span>
                 <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i>${stock.lastUpdated || ''}</span>
               </div>
               <p class="text-xs text-slate-400 mt-2 leading-relaxed">${stock.note || ''}</p>
@@ -4655,9 +4816,17 @@
                     </div>
                     <div>
                       <h3 class="text-sm font-bold text-emerald-300">公允價 (InvestingPro Fair Value)</h3>
-                      <p class="text-[11px] text-slate-400">${stock.fairSource || '財務與同業多模型估值'}</p>
+                      <p class="text-[11px] text-slate-400">${stock.fairSource || '財務與同業多模型估值'} • ${stock.lastValuationUpdate || '2026-11'}</p>
                     </div>
                   </div>
+                  <button
+                    onclick="refreshStockValuation('${stock.code}')"
+                    class="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/35 text-emerald-200 border border-emerald-500/40 text-[11px] font-semibold transition flex items-center gap-1 active:scale-95 shrink-0"
+                    title="線上重新檢索 InvestingPro 官方最新公允價估值模型數據"
+                  >
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <span>更新公允價</span>
+                  </button>
                   <span class="px-2.5 py-0.5 rounded-full text-xs font-bold border ${proStatusBadge}">
                     ${proStatusLabel}
                   </span>
@@ -4705,12 +4874,22 @@
                     </div>
                     <div>
                       <h3 class="text-sm font-bold text-cyan-300">分析師預估價 (Analyst Price Target)</h3>
-                      <p class="text-[11px] text-slate-400">Investing.com 外資分析師 12 個月共識</p>
+                      <p class="text-[11px] text-slate-400">Investing.com 外資分析師 12 個月共識 • 共 ${totalAnalysts || '40+'} 位</p>
                     </div>
                   </div>
-                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
-                    共識：${stock.consensusLabel || '買入'}
-                  </span>
+                  <div class="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
+                    <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                      共識：${stock.consensusLabel || '買入'}
+                    </span>
+                    <button
+                      onclick="refreshStockValuation('${stock.code}')"
+                      class="px-2 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/35 text-cyan-200 border border-cyan-500/40 text-[11px] font-semibold transition flex items-center gap-1 active:scale-95 shrink-0"
+                      title="線上重新檢索各大投行與外資券商最新 12 個月目標價共識"
+                    >
+                      <i class="fa-solid fa-arrows-rotate"></i>
+                      <span>更新目標價</span>
+                    </button>
+                  </div>
                 </div>
 
                 <div class="mt-4 flex items-baseline justify-between bg-slate-950/70 rounded-xl p-4 border border-cyan-500/20">

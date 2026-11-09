@@ -1,10 +1,11 @@
-name: Update Taiwan Stock Quotes
+name: Multi-Market Stock Quotes Auto-Sync
 
 on:
   schedule:
-    # Taiwan trading hours: 09:00 - 13:30 (UTC+8) -> 01:00 - 05:30 (UTC), Mon-Fri
-    # Runs every 15 minutes during trading hours
-    - cron: '*/15 1-5 * * 1-5'
+    # 1. Asian Markets (TWSE / TPEX / HKEX / TSE): 09:00 - 16:00 (UTC+8) -> 01:00 - 08:00 (UTC), Mon-Fri
+    # 2. US Markets (NASDAQ / NYSE): 09:30 - 16:00 (EST) -> 14:30 - 21:00 (UTC), Mon-Fri
+    # Runs every 15 minutes across active regional trading hours
+    - cron: '*/15 1-8,14-21 * * 1-5'
   workflow_dispatch: # Allow manual trigger via GitHub web UI
 
 permissions:
@@ -22,7 +23,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Fetch Taiwan Quotes from TWSE / TPEX MIS
+      - name: Fetch Regional Quotes (Taiwan, US, HK, JP)
         run: |
           python3 scripts/fetch_tw_quotes.py
 
@@ -34,6 +35,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes in quotes.json, skipping commit."
           else
-            git commit -m "chore(data): 盤中自動排程同步台股即時報價 [skip ci]"
+            git commit -m "chore(data): 依各地交易所開收盤自動排程同步即時報價 [skip ci]"
             git push origin main
           fi
