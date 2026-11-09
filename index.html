@@ -162,7 +162,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.6.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.7.0</span>
         </button>
 
         <button onclick="openIssueModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看已知問題修復與回報紀錄">
@@ -367,32 +367,66 @@
             </div>
           </div>
 
-          <!-- Leaderboard Sub-Tabs Switcher -->
-          <div class="flex items-center gap-1.5 p-1 bg-slate-900/90 rounded-xl border border-slate-800 w-full md:w-auto overflow-x-auto shrink-0">
-            <button
-              id="btnLbFairValue"
-              onclick="setLeaderboardMode('fairValue')"
-              class="flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-sm"
-            >
-              <i class="fa-solid fa-gem text-emerald-400"></i>
-              <span>💎 公允價折價 Top 100</span>
-            </button>
-            <button
-              id="btnLbAnalyst"
-              onclick="setLeaderboardMode('analyst')"
-              class="flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200"
-            >
-              <i class="fa-solid fa-bullseye text-cyan-400"></i>
-              <span>🎯 分析師看漲 Top 100</span>
-            </button>
-            <button
-              id="btnLbCommunity"
-              onclick="setLeaderboardMode('community')"
-              class="flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200"
-            >
-              <i class="fa-solid fa-users text-amber-400"></i>
-              <span>🌐 社群查過標的池 (<span id="communityPoolCount">0</span>)</span>
-            </button>
+          <!-- Scope Selector & Sub-Tabs Switcher -->
+          <div class="flex flex-col xl:flex-row items-stretch xl:items-center gap-2.5 w-full md:w-auto">
+            <!-- 1. Market Cap Scope Filter (只看市值前100大) -->
+            <div class="inline-flex rounded-xl bg-slate-950 p-1 border border-slate-800 shrink-0">
+              <button
+                id="btnScopeTop100Cap"
+                onclick="setLeaderboardScope('top100cap')"
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm"
+                title="嚴格篩選台股市值前 100 大核心權值股（排除中小型股與冷門標的）"
+              >
+                <i class="fa-solid fa-crown text-amber-400"></i>
+                <span>👑 僅看市值前 100 大權值股</span>
+              </button>
+              <button
+                id="btnScopeAll"
+                onclick="setLeaderboardScope('all')"
+                class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200 border border-transparent"
+                title="包含所有中小型股與社群查過之全市場標的庫"
+              >
+                <i class="fa-solid fa-globe"></i>
+                <span>🌐 全市場標的庫</span>
+              </button>
+            </div>
+
+            <!-- 2. Sub-Tabs Switcher (折價 / 看漲 / 市值 / 社群) -->
+            <div class="flex items-center gap-1.5 p-1 bg-slate-900/90 rounded-xl border border-slate-800 overflow-x-auto shrink-0">
+              <button
+                id="btnLbFairValue"
+                onclick="setLeaderboardMode('fairValue')"
+                class="flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-sm"
+              >
+                <i class="fa-solid fa-gem text-emerald-400"></i>
+                <span>💎 公允價折價</span>
+              </button>
+              <button
+                id="btnLbAnalyst"
+                onclick="setLeaderboardMode('analyst')"
+                class="flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200"
+              >
+                <i class="fa-solid fa-bullseye text-cyan-400"></i>
+                <span>🎯 分析師看漲</span>
+              </button>
+              <button
+                id="btnLbMarketCap"
+                onclick="setLeaderboardMode('marketCap')"
+                class="flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200"
+                title="依最新公司市值規模由大到小排序"
+              >
+                <i class="fa-solid fa-building-columns text-purple-400"></i>
+                <span>🏛️ 市值規模榜</span>
+              </button>
+              <button
+                id="btnLbCommunity"
+                onclick="setLeaderboardMode('community')"
+                class="flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200"
+              >
+                <i class="fa-solid fa-users text-amber-400"></i>
+                <span>🌐 社群標的 (<span id="communityPoolCount">0</span>)</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -550,7 +584,7 @@
         <span>資料來源：即時連線 Investing.com 公開個股頁、分析師共識目標價與 InvestingPro 同業比較快照（僅供投資研究參考）</span>
       </div>
       <div class="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.6.0</span>
+        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.7.0</span>
         <span>•</span>
         <button onclick="openReleaseNotesModal()" class="text-slate-400 hover:text-cyan-300 underline underline-offset-2">Release Notes</button>
         <span>•</span>
@@ -761,7 +795,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.6.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.7.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -785,13 +819,30 @@
             </a>
           </div>
         </div>
-        <!-- v2.6.0 -->
+        <!-- v2.7.0 -->
         <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
           <div class="flex items-center justify-between flex-wrap gap-1">
             <div class="font-bold text-white text-sm flex items-center gap-2">
-              <span>v2.6.0</span>
+              <span>v2.7.0</span>
               <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li><strong>👑 臺灣市值 Top 100 核心權值股專屬排名</strong>：排行榜新增「👑 僅看市值前 100 大權值股」切換開關，排除中小型股與冷門投機仙股干擾，聚焦台股市值百大核心龍頭。</li>
+            <li><strong>🏛️ 新增「市值排行 Top 100」子榜單</strong>：支援依公司總市值規模從 #1 台積電、#2 聯發科、#3 鴻海、#4 台達電依序排列。</li>
+            <li><strong>💰 新增「市值 (Rank)」專屬欄位與表頭排序</strong>：清楚顯示每檔股票最新總市值與名次（#1 ~ #100），支援點擊表頭排序。</li>
+          </ul>
+        </div>
+
+        <!-- v2.6.0 -->
+        <div class="relative pl-6 border-l-2 border-purple-500 space-y-2">
+          <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-purple-500 border-2 border-slate-950"></div>
+          <div class="flex items-center justify-between flex-wrap gap-1">
+            <div class="font-bold text-white text-sm flex items-center gap-2">
+              <span>v2.6.0</span>
+              <span class="px-2 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-400 border border-slate-700 font-normal">穩定版</span>
             </div>
             <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
           </div>
@@ -1074,1232 +1125,1792 @@
     "name": "台積電",
     "slug": "taiwan-semicon",
     "market": "TWSE",
-    "price": 2135,
+    "price": 2235.0,
     "fairValue": 2495,
     "analystTarget": 3409.8,
     "pe": "21.9x",
-    "pb": "7.9x"
+    "pb": "7.9x",
+    "prevClose": 2135.0,
+    "marketCap": "57.96 兆",
+    "marketCapVal": 57958847099745,
+    "marketCapRank": 1,
+    "isTop100Cap": true
   },
   {
     "code": "2454",
     "name": "聯發科",
     "slug": "mediatek",
     "market": "TWSE",
-    "price": 3390,
+    "price": 3725.0,
     "fairValue": 3820,
     "analystTarget": 6124.19,
     "pe": "54.5x",
-    "pb": "11.6x"
+    "pb": "11.6x",
+    "prevClose": 3390.0,
+    "marketCap": "5.98 兆",
+    "marketCapVal": 5978448483425,
+    "marketCapRank": 2,
+    "isTop100Cap": true
   },
   {
     "code": "2303",
     "name": "聯電",
     "slug": "united-micro",
     "market": "TWSE",
-    "price": 51.5,
+    "price": 97.1,
     "fairValue": 62.4,
     "analystTarget": 68.5,
     "pe": "10.8x",
-    "pb": "1.4x"
+    "pb": "1.4x",
+    "prevClose": 92.0,
+    "marketCap": "1.22 兆",
+    "marketCapVal": 1220556117593,
+    "marketCapRank": 14,
+    "isTop100Cap": true
   },
   {
     "code": "3711",
     "name": "日月光投控",
     "slug": "ase-industrial",
     "market": "TWSE",
-    "price": 168,
+    "price": 563.0,
     "fairValue": 198.5,
     "analystTarget": 220,
     "pe": "16.5x",
-    "pb": "2.1x"
+    "pb": "2.1x",
+    "prevClose": 527.0,
+    "marketCap": "2.53 兆",
+    "marketCapVal": 2526794243809,
+    "marketCapRank": 5,
+    "isTop100Cap": true
   },
   {
     "code": "2379",
     "name": "瑞昱",
     "slug": "realtek",
     "market": "TWSE",
-    "price": 515,
+    "price": 740.0,
     "fairValue": 610,
     "analystTarget": 680,
     "pe": "18.2x",
-    "pb": "4.8x"
+    "pb": "4.8x",
+    "prevClose": 708.0,
+    "marketCap": "3,814.8 億",
+    "marketCapVal": 381479354340,
+    "marketCapRank": 46,
+    "isTop100Cap": true
   },
   {
     "code": "3034",
     "name": "聯詠",
     "slug": "novatek-microel",
     "market": "TWSE",
-    "price": 520,
+    "price": 487.5,
     "fairValue": 595,
     "analystTarget": 645,
     "pe": "14.1x",
-    "pb": "4.2x"
+    "pb": "4.2x",
+    "prevClose": 495.5,
+    "marketCap": "2,981.1 億",
+    "marketCapVal": 298111841138,
+    "marketCapRank": 51,
+    "isTop100Cap": true
   },
   {
     "code": "3443",
     "name": "創意",
     "slug": "global-unichip",
     "market": "TWSE",
-    "price": 1280,
+    "price": 6775.0,
     "fairValue": 1520,
     "analystTarget": 1750,
     "pe": "42.0x",
-    "pb": "9.8x"
+    "pb": "9.8x",
+    "prevClose": 6205.0,
+    "marketCap": "9,079.3 億",
+    "marketCapVal": 907930697025,
+    "marketCapRank": 20,
+    "isTop100Cap": true
   },
   {
     "code": "3661",
     "name": "世芯-KY",
     "slug": "alchip-technologies",
     "market": "TWSE",
-    "price": 2240,
+    "price": 3110.0,
     "fairValue": 2850,
     "analystTarget": 3450,
     "pe": "45.2x",
-    "pb": "12.4x"
+    "pb": "12.4x",
+    "prevClose": 2830.0,
+    "marketCap": "2,686.5 億",
+    "marketCapVal": 268652728540,
+    "marketCapRank": 57,
+    "isTop100Cap": true
   },
   {
     "code": "3529",
     "name": "力旺",
     "slug": "ememory-tech",
     "market": "TPEX",
-    "price": 2850,
+    "price": 2000.0,
     "fairValue": 3320,
     "analystTarget": 3950,
     "pe": "68.0x",
-    "pb": "28.5x"
+    "pb": "28.5x",
+    "prevClose": 1885.0,
+    "marketCap": "1,493.7 億",
+    "marketCapVal": 149372984000,
+    "marketCapRank": 74,
+    "isTop100Cap": true
   },
   {
     "code": "6488",
     "name": "環球晶",
     "slug": "globalwafers-co-ltd",
     "market": "TPEX",
-    "price": 425,
+    "price": 563.0,
     "fairValue": 535,
     "analystTarget": 590,
     "pe": "15.6x",
-    "pb": "3.1x"
+    "pb": "3.1x",
+    "prevClose": 512.0,
+    "marketCap": "2,973.3 億",
+    "marketCapVal": 297328027175,
+    "marketCapRank": 52,
+    "isTop100Cap": true
   },
   {
     "code": "5347",
     "name": "世界",
     "slug": "vanguard-intl",
     "market": "TPEX",
-    "price": 106,
+    "price": 132.0,
     "fairValue": 128,
     "analystTarget": 142,
     "pe": "19.5x",
-    "pb": "3.0x"
+    "pb": "3.0x",
+    "prevClose": 120.0,
+    "marketCap": "2,479.6 億",
+    "marketCapVal": 247962289344,
+    "marketCapRank": 60,
+    "isTop100Cap": true
   },
   {
     "code": "3374",
     "name": "精材",
     "slug": "xintec",
     "market": "TPEX",
-    "price": 188,
+    "price": 401.0,
     "fairValue": 225,
     "analystTarget": 258,
     "pe": "24.3x",
-    "pb": "4.6x"
+    "pb": "4.6x",
+    "prevClose": 375.0,
+    "marketCap": "1,088.2 億",
+    "marketCapVal": 108817090716,
+    "marketCapRank": 84,
+    "isTop100Cap": true
   },
   {
     "code": "2408",
     "name": "南亞科",
     "slug": "nanya-tech",
     "market": "TWSE",
-    "price": 62,
+    "price": 372.0,
     "fairValue": 74.5,
     "analystTarget": 82,
     "pe": "22.0x",
-    "pb": "1.2x"
+    "pb": "1.2x",
+    "prevClose": 343.5,
+    "marketCap": "1.28 兆",
+    "marketCapVal": 1283476592568,
+    "marketCapRank": 11,
+    "isTop100Cap": true
   },
   {
     "code": "2344",
     "name": "華邦電",
     "slug": "winbond",
     "market": "TWSE",
-    "price": 26.5,
+    "price": 132.5,
     "fairValue": 31.8,
     "analystTarget": 35.5,
     "pe": "18.5x",
-    "pb": "1.1x"
+    "pb": "1.1x",
+    "prevClose": 120.5,
+    "marketCap": "5,962.5 億",
+    "marketCapVal": 596250025572,
+    "marketCapRank": 33,
+    "isTop100Cap": true
   },
   {
     "code": "3006",
     "name": "晶豪科",
     "slug": "esmt",
     "market": "TWSE",
-    "price": 207.5,
+    "price": 228.0,
     "fairValue": 268.75,
     "analystTarget": 294,
     "pe": "19.8x",
-    "pb": "1.5x"
+    "pb": "1.5x",
+    "prevClose": 207.5,
+    "marketCap": "679.7 億",
+    "marketCapVal": 67973147748,
+    "marketCapRank": 95,
+    "isTop100Cap": true
   },
   {
     "code": "8299",
     "name": "群聯電子",
     "slug": "phison-electronics",
     "market": "TPEX",
-    "price": 1500,
+    "price": 1650.0,
     "fairValue": 2148,
     "analystTarget": 2697,
     "pe": "14.5x",
-    "pb": "2.8x"
+    "pb": "2.8x",
+    "prevClose": 1500.0,
+    "marketCap": "3,649.2 億",
+    "marketCapVal": 364922657550,
+    "marketCapRank": 47,
+    "isTop100Cap": true
   },
   {
     "code": "6770",
     "name": "力積電",
     "slug": "powerchip-semic",
     "market": "TWSE",
-    "price": 21.5,
+    "price": 58.1,
     "fairValue": 24.8,
     "analystTarget": 26,
     "pe": "25.0x",
-    "pb": "0.9x"
+    "pb": "0.9x",
+    "prevClose": 52.9,
+    "marketCap": "2,737.7 億",
+    "marketCapVal": 273771897734,
+    "marketCapRank": 56,
+    "isTop100Cap": true
   },
   {
     "code": "6239",
     "name": "力成",
     "slug": "powertech-tech",
     "market": "TWSE",
-    "price": 165,
+    "price": 223.5,
     "fairValue": 192,
     "analystTarget": 210,
     "pe": "12.8x",
-    "pb": "2.0x"
+    "pb": "2.0x",
+    "prevClose": 203.5,
+    "marketCap": "1,696.7 億",
+    "marketCapVal": 169669272699,
+    "marketCapRank": 71,
+    "isTop100Cap": true
   },
   {
     "code": "3260",
     "name": "威剛",
     "slug": "adata-technology",
     "market": "TPEX",
-    "price": 102.5,
+    "price": 305.5,
     "fairValue": 128,
     "analystTarget": 139,
     "pe": "11.2x",
-    "pb": "1.9x"
+    "pb": "1.9x",
+    "prevClose": 299.5,
+    "marketCap": "1,089.0 億",
+    "marketCapVal": 108899574199,
+    "marketCapRank": 83,
+    "isTop100Cap": true
   },
   {
     "code": "2458",
     "name": "義隆",
     "slug": "elan-microel",
     "market": "TWSE",
-    "price": 145,
+    "price": 117.0,
     "fairValue": 172,
     "analystTarget": 188,
     "pe": "14.8x",
-    "pb": "3.2x"
+    "pb": "3.2x",
+    "prevClose": 115.5,
+    "marketCap": "355.5 億",
+    "marketCapVal": 35554005864,
+    "marketCapRank": 101,
+    "isTop100Cap": false
   },
   {
     "code": "2317",
     "name": "鴻海",
     "slug": "hon-hai",
     "market": "TWSE",
-    "price": 224.5,
+    "price": 240.0,
     "fairValue": 268.4,
     "analystTarget": 347.5,
     "pe": "14.8x",
-    "pb": "1.8x"
+    "pb": "1.8x",
+    "prevClose": 224.5,
+    "marketCap": "3.38 兆",
+    "marketCapVal": 3378179159280,
+    "marketCapRank": 3,
+    "isTop100Cap": true
   },
   {
     "code": "2382",
     "name": "廣達",
     "slug": "quanta",
     "market": "TWSE",
-    "price": 318,
+    "price": 296.5,
     "fairValue": 375,
     "analystTarget": 415,
     "pe": "19.2x",
-    "pb": "4.5x"
+    "pb": "4.5x",
+    "prevClose": 290.5,
+    "marketCap": "1.22 兆",
+    "marketCapVal": 1217911533588,
+    "marketCapRank": 15,
+    "isTop100Cap": true
   },
   {
     "code": "3231",
     "name": "緯創",
     "slug": "wistron",
     "market": "TWSE",
-    "price": 118,
+    "price": 169.0,
     "fairValue": 145,
     "analystTarget": 165,
     "pe": "16.1x",
-    "pb": "2.8x"
+    "pb": "2.8x",
+    "prevClose": 160.0,
+    "marketCap": "5,796.4 億",
+    "marketCapVal": 579643340250,
+    "marketCapRank": 36,
+    "isTop100Cap": true
   },
   {
     "code": "6669",
     "name": "緯穎",
     "slug": "wiwynn-corp",
     "market": "TWSE",
-    "price": 2185,
+    "price": 1650.0,
     "fairValue": 2750,
     "analystTarget": 3250,
     "pe": "22.4x",
-    "pb": "8.5x"
+    "pb": "8.5x",
+    "prevClose": 1555.0,
+    "marketCap": "9,243.3 億",
+    "marketCapVal": 924329623800,
+    "marketCapRank": 19,
+    "isTop100Cap": true
   },
   {
     "code": "2356",
     "name": "英業達",
     "slug": "inventec",
     "market": "TWSE",
-    "price": 48.5,
+    "price": 55.6,
     "fairValue": 58,
     "analystTarget": 66,
     "pe": "18.0x",
-    "pb": "2.3x"
+    "pb": "2.3x",
+    "prevClose": 52.6,
+    "marketCap": "1,994.6 億",
+    "marketCapVal": 199463613670,
+    "marketCapRank": 67,
+    "isTop100Cap": true
   },
   {
     "code": "2376",
     "name": "技嘉",
     "slug": "gigabyte-tech",
     "market": "TWSE",
-    "price": 285,
+    "price": 310.5,
     "fairValue": 345,
     "analystTarget": 388,
     "pe": "17.5x",
-    "pb": "3.8x"
+    "pb": "3.8x",
+    "prevClose": 298.0,
+    "marketCap": "2,080.0 億",
+    "marketCapVal": 208000499103,
+    "marketCapRank": 64,
+    "isTop100Cap": true
   },
   {
     "code": "2357",
     "name": "華碩",
     "slug": "asustek-computer",
     "market": "TWSE",
-    "price": 585,
+    "price": 862.0,
     "fairValue": 690,
     "analystTarget": 760,
     "pe": "15.3x",
-    "pb": "1.9x"
+    "pb": "1.9x",
+    "prevClose": 859.0,
+    "marketCap": "6,402.6 億",
+    "marketCapVal": 640259361360,
+    "marketCapRank": 30,
+    "isTop100Cap": true
   },
   {
     "code": "2301",
     "name": "光寶科",
     "slug": "lite-on-tech",
     "market": "TWSE",
-    "price": 112.5,
+    "price": 217.5,
     "fairValue": 138,
     "analystTarget": 155,
     "pe": "15.8x",
-    "pb": "3.2x"
+    "pb": "3.2x",
+    "prevClose": 198.0,
+    "marketCap": "4,950.5 億",
+    "marketCapVal": 495053438452,
+    "marketCapRank": 39,
+    "isTop100Cap": true
   },
   {
     "code": "2308",
     "name": "台達電",
     "slug": "delta-electron",
     "market": "TWSE",
-    "price": 1050,
+    "price": 1160.0,
     "fairValue": 1238,
     "analystTarget": 1450,
     "pe": "25.5x",
-    "pb": "4.2x"
+    "pb": "4.2x",
+    "prevClose": 1055.0,
+    "marketCap": "3.01 兆",
+    "marketCapVal": 3013150261640,
+    "marketCapRank": 4,
+    "isTop100Cap": true
   },
   {
     "code": "2395",
     "name": "研華",
     "slug": "advantech",
     "market": "TWSE",
-    "price": 355,
+    "price": 583.0,
     "fairValue": 410,
     "analystTarget": 455,
     "pe": "28.0x",
-    "pb": "5.6x"
+    "pb": "5.6x",
+    "prevClose": 552.0,
+    "marketCap": "5,066.5 億",
+    "marketCapVal": 506653822664,
+    "marketCapRank": 38,
+    "isTop100Cap": true
   },
   {
     "code": "2324",
     "name": "仁寶",
     "slug": "compal-electronics",
     "market": "TWSE",
-    "price": 36.8,
+    "price": 32.6,
     "fairValue": 42.5,
     "analystTarget": 46,
     "pe": "16.5x",
-    "pb": "1.4x"
+    "pb": "1.4x",
+    "prevClose": 31.5,
+    "marketCap": "1,436.7 億",
+    "marketCapVal": 143672979975,
+    "marketCapRank": 77,
+    "isTop100Cap": true
   },
   {
     "code": "2353",
     "name": "宏碁",
     "slug": "acer-inc",
     "market": "TWSE",
-    "price": 41.2,
+    "price": 31.3,
     "fairValue": 46.8,
     "analystTarget": 50.5,
     "pe": "20.1x",
-    "pb": "1.7x"
+    "pb": "1.7x",
+    "prevClose": 29.0,
+    "marketCap": "954.0 億",
+    "marketCapVal": 95397824816,
+    "marketCapRank": 89,
+    "isTop100Cap": true
   },
   {
     "code": "4938",
     "name": "和碩",
     "slug": "pegatron",
     "market": "TWSE",
-    "price": 95,
+    "price": 95.6,
     "fairValue": 110,
     "analystTarget": 122,
     "pe": "14.2x",
-    "pb": "1.3x"
+    "pb": "1.3x",
+    "prevClose": 92.9,
+    "marketCap": "2,558.0 億",
+    "marketCapVal": 255797752007,
+    "marketCapRank": 58,
+    "isTop100Cap": true
   },
   {
     "code": "2345",
     "name": "智邦",
     "slug": "accton-tech",
     "market": "TWSE",
-    "price": 615,
+    "price": 1405.0,
     "fairValue": 720,
     "analystTarget": 790,
     "pe": "30.5x",
-    "pb": "8.9x"
+    "pb": "8.9x",
+    "prevClose": 1280.0,
+    "marketCap": "7,883.7 億",
+    "marketCapVal": 788370645285,
+    "marketCapRank": 25,
+    "isTop100Cap": true
   },
   {
     "code": "5388",
     "name": "中磊",
     "slug": "sercomm-corp",
     "market": "TWSE",
-    "price": 128,
+    "price": 67.2,
     "fairValue": 155,
     "analystTarget": 172,
     "pe": "13.8x",
-    "pb": "2.7x"
+    "pb": "2.7x",
+    "prevClose": 64.5,
+    "marketCap": "204.5 億",
+    "marketCapVal": 20451818822,
+    "marketCapRank": 106,
+    "isTop100Cap": false
   },
   {
     "code": "6285",
     "name": "啟碁",
     "slug": "wistron-neweb",
     "market": "TWSE",
-    "price": 142,
+    "price": 180.5,
     "fairValue": 175,
     "analystTarget": 195,
     "pe": "15.2x",
-    "pb": "2.9x"
+    "pb": "2.9x",
+    "prevClose": 164.5,
+    "marketCap": "872.6 億",
+    "marketCapVal": 87261165300,
+    "marketCapRank": 91,
+    "isTop100Cap": true
   },
   {
     "code": "2412",
     "name": "中華電",
     "slug": "chunghwa-telecom",
     "market": "TWSE",
-    "price": 124.5,
+    "price": 158.5,
     "fairValue": 135,
     "analystTarget": 140,
     "pe": "25.4x",
-    "pb": "2.5x"
+    "pb": "2.5x",
+    "prevClose": 163.5,
+    "marketCap": "1.23 兆",
+    "marketCapVal": 1229555277382,
+    "marketCapRank": 13,
+    "isTop100Cap": true
   },
   {
     "code": "4904",
     "name": "遠傳",
     "slug": "far-eastone-telecom",
     "market": "TWSE",
-    "price": 86.5,
+    "price": 106.5,
     "fairValue": 95,
     "analystTarget": 98.5,
     "pe": "24.2x",
-    "pb": "2.8x"
+    "pb": "2.8x",
+    "prevClose": 112.0,
+    "marketCap": "3,842.2 億",
+    "marketCapVal": 384220620520,
+    "marketCapRank": 45,
+    "isTop100Cap": true
   },
   {
     "code": "2327",
     "name": "國巨*",
     "slug": "yageo-corp",
     "market": "TWSE",
-    "price": 374,
+    "price": 411.0,
     "fairValue": 406.5,
     "analystTarget": 961.47,
     "pe": "25.2x",
-    "pb": "4.3x"
+    "pb": "4.3x",
+    "prevClose": 374.0,
+    "marketCap": "8,479.5 億",
+    "marketCapVal": 847945797882,
+    "marketCapRank": 21,
+    "isTop100Cap": true
   },
   {
     "code": "2492",
     "name": "華新科",
     "slug": "walsin-tech",
     "market": "TWSE",
-    "price": 258.5,
+    "price": 284.0,
     "fairValue": 375.86,
     "analystTarget": 480,
     "pe": "29.0x",
-    "pb": "1.9x"
+    "pb": "1.9x",
+    "prevClose": 258.5,
+    "marketCap": "1,378.0 億",
+    "marketCapVal": 137798155816,
+    "marketCapRank": 78,
+    "isTop100Cap": true
   },
   {
     "code": "3017",
     "name": "奇鋐",
     "slug": "asia-vital-components",
     "market": "TWSE",
-    "price": 645,
+    "price": 2540.0,
     "fairValue": 780,
     "analystTarget": 890,
     "pe": "27.8x",
-    "pb": "7.2x"
+    "pb": "7.2x",
+    "prevClose": 2310.0,
+    "marketCap": "1.0 兆",
+    "marketCapVal": 997382071780,
+    "marketCapRank": 17,
+    "isTop100Cap": true
   },
   {
     "code": "3324",
     "name": "雙鴻",
     "slug": "auras-technology",
     "market": "TPEX",
-    "price": 710,
+    "price": 1150.0,
     "fairValue": 860,
     "analystTarget": 980,
     "pe": "32.5x",
-    "pb": "8.6x"
+    "pb": "8.6x",
+    "prevClose": 1055.0,
+    "marketCap": "1,070.4 億",
+    "marketCapVal": 107038362550,
+    "marketCapRank": 85,
+    "isTop100Cap": true
   },
   {
     "code": "3653",
     "name": "健策",
     "slug": "jentech",
     "market": "TWSE",
-    "price": 1380,
+    "price": 5660.0,
     "fairValue": 1650,
     "analystTarget": 1880,
     "pe": "48.0x",
-    "pb": "15.2x"
+    "pb": "15.2x",
+    "prevClose": 5225.0,
+    "marketCap": "8,331.7 億",
+    "marketCapVal": 833173949480,
+    "marketCapRank": 24,
+    "isTop100Cap": true
   },
   {
     "code": "2421",
     "name": "建準",
     "slug": "sunonwealth-electric",
     "market": "TWSE",
-    "price": 110,
+    "price": 131.5,
     "fairValue": 135,
     "analystTarget": 152,
     "pe": "19.5x",
-    "pb": "4.1x"
+    "pb": "4.1x",
+    "prevClose": 125.0,
+    "marketCap": "377.3 億",
+    "marketCapVal": 37733092474,
+    "marketCapRank": 100,
+    "isTop100Cap": true
   },
   {
     "code": "2059",
     "name": "川湖",
     "slug": "king-slide-works",
     "market": "TWSE",
-    "price": 1290,
+    "price": 7990.0,
     "fairValue": 1580,
     "analystTarget": 1760,
     "pe": "30.2x",
-    "pb": "8.5x"
+    "pb": "8.5x",
+    "prevClose": 7565.0,
+    "marketCap": "7,614.2 億",
+    "marketCapVal": 761423605280,
+    "marketCapRank": 27,
+    "isTop100Cap": true
   },
   {
     "code": "3533",
     "name": "嘉澤",
     "slug": "lotes-co-ltd",
     "market": "TWSE",
-    "price": 1580,
+    "price": 1700.0,
     "fairValue": 1890,
     "analystTarget": 2100,
     "pe": "24.6x",
-    "pb": "7.4x"
+    "pb": "7.4x",
+    "prevClose": 1585.0,
+    "marketCap": "1,913.1 億",
+    "marketCapVal": 191308974700,
+    "marketCapRank": 68,
+    "isTop100Cap": true
   },
   {
     "code": "3037",
     "name": "欣興",
     "slug": "unimicron-tech",
     "market": "TWSE",
-    "price": 178,
+    "price": 754.0,
     "fairValue": 220,
     "analystTarget": 255,
     "pe": "21.5x",
-    "pb": "2.6x"
+    "pb": "2.6x",
+    "prevClose": 727.0,
+    "marketCap": "1.24 兆",
+    "marketCapVal": 1237533863384,
+    "marketCapRank": 12,
+    "isTop100Cap": true
   },
   {
     "code": "8046",
     "name": "南電",
     "slug": "nan-ya-printed",
     "market": "TWSE",
-    "price": 152,
+    "price": 944.0,
     "fairValue": 185,
     "analystTarget": 210,
     "pe": "35.0x",
-    "pb": "2.2x"
+    "pb": "2.2x",
+    "prevClose": 875.0,
+    "marketCap": "6,099.8 億",
+    "marketCapVal": 609980219728,
+    "marketCapRank": 32,
+    "isTop100Cap": true
   },
   {
     "code": "3189",
     "name": "景碩",
     "slug": "kinsus-interconnect",
     "market": "TWSE",
-    "price": 98,
+    "price": 692.0,
     "fairValue": 118,
     "analystTarget": 132,
     "pe": "28.5x",
-    "pb": "1.8x"
+    "pb": "1.8x",
+    "prevClose": 671.0,
+    "marketCap": "3,646.2 億",
+    "marketCapVal": 364621969120,
+    "marketCapRank": 48,
+    "isTop100Cap": true
   },
   {
     "code": "2368",
     "name": "金像電",
     "slug": "gold-circuit",
     "market": "TWSE",
-    "price": 225,
+    "price": 894.0,
     "fairValue": 278,
     "analystTarget": 315,
     "pe": "18.2x",
-    "pb": "4.8x"
+    "pb": "4.8x",
+    "prevClose": 813.0,
+    "marketCap": "4,743.5 億",
+    "marketCapVal": 474351904968,
+    "marketCapRank": 40,
+    "isTop100Cap": true
   },
   {
     "code": "3044",
     "name": "健鼎",
     "slug": "tripod-tech",
     "market": "TWSE",
-    "price": 218,
+    "price": 445.5,
     "fairValue": 265,
     "analystTarget": 295,
     "pe": "14.5x",
-    "pb": "3.1x"
+    "pb": "3.1x",
+    "prevClose": 413.5,
+    "marketCap": "2,341.6 億",
+    "marketCapVal": 234157427559,
+    "marketCapRank": 62,
+    "isTop100Cap": true
   },
   {
     "code": "6274",
     "name": "台燿",
     "slug": "taiwan-union-technology",
     "market": "TPEX",
-    "price": 168,
+    "price": 959.0,
     "fairValue": 205,
     "analystTarget": 232,
     "pe": "21.0x",
-    "pb": "4.2x"
+    "pb": "4.2x",
+    "prevClose": 906.0,
+    "marketCap": "2,871.8 億",
+    "marketCapVal": 287182229187,
+    "marketCapRank": 55,
+    "isTop100Cap": true
   },
   {
     "code": "2383",
     "name": "台光電",
     "slug": "elite-material",
     "market": "TWSE",
-    "price": 465,
+    "price": 4035.0,
     "fairValue": 560,
     "analystTarget": 630,
     "pe": "22.8x",
-    "pb": "6.9x"
+    "pb": "6.9x",
+    "prevClose": 3820.0,
+    "marketCap": "1.45 兆",
+    "marketCapVal": 1445825694990,
+    "marketCapRank": 10,
+    "isTop100Cap": true
   },
   {
     "code": "8069",
     "name": "元太",
     "slug": "e-ink-holdings",
     "market": "TPEX",
-    "price": 285,
+    "price": 144.5,
     "fairValue": 345,
     "analystTarget": 390,
     "pe": "35.0x",
-    "pb": "6.4x"
+    "pb": "6.4x",
+    "prevClose": 142.5,
+    "marketCap": "1,668.5 億",
+    "marketCapVal": 166851025910,
+    "marketCapRank": 72,
+    "isTop100Cap": true
   },
   {
     "code": "6176",
     "name": "瑞儀",
     "slug": "radiant-opto",
     "market": "TWSE",
-    "price": 185,
+    "price": 78.4,
     "fairValue": 218,
     "analystTarget": 235,
     "pe": "12.8x",
-    "pb": "2.2x"
+    "pb": "2.2x",
+    "prevClose": 78.0,
+    "marketCap": "273.4 億",
+    "marketCapVal": 27343603045,
+    "marketCapRank": 105,
+    "isTop100Cap": false
   },
   {
     "code": "2478",
     "name": "大毅",
     "slug": "tai-tech-advanced",
     "market": "TWSE",
-    "price": 54,
+    "price": 98.3,
     "fairValue": 64.5,
     "analystTarget": 71,
     "pe": "14.5x",
-    "pb": "1.5x"
+    "pb": "1.5x",
+    "prevClose": 89.4,
+    "marketCap": "142.3 億",
+    "marketCapVal": 14227090624,
+    "marketCapRank": 111,
+    "isTop100Cap": false
   },
   {
     "code": "2881",
     "name": "富邦金",
     "slug": "fubon-financial",
     "market": "TWSE",
-    "price": 88.5,
+    "price": 154.0,
     "fairValue": 104,
     "analystTarget": 112,
     "pe": "10.2x",
-    "pb": "1.3x"
+    "pb": "1.3x",
+    "prevClose": 148.0,
+    "marketCap": "2.16 兆",
+    "marketCapVal": 2157134202608,
+    "marketCapRank": 6,
+    "isTop100Cap": true
   },
   {
     "code": "2882",
     "name": "國泰金",
     "slug": "cathay-financial",
     "market": "TWSE",
-    "price": 68,
+    "price": 111.5,
     "fairValue": 79.5,
     "analystTarget": 86,
     "pe": "10.5x",
-    "pb": "1.2x"
+    "pb": "1.2x",
+    "prevClose": 106.0,
+    "marketCap": "1.64 兆",
+    "marketCapVal": 1635616929272,
+    "marketCapRank": 8,
+    "isTop100Cap": true
   },
   {
     "code": "2891",
     "name": "中信金",
     "slug": "chinatrust-financial",
     "market": "TWSE",
-    "price": 36.5,
+    "price": 75.8,
     "fairValue": 43.5,
     "analystTarget": 47,
     "pe": "10.8x",
-    "pb": "1.4x"
+    "pb": "1.4x",
+    "prevClose": 73.4,
+    "marketCap": "1.49 兆",
+    "marketCapVal": 1491435706695,
+    "marketCapRank": 9,
+    "isTop100Cap": true
   },
   {
     "code": "2886",
     "name": "兆豐金",
     "slug": "mega-financial",
     "market": "TWSE",
-    "price": 39.8,
+    "price": 52.8,
     "fairValue": 44.5,
     "analystTarget": 47.5,
     "pe": "16.5x",
-    "pb": "1.6x"
+    "pb": "1.6x",
+    "prevClose": 53.5,
+    "marketCap": "7,832.0 億",
+    "marketCapVal": 783202373290,
+    "marketCapRank": 26,
+    "isTop100Cap": true
   },
   {
     "code": "2884",
     "name": "玉山金",
     "slug": "e.sun-financial",
     "market": "TWSE",
-    "price": 28.5,
+    "price": 47.3,
     "fairValue": 32.8,
     "analystTarget": 35.2,
     "pe": "17.2x",
-    "pb": "1.7x"
+    "pb": "1.7x",
+    "prevClose": 47.0,
+    "marketCap": "8,383.2 億",
+    "marketCapVal": 838322045278,
+    "marketCapRank": 23,
+    "isTop100Cap": true
   },
   {
     "code": "2892",
     "name": "第一金",
     "slug": "first-financial",
     "market": "TWSE",
-    "price": 27.4,
+    "price": 40.95,
     "fairValue": 31,
     "analystTarget": 33.5,
     "pe": "15.1x",
-    "pb": "1.5x"
+    "pb": "1.5x",
+    "prevClose": 40.95,
+    "marketCap": "5,888.4 億",
+    "marketCapVal": 588839241218,
+    "marketCapRank": 34,
+    "isTop100Cap": true
   },
   {
     "code": "2880",
     "name": "華南金",
     "slug": "hua-nan-financial",
     "market": "TWSE",
-    "price": 25.8,
+    "price": 49.3,
     "fairValue": 29.2,
     "analystTarget": 31.5,
     "pe": "16.0x",
-    "pb": "1.5x"
+    "pb": "1.5x",
+    "prevClose": 48.95,
+    "marketCap": "6,929.7 億",
+    "marketCapVal": 692967442633,
+    "marketCapRank": 28,
+    "isTop100Cap": true
   },
   {
     "code": "2885",
     "name": "元大金",
     "slug": "yuanta-financial",
     "market": "TWSE",
-    "price": 32.6,
+    "price": 69.6,
     "fairValue": 38.5,
     "analystTarget": 41.5,
     "pe": "12.8x",
-    "pb": "1.3x"
+    "pb": "1.3x",
+    "prevClose": 66.9,
+    "marketCap": "9,649.6 億",
+    "marketCapVal": 964961957702,
+    "marketCapRank": 18,
+    "isTop100Cap": true
   },
   {
     "code": "2887",
     "name": "台新金",
     "slug": "taishin-financial",
     "market": "TWSE",
-    "price": 18.2,
+    "price": 40.15,
     "fairValue": 21.5,
     "analystTarget": 23.2,
     "pe": "12.0x",
-    "pb": "1.1x"
+    "pb": "1.1x",
+    "prevClose": 38.45,
+    "marketCap": "1.01 兆",
+    "marketCapVal": 1008369739180,
+    "marketCapRank": 16,
+    "isTop100Cap": true
   },
   {
     "code": "2890",
     "name": "永豐金",
     "slug": "sinopac-financial",
     "market": "TWSE",
-    "price": 23.8,
+    "price": 42.1,
     "fairValue": 28,
     "analystTarget": 30.2,
     "pe": "13.5x",
-    "pb": "1.4x"
+    "pb": "1.4x",
+    "prevClose": 41.7,
+    "marketCap": "6,223.3 億",
+    "marketCapVal": 622329303154,
+    "marketCapRank": 31,
+    "isTop100Cap": true
   },
   {
     "code": "5880",
     "name": "合庫金",
     "slug": "taiwan-coop-fin",
     "market": "TWSE",
-    "price": 25.6,
+    "price": 27.8,
     "fairValue": 28.8,
     "analystTarget": 30.5,
     "pe": "17.5x",
-    "pb": "1.4x"
+    "pb": "1.4x",
+    "prevClose": 27.9,
+    "marketCap": "4,468.3 億",
+    "marketCapVal": 446828297369,
+    "marketCapRank": 41,
+    "isTop100Cap": true
   },
   {
     "code": "2883",
     "name": "凱基金",
     "slug": "cdibh",
     "market": "TWSE",
-    "price": 16.8,
+    "price": 34.65,
     "fairValue": 20.5,
     "analystTarget": 22.8,
     "pe": "10.9x",
-    "pb": "1.1x"
+    "pb": "1.1x",
+    "prevClose": 33.65,
+    "marketCap": "5,881.7 億",
+    "marketCapVal": 588170322259,
+    "marketCapRank": 35,
+    "isTop100Cap": true
   },
   {
     "code": "2834",
     "name": "臺企銀",
     "slug": "taiwan-business-bank",
     "market": "TWSE",
-    "price": 16.2,
+    "price": 17.35,
     "fairValue": 18.8,
     "analystTarget": 20.4,
     "pe": "12.5x",
-    "pb": "1.1x"
+    "pb": "1.1x",
+    "prevClose": 17.35,
+    "marketCap": "1,804.1 億",
+    "marketCapVal": 180410959206,
+    "marketCapRank": 69,
+    "isTop100Cap": true
   },
   {
     "code": "5876",
     "name": "上海商銀",
     "slug": "shanghai-comm-bank",
     "market": "TWSE",
-    "price": 46.5,
+    "price": 51.2,
     "fairValue": 53,
     "analystTarget": 57,
     "pe": "12.2x",
-    "pb": "1.2x"
+    "pb": "1.2x",
+    "prevClose": 51.0,
+    "marketCap": "2,514.0 億",
+    "marketCapVal": 251403221555,
+    "marketCapRank": 59,
+    "isTop100Cap": true
   },
   {
     "code": "2897",
     "name": "王道銀行",
     "slug": "o-bank-co-ltd",
     "market": "TWSE",
-    "price": 10.15,
+    "price": 10.45,
     "fairValue": 12.2,
     "analystTarget": 13.4,
     "pe": "10.5x",
-    "pb": "0.8x"
+    "pb": "0.8x",
+    "prevClose": 10.5,
+    "marketCap": "293.2 億",
+    "marketCapVal": 29315989825,
+    "marketCapRank": 103,
+    "isTop100Cap": false
   },
   {
     "code": "2801",
     "name": "彰銀",
     "slug": "chang-hwa-bank",
     "market": "TWSE",
-    "price": 18.1,
+    "price": 28.1,
     "fairValue": 20.8,
     "analystTarget": 22.5,
     "pe": "14.2x",
-    "pb": "1.0x"
+    "pb": "1.0x",
+    "prevClose": 27.9,
+    "marketCap": "3,388.9 億",
+    "marketCapVal": 338891547193,
+    "marketCapRank": 49,
+    "isTop100Cap": true
   },
   {
     "code": "1301",
     "name": "台塑",
     "slug": "formosa-plastic",
     "market": "TWSE",
-    "price": 48.5,
+    "price": 68.9,
     "fairValue": 58,
     "analystTarget": 64,
     "pe": "26.5x",
-    "pb": "0.9x"
+    "pb": "0.9x",
+    "prevClose": 62.7,
+    "marketCap": "4,386.0 億",
+    "marketCapVal": 438599539811,
+    "marketCapRank": 42,
+    "isTop100Cap": true
   },
   {
     "code": "1303",
     "name": "南亞",
     "slug": "nan-ya-plastic",
     "market": "TWSE",
-    "price": 42.3,
+    "price": 263.0,
     "fairValue": 51.5,
     "analystTarget": 56.5,
     "pe": "24.2x",
-    "pb": "0.8x"
+    "pb": "0.8x",
+    "prevClose": 239.5,
+    "marketCap": "2.09 兆",
+    "marketCapVal": 2085806077907,
+    "marketCapRank": 7,
+    "isTop100Cap": true
   },
   {
     "code": "1326",
     "name": "台化",
     "slug": "formosa-chem-f",
     "market": "TWSE",
-    "price": 37.8,
+    "price": 68.9,
     "fairValue": 46,
     "analystTarget": 50.5,
     "pe": "28.0x",
-    "pb": "0.7x"
+    "pb": "0.7x",
+    "prevClose": 62.7,
+    "marketCap": "4,038.4 億",
+    "marketCapVal": 403835735450,
+    "marketCapRank": 44,
+    "isTop100Cap": true
   },
   {
     "code": "6505",
     "name": "台塑化",
     "slug": "formosa-petrochem",
     "market": "TWSE",
-    "price": 51,
+    "price": 88.3,
     "fairValue": 62,
     "analystTarget": 68,
     "pe": "25.1x",
-    "pb": "1.4x"
+    "pb": "1.4x",
+    "prevClose": 85.7,
+    "marketCap": "8,411.4 億",
+    "marketCapVal": 841142237272,
+    "marketCapRank": 22,
+    "isTop100Cap": true
   },
   {
     "code": "2002",
     "name": "中鋼",
     "slug": "china-steel",
     "market": "TWSE",
-    "price": 22.8,
+    "price": 18.55,
     "fairValue": 26.5,
     "analystTarget": 28.8,
     "pe": "32.0x",
-    "pb": "1.1x"
+    "pb": "1.1x",
+    "prevClose": 18.55,
+    "marketCap": "2,918.8 億",
+    "marketCapVal": 291881671494,
+    "marketCapRank": 54,
+    "isTop100Cap": true
   },
   {
     "code": "1519",
     "name": "華城",
     "slug": "fortune-electric",
     "market": "TWSE",
-    "price": 635,
+    "price": 497.0,
     "fairValue": 760,
     "analystTarget": 865,
     "pe": "38.5x",
-    "pb": "14.5x"
+    "pb": "14.5x",
+    "prevClose": 452.0,
+    "marketCap": "1,726.9 億",
+    "marketCapVal": 172692057713,
+    "marketCapRank": 70,
+    "isTop100Cap": true
   },
   {
     "code": "1513",
     "name": "中興電",
     "slug": "chung-hsin-elec",
     "market": "TWSE",
-    "price": 168,
+    "price": 146.0,
     "fairValue": 205,
     "analystTarget": 235,
     "pe": "23.5x",
-    "pb": "4.8x"
+    "pb": "4.8x",
+    "prevClose": 138.5,
+    "marketCap": "734.5 億",
+    "marketCapVal": 73454427190,
+    "marketCapRank": 94,
+    "isTop100Cap": true
   },
   {
     "code": "1504",
     "name": "東元",
     "slug": "teco-electric",
     "market": "TWSE",
-    "price": 51.2,
+    "price": 65.6,
     "fairValue": 61.5,
     "analystTarget": 68,
     "pe": "16.5x",
-    "pb": "1.6x"
+    "pb": "1.6x",
+    "prevClose": 59.7,
+    "marketCap": "1,558.9 億",
+    "marketCapVal": 155894508870,
+    "marketCapRank": 73,
+    "isTop100Cap": true
   },
   {
     "code": "1503",
     "name": "士電",
     "slug": "shihlin-electric",
     "market": "TWSE",
-    "price": 205,
+    "price": 174.5,
     "fairValue": 248,
     "analystTarget": 280,
     "pe": "31.0x",
-    "pb": "4.5x"
+    "pb": "4.5x",
+    "prevClose": 159.0,
+    "marketCap": "909.1 億",
+    "marketCapVal": 90909652914,
+    "marketCapRank": 90,
+    "isTop100Cap": true
   },
   {
     "code": "1101",
     "name": "台泥",
     "slug": "taiwan-cement",
     "market": "TWSE",
-    "price": 32.4,
+    "price": 26.85,
     "fairValue": 37.8,
     "analystTarget": 41,
     "pe": "22.0x",
-    "pb": "1.0x"
+    "pb": "1.0x",
+    "prevClose": 26.75,
+    "marketCap": "2,020.0 億",
+    "marketCapVal": 201997429773,
+    "marketCapRank": 65,
+    "isTop100Cap": true
   },
   {
     "code": "1102",
     "name": "亞泥",
     "slug": "asia-cement",
     "market": "TWSE",
-    "price": 42,
+    "price": 36.9,
     "fairValue": 48.5,
     "analystTarget": 52.5,
     "pe": "13.5x",
-    "pb": "0.9x"
+    "pb": "0.9x",
+    "prevClose": 36.55,
+    "marketCap": "1,308.7 億",
+    "marketCapVal": 130868170309,
+    "marketCapRank": 80,
+    "isTop100Cap": true
   },
   {
     "code": "1216",
     "name": "統一",
     "slug": "uni-president",
     "market": "TWSE",
-    "price": 82.5,
+    "price": 76.9,
     "fairValue": 92,
     "analystTarget": 98,
     "pe": "21.5x",
-    "pb": "3.5x"
+    "pb": "3.5x",
+    "prevClose": 76.8,
+    "marketCap": "4,369.5 億",
+    "marketCapVal": 436946985875,
+    "marketCapRank": 43,
+    "isTop100Cap": true
   },
   {
     "code": "1402",
     "name": "遠東新",
     "slug": "far-eastern-new",
     "market": "TWSE",
-    "price": 34.5,
+    "price": 27.25,
     "fairValue": 40,
     "analystTarget": 43.5,
     "pe": "18.0x",
-    "pb": "0.8x"
+    "pb": "0.8x",
+    "prevClose": 27.75,
+    "marketCap": "1,458.7 億",
+    "marketCapVal": 145865849936,
+    "marketCapRank": 76,
+    "isTop100Cap": true
   },
   {
     "code": "9904",
     "name": "寶成",
     "slug": "pou-chen",
     "market": "TWSE",
-    "price": 38.6,
+    "price": 25.7,
     "fairValue": 46,
     "analystTarget": 50.5,
     "pe": "11.5x",
-    "pb": "0.9x"
+    "pb": "0.9x",
+    "prevClose": 25.7,
+    "marketCap": "757.3 億",
+    "marketCapVal": 75732431374,
+    "marketCapRank": 92,
+    "isTop100Cap": true
   },
   {
     "code": "9910",
     "name": "豐泰",
     "slug": "feng-tay-ent",
     "market": "TWSE",
-    "price": 138,
+    "price": 68.1,
     "fairValue": 165,
     "analystTarget": 182,
     "pe": "22.5x",
-    "pb": "4.2x"
+    "pb": "4.2x",
+    "prevClose": 69.6,
+    "marketCap": "672.5 億",
+    "marketCapVal": 67247580791,
+    "marketCapRank": 96,
+    "isTop100Cap": true
   },
   {
     "code": "2105",
     "name": "正新",
     "slug": "cheng-shin-rubb",
     "market": "TWSE",
-    "price": 49.5,
+    "price": 29.7,
     "fairValue": 58.5,
     "analystTarget": 64,
     "pe": "17.5x",
-    "pb": "1.8x"
+    "pb": "1.8x",
+    "prevClose": 30.05,
+    "marketCap": "962.7 億",
+    "marketCapVal": 96270041419,
+    "marketCapRank": 88,
+    "isTop100Cap": true
   },
   {
     "code": "2912",
     "name": "統一超",
     "slug": "president-chain",
     "market": "TWSE",
-    "price": 275,
+    "price": 212.0,
     "fairValue": 310,
     "analystTarget": 335,
     "pe": "26.0x",
-    "pb": "8.5x"
+    "pb": "8.5x",
+    "prevClose": 210.5,
+    "marketCap": "2,204.0 億",
+    "marketCapVal": 220399918060,
+    "marketCapRank": 63,
+    "isTop100Cap": true
   },
   {
     "code": "2207",
     "name": "和泰車",
     "slug": "hotai-motor",
     "market": "TWSE",
-    "price": 685,
+    "price": 531.0,
     "fairValue": 810,
     "analystTarget": 890,
     "pe": "17.5x",
-    "pb": "4.9x"
+    "pb": "4.9x",
+    "prevClose": 528.0,
+    "marketCap": "2,958.2 億",
+    "marketCapVal": 295821569808,
+    "marketCapRank": 53,
+    "isTop100Cap": true
   },
   {
     "code": "2201",
     "name": "裕隆",
     "slug": "yulon-motor",
     "market": "TWSE",
-    "price": 54.5,
+    "price": 26.95,
     "fairValue": 66,
     "analystTarget": 74,
     "pe": "14.8x",
-    "pb": "1.1x"
+    "pb": "1.1x",
+    "prevClose": 26.75,
+    "marketCap": "288.4 億",
+    "marketCapVal": 28836533714,
+    "marketCapRank": 104,
+    "isTop100Cap": false
   },
   {
     "code": "1605",
     "name": "華新",
     "slug": "walsin-lihua",
     "market": "TWSE",
-    "price": 33.2,
+    "price": 33.45,
     "fairValue": 39,
     "analystTarget": 43,
     "pe": "19.5x",
-    "pb": "1.2x"
+    "pb": "1.2x",
+    "prevClose": 31.45,
+    "marketCap": "1,482.3 億",
+    "marketCapVal": 148228087111,
+    "marketCapRank": 75,
+    "isTop100Cap": true
   },
   {
     "code": "2603",
     "name": "長榮",
     "slug": "evergreen-marine",
     "market": "TWSE",
-    "price": 215,
+    "price": 245.5,
     "fairValue": 285,
     "analystTarget": 320,
     "pe": "5.5x",
-    "pb": "0.9x"
+    "pb": "0.9x",
+    "prevClose": 246.5,
+    "marketCap": "5,315.2 億",
+    "marketCapVal": 531518055518,
+    "marketCapRank": 37,
+    "isTop100Cap": true
   },
   {
     "code": "2609",
     "name": "陽明",
     "slug": "yang-ming-marine",
     "market": "TWSE",
-    "price": 68.5,
+    "price": 57.5,
     "fairValue": 88,
     "analystTarget": 98,
     "pe": "6.8x",
-    "pb": "0.8x"
+    "pb": "0.8x",
+    "prevClose": 57.1,
+    "marketCap": "2,008.0 億",
+    "marketCapVal": 200795995525,
+    "marketCapRank": 66,
+    "isTop100Cap": true
   },
   {
     "code": "2615",
     "name": "萬海",
     "slug": "wan-hai-lines",
     "market": "TWSE",
-    "price": 82,
+    "price": 107.5,
     "fairValue": 105,
     "analystTarget": 118,
     "pe": "8.2x",
-    "pb": "1.0x"
+    "pb": "1.0x",
+    "prevClose": 107.5,
+    "marketCap": "3,016.6 億",
+    "marketCapVal": 301660726498,
+    "marketCapRank": 50,
+    "isTop100Cap": true
   },
   {
     "code": "2618",
     "name": "長榮航",
     "slug": "eva-airways",
     "market": "TWSE",
-    "price": 38.5,
+    "price": 44.0,
     "fairValue": 47,
     "analystTarget": 52,
     "pe": "8.5x",
-    "pb": "1.6x"
+    "pb": "1.6x",
+    "prevClose": 43.6,
+    "marketCap": "2,376.2 億",
+    "marketCapVal": 237619550740,
+    "marketCapRank": 61,
+    "isTop100Cap": true
   },
   {
     "code": "2610",
     "name": "華航",
     "slug": "china-airlines",
     "market": "TWSE",
-    "price": 23.5,
+    "price": 21.7,
     "fairValue": 28.5,
     "analystTarget": 31.5,
     "pe": "9.8x",
-    "pb": "1.3x"
+    "pb": "1.3x",
+    "prevClose": 21.2,
+    "marketCap": "1,333.5 億",
+    "marketCapVal": 133346251709,
+    "marketCapRank": 79,
+    "isTop100Cap": true
   },
   {
     "code": "2605",
     "name": "新興",
     "slug": "sincere-nav",
     "market": "TWSE",
-    "price": 25.8,
+    "price": 31.65,
     "fairValue": 31,
     "analystTarget": 34.5,
     "pe": "12.5x",
-    "pb": "0.9x"
+    "pb": "0.9x",
+    "prevClose": 30.95,
+    "marketCap": "185.3 億",
+    "marketCapVal": 18526431850,
+    "marketCapRank": 107,
+    "isTop100Cap": false
   },
   {
     "code": "6472",
     "name": "保瑞",
     "slug": "bora-pharmaceut",
     "market": "TWSE",
-    "price": 760,
+    "price": 408.0,
     "fairValue": 950,
     "analystTarget": 1080,
     "pe": "24.5x",
-    "pb": "5.2x"
+    "pb": "5.2x",
+    "prevClose": 399.5,
+    "marketCap": "522.3 億",
+    "marketCapVal": 52231801776,
+    "marketCapRank": 98,
+    "isTop100Cap": true
   },
   {
     "code": "1795",
     "name": "美時",
     "slug": "alvogen-korea-h",
     "market": "TWSE",
-    "price": 268,
+    "price": 167.0,
     "fairValue": 345,
     "analystTarget": 395,
     "pe": "14.8x",
-    "pb": "3.8x"
+    "pb": "3.8x",
+    "prevClose": 166.0,
+    "marketCap": "451.0 億",
+    "marketCapVal": 45095887919,
+    "marketCapRank": 99,
+    "isTop100Cap": true
   },
   {
     "code": "6589",
     "name": "台康生技",
     "slug": "eirgenix-inc",
     "market": "TPEX",
-    "price": 82,
+    "price": 51.5,
     "fairValue": 102,
     "analystTarget": 115,
     "pe": "45.0x",
-    "pb": "3.5x"
+    "pb": "3.5x",
+    "prevClose": 46.9,
+    "marketCap": "155.6 億",
+    "marketCapVal": 15556510704,
+    "marketCapRank": 110,
+    "isTop100Cap": false
   },
   {
     "code": "4147",
     "name": "中裕",
     "slug": "tai-med-biolog",
     "market": "TPEX",
-    "price": 88,
+    "price": 60.5,
     "fairValue": 108,
     "analystTarget": 122,
     "pe": "52.0x",
-    "pb": "4.8x"
+    "pb": "4.8x",
+    "prevClose": 55.0,
+    "marketCap": "165.3 億",
+    "marketCapVal": 16528746712,
+    "marketCapRank": 108,
+    "isTop100Cap": false
   },
   {
     "code": "6547",
     "name": "高端疫苗",
     "slug": "medigen-vaccine",
     "market": "TPEX",
-    "price": 46.5,
+    "price": 48.75,
     "fairValue": 56,
     "analystTarget": 62,
     "pe": "40.0x",
-    "pb": "2.5x"
+    "pb": "2.5x",
+    "prevClose": 46.9,
+    "marketCap": "160.4 億",
+    "marketCapVal": 16036002645,
+    "marketCapRank": 109,
+    "isTop100Cap": false
   },
   {
     "code": "3008",
     "name": "大立光",
     "slug": "largan-precision",
     "market": "TWSE",
-    "price": 2380,
+    "price": 4925.0,
     "fairValue": 2850,
     "analystTarget": 3200,
     "pe": "16.5x",
-    "pb": "2.1x"
+    "pb": "2.1x",
+    "prevClose": 4480.0,
+    "marketCap": "6,441.8 億",
+    "marketCapVal": 644181120225,
+    "marketCapRank": 29,
+    "isTop100Cap": true
   },
   {
     "code": "3406",
     "name": "玉晶光",
     "slug": "genius-electron",
     "market": "TWSE",
-    "price": 465,
+    "price": 841.0,
     "fairValue": 560,
     "analystTarget": 620,
     "pe": "15.8x",
-    "pb": "2.8x"
+    "pb": "2.8x",
+    "prevClose": 825.0,
+    "marketCap": "994.7 億",
+    "marketCapVal": 99471380023,
+    "marketCapRank": 87,
+    "isTop100Cap": true
   },
   {
     "code": "2474",
     "name": "可成",
     "slug": "catcher-tech",
     "market": "TWSE",
-    "price": 208,
+    "price": 185.0,
     "fairValue": 242,
     "analystTarget": 265,
     "pe": "13.5x",
-    "pb": "1.1x"
+    "pb": "1.1x",
+    "prevClose": 183.5,
+    "marketCap": "996.8 億",
+    "marketCapVal": 99681897580,
+    "marketCapRank": 86,
+    "isTop100Cap": true
   },
   {
     "code": "3023",
     "name": "信邦",
     "slug": "sinbon-electron",
     "market": "TWSE",
-    "price": 275,
+    "price": 258.0,
     "fairValue": 330,
     "analystTarget": 365,
     "pe": "18.5x",
-    "pb": "3.8x"
+    "pb": "3.8x",
+    "prevClose": 258.5,
+    "marketCap": "619.4 億",
+    "marketCapVal": 61937805612,
+    "marketCapRank": 97,
+    "isTop100Cap": true
   },
   {
     "code": "6533",
     "name": "晶心科",
     "slug": "andes-tech",
     "market": "TPEX",
-    "price": 385,
+    "price": 216.0,
     "fairValue": 460,
     "analystTarget": 515,
     "pe": "48.0x",
-    "pb": "7.2x"
+    "pb": "7.2x",
+    "prevClose": 202.0,
+    "marketCap": "109.4 億",
+    "marketCapVal": 10940596776,
+    "marketCapRank": 114,
+    "isTop100Cap": false
   },
   {
     "code": "6789",
     "name": "采鈺",
     "slug": "visera-tech",
     "market": "TWSE",
-    "price": 265,
+    "price": 359.0,
     "fairValue": 318,
     "analystTarget": 355,
     "pe": "38.0x",
-    "pb": "3.9x"
+    "pb": "3.9x",
+    "prevClose": 328.5,
+    "marketCap": "1,143.1 億",
+    "marketCapVal": 114310309721,
+    "marketCapRank": 82,
+    "isTop100Cap": true
   },
   {
     "code": "6805",
     "name": "富世達",
     "slug": "fositek-co-ltd",
     "market": "TWSE",
-    "price": 780,
+    "price": 1855.0,
     "fairValue": 960,
     "analystTarget": 1100,
     "pe": "35.0x",
-    "pb": "12.0x"
+    "pb": "12.0x",
+    "prevClose": 1690.0,
+    "marketCap": "1,271.7 億",
+    "marketCapVal": 127167477080,
+    "marketCapRank": 81,
+    "isTop100Cap": true
   },
   {
     "code": "3596",
     "name": "智易",
     "slug": "arcadyan-tech",
     "market": "TWSE",
-    "price": 152,
+    "price": 138.0,
     "fairValue": 182,
     "analystTarget": 205,
     "pe": "13.5x",
-    "pb": "2.6x"
+    "pb": "2.6x",
+    "prevClose": 136.5,
+    "marketCap": "304.1 億",
+    "marketCapVal": 30408896298,
+    "marketCapRank": 102,
+    "isTop100Cap": false
   },
   {
     "code": "6409",
     "name": "旭隼",
     "slug": "voltronic-power",
     "market": "TWSE",
-    "price": 1680,
+    "price": 834.0,
     "fairValue": 1980,
     "analystTarget": 2180,
     "pe": "32.0x",
-    "pb": "11.5x"
+    "pb": "11.5x",
+    "prevClose": 791.0,
+    "marketCap": "736.0 億",
+    "marketCapVal": 73603474044,
+    "marketCapRank": 93,
+    "isTop100Cap": true
   }
 ];
 
@@ -3022,6 +3633,10 @@
             if (q.high) s.dayHigh = q.high;
             if (q.low) s.dayLow = q.low;
             if (q.volume) s.volume = q.volume;
+            if (q.marketCap) s.marketCap = q.marketCap;
+            if (q.marketCapVal) s.marketCapVal = q.marketCapVal;
+            if (q.marketCapRank) s.marketCapRank = q.marketCapRank;
+            if (q.isTop100Cap !== undefined) s.isTop100Cap = q.isTop100Cap;
             s.lastUpdated = `證交所即時 (${q.time || data.updatedAt})`;
             s.perf = getStockPerf(s);
             matchedCount++;
@@ -4696,21 +5311,43 @@
     let lbPageSize = 20;
     let lbSearchQuery = '';
 
+    let lbScope = 'top100cap'; // 'top100cap' (default) or 'all'
+
+    function setLeaderboardScope(scope) {
+      lbScope = scope;
+      lbPage = 1;
+      const btnTop100 = document.getElementById('btnScopeTop100Cap');
+      const btnAll = document.getElementById('btnScopeAll');
+
+      const activeTop100 = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm';
+      const activeAll = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm';
+      const inactiveBtn = 'px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200 border border-transparent';
+
+      if (btnTop100) btnTop100.className = scope === 'top100cap' ? activeTop100 : inactiveBtn;
+      if (btnAll) btnAll.className = scope === 'all' ? activeAll : inactiveBtn;
+
+      showToast(scope === 'top100cap' ? '👑 已切換為「僅看台股市值前 100 大核心權值股」' : '🌐 已切換為「全市場標的庫 (包含中小型股)」', 'info');
+      renderLeaderboard();
+    }
+
     function setLeaderboardMode(mode) {
       lbMode = mode;
       lbPage = 1;
       
       const btnFair = document.getElementById('btnLbFairValue');
       const btnAnalyst = document.getElementById('btnLbAnalyst');
+      const btnMarketCap = document.getElementById('btnLbMarketCap');
       const btnCommunity = document.getElementById('btnLbCommunity');
 
-      const activeFair = 'flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-sm';
-      const activeAnalyst = 'flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shadow-sm';
-      const activeCommunity = 'flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/30 shadow-sm';
-      const inactiveBtn = 'flex-1 md:flex-none px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200';
+      const activeFair = 'flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-sm';
+      const activeAnalyst = 'flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shadow-sm';
+      const activeMarketCap = 'flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-purple-500/20 text-purple-300 border border-purple-500/30 shadow-sm';
+      const activeCommunity = 'flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/30 shadow-sm';
+      const inactiveBtn = 'flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200';
 
       if (btnFair) btnFair.className = mode === 'fairValue' ? activeFair : inactiveBtn;
       if (btnAnalyst) btnAnalyst.className = mode === 'analyst' ? activeAnalyst : inactiveBtn;
+      if (btnMarketCap) btnMarketCap.className = mode === 'marketCap' ? activeMarketCap : inactiveBtn;
       if (btnCommunity) btnCommunity.className = mode === 'community' ? activeCommunity : inactiveBtn;
 
       // Update table headers according to mode
@@ -4723,6 +5360,9 @@
         } else if (mode === 'analyst') {
           thVal.textContent = '分析師預估目標價';
           thUpside.textContent = '分析師看漲空間';
+        } else if (mode === 'marketCap') {
+          thVal.textContent = '公允價值估值';
+          thUpside.textContent = '公允折價空間';
         } else {
           thVal.textContent = '公允價 / 目標價';
           thUpside.textContent = '查詢熱度 / 空間';
@@ -4810,7 +5450,16 @@
       const paginationButtons = document.getElementById('leaderboardPaginationButtons');
       if (!tbody) return;
 
-      const pool = getCombinedStockPool();
+      let pool = getCombinedStockPool();
+
+      // Apply Market Cap scope filter:
+      if (lbScope === 'top100cap') {
+        // Sort by marketCapVal (or fallback) and strictly pick the Top 100 largest
+        const sortedByCap = [...pool].sort((a, b) => (b.marketCapVal || 0) - (a.marketCapVal || 0));
+        const top100Set = new Set(sortedByCap.slice(0, 100).map(s => s.code));
+        pool = pool.filter(s => top100Set.has(s.code));
+      }
+
       let rankedList = [];
 
       if (lbMode === 'fairValue') {
@@ -4830,6 +5479,14 @@
           })
           .filter(s => s.activeUpside !== null && s.activeUpside > 0)
           .sort((a, b) => b.activeUpside - a.activeUpside)
+          .slice(0, 100);
+      } else if (lbMode === 'marketCap') {
+        rankedList = pool
+          .map(s => {
+            const upside = calcUpside(s.fairValue, s.price);
+            return { ...s, activeUpside: upside, activeTarget: s.fairValue, metricType: 'marketCap' };
+          })
+          .sort((a, b) => (b.marketCapVal || 0) - (a.marketCapVal || 0))
           .slice(0, 100);
       } else {
         // Community pool mode
@@ -4861,6 +5518,7 @@
       if (lbSortCol !== 'default') {
         filtered = [...filtered].sort((a, b) => {
           if (lbSortCol === 'rank') return 0;
+          if (lbSortCol === 'marketCap') return ((a.marketCapVal || 0) - (b.marketCapVal || 0)) * lbSortDirection;
           if (lbSortCol === 'perf.d1') return ((getStockPerf(a).d1 ?? -999) - (getStockPerf(b).d1 ?? -999)) * lbSortDirection;
           if (lbSortCol === 'perf.w1') return ((getStockPerf(a).w1 ?? -999) - (getStockPerf(b).w1 ?? -999)) * lbSortDirection;
           if (lbSortCol === 'perf.m1') return ((getStockPerf(a).m1 ?? -999) - (getStockPerf(b).m1 ?? -999)) * lbSortDirection;
@@ -4887,6 +5545,7 @@
               <th class="py-3 px-3 text-center w-14 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('rank')">排名 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('price')">即時股價 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2.5 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('marketCap')" title="點擊依公司總市值排序">市值 (Rank) <i class="fa-solid fa-sort ml-0.5"></i></th>
               <!-- Performance columns in Leaderboard -->
               <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.d1')" title="即時當天盤中漲跌幅 (台股紅漲綠跌)"><span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse mr-1"></span>即時當天 % <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.w1')" title="近 1 週報酬率">近1週 <i class="fa-solid fa-sort ml-0.5"></i></th>
@@ -4907,6 +5566,7 @@
               <th class="py-3 px-3.5 text-center w-16 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('rank')">排名 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-4 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('price')">即時股價 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('marketCap')" title="點擊依公司總市值排序">市值 (Rank) <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('target')">${targetTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300 w-44" onclick="sortLeaderboardBy('upside')">${upsideTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-3 text-center">估值診斷</th>
@@ -4932,7 +5592,7 @@
       if (pageItems.length === 0) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="${showLbPerf ? 14 : 9}" class="py-12 text-center text-slate-500">
+            <td colspan="${showLbPerf ? 15 : 10}" class="py-12 text-center text-slate-500">
               <i class="fa-solid fa-magnifying-glass text-3xl mb-3 text-slate-600 block"></i>
               查無符合條件的股票，請嘗試其他關鍵字或切換子榜單。
             </td>
@@ -4982,6 +5642,10 @@
               </td>
               <td class="py-3 px-3 text-right font-mono font-semibold text-white whitespace-nowrap">
                 NT$ ${formatNumber(stock.price)}
+              </td>
+              <td class="py-3 px-2.5 text-right font-mono text-xs text-slate-300 whitespace-nowrap">
+                <div class="font-bold text-amber-300/90">${stock.marketCap || '—'}</div>
+                ${stock.marketCapRank ? `<div class="text-[10px] text-slate-500">#${stock.marketCapRank}</div>` : ''}
               </td>
               ${showLbPerf ? `
                 <td class="py-3 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.d1, true)}</td>

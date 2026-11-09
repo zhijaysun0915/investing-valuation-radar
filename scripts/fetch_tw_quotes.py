@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Taiwan Stock Exchange (TWSE) & Taipei Exchange (TPEX) Real-time Quotes Fetcher
-Queries official TWSE MIS API in batches and outputs `data/quotes.json`.
+Queries official TWSE MIS API in batches and computes official Market Cap (市值)
+from TWSE & TPEX official open data. Outputs `data/quotes.json`.
 Zero external dependencies (pure standard library python3).
 """
 
@@ -14,6 +15,47 @@ import urllib.request
 from datetime import datetime, timezone, timedelta
 
 TW_TZ = timezone(timedelta(hours=8))
+
+def get_shares_map():
+    """Fetch official total issued shares from TWSE and TPEX open data."""
+    shares = {}
+    # TWSE Listed Companies Base Info
+    try:
+        req = urllib.request.Request(
+            'https://openapi.twse.com.tw/v1/opendata/t187ap03_L',
+            headers={'User-Agent': 'Mozilla/5.0'}
+        )
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            for c in json.loads(resp.read().decode('utf-8')):
+                code = c.get('公司代號')
+                s_str = c.get('已發行普通股數或TDR原股發行股數')
+                if code and s_str:
+                    try:
+                        shares[code] = int(str(s_str).replace(',', '').strip())
+                    except:
+                        pass
+    except Exception as e:
+        print(f"Warning fetching TWSE shares: {e}", file=sys.stderr)
+
+    # TPEX OTC Companies Base Info
+    try:
+        req = urllib.request.Request(
+            'https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O',
+            headers={'User-Agent': 'Mozilla/5.0'}
+        )
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            for c in json.loads(resp.read().decode('utf-8')):
+                code = c.get('SecuritiesCompanyCode')
+                s_str = c.get('IssueShares')
+                if code and s_str:
+                    try:
+                        shares[code] = int(str(s_str).replace(',', '').strip())
+                    except:
+                        pass
+    except Exception as e:
+        print(f"Warning fetching TPEX shares: {e}", file=sys.stderr)
+
+    return shares
 
 def get_symbols_from_index_html(index_path):
     symbols = {}
@@ -98,18 +140,12 @@ def parse_price_item(item):
 
     name = item.get('n', '').strip()
     
-    # Yesterday Close (prevClose)
     y_raw = item.get('y', '0')
     try:
         prev_close = float(y_raw) if y_raw and y_raw != '-' else 0.0
     except (ValueError, TypeError):
         prev_close = 0.0
 
-    # Best Candidate for Current Price:
-    # 1. z (realtime transaction price)
-    # 2. trade.z (recent trade match)
-    # 3. a[0] / b[0] (best ask / bid)
-    # 4. h / o (high / open)
     price = None
     z = item.get('z')
     trade_z = item.get('trade', {}).get('z') if isinstance(item.get('trade'), dict) else None
@@ -177,14 +213,15 @@ def main():
     symbols_dict = get_symbols_from_index_html(index_html)
     print(f"Found {len(symbols_dict)} unique stocks to monitor.")
 
-    # Form query channels:
-    # Some stocks might be registered as TPEX but listed on TWSE, or vice versa (e.g. 6533, 6589).
-    # To guarantee 100% coverage, for those unknown or dual, we query their market tag.
+    # Fetch official total issued shares
+    print("Fetching official total shares from TWSE & TPEX...")
+    shares_map = get_shares_map()
+    print(f"Retrieved shares data for {len(shares_map)} companies.")
+
     query_symbols = []
     for code, info in symbols_dict.items():
         mkt = info.get('market', 'TWSE')
         prefix = 'otc' if mkt in ('TPEX', 'OTC') else 'tse'
-        # Fix known listing switches:
         if code in ('6533', '6589'):
             prefix = 'tse'
         query_symbols.append(f"{prefix}_{code}.tw")
@@ -202,17 +239,48 @@ def main():
                 parsed = parse_price_item(item)
                 if parsed and parsed.get('code'):
                     code = parsed['code']
-                    # Keep original custom name if TWSE name is truncated
                     if code in symbols_dict and symbols_dict[code].get('name'):
                         parsed['name'] = symbols_dict[code]['name']
+                    
+                    # Calculate Market Capitalization
+                    sh = shares_map.get(code, 0)
+                    price = parsed['price']
+                    market_cap_ntd = round(price * sh) if (sh > 0 and price > 0) else 0
+                    market_cap_yi = round(market_cap_ntd / 100_000_000, 1) # 億元
+                    market_cap_zhao = round(market_cap_ntd / 1_000_000_000_000, 2) # 兆元
+                    
+                    if market_cap_zhao >= 1.0:
+                        cap_str = f"{market_cap_zhao} 兆"
+                    elif market_cap_yi >= 1.0:
+                        cap_str = f"{market_cap_yi:,.1f} 億"
+                    else:
+                        cap_str = "—"
+
+                    parsed['shares'] = sh
+                    parsed['marketCapVal'] = market_cap_ntd
+                    parsed['marketCap'] = cap_str
+
                     quotes[code] = parsed
             time.sleep(0.15)
         except Exception as e:
             print(f"Error fetching chunk {i}: {e}", file=sys.stderr)
 
+    # Rank all stocks by Market Capitalization
+    sorted_by_cap = sorted(
+        quotes.values(),
+        key=lambda x: x.get('marketCapVal', 0),
+        reverse=True
+    )
+
+    # Assign marketCapRank (1..N) and isTop100Cap flag
+    for rank_idx, item in enumerate(sorted_by_cap, 1):
+        code = item['code']
+        quotes[code]['marketCapRank'] = rank_idx
+        quotes[code]['isTop100Cap'] = (rank_idx <= 100)
+
     now_tw = datetime.now(TW_TZ)
     output_data = {
-        'version': '2.5.0',
+        'version': '2.6.0',
         'updatedAt': now_tw.strftime('%Y-%m-%d %H:%M:%S'),
         'timestamp': int(now_tw.timestamp()),
         'total': len(quotes),
@@ -223,7 +291,7 @@ def main():
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
-    print(f"Successfully wrote {len(quotes)} live quotes to {output_path}!")
+    print(f"Successfully computed market caps and wrote {len(quotes)} live quotes to {output_path}!")
 
 if __name__ == '__main__':
     main()
