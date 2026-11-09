@@ -162,7 +162,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.9.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.10.0</span>
         </button>
 
         <button onclick="openIssueModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看已知問題修復與回報紀錄">
@@ -472,6 +472,15 @@
               <i class="fa-solid fa-chart-line"></i>
               <span id="toggleLbPerfBtnText">區間表現：已展開 (當天/週/月/季/年)</span>
             </button>
+            <button
+              id="toggleLbDiscountOnlyBtn"
+              onclick="toggleLeaderboardDiscountOnly()"
+              class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1 shrink-0 text-xs font-semibold"
+              title="點擊切換：顯示全部標的（包含公允與溢價股）或僅看折價超值股 (Upside > 0%)"
+            >
+              <i class="fa-solid fa-filter"></i>
+              <span id="toggleLbDiscountOnlyBtnText">估值：全部標的 (全數顯示)</span>
+            </button>
 
             <div class="flex items-center gap-1.5 text-slate-400">
               <span>每頁顯示：</span>
@@ -593,7 +602,7 @@
         <span>資料來源：即時連線 Investing.com 公開個股頁、分析師共識目標價與 InvestingPro 同業比較快照（僅供投資研究參考）</span>
       </div>
       <div class="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.9.0</span>
+        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.10.0</span>
         <span>•</span>
         <button onclick="openReleaseNotesModal()" class="text-slate-400 hover:text-cyan-300 underline underline-offset-2">Release Notes</button>
         <span>•</span>
@@ -804,7 +813,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.9.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.10.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -828,13 +837,29 @@
             </a>
           </div>
         </div>
-        <!-- v2.9.0 -->
+        <!-- v2.10.0 -->
         <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
           <div class="flex items-center justify-between flex-wrap gap-1">
             <div class="font-bold text-white text-sm flex items-center gap-2">
-              <span>v2.9.0</span>
+              <span>v2.10.0</span>
               <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li><strong>📊 解除榜單隱藏標的限制（完整呈現 50 / 100 / 全市場標的）</strong>：全面排查並修正了榜單預設篩選「僅顯示 Upside &gt; 0%」導致市值前 50 大僅顯示 10 檔、前 100 大僅顯示 45 檔之問題。現在市值前 50 大保證完整呈現 50 檔藍籌龍頭，前 100 大完整呈現 100 檔權值股，無任何遺漏。</li>
+            <li><strong>🔍 新增「估值範圍切換：全部標的 vs 僅看折價超值股」快捷過濾按鈕</strong>：投資人可一鍵切換「顯示全部標的（包含超值折價、公允與溢價股）」或「僅看具有安全邊際折價股 (Upside &gt; 0%)」，既能全盤檢視百大藍籌，也能快速聚焦低估機會。</li>
+            <li><strong>🎨 優化負值折價空間（溢價）視覺顯示</strong>：個股股價若高於公允價值，正確顯示為紅色負值空間（如 -15.4%）與「定價過高」標籤，條狀圖以溫和警示色渲染，數值不再誤顯為正號。</li>
+          </ul>
+        </div>
+
+        <!-- v2.9.0 -->
+        <div class="relative pl-6 border-l-2 border-purple-500 space-y-2">
+          <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-purple-500 border-2 border-slate-950"></div>
+          <div class="flex items-center justify-between flex-wrap gap-1">
+            <div class="font-bold text-white text-sm flex items-center gap-2">
+              <span>v2.9.0</span>
             </div>
             <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
           </div>
@@ -5588,6 +5613,7 @@
     }
 
     let showLbPerf = true;
+    let lbFilterDiscountOnly = false;
     let lbSortCol = 'default';
     let lbSortDirection = -1;
 
@@ -5598,6 +5624,25 @@
         btnText.textContent = showLbPerf
           ? '區間表現：已展開 (當天即時/週/月/季/年)'
           : '區間表現：已隱藏 (點擊展開)';
+      }
+      renderLeaderboard();
+    }
+
+    function toggleLeaderboardDiscountOnly() {
+      lbFilterDiscountOnly = !lbFilterDiscountOnly;
+      lbPage = 1;
+      const btn = document.getElementById('toggleLbDiscountOnlyBtn');
+      const btnText = document.getElementById('toggleLbDiscountOnlyBtnText');
+      if (btn && btnText) {
+        if (lbFilterDiscountOnly) {
+          btn.className = 'px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 transition flex items-center gap-1 shrink-0 text-xs font-semibold';
+          btnText.innerHTML = '估值：僅看折價股 (Upside > 0%)';
+          showToast('🔍 已啟用折價篩選：僅顯示具有公允折價上漲空間的標的', 'info');
+        } else {
+          btn.className = 'px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1 shrink-0 text-xs font-semibold';
+          btnText.innerHTML = '估值：全部標的 (全數顯示)';
+          showToast('📋 已切換為顯示全部標的（包含超值折價、公允與溢價股）', 'info');
+        }
       }
       renderLeaderboard();
     }
@@ -5686,34 +5731,29 @@
         rankedList = pool
           .map(s => {
             const upside = calcUpside(s.fairValue, s.price);
-            return { ...s, activeUpside: upside, activeTarget: s.fairValue, metricType: 'fairValue' };
+            return { ...s, activeUpside: upside !== null ? upside : -999, activeTarget: s.fairValue, metricType: 'fairValue' };
           })
-          .filter(s => s.activeUpside !== null && s.activeUpside > 0)
-          .sort((a, b) => b.activeUpside - a.activeUpside)
-          .slice(0, lbScope === 'top50cap' ? 50 : 100);
+          .sort((a, b) => b.activeUpside - a.activeUpside);
       } else if (lbMode === 'analyst') {
         rankedList = pool
           .map(s => {
             const upside = calcUpside(s.analystTarget, s.price);
-            return { ...s, activeUpside: upside, activeTarget: s.analystTarget, metricType: 'analyst' };
+            return { ...s, activeUpside: upside !== null ? upside : -999, activeTarget: s.analystTarget, metricType: 'analyst' };
           })
-          .filter(s => s.activeUpside !== null && s.activeUpside > 0)
-          .sort((a, b) => b.activeUpside - a.activeUpside)
-          .slice(0, lbScope === 'top50cap' ? 50 : 100);
+          .sort((a, b) => b.activeUpside - a.activeUpside);
       } else if (lbMode === 'marketCap') {
         rankedList = pool
           .map(s => {
             const upside = calcUpside(s.fairValue, s.price);
-            return { ...s, activeUpside: upside, activeTarget: s.fairValue, metricType: 'marketCap' };
+            return { ...s, activeUpside: upside !== null ? upside : -999, activeTarget: s.fairValue, metricType: 'marketCap' };
           })
-          .sort((a, b) => (b.marketCapVal || 0) - (a.marketCapVal || 0))
-          .slice(0, lbScope === 'top50cap' ? 50 : 100);
+          .sort((a, b) => (b.marketCapVal || 0) - (a.marketCapVal || 0));
       } else {
         // Community pool mode
         rankedList = pool
           .map(s => {
-            const fairUp = calcUpside(s.fairValue, s.price) ?? 0;
-            const analystUp = calcUpside(s.analystTarget, s.price) ?? 0;
+            const fairUp = calcUpside(s.fairValue, s.price) ?? -999;
+            const analystUp = calcUpside(s.analystTarget, s.price) ?? -999;
             return {
               ...s,
               activeUpside: Math.max(fairUp, analystUp),
@@ -5722,6 +5762,11 @@
             };
           })
           .sort((a, b) => (b.searchCount || 0) - (a.searchCount || 0));
+      }
+
+      // Filter by discount only if user toggled it
+      if (lbFilterDiscountOnly) {
+        rankedList = rankedList.filter(s => (s.activeUpside || 0) > 0);
       }
 
       // Filter by search query if any
@@ -5834,8 +5879,11 @@
             rankBadge = `<span class="font-mono text-slate-400 font-medium">${rank}</span>`;
           }
 
-          const upside = stock.activeUpside || 0;
-          const barWidth = Math.min(100, Math.max(8, upside));
+          const upside = stock.activeUpside !== undefined && stock.activeUpside !== null ? stock.activeUpside : 0;
+          const isPositive = upside > 0;
+          const isZero = upside === 0;
+          const isNegative = upside < 0;
+          const barWidth = Math.min(100, Math.max(6, Math.abs(upside)));
           const isInWatchlist = stocks.some(s => s.code === stock.code);
           const perf = getStockPerf(stock);
 
@@ -5878,11 +5926,11 @@
                 NT$ ${formatNumber(stock.activeTarget)}
               </td>
               <td class="py-3 px-3 text-right whitespace-nowrap">
-                <div class="font-mono font-bold text-emerald-400 text-sm">
-                  +${upside.toFixed(1)}%
+                <div class="font-mono font-bold ${isPositive ? 'text-emerald-400' : (isNegative ? 'text-rose-400' : 'text-slate-300')} text-sm">
+                  ${isPositive ? '+' + upside.toFixed(1) + '%' : (isNegative ? upside.toFixed(1) + '%' : '0.0%')}
                 </div>
                 <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-1">
-                  <div class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full transition-all duration-500" style="width: ${barWidth}%"></div>
+                  <div class="h-full ${isPositive ? 'bg-gradient-to-r from-emerald-500 to-cyan-400' : (isNegative ? 'bg-rose-500/60' : 'bg-slate-600')} rounded-full transition-all duration-500" style="width: ${barWidth}%"></div>
                 </div>
               </td>
               <td class="py-3 px-2.5 text-center">${diagStatus}</td>
@@ -5929,9 +5977,11 @@
       }
 
       // Render Pagination Info
+      const scopeDesc = lbScope === 'top50cap' ? '臺灣 50 核心 (市值前 50 大)' : (lbScope === 'top100cap' ? '台股市值前 100 大' : '全市場標的庫');
+      const filterDesc = lbFilterDiscountOnly ? '｜ 篩選：僅看折價超值股 (Upside > 0%)' : '｜ 完整清單（包含超值折價、價格公允與溢價股）';
       paginationInfo.textContent = totalCount === 0
         ? '無符合項目'
-        : `顯示第 ${startIndex + 1} - ${endIndex} 筆，共 ${totalCount} 筆標的（榜單完整容量 100+ 檔）`;
+        : `顯示第 ${startIndex + 1} - ${endIndex} 筆，共 ${totalCount} 筆標的 ｜ ${scopeDesc} ${filterDesc}`;
 
       // Render Pagination Buttons
       let buttonsHtml = '';
