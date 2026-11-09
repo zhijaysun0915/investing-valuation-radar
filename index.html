@@ -386,6 +386,16 @@
           </div>
 
           <div class="flex items-center gap-2 justify-between sm:justify-end flex-wrap">
+            <button
+              id="toggleLbPerfBtn"
+              onclick="toggleLeaderboardPerformance()"
+              class="px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/25 transition flex items-center gap-1 shrink-0 text-xs font-semibold"
+              title="切換是否顯示即時當天、近1週、近1月、近1季、近1年表現欄位"
+            >
+              <i class="fa-solid fa-chart-line"></i>
+              <span id="toggleLbPerfBtnText">區間表現：已展開 (當天/週/月/季/年)</span>
+            </button>
+
             <div class="flex items-center gap-1.5 text-slate-400">
               <span>每頁顯示：</span>
               <select
@@ -433,7 +443,7 @@
       <div class="glass-panel rounded-2xl overflow-hidden shadow-xl border border-slate-800/80">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
-            <thead>
+            <thead id="leaderboardTableHead">
               <tr class="bg-slate-900/95 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
                 <th class="py-3 px-3.5 text-center w-16">排名</th>
                 <th class="py-3 px-4">代碼 / 名稱</th>
@@ -581,7 +591,7 @@
           </div>
           <div class="grid grid-cols-5 gap-2">
             <div>
-              <label class="block text-[10px] text-slate-400 mb-0.5">近1日 %</label>
+              <label class="block text-[10px] text-cyan-300 font-semibold mb-0.5">即時當天 %</label>
               <input id="editPerfD1" type="number" step="0.01" class="w-full bg-slate-950 border border-slate-700 rounded px-2 py-1 text-white font-mono text-xs focus:border-cyan-400 focus:outline-none" />
             </div>
             <div>
@@ -2765,14 +2775,21 @@
     };
 
     function getStockPerf(s) {
-      if (s.perf && typeof s.perf.d1 === 'number') return s.perf;
-      if (STOCK_PERF_PRESETS[s.code]) {
-        s.perf = { ...STOCK_PERF_PRESETS[s.code] };
+      // 1. Calculate live today change directly from real-time price & prevClose
+      const liveD1 = (s.price > 0 && s.prevClose > 0)
+        ? Number(((s.price - s.prevClose) / s.prevClose * 100).toFixed(2))
+        : null;
+
+      if (s.perf && typeof s.perf.d1 === 'number') {
+        if (liveD1 !== null) s.perf.d1 = liveD1;
         return s.perf;
       }
-      const d1 = (s.price > 0 && s.prevClose > 0)
-        ? Number(((s.price - s.prevClose) / s.prevClose * 100).toFixed(2))
-        : 0;
+      if (STOCK_PERF_PRESETS[s.code]) {
+        s.perf = { ...STOCK_PERF_PRESETS[s.code] };
+        if (liveD1 !== null) s.perf.d1 = liveD1;
+        return s.perf;
+      }
+      const d1 = liveD1 !== null ? liveD1 : 0;
       const seed = (s.code || '').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
       const w1 = Number((d1 * 1.5 + ((seed % 13) - 6) * 0.4).toFixed(2));
       const m1 = Number((w1 * 1.8 + ((seed % 17) - 8) * 0.6).toFixed(2));
@@ -2782,7 +2799,7 @@
       return s.perf;
     }
 
-    function formatPerfBadge(pct) {
+    function formatPerfBadge(pct, isLiveToday = false) {
       if (pct === null || pct === undefined || isNaN(pct)) return '<span class="text-slate-500 font-mono text-xs">—</span>';
       const isPos = pct > 0;
       const isZero = pct === 0;
@@ -2792,7 +2809,8 @@
         : (isZero ? 'text-slate-300 bg-slate-800 border-slate-700' : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30');
       const arrow = isPos ? '▲ ' : (pct < 0 ? '▼ ' : '');
       const sign = isPos ? '+' : '';
-      return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono font-bold border ${colorClass}" title="${isPos ? '上漲' : (isZero ? '持平' : '下跌')} ${sign}${pct.toFixed(2)}%">${arrow}${sign}${pct.toFixed(2)}%</span>`;
+      const dot = isLiveToday ? `<span class="w-1.5 h-1.5 rounded-full ${isPos ? 'bg-rose-400' : (isZero ? 'bg-slate-400' : 'bg-emerald-400')} animate-pulse mr-1"></span>` : '';
+      return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono font-bold border ${colorClass}" title="${isLiveToday ? '即時當天盤中漲跌: ' : ''}${isPos ? '上漲' : (isZero ? '持平' : '下跌')} ${sign}${pct.toFixed(2)}%">${dot}${arrow}${sign}${pct.toFixed(2)}%</span>`;
     }
 
     let showPerfCols = true;
@@ -3964,10 +3982,13 @@
 
             <!-- 5-Metric Performance Cards Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-              <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
-                <span class="text-xs text-slate-400 font-medium">近 1 日 (1D)</span>
-                <div class="my-2">${formatPerfBadge(getStockPerf(stock).d1)}</div>
-                <span class="text-[10px] text-slate-500 font-mono">昨收 ${formatNumber(stock.prevClose || stock.price)}</span>
+              <div class="bg-slate-950/90 rounded-xl p-3 border border-cyan-500/40 text-center flex flex-col justify-between shadow-sm shadow-cyan-500/10">
+                <span class="text-xs text-cyan-300 font-bold flex items-center justify-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                  <span>即時當天 (%)</span>
+                </span>
+                <div class="my-2">${formatPerfBadge(getStockPerf(stock).d1, true)}</div>
+                <span class="text-[10px] text-slate-400 font-mono">盤中漲跌 ${dayChange >= 0 ? '+' : ''}${dayChange.toFixed(2)} (${dayChangePct >= 0 ? '+' : ''}${dayChangePct.toFixed(2)}%)</span>
               </div>
               <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
                 <span class="text-xs text-slate-400 font-medium">近 1 週 (1W)</span>
@@ -4210,9 +4231,12 @@
                 <span class="text-[10px] text-slate-500 font-mono">台股標準: ▲紅漲 ▼綠跌</span>
               </div>
               <div class="grid grid-cols-5 gap-1.5 text-center">
-                <div class="bg-slate-900 rounded p-1.5 border border-slate-800/80">
-                  <div class="text-[10px] text-slate-400">近1日</div>
-                  <div class="mt-0.5">${formatPerfBadge(perf.d1)}</div>
+                <div class="bg-slate-900 rounded p-1.5 border border-cyan-500/40">
+                  <div class="text-[10px] text-cyan-300 font-semibold flex items-center justify-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <span>即時當天</span>
+                  </div>
+                  <div class="mt-0.5">${formatPerfBadge(perf.d1, true)}</div>
                 </div>
                 <div class="bg-slate-900 rounded p-1.5 border border-slate-800/80">
                   <div class="text-[10px] text-slate-400">近1週</div>
@@ -4281,7 +4305,7 @@
             <tr class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
               <th class="py-3.5 px-3 cursor-pointer hover:text-cyan-300" onclick="sortByColumn('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('price')">即時股價 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.d1')" title="近 1 日漲跌幅 (台股紅漲綠跌)">近1日 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.d1')" title="即時當天盤中漲跌幅 (台股紅漲綠跌)"><span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse mr-1"></span>即時當天 % <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.w1')" title="近 1 週報酬率">近1週 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.m1')" title="近 1 月報酬率">近1月 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.q1')" title="近 1 季報酬率">近1季 <i class="fa-solid fa-sort ml-0.5"></i></th>
@@ -4482,6 +4506,31 @@
       renderLeaderboard();
     }
 
+    let showLbPerf = true;
+    let lbSortCol = 'default';
+    let lbSortDirection = -1;
+
+    function toggleLeaderboardPerformance() {
+      showLbPerf = !showLbPerf;
+      const btnText = document.getElementById('toggleLbPerfBtnText');
+      if (btnText) {
+        btnText.textContent = showLbPerf
+          ? '區間表現：已展開 (當天即時/週/月/季/年)'
+          : '區間表現：已隱藏 (點擊展開)';
+      }
+      renderLeaderboard();
+    }
+
+    function sortLeaderboardBy(col) {
+      if (lbSortCol === col) {
+        lbSortDirection *= -1;
+      } else {
+        lbSortCol = col;
+        lbSortDirection = -1;
+      }
+      renderLeaderboard();
+    }
+
     function changeLeaderboardPageSize(val) {
       lbPageSize = parseInt(val) || 20;
       lbPage = 1;
@@ -4529,6 +4578,7 @@
     }
 
     function renderLeaderboard() {
+      const thead = document.getElementById('leaderboardTableHead');
       const tbody = document.getElementById('leaderboardTableBody');
       const paginationInfo = document.getElementById('leaderboardPaginationInfo');
       const paginationButtons = document.getElementById('leaderboardPaginationButtons');
@@ -4581,6 +4631,67 @@
         );
       }
 
+      // Custom sort by column if requested
+      if (lbSortCol !== 'default') {
+        filtered = [...filtered].sort((a, b) => {
+          if (lbSortCol === 'rank') return 0;
+          if (lbSortCol === 'perf.d1') return ((getStockPerf(a).d1 ?? -999) - (getStockPerf(b).d1 ?? -999)) * lbSortDirection;
+          if (lbSortCol === 'perf.w1') return ((getStockPerf(a).w1 ?? -999) - (getStockPerf(b).w1 ?? -999)) * lbSortDirection;
+          if (lbSortCol === 'perf.m1') return ((getStockPerf(a).m1 ?? -999) - (getStockPerf(b).m1 ?? -999)) * lbSortDirection;
+          if (lbSortCol === 'perf.q1') return ((getStockPerf(a).q1 ?? -999) - (getStockPerf(b).q1 ?? -999)) * lbSortDirection;
+          if (lbSortCol === 'perf.y1') return ((getStockPerf(a).y1 ?? -999) - (getStockPerf(b).y1 ?? -999)) * lbSortDirection;
+          if (lbSortCol === 'price') return ((a.price || 0) - (b.price || 0)) * lbSortDirection;
+          if (lbSortCol === 'code') return a.code.localeCompare(b.code) * lbSortDirection;
+          if (lbSortCol === 'target') return ((a.activeTarget || 0) - (b.activeTarget || 0)) * lbSortDirection;
+          if (lbSortCol === 'upside') return ((a.activeUpside || 0) - (b.activeUpside || 0)) * lbSortDirection;
+          if (lbSortCol === 'pe') return ((parseNum(a.pe) || 0) - (parseNum(b.pe) || 0)) * lbSortDirection;
+          if (lbSortCol === 'pb') return ((parseNum(a.pb) || 0) - (parseNum(b.pb) || 0)) * lbSortDirection;
+          return 0;
+        });
+      }
+
+      // Render Table Head
+      if (thead) {
+        const targetTitle = lbMode === 'fairValue' ? 'InvestingPro 公允價' : (lbMode === 'analyst' ? '外資分析師目標價' : '基準估值');
+        const upsideTitle = lbMode === 'fairValue' ? '公允價折價空間' : (lbMode === 'analyst' ? '外資潛在看漲空間' : '最大潛在空間');
+
+        if (showLbPerf) {
+          thead.innerHTML = `
+            <tr class="bg-slate-900/95 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+              <th class="py-3 px-3 text-center w-14 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('rank')">排名 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('price')">即時股價 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <!-- Performance columns in Leaderboard -->
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.d1')" title="即時當天盤中漲跌幅 (台股紅漲綠跌)"><span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse mr-1"></span>即時當天 % <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.w1')" title="近 1 週報酬率">近1週 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.m1')" title="近 1 月報酬率">近1月 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.q1')" title="近 1 季報酬率">近1季 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.y1')" title="近 1 年報酬率">近1年 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('target')">${targetTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300 w-36" onclick="sortLeaderboardBy('upside')">${upsideTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2.5 text-center">估值診斷</th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('pe')">P/E <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('pb')">P/B <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-center">操作</th>
+            </tr>
+          `;
+        } else {
+          thead.innerHTML = `
+            <tr class="bg-slate-900/95 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+              <th class="py-3 px-3.5 text-center w-16 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('rank')">排名 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-4 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('price')">即時股價 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('target')">${targetTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300 w-44" onclick="sortLeaderboardBy('upside')">${upsideTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-center">估值診斷</th>
+              <th class="py-3 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('pe')">本益比 P/E <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('pb')">淨值比 P/B <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-4 text-center">操作</th>
+            </tr>
+          `;
+        }
+      }
+
       // Pagination math
       const totalCount = filtered.length;
       const totalPages = Math.max(1, Math.ceil(totalCount / lbPageSize));
@@ -4595,7 +4706,7 @@
       if (pageItems.length === 0) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="9" class="py-12 text-center text-slate-500">
+            <td colspan="${showLbPerf ? 14 : 9}" class="py-12 text-center text-slate-500">
               <i class="fa-solid fa-magnifying-glass text-3xl mb-3 text-slate-600 block"></i>
               查無符合條件的股票，請嘗試其他關鍵字或切換子榜單。
             </td>
@@ -4620,35 +4731,43 @@
           const upside = stock.activeUpside || 0;
           const barWidth = Math.min(100, Math.max(8, upside));
           const isInWatchlist = stocks.some(s => s.code === stock.code);
+          const perf = getStockPerf(stock);
 
           let diagStatus = '';
           if (upside >= 20) {
-            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">深度低估</span>`;
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 whitespace-nowrap">深度低估</span>`;
           } else if (upside >= 10) {
-            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">定價過低</span>`;
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 whitespace-nowrap">定價過低</span>`;
           } else if (upside >= 0) {
-            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">價格公允</span>`;
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 whitespace-nowrap">價格公允</span>`;
           } else {
-            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-rose-500/10 text-rose-300 border border-rose-500/20">定價過高</span>`;
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-rose-500/10 text-rose-300 border border-rose-500/20 whitespace-nowrap">定價過高</span>`;
           }
 
           return `
             <tr class="hover:bg-slate-800/40 transition">
-              <td class="py-3 px-3.5 text-center">${rankBadge}</td>
-              <td class="py-3 px-4">
-                <div class="flex items-center gap-2">
+              <td class="py-3 px-3 text-center">${rankBadge}</td>
+              <td class="py-3 px-3">
+                <div class="flex items-center gap-1.5">
                   <span class="font-mono font-bold text-white cursor-pointer hover:text-cyan-400 transition" onclick="viewStockInDetail('${stock.code}')">${stock.code}</span>
-                  <span class="font-medium text-slate-200 cursor-pointer hover:text-cyan-400 transition" onclick="viewStockInDetail('${stock.code}')">${stock.name}</span>
-                  <span class="text-[10px] px-1.5 py-0.2 rounded bg-slate-800 border border-slate-700 text-slate-400 font-mono">${stock.market || 'TWSE'}</span>
+                  <span class="font-medium text-slate-200 cursor-pointer hover:text-cyan-400 transition truncate max-w-[90px] sm:max-w-none" onclick="viewStockInDetail('${stock.code}')">${stock.name}</span>
+                  <span class="text-[10px] px-1.5 py-0.2 rounded bg-slate-800 border border-slate-700 text-slate-400 font-mono shrink-0">${stock.market || 'TWSE'}</span>
                 </div>
               </td>
-              <td class="py-3 px-4 text-right font-mono font-semibold text-white">
+              <td class="py-3 px-3 text-right font-mono font-semibold text-white whitespace-nowrap">
                 NT$ ${formatNumber(stock.price)}
               </td>
-              <td class="py-3 px-4 text-right font-mono text-cyan-300 font-medium">
+              ${showLbPerf ? `
+                <td class="py-3 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.d1, true)}</td>
+                <td class="py-3 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.w1)}</td>
+                <td class="py-3 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.m1)}</td>
+                <td class="py-3 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.q1)}</td>
+                <td class="py-3 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.y1)}</td>
+              ` : ''}
+              <td class="py-3 px-3 text-right font-mono text-cyan-300 font-medium whitespace-nowrap">
                 NT$ ${formatNumber(stock.activeTarget)}
               </td>
-              <td class="py-3 px-4 text-right">
+              <td class="py-3 px-3 text-right whitespace-nowrap">
                 <div class="font-mono font-bold text-emerald-400 text-sm">
                   +${upside.toFixed(1)}%
                 </div>
@@ -4656,10 +4775,10 @@
                   <div class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full transition-all duration-500" style="width: ${barWidth}%"></div>
                 </div>
               </td>
-              <td class="py-3 px-3 text-center">${diagStatus}</td>
-              <td class="py-3 px-3 text-center font-mono text-xs text-slate-300">${stock.pe || '...'}</td>
-              <td class="py-3 px-3 text-center font-mono text-xs text-slate-300">${stock.pb || '...'}</td>
-              <td class="py-3 px-4 text-center">
+              <td class="py-3 px-2.5 text-center">${diagStatus}</td>
+              <td class="py-3 px-2 text-center font-mono text-xs text-slate-300">${stock.pe || '...'}</td>
+              <td class="py-3 px-2 text-center font-mono text-xs text-slate-300">${stock.pb || '...'}</td>
+              <td class="py-3 px-3 text-center">
                 <div class="flex items-center justify-center gap-1.5">
                   <button
                     onclick="viewStockInDetail('${stock.code}')"
@@ -4679,7 +4798,7 @@
                   </button>
 
                   ${isInWatchlist ? `
-                    <span class="px-2 py-1 rounded text-emerald-400 text-xs font-medium border border-emerald-500/20 bg-emerald-500/10">
+                    <span class="px-2 py-1 rounded text-emerald-400 text-xs font-medium border border-emerald-500/20 bg-emerald-500/10" title="已在自選雷達">
                       <i class="fa-solid fa-check"></i>
                     </span>
                   ` : `
@@ -4718,29 +4837,32 @@
                 : 'border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200'
             }"
           >
-            <i class="fa-solid fa-angle-left mr-1"></i>上一頁
+            <i class="fa-solid fa-chevron-left mr-1"></i>上一頁
           </button>
         `;
 
-        // Numbered buttons
-        for (let p = 1; p <= totalPages; p++) {
-          if (totalPages <= 7 || p === 1 || p === totalPages || (p >= lbPage - 1 && p <= lbPage + 1)) {
-            const isActive = p === lbPage;
-            buttonsHtml += `
-              <button
-                onclick="changeLeaderboardPage(${p})"
-                class="px-2.5 py-1 rounded-lg border text-xs font-mono font-medium transition ${
-                  isActive
-                    ? 'border-cyan-500/40 bg-cyan-500/20 text-cyan-300 shadow-sm'
-                    : 'border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200'
-                }"
-              >
-                ${p}
-              </button>
-            `;
-          } else if (p === lbPage - 2 || p === lbPage + 2) {
-            buttonsHtml += `<span class="px-1 text-slate-600">...</span>`;
-          }
+        // Page number buttons
+        const maxButtons = 5;
+        let startPage = Math.max(1, lbPage - 2);
+        let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+        if (endPage - startPage < maxButtons - 1) {
+          startPage = Math.max(1, endPage - maxButtons + 1);
+        }
+
+        for (let p = startPage; p <= endPage; p++) {
+          const isActive = p === lbPage;
+          buttonsHtml += `
+            <button
+              onclick="changeLeaderboardPage(${p})"
+              class="w-7 h-7 rounded-lg border text-xs font-mono font-medium transition ${
+                isActive
+                  ? 'bg-cyan-500 text-slate-950 font-bold border-cyan-400'
+                  : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+              }"
+            >
+              ${p}
+            </button>
+          `;
         }
 
         // Next button
@@ -4754,7 +4876,7 @@
                 : 'border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200'
             }"
           >
-            下一頁<i class="fa-solid fa-angle-right ml-1"></i>
+            下一頁<i class="fa-solid fa-chevron-right ml-1"></i>
           </button>
         `;
       }
