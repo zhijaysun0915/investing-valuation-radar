@@ -2,7 +2,7 @@
 
 [![GitHub Pages Deployment](https://img.shields.io/badge/線上_Live_Demo-GitHub_Pages-10b981?style=for-the-badge&logo=github)](https://zhijaysun0915.github.io/investing-valuation-radar/)
 [![Version](https://img.shields.io/badge/版本-v2.4.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
-[![Issues](https://img.shields.io/badge/Issue_記錄-5_已解決-10b981?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/issues)
+[![Issues](https://img.shields.io/badge/Issue_記錄-3_已解決-10b981?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/issues)
 [![GitHub Repository](https://img.shields.io/badge/GitHub_Repo-zhijaysun0915%2Finvesting--valuation--radar-181717?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
