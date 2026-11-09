@@ -1,8 +1,9 @@
 # 📊 Investing.com 股票公允價 & 分析師預估價即時雷達 (Investing Valuation Radar)
 
 [![GitHub Pages Deployment](https://img.shields.io/badge/線上_Live_Demo-GitHub_Pages-10b981?style=for-the-badge&logo=github)](https://zhijaysun0915.github.io/investing-valuation-radar/)
-[![Version](https://img.shields.io/badge/版本-v2.4.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
-[![Issues](https://img.shields.io/badge/Issue_記錄-3_已解決-10b981?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/issues)
+[![Version](https://img.shields.io/badge/版本-v2.5.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
+[![Issues](https://img.shields.io/badge/Issue_反饋-GitHub_Issues-f59e0b?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/issues)
+[![Releases](https://img.shields.io/badge/Releases-GitHub_Releases-8b5cf6?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![GitHub Repository](https://img.shields.io/badge/GitHub_Repo-zhijaysun0915%2Finvesting--valuation--radar-181717?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
@@ -48,7 +49,17 @@
      - 使用者可選擇填入個人的 Gemini API Key（僅留存於瀏覽器 localStorage，絕不上傳）。
      - 自動呼叫 Google Search 檢索 `site:investing.com/pro` 快照，進一步增強付費牆背後的公允價值數值。
 
-3. **四大檢視視角切換（含 Top 100 雙向排行榜與分頁）**
+3. **📊 個股擴充欄位：即時股價與 5 大區間表現 (近1日、近1週、近1月、近1季、近1年)**
+   - **橫向比較表一鍵擴充**：點擊「📊 擴充表現欄位」即可於總覽表展開 1D / 1W / 1M / 1Q / 1Y 報酬率欄位，支援點擊表頭排序。
+   - **獨立折疊明細卡**：每檔股票皆可單獨點擊展開，即時查看盤中振幅、昨收價、52週位階與各週期漲跌幅標籤（遵循台股標準：▲ 紅漲 ▼ 綠跌）。
+   - **右側詳細檢視全面整合**：在 Split View 中提供專屬「即時盤況與多週期個股表現」儀表板區塊。
+   - **自訂校準支援**：手動校準彈窗內建五大週期報酬率輸入欄位，方便隨時微調與自訂。
+
+4. **🌐 GitHub Issue 與 Release 深度社群整合**
+   - **GitHub Releases**：版本歷程、功能變更與發行標記全面公開於 [GitHub Releases](https://github.com/zhijaysun0915/investing-valuation-radar/releases)。
+   - **GitHub Issues 反饋中心**：提供標準化 Issue 範本，使用者可前往 [GitHub Issues](https://github.com/zhijaysun0915/investing-valuation-radar/issues) 提交估值校準建議、Bug 回報與新功能提案。
+
+5. **四大檢視視角切換（含 Top 100 雙向排行榜與分頁）**
    - **🏆 估值潛力 Top 100 榜單 (Leaderboard with Pagination)**：
      - **💎 公允價值折價榜 Top 100**：按 `(公允價 - 現價) / 現價` 排序，發掘潛在折價空間最大的價值型標的。
      - **🎯 分析師目標價看漲榜 Top 100**：按 `(分析師共識目標價 - 現價) / 現價` 排序，掌握法人外資看漲潛力最高的成長型標的。

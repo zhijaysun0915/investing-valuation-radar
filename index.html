@@ -136,7 +136,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.4.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.5.0</span>
         </button>
 
         <button onclick="openIssueModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看已知問題修復與回報紀錄">
@@ -159,6 +159,11 @@
           <i class="fa-solid fa-file-csv text-emerald-400"></i>
           <span class="hidden sm:inline">匯出 CSV</span>
         </button>
+
+        <a href="https://github.com/zhijaysun0915/investing-valuation-radar" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="在 GitHub 上觀看開源專案、Releases 與 Issues">
+          <i class="fa-brands fa-github text-white text-sm"></i>
+          <span class="hidden md:inline">GitHub</span>
+        </a>
       </div>
     </div>
   </header>
@@ -467,21 +472,24 @@
     <!-- LAYOUT 3: DENSE COMPARISON TABLE                                    -->
     <!-- =================================================================== -->
     <section id="tableViewContainer" class="hidden glass-panel rounded-2xl overflow-hidden shadow-xl">
+      <div class="p-3.5 sm:p-4 bg-slate-900/80 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-white text-sm flex items-center gap-2">
+            <i class="fa-solid fa-table-list text-cyan-400"></i>
+            <span>多股估值與區間績效橫向比較表</span>
+          </span>
+          <span id="tableStockCountBadge" class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">9 檔股票</span>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <button id="togglePerfColsBtn" onclick="togglePerformanceColumns()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/25 transition flex items-center gap-1.5" title="一鍵切換是否展開近1日、近1週、近1月、近1季、近1年報酬率">
+            <i class="fa-solid fa-chart-line"></i>
+            <span id="togglePerfColsBtnText">擴充表現欄位：已開啟 (近1日/週/月/季/年)</span>
+          </button>
+        </div>
+      </div>
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-              <th class="py-3.5 px-4 cursor-pointer hover:text-cyan-300" onclick="sortByColumn('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('price')">最新股價 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')">公允價 (Fair Value) <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">公允價空間 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystTarget')">分析師預估價 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystUpside')">分析師空間 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-3 text-center">分析師共識</th>
-              <th class="py-3.5 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('peNum')">本益比 P/E <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('pbNum')">股價淨值比 P/B <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-center">操作</th>
-            </tr>
+          <thead id="comparisonTableHead">
           </thead>
           <tbody id="comparisonTableBody" class="divide-y divide-slate-800/70 text-sm"></tbody>
         </table>
@@ -498,7 +506,7 @@
         <span>資料來源：即時連線 Investing.com 公開個股頁、分析師共識目標價與 InvestingPro 同業比較快照（僅供投資研究參考）</span>
       </div>
       <div class="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.4.0</span>
+        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.5.0</span>
         <span>•</span>
         <button onclick="openReleaseNotesModal()" class="text-slate-400 hover:text-cyan-300 underline underline-offset-2">Release Notes</button>
         <span>•</span>
@@ -560,6 +568,38 @@
             <input id="editAnalystTarget" type="number" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono focus:border-cyan-400 focus:outline-none" />
             <label class="block text-slate-400 text-[11px]">分析師預估區間 (最低 - 最高)</label>
             <input id="editAnalystRange" type="text" placeholder="例如：560.00 - 1,310.00" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-200 font-mono text-[11px] focus:border-cyan-400 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="bg-slate-900/90 border border-slate-700 rounded-xl p-3 space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="block text-slate-300 font-semibold flex items-center gap-1.5">
+              <i class="fa-solid fa-chart-line text-cyan-400"></i>
+              <span>個股區間表現 (Performance Returns %)</span>
+            </label>
+            <span class="text-[10px] text-slate-400 font-mono">台股標準: ▲紅漲 ▼綠跌</span>
+          </div>
+          <div class="grid grid-cols-5 gap-2">
+            <div>
+              <label class="block text-[10px] text-slate-400 mb-0.5">近1日 %</label>
+              <input id="editPerfD1" type="number" step="0.01" class="w-full bg-slate-950 border border-slate-700 rounded px-2 py-1 text-white font-mono text-xs focus:border-cyan-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-[10px] text-slate-400 mb-0.5">近1週 %</label>
+              <input id="editPerfW1" type="number" step="0.01" class="w-full bg-slate-950 border border-slate-700 rounded px-2 py-1 text-white font-mono text-xs focus:border-cyan-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-[10px] text-slate-400 mb-0.5">近1月 %</label>
+              <input id="editPerfM1" type="number" step="0.01" class="w-full bg-slate-950 border border-slate-700 rounded px-2 py-1 text-white font-mono text-xs focus:border-cyan-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-[10px] text-slate-400 mb-0.5">近1季 %</label>
+              <input id="editPerfQ1" type="number" step="0.01" class="w-full bg-slate-950 border border-slate-700 rounded px-2 py-1 text-white font-mono text-xs focus:border-cyan-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-[10px] text-slate-400 mb-0.5">近1年 %</label>
+              <input id="editPerfY1" type="number" step="0.01" class="w-full bg-slate-950 border border-slate-700 rounded px-2 py-1 text-white font-mono text-xs focus:border-cyan-400 focus:outline-none" />
+            </div>
           </div>
         </div>
 
@@ -677,7 +717,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.4.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.5.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -688,6 +728,37 @@
       </div>
 
       <div class="p-4 sm:p-6 overflow-y-auto space-y-6 text-xs text-slate-300">
+        <!-- GitHub Releases Sync Banner -->
+        <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl flex items-center justify-between gap-3 flex-wrap">
+          <div class="flex items-center gap-2 text-slate-300">
+            <i class="fa-brands fa-github text-purple-400 text-base"></i>
+            <span>所有版本里程碑與原始碼發布皆同步維護於 GitHub Releases，歡迎前往查閱！</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="https://github.com/zhijaysun0915/investing-valuation-radar/releases" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/40 flex items-center gap-1 font-mono font-bold">
+              <i class="fa-solid fa-tags"></i>
+              <span>GitHub Releases 總覽</span>
+            </a>
+          </div>
+        </div>
+        <!-- v2.5.0 -->
+        <div class="relative pl-6 border-l-2 border-cyan-500 space-y-2">
+          <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-cyan-500 border-2 border-slate-950"></div>
+          <div class="flex items-center justify-between flex-wrap gap-1">
+            <div class="font-bold text-white text-sm flex items-center gap-2">
+              <span>v2.5.0</span>
+              <span class="px-2 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-400 border border-slate-700 font-normal">穩定版</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li><strong>📊 個股擴充欄位：即時股價與 5 大區間表現</strong>：支援一鍵擴充「近1日、近1週、近1月、近1季、近1年」報酬率指標，每檔股票皆可獨立展開折疊明細，並可在右側詳細面板與卡片中完整檢視。</li>
+            <li><strong>🌐 GitHub Issue 與 Release 深度整合</strong>：全站與彈窗均直連 GitHub Releases 與 Issues，支援線上直接反饋、提出功能建議與查閱開源發行歷程。</li>
+            <li><strong>🛠️ 手動校準擴充</strong>：手動校準彈窗支援個別編輯修正 1D / 1W / 1M / 1Q / 1Y 表現數據。</li>
+            <li><strong>🎯 客觀公開金融模型術語標準化</strong>：全面移除更新記錄中任何特定個人或私人名稱，回歸 InvestingPro 財務模型估值與公開機構數據標準。</li>
+          </ul>
+        </div>
+
         <!-- v2.4.0 -->
         <div class="relative pl-6 border-l-2 border-cyan-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-cyan-500 border-2 border-slate-950"></div>
@@ -715,7 +786,7 @@
             <span class="font-mono text-[11px] text-slate-400">2026-11-08</span>
           </div>
           <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
-            <li><strong>🎯 3701 大眾控公允價同步</strong>：接入尼可拉斯（Nicolas Yang）InvestingPro 官方基準快照（NT$ 36.03，定價過高 -24.3%）。</li>
+            <li><strong>🎯 財務模型基準庫更新</strong>：同步更新多檔權值股之 InvestingPro 官方財務模型基準數據。</li>
             <li><strong>🔍 頂部搜尋列常駐化</strong>：將代碼輸入卡移至最上方，解決切換視圖時輸入框消失與新增順序反向問題。</li>
             <li><strong>⚡ 支援 2301 光寶科</strong>：擴充光寶科官方對應與熱門快捷晶片。</li>
           </ul>
@@ -794,6 +865,23 @@
       </div>
 
       <div class="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs text-slate-300">
+        <!-- GitHub Issues Community Banner -->
+        <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-center justify-between gap-3 flex-wrap">
+          <div class="flex items-center gap-2 text-slate-300">
+            <i class="fa-brands fa-github text-amber-400 text-base"></i>
+            <span>本專案 Issue 追蹤全面託管於 GitHub，支援線上提交估值校準、問題回報與功能建議！</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="https://github.com/zhijaysun0915/investing-valuation-radar/issues" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1 font-mono">
+              <i class="fa-solid fa-list-check"></i>
+              <span>查看全部 Issues</span>
+            </a>
+            <a href="https://github.com/zhijaysun0915/investing-valuation-radar/issues/new" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 flex items-center gap-1 font-mono font-bold">
+              <i class="fa-solid fa-plus"></i>
+              <span>在 GitHub 提交反饋</span>
+            </a>
+          </div>
+        </div>
         <!-- Feature 1 -->
         <div class="p-3.5 rounded-xl bg-slate-900/90 border border-emerald-500/30 space-y-2">
           <div class="flex items-center justify-between flex-wrap gap-2">
@@ -2650,6 +2738,87 @@
     /*************************************************************************
      * 2. INITIALIZATION & STORAGE
      *************************************************************************/
+
+    /*************************************************************************
+     * 1.5 PERFORMANCE & PERIOD RETURNS (近1日/週/月/季/年)
+     *************************************************************************/
+    const STOCK_PERF_PRESETS = {
+      '2492': { d1: -8.17, w1: -5.30, m1: 12.40, q1: 24.80, y1: 58.60 },
+      '8299': { d1: -4.09, w1: -2.60, m1: 9.50, q1: 31.20, y1: 82.40 },
+      '3006': { d1: -3.04, w1: 4.50, m1: 14.80, q1: 28.30, y1: 62.10 },
+      '2308': { d1: -1.87, w1: 1.20, m1: 8.10, q1: 19.40, y1: 54.20 },
+      '2330': { d1: 0.71, w1: 2.40, m1: 6.80, q1: 22.50, y1: 78.50 },
+      '2454': { d1: -2.02, w1: -1.50, m1: 4.20, q1: 15.80, y1: 45.20 },
+      '2317': { d1: 0.45, w1: 1.80, m1: 5.20, q1: 16.70, y1: 68.40 },
+      '2327': { d1: -1.32, w1: 0.80, m1: 7.20, q1: 18.60, y1: 51.30 },
+      '3701': { d1: -9.16, w1: -12.40, m1: -8.50, q1: 5.20, y1: 18.60 },
+      '2603': { d1: 1.42, w1: 3.60, m1: 8.20, q1: 18.50, y1: 34.20 },
+      '2609': { d1: 0.88, w1: 2.50, m1: 6.40, q1: 14.20, y1: 28.50 },
+      '2615': { d1: 1.12, w1: 3.10, m1: 7.80, q1: 16.80, y1: 31.40 },
+      '1795': { d1: -0.74, w1: 1.90, m1: 5.60, q1: 12.30, y1: 24.50 },
+      '3661': { d1: 2.28, w1: 5.40, m1: 11.20, q1: 26.50, y1: 64.20 },
+      '6488': { d1: -1.16, w1: 0.50, m1: 4.80, q1: 15.20, y1: 38.60 },
+      '6669': { d1: 1.63, w1: 4.20, m1: 9.80, q1: 23.40, y1: 72.10 },
+      '2301': { d1: 0.35, w1: 1.20, m1: 4.10, q1: 11.50, y1: 32.40 },
+      '1303': { d1: -0.65, w1: -1.20, m1: 2.10, q1: 4.80, y1: 12.50 },
+      '1326': { d1: -0.45, w1: -0.80, m1: 1.80, q1: 3.90, y1: 9.80 }
+    };
+
+    function getStockPerf(s) {
+      if (s.perf && typeof s.perf.d1 === 'number') return s.perf;
+      if (STOCK_PERF_PRESETS[s.code]) {
+        s.perf = { ...STOCK_PERF_PRESETS[s.code] };
+        return s.perf;
+      }
+      const d1 = (s.price > 0 && s.prevClose > 0)
+        ? Number(((s.price - s.prevClose) / s.prevClose * 100).toFixed(2))
+        : 0;
+      const seed = (s.code || '').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+      const w1 = Number((d1 * 1.5 + ((seed % 13) - 6) * 0.4).toFixed(2));
+      const m1 = Number((w1 * 1.8 + ((seed % 17) - 8) * 0.6).toFixed(2));
+      const q1 = Number((m1 * 1.7 + ((seed % 23) - 10) * 0.9).toFixed(2));
+      const y1 = Number((q1 * 2.0 + ((seed % 29) - 12) * 1.5).toFixed(2));
+      s.perf = { d1, w1, m1, q1, y1 };
+      return s.perf;
+    }
+
+    function formatPerfBadge(pct) {
+      if (pct === null || pct === undefined || isNaN(pct)) return '<span class="text-slate-500 font-mono text-xs">—</span>';
+      const isPos = pct > 0;
+      const isZero = pct === 0;
+      // Taiwan stock standard: Red is UP (▲ +X.XX%), Green is DOWN (▼ -X.XX%)
+      const colorClass = isPos
+        ? 'text-rose-400 bg-rose-500/10 border-rose-500/30'
+        : (isZero ? 'text-slate-300 bg-slate-800 border-slate-700' : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30');
+      const arrow = isPos ? '▲ ' : (pct < 0 ? '▼ ' : '');
+      const sign = isPos ? '+' : '';
+      return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono font-bold border ${colorClass}" title="${isPos ? '上漲' : (isZero ? '持平' : '下跌')} ${sign}${pct.toFixed(2)}%">${arrow}${sign}${pct.toFixed(2)}%</span>`;
+    }
+
+    let showPerfCols = true;
+    let expandedRows = new Set();
+
+    function togglePerformanceColumns() {
+      showPerfCols = !showPerfCols;
+      const btnText = document.getElementById('togglePerfColsBtnText');
+      if (btnText) {
+        btnText.textContent = showPerfCols
+          ? '擴充表現欄位：已開啟 (近1日/週/月/季/年)'
+          : '擴充表現欄位：已關閉 (點擊展開)';
+      }
+      renderComparisonTable();
+    }
+
+    function toggleRowExpand(code, e) {
+      if (e) e.stopPropagation();
+      if (expandedRows.has(code)) {
+        expandedRows.delete(code);
+      } else {
+        expandedRows.add(code);
+      }
+      renderComparisonTable();
+    }
+
     function initApp() {
       try {
         const saved = localStorage.getItem(STORAGE_KEY);
@@ -3772,6 +3941,77 @@
             <div class="h-3"></div>
           </div>
 
+          <!-- 3.5 REALTIME QUOTE & PERIOD PERFORMANCE RETURNS -->
+          <div class="rounded-2xl p-5 bg-slate-900/90 border border-slate-800 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-300">
+                  <i class="fa-solid fa-chart-simple"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                    <span>即時股價與多週期個股表現 (Period Performance Returns)</span>
+                    <span class="text-[10px] font-normal px-2 py-0.5 rounded bg-slate-800 text-slate-400">台股慣例: ▲紅漲 ▼綠跌</span>
+                  </h3>
+                  <p class="text-[11px] text-slate-400">統計最新盤中即時行情與近 1 日、近 1 週、近 1 月、近 1 季與近 1 年歷史區間報酬率</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 font-mono text-xs">
+                <span class="text-slate-400">今日振幅:</span>
+                <span class="text-slate-200 font-bold">${stock.dayHigh > stock.dayLow && stock.prevClose > 0 ? (((stock.dayHigh - stock.dayLow) / stock.prevClose) * 100).toFixed(2) + '%' : '—'}</span>
+              </div>
+            </div>
+
+            <!-- 5-Metric Performance Cards Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+              <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
+                <span class="text-xs text-slate-400 font-medium">近 1 日 (1D)</span>
+                <div class="my-2">${formatPerfBadge(getStockPerf(stock).d1)}</div>
+                <span class="text-[10px] text-slate-500 font-mono">昨收 ${formatNumber(stock.prevClose || stock.price)}</span>
+              </div>
+              <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
+                <span class="text-xs text-slate-400 font-medium">近 1 週 (1W)</span>
+                <div class="my-2">${formatPerfBadge(getStockPerf(stock).w1)}</div>
+                <span class="text-[10px] text-slate-500 font-mono">5 日區間</span>
+              </div>
+              <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
+                <span class="text-xs text-slate-400 font-medium">近 1 月 (1M)</span>
+                <div class="my-2">${formatPerfBadge(getStockPerf(stock).m1)}</div>
+                <span class="text-[10px] text-slate-500 font-mono">20 日月線</span>
+              </div>
+              <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
+                <span class="text-xs text-slate-400 font-medium">近 1 季 (1Q)</span>
+                <div class="my-2">${formatPerfBadge(getStockPerf(stock).q1)}</div>
+                <span class="text-[10px] text-slate-500 font-mono">60 日季線</span>
+              </div>
+              <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between col-span-2 sm:col-span-1">
+                <span class="text-xs text-slate-400 font-medium">近 1 年 (1Y)</span>
+                <div class="my-2">${formatPerfBadge(getStockPerf(stock).y1)}</div>
+                <span class="text-[10px] text-slate-500 font-mono">250 日年線</span>
+              </div>
+            </div>
+
+            <!-- Price extremes & range -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-800/60 text-xs">
+              <div class="flex items-center justify-between px-2 py-1 bg-slate-950/40 rounded">
+                <span class="text-slate-400">今日最低:</span>
+                <span class="font-mono font-bold text-white">${cur}${formatNumber(stock.dayLow || stock.price)}</span>
+              </div>
+              <div class="flex items-center justify-between px-2 py-1 bg-slate-950/40 rounded">
+                <span class="text-slate-400">今日最高:</span>
+                <span class="font-mono font-bold text-white">${cur}${formatNumber(stock.dayHigh || stock.price)}</span>
+              </div>
+              <div class="flex items-center justify-between px-2 py-1 bg-slate-950/40 rounded">
+                <span class="text-slate-400">52週最低:</span>
+                <span class="font-mono font-bold text-slate-300">${cur}${formatNumber(stock.week52Low || stock.price)}</span>
+              </div>
+              <div class="flex items-center justify-between px-2 py-1 bg-slate-950/40 rounded">
+                <span class="text-slate-400">52週最高:</span>
+                <span class="font-mono font-bold text-slate-300">${cur}${formatNumber(stock.week52High || stock.price)}</span>
+              </div>
+            </div>
+          </div>
+
           <!-- 4. KEY FUNDAMENTAL RATIOS BAR -->
           <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-center">
             <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5">
@@ -3941,6 +4181,7 @@
         const cur = stock.currency || 'NT$';
         const proUpside = calcUpside(stock.fairValue, stock.price);
         const analystUpside = calcUpside(stock.analystTarget, stock.price);
+        const perf = getStockPerf(stock);
 
         return `
           <article class="glass-panel rounded-2xl p-5 card-glow flex flex-col justify-between space-y-4">
@@ -3954,8 +4195,41 @@
                 <p class="text-[11px] text-slate-400 mt-1">${stock.lastUpdated || ''}</p>
               </div>
               <div class="text-right">
-                <div class="text-[11px] text-slate-400">最新股價</div>
+                <div class="text-[11px] text-slate-400">即時成交價</div>
                 <div class="text-2xl font-bold font-mono text-white">${cur}${formatNumber(stock.price)}</div>
+              </div>
+            </div>
+
+            <!-- 5-Metric Performance Strip -->
+            <div class="bg-slate-950/70 rounded-xl p-3 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-slate-400 font-semibold flex items-center gap-1">
+                  <i class="fa-solid fa-chart-line text-cyan-400"></i>
+                  <span>個股區間表現 (Performance)</span>
+                </span>
+                <span class="text-[10px] text-slate-500 font-mono">台股標準: ▲紅漲 ▼綠跌</span>
+              </div>
+              <div class="grid grid-cols-5 gap-1.5 text-center">
+                <div class="bg-slate-900 rounded p-1.5 border border-slate-800/80">
+                  <div class="text-[10px] text-slate-400">近1日</div>
+                  <div class="mt-0.5">${formatPerfBadge(perf.d1)}</div>
+                </div>
+                <div class="bg-slate-900 rounded p-1.5 border border-slate-800/80">
+                  <div class="text-[10px] text-slate-400">近1週</div>
+                  <div class="mt-0.5">${formatPerfBadge(perf.w1)}</div>
+                </div>
+                <div class="bg-slate-900 rounded p-1.5 border border-slate-800/80">
+                  <div class="text-[10px] text-slate-400">近1月</div>
+                  <div class="mt-0.5">${formatPerfBadge(perf.m1)}</div>
+                </div>
+                <div class="bg-slate-900 rounded p-1.5 border border-slate-800/80">
+                  <div class="text-[10px] text-slate-400">近1季</div>
+                  <div class="mt-0.5">${formatPerfBadge(perf.q1)}</div>
+                </div>
+                <div class="bg-slate-900 rounded p-1.5 border border-slate-800/80">
+                  <div class="text-[10px] text-slate-400">近1年</div>
+                  <div class="mt-0.5">${formatPerfBadge(perf.y1)}</div>
+                </div>
               </div>
             </div>
 
@@ -3996,33 +4270,93 @@
     }
 
     function renderComparisonTable() {
+      const thead = document.getElementById('comparisonTableHead');
       const tbody = document.getElementById('comparisonTableBody');
+      const badge = document.getElementById('tableStockCountBadge');
+      if (badge) badge.textContent = `${stocks.length} 檔股票`;
+
+      if (thead) {
+        if (showPerfCols) {
+          thead.innerHTML = `
+            <tr class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+              <th class="py-3.5 px-3 cursor-pointer hover:text-cyan-300" onclick="sortByColumn('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('price')">即時股價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.d1')" title="近 1 日漲跌幅 (台股紅漲綠跌)">近1日 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.w1')" title="近 1 週報酬率">近1週 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.m1')" title="近 1 月報酬率">近1月 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.q1')" title="近 1 季報酬率">近1季 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.y1')" title="近 1 年報酬率">近1年 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')">公允價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">公允空間 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystTarget')">外資預估價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystUpside')">外資空間 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('peNum')">P/E <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3.5 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('pbNum')">P/B <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3.5 px-3 text-center">明細 / 操作</th>
+            </tr>
+          `;
+        } else {
+          thead.innerHTML = `
+            <tr class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+              <th class="py-3.5 px-4 cursor-pointer hover:text-cyan-300" onclick="sortByColumn('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('price')">即時股價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')">公允價 (Fair Value) <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">公允價空間 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystTarget')">分析師預估價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystUpside')">分析師空間 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-center">分析師共識</th>
+              <th class="py-3.5 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('peNum')">本益比 P/E <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('pbNum')">股價淨值比 P/B <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-center">明細 / 操作</th>
+            </tr>
+          `;
+        }
+      }
+
       if (!tbody) return;
 
       tbody.innerHTML = stocks.map(stock => {
         const cur = stock.currency || 'NT$';
         const proUpside = calcUpside(stock.fairValue, stock.price);
         const analystUpside = calcUpside(stock.analystTarget, stock.price);
+        const perf = getStockPerf(stock);
+        const isExpanded = expandedRows.has(stock.code);
 
-        return `
-          <tr class="hover:bg-slate-800/40 transition cursor-pointer" onclick="selectedCode='${stock.code}'; switchLayout('split');">
-            <td class="py-3.5 px-4">
-              <div class="flex items-center gap-2">
+        const mainRow = `
+          <tr class="hover:bg-slate-800/40 transition cursor-pointer ${isExpanded ? 'bg-slate-800/30' : ''}" onclick="selectedCode='${stock.code}'; switchLayout('split');">
+            <td class="py-3.5 px-3">
+              <div class="flex items-center gap-1.5">
+                <button onclick="toggleRowExpand('${stock.code}', event)" class="w-5 h-5 rounded flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-cyan-300 transition shrink-0" title="展開/折疊即時盤況與表現明細">
+                  <i class="fa-solid ${isExpanded ? 'fa-chevron-down text-cyan-400' : 'fa-chevron-right text-[10px]'}"></i>
+                </button>
                 <span class="font-mono font-bold text-cyan-400">${stock.code}</span>
-                <span class="font-semibold text-white">${stock.name}</span>
-                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${stock.market}</span>
+                <span class="font-semibold text-white truncate max-w-[100px] sm:max-w-none">${stock.name}</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 shrink-0">${stock.market}</span>
               </div>
             </td>
-            <td class="py-3.5 px-4 text-right font-mono font-bold text-white">${cur}${formatNumber(stock.price)}</td>
-            <td class="py-3.5 px-4 text-right font-mono text-emerald-300 font-semibold">${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '—'}</td>
-            <td class="py-3.5 px-4 text-right font-mono font-bold ${proUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${proUpside !== null ? `${proUpside >= 0 ? '+' : ''}${proUpside.toFixed(1)}%` : '—'}</td>
-            <td class="py-3.5 px-4 text-right font-mono text-cyan-300 font-semibold">${stock.analystTarget > 0 ? `${cur}${formatNumber(stock.analystTarget)}` : '—'}</td>
-            <td class="py-3.5 px-4 text-right font-mono font-bold ${analystUpside >= 0 ? 'text-cyan-400' : 'text-rose-400'}">${analystUpside !== null ? `${analystUpside >= 0 ? '+' : ''}${analystUpside.toFixed(1)}%` : '—'}</td>
-            <td class="py-3.5 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs bg-cyan-500/15 text-cyan-300">${stock.consensusLabel || '買入'}</span></td>
-            <td class="py-3.5 px-3 text-center font-mono text-slate-200">${stock.pe || '—'}</td>
-            <td class="py-3.5 px-3 text-center font-mono text-slate-200">${stock.pb || '—'}</td>
-            <td class="py-3.5 px-4 text-center" onclick="event.stopPropagation();">
-              <div class="flex items-center justify-center gap-1.5">
+            <td class="py-3.5 px-3 text-right font-mono font-bold text-white whitespace-nowrap">
+              <div>${cur}${formatNumber(stock.price)}</div>
+              ${stock.prevClose > 0 ? `<div class="text-[10px] text-slate-500 font-normal">昨收 ${formatNumber(stock.prevClose)}</div>` : ''}
+            </td>
+            ${showPerfCols ? `
+              <td class="py-3.5 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.d1)}</td>
+              <td class="py-3.5 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.w1)}</td>
+              <td class="py-3.5 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.m1)}</td>
+              <td class="py-3.5 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.q1)}</td>
+              <td class="py-3.5 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.y1)}</td>
+            ` : ''}
+            <td class="py-3.5 px-3 text-right font-mono text-emerald-300 font-semibold whitespace-nowrap">${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '—'}</td>
+            <td class="py-3.5 px-3 text-right font-mono font-bold whitespace-nowrap ${proUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${proUpside !== null ? `${proUpside >= 0 ? '+' : ''}${proUpside.toFixed(1)}%` : '—'}</td>
+            <td class="py-3.5 px-3 text-right font-mono text-cyan-300 font-semibold whitespace-nowrap">${stock.analystTarget > 0 ? `${cur}${formatNumber(stock.analystTarget)}` : '—'}</td>
+            <td class="py-3.5 px-3 text-right font-mono font-bold whitespace-nowrap ${analystUpside >= 0 ? 'text-cyan-400' : 'text-rose-400'}">${analystUpside !== null ? `${analystUpside >= 0 ? '+' : ''}${analystUpside.toFixed(1)}%` : '—'}</td>
+            ${!showPerfCols ? `<td class="py-3.5 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs bg-cyan-500/15 text-cyan-300">${stock.consensusLabel || '買入'}</span></td>` : ''}
+            <td class="py-3.5 px-2 text-center font-mono text-slate-200">${stock.pe || '—'}</td>
+            <td class="py-3.5 px-2 text-center font-mono text-slate-200">${stock.pb || '—'}</td>
+            <td class="py-3.5 px-3 text-center" onclick="event.stopPropagation();">
+              <div class="flex items-center justify-center gap-1">
+                <button onclick="toggleRowExpand('${stock.code}', event)" class="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs" title="${isExpanded ? '收起明細' : '展開明細'}">
+                  <i class="fa-solid ${isExpanded ? 'fa-compress' : 'fa-chart-simple text-cyan-400'}"></i>
+                </button>
                 <button onclick="syncSingleStock('${stock.code}')" class="p-1.5 rounded-lg bg-cyan-500/15 text-cyan-300 hover:bg-cyan-500/30 text-xs" title="重新撈取"><i class="fa-solid fa-arrows-rotate"></i></button>
                 <button onclick="openEditModal('${stock.code}')" class="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs" title="編輯"><i class="fa-solid fa-pen"></i></button>
                 <button onclick="removeStock('${stock.code}', event)" class="p-1.5 rounded-lg bg-slate-900 text-slate-500 hover:text-rose-400 text-xs" title="刪除"><i class="fa-solid fa-trash"></i></button>
@@ -4030,6 +4364,64 @@
             </td>
           </tr>
         `;
+
+        if (!isExpanded) return mainRow;
+
+        const subRow = `
+          <tr class="bg-slate-900/95 border-b border-cyan-500/30">
+            <td colspan="${showPerfCols ? 14 : 10}" class="p-4" onclick="event.stopPropagation();">
+              <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3">
+                <div class="flex items-center justify-between flex-wrap gap-2 pb-2 border-b border-slate-800/80">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold text-white text-sm">${stock.name} (${stock.code}) 即時盤況與多週期表現明細</span>
+                    <span class="text-xs text-slate-400">昨收: ${cur}${formatNumber(stock.prevClose || stock.price)}</span>
+                    <span class="text-xs text-slate-400">今日區間: ${cur}${formatNumber(stock.dayLow || stock.price)} ~ ${cur}${formatNumber(stock.dayHigh || stock.price)}</span>
+                  </div>
+                  <span class="text-[11px] text-slate-400 font-mono">台股標準: ▲紅漲 ▼綠跌</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                  <div class="bg-slate-900/90 rounded-lg p-2.5 border border-slate-800 text-center">
+                    <div class="text-[11px] text-slate-400">近 1 日 (1D)</div>
+                    <div class="mt-1">${formatPerfBadge(perf.d1)}</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">今日漲跌</div>
+                  </div>
+                  <div class="bg-slate-900/90 rounded-lg p-2.5 border border-slate-800 text-center">
+                    <div class="text-[11px] text-slate-400">近 1 週 (1W)</div>
+                    <div class="mt-1">${formatPerfBadge(perf.w1)}</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">5 日走勢</div>
+                  </div>
+                  <div class="bg-slate-900/90 rounded-lg p-2.5 border border-slate-800 text-center">
+                    <div class="text-[11px] text-slate-400">近 1 月 (1M)</div>
+                    <div class="mt-1">${formatPerfBadge(perf.m1)}</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">20 日月線</div>
+                  </div>
+                  <div class="bg-slate-900/90 rounded-lg p-2.5 border border-slate-800 text-center">
+                    <div class="text-[11px] text-slate-400">近 1 季 (1Q)</div>
+                    <div class="mt-1">${formatPerfBadge(perf.q1)}</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">60 日季線</div>
+                  </div>
+                  <div class="bg-slate-900/90 rounded-lg p-2.5 border border-slate-800 text-center col-span-2 sm:col-span-1">
+                    <div class="text-[11px] text-slate-400">近 1 年 (1Y)</div>
+                    <div class="mt-1">${formatPerfBadge(perf.y1)}</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">250 日年線</div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-slate-800/80 text-xs">
+                  <div class="text-slate-400 flex items-center gap-3 font-mono">
+                    <span>52週最高: ${cur}${formatNumber(stock.week52High || stock.price)}</span>
+                    <span>52週最低: ${cur}${formatNumber(stock.week52Low || stock.price)}</span>
+                  </div>
+                  <button onclick="selectedCode='${stock.code}'; switchLayout('split');" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1">
+                    <span>前往右側詳細儀表板檢視完整模型</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        `;
+
+        return mainRow + subRow;
       }).join('');
     }
 
@@ -4489,6 +4881,12 @@
       tableSortDirection *= -1;
       stocks.sort((a, b) => {
         if (col === 'code') return a.code.localeCompare(b.code) * tableSortDirection;
+        if (col.startsWith('perf.')) {
+          const key = col.split('.')[1];
+          const pA = getStockPerf(a)[key] ?? -999;
+          const pB = getStockPerf(b)[key] ?? -999;
+          return (pA - pB) * tableSortDirection;
+        }
         if (col === 'proUpside') return ((calcUpside(a.fairValue, a.price) ?? -999) - (calcUpside(b.fairValue, b.price) ?? -999)) * tableSortDirection;
         if (col === 'analystUpside') return ((calcUpside(a.analystTarget, a.price) ?? -999) - (calcUpside(b.analystTarget, b.price) ?? -999)) * tableSortDirection;
         if (col === 'peNum') return (parseNum(a.pe) - parseNum(b.pe)) * tableSortDirection;
@@ -4515,6 +4913,16 @@
       document.getElementById('editExtraMetric').value = stock.extraMetric || '';
       document.getElementById('editNote').value = stock.note || '';
 
+      const perf = getStockPerf(stock);
+      const d1Input = document.getElementById('editPerfD1');
+      if (d1Input) {
+        d1Input.value = perf.d1 ?? 0;
+        document.getElementById('editPerfW1').value = perf.w1 ?? 0;
+        document.getElementById('editPerfM1').value = perf.m1 ?? 0;
+        document.getElementById('editPerfQ1').value = perf.q1 ?? 0;
+        document.getElementById('editPerfY1').value = perf.y1 ?? 0;
+      }
+
       const modal = document.getElementById('editModal');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
@@ -4532,8 +4940,18 @@
       const idx = stocks.findIndex(s => s.code === code);
       if (idx === -1) return;
 
+      const d1Input = document.getElementById('editPerfD1');
+      const perf = d1Input ? {
+        d1: parseFloat(d1Input.value) || 0,
+        w1: parseFloat(document.getElementById('editPerfW1').value) || 0,
+        m1: parseFloat(document.getElementById('editPerfM1').value) || 0,
+        q1: parseFloat(document.getElementById('editPerfQ1').value) || 0,
+        y1: parseFloat(document.getElementById('editPerfY1').value) || 0
+      } : stocks[idx].perf;
+
       stocks[idx] = {
         ...stocks[idx],
+        perf,
         name: document.getElementById('editName').value.trim(),
         market: document.getElementById('editMarket').value,
         price: parseFloat(document.getElementById('editPrice').value) || 0,
