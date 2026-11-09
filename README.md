@@ -1,7 +1,7 @@
 # 📊 Investing.com 股票公允價 & 分析師預估價即時雷達 (Investing Valuation Radar)
 
 [![GitHub Pages Deployment](https://img.shields.io/badge/線上_Live_Demo-GitHub_Pages-10b981?style=for-the-badge&logo=github)](https://zhijaysun0915.github.io/investing-valuation-radar/)
-[![Version](https://img.shields.io/badge/版本-v2.8.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
+[![Version](https://img.shields.io/badge/版本-v2.9.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![Issues](https://img.shields.io/badge/Issue_反饋-GitHub_Issues-f59e0b?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/issues)
 [![Releases](https://img.shields.io/badge/Releases-GitHub_Releases-8b5cf6?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![GitHub Repository](https://img.shields.io/badge/GitHub_Repo-zhijaysun0915%2Finvesting--valuation--radar-181717?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar)

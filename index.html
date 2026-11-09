@@ -162,7 +162,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.8.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.9.0</span>
         </button>
 
         <button onclick="openIssueModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看已知問題修復與回報紀錄">
@@ -356,29 +356,38 @@
             </span>
             <div>
               <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2 flex-wrap">
-                <span>台股估值潛力雙向 Top 100 排行榜</span>
-                <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-normal">
-                  台股50 + 中型100 核心池
+                <span id="lbMainTitle">台股估值潛力排行榜</span>
+                <span id="lbScopeBadge" class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold shadow-sm">
+                  <i class="fa-solid fa-medal text-amber-400 mr-1"></i>臺灣 50 核心 (市值前 50 大)
                 </span>
               </h2>
-              <p class="text-xs text-slate-400 mt-0.5">
-                精選公允價值高於現值（折價安全邊際）與外資券商目標價看漲潛力前 100 強，支援自選每頁筆數、分頁導航與社群共編標的池。
+              <p id="lbMainDesc" class="text-xs text-slate-400 mt-0.5">
+                專注鎖定臺灣 50 指數核心權值成分股（台股市值前 50 大），在藍籌龍頭中挖掘超值折價與外資看漲機會。
               </p>
             </div>
           </div>
 
           <!-- Scope Selector & Sub-Tabs Switcher -->
           <div class="flex flex-col xl:flex-row items-stretch xl:items-center gap-2.5 w-full md:w-auto">
-            <!-- 1. Market Cap Scope Filter (只看市值前100大) -->
-            <div class="inline-flex rounded-xl bg-slate-950 p-1 border border-slate-800 shrink-0">
+            <!-- 1. Market Cap Scope Filter (市值前50大 vs 前100大 vs 全市場) -->
+            <div class="inline-flex rounded-xl bg-slate-950 p-1 border border-slate-800 shrink-0 flex-wrap gap-0.5">
+              <button
+                id="btnScopeTop50Cap"
+                onclick="setLeaderboardScope('top50cap')"
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/25 text-amber-300 border border-amber-500/50 shadow-sm"
+                title="嚴格篩選臺灣 50 核心成分股（台股市值前 50 大藍籌股）"
+              >
+                <i class="fa-solid fa-medal text-amber-400"></i>
+                <span>🏆 市值前 50 大 (臺灣 50)</span>
+              </button>
               <button
                 id="btnScopeTop100Cap"
                 onclick="setLeaderboardScope('top100cap')"
-                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm"
-                title="嚴格篩選台股市值前 100 大核心權值股（排除中小型股與冷門標的）"
+                class="px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200 border border-transparent"
+                title="嚴格篩選台股市值前 100 大核心權值股（臺灣 50 + 中型 100 龍頭）"
               >
                 <i class="fa-solid fa-crown text-amber-400"></i>
-                <span>👑 僅看市值前 100 大權值股</span>
+                <span>👑 市值前 100 大</span>
               </button>
               <button
                 id="btnScopeAll"
@@ -584,7 +593,7 @@
         <span>資料來源：即時連線 Investing.com 公開個股頁、分析師共識目標價與 InvestingPro 同業比較快照（僅供投資研究參考）</span>
       </div>
       <div class="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.8.0</span>
+        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.9.0</span>
         <span>•</span>
         <button onclick="openReleaseNotesModal()" class="text-slate-400 hover:text-cyan-300 underline underline-offset-2">Release Notes</button>
         <span>•</span>
@@ -795,7 +804,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.8.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.9.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -819,12 +828,12 @@
             </a>
           </div>
         </div>
-        <!-- v2.8.0 -->
+        <!-- v2.9.0 -->
         <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
           <div class="flex items-center justify-between flex-wrap gap-1">
             <div class="font-bold text-white text-sm flex items-center gap-2">
-              <span>v2.8.0</span>
+              <span>v2.9.0</span>
               <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
             </div>
             <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
@@ -5490,22 +5499,49 @@
     let lbPageSize = 20;
     let lbSearchQuery = '';
 
-    let lbScope = 'top100cap'; // 'top100cap' (default) or 'all'
+    let lbScope = 'top50cap'; // 'top50cap' (default) | 'top100cap' | 'all'
 
     function setLeaderboardScope(scope) {
       lbScope = scope;
       lbPage = 1;
+      const btnTop50 = document.getElementById('btnScopeTop50Cap');
       const btnTop100 = document.getElementById('btnScopeTop100Cap');
       const btnAll = document.getElementById('btnScopeAll');
 
+      const activeTop50 = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/25 text-amber-300 border border-amber-500/50 shadow-sm';
       const activeTop100 = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm';
       const activeAll = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm';
       const inactiveBtn = 'px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-slate-200 border border-transparent';
 
+      if (btnTop50) btnTop50.className = scope === 'top50cap' ? activeTop50 : inactiveBtn;
       if (btnTop100) btnTop100.className = scope === 'top100cap' ? activeTop100 : inactiveBtn;
       if (btnAll) btnAll.className = scope === 'all' ? activeAll : inactiveBtn;
 
-      showToast(scope === 'top100cap' ? '👑 已切換為「僅看台股市值前 100 大核心權值股」' : '🌐 已切換為「全市場標的庫 (包含中小型股)」', 'info');
+      const scopeBadge = document.getElementById('lbScopeBadge');
+      const mainDesc = document.getElementById('lbMainDesc');
+      if (scope === 'top50cap') {
+        if (scopeBadge) {
+          scopeBadge.className = 'text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold shadow-sm';
+          scopeBadge.innerHTML = '<i class="fa-solid fa-medal text-amber-400 mr-1"></i>臺灣 50 核心 (市值前 50 大)';
+        }
+        if (mainDesc) mainDesc.innerText = '專注鎖定臺灣 50 指數核心權值成分股（台股市值前 50 大），在藍籌龍頭中挖掘超值折價與外資看漲機會。';
+        showToast('🏆 已切換為「僅看臺灣 50 核心（市值前 50 大藍籌股）」', 'info');
+      } else if (scope === 'top100cap') {
+        if (scopeBadge) {
+          scopeBadge.className = 'text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold';
+          scopeBadge.innerHTML = '<i class="fa-solid fa-crown text-amber-400 mr-1"></i>台股市值前 100 大權值池';
+        }
+        if (mainDesc) mainDesc.innerText = '精選公允價值高於現值（折價安全邊際）與外資券商目標價看漲潛力前 100 強。';
+        showToast('👑 已切換為「僅看台股市值前 100 大核心權值股」', 'info');
+      } else {
+        if (scopeBadge) {
+          scopeBadge.className = 'text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-normal';
+          scopeBadge.innerHTML = '<i class="fa-solid fa-globe text-cyan-400 mr-1"></i>全市場標的庫 (含中小型股)';
+        }
+        if (mainDesc) mainDesc.innerText = '涵蓋大型權值、中小型股與社群查過之全部股票庫。';
+        showToast('🌐 已切換為「全市場標的庫 (包含中小型股)」', 'info');
+      }
+
       renderLeaderboard();
     }
 
@@ -5632,7 +5668,12 @@
       let pool = getCombinedStockPool();
 
       // Apply Market Cap scope filter:
-      if (lbScope === 'top100cap') {
+      if (lbScope === 'top50cap') {
+        // Sort by marketCapVal and strictly pick the Top 50 largest (Taiwan 50 blue-chips)
+        const sortedByCap = [...pool].sort((a, b) => (b.marketCapVal || 0) - (a.marketCapVal || 0));
+        const top50Set = new Set(sortedByCap.slice(0, 50).map(s => s.code));
+        pool = pool.filter(s => top50Set.has(s.code));
+      } else if (lbScope === 'top100cap') {
         // Sort by marketCapVal (or fallback) and strictly pick the Top 100 largest
         const sortedByCap = [...pool].sort((a, b) => (b.marketCapVal || 0) - (a.marketCapVal || 0));
         const top100Set = new Set(sortedByCap.slice(0, 100).map(s => s.code));
@@ -5649,7 +5690,7 @@
           })
           .filter(s => s.activeUpside !== null && s.activeUpside > 0)
           .sort((a, b) => b.activeUpside - a.activeUpside)
-          .slice(0, 100);
+          .slice(0, lbScope === 'top50cap' ? 50 : 100);
       } else if (lbMode === 'analyst') {
         rankedList = pool
           .map(s => {
@@ -5658,7 +5699,7 @@
           })
           .filter(s => s.activeUpside !== null && s.activeUpside > 0)
           .sort((a, b) => b.activeUpside - a.activeUpside)
-          .slice(0, 100);
+          .slice(0, lbScope === 'top50cap' ? 50 : 100);
       } else if (lbMode === 'marketCap') {
         rankedList = pool
           .map(s => {
@@ -5666,7 +5707,7 @@
             return { ...s, activeUpside: upside, activeTarget: s.fairValue, metricType: 'marketCap' };
           })
           .sort((a, b) => (b.marketCapVal || 0) - (a.marketCapVal || 0))
-          .slice(0, 100);
+          .slice(0, lbScope === 'top50cap' ? 50 : 100);
       } else {
         // Community pool mode
         rankedList = pool
@@ -6000,9 +6041,9 @@
       const pool = getCombinedStockPool();
       let rankedList = [];
       if (lbMode === 'fairValue') {
-        rankedList = pool.filter(s => calcUpside(s.fairValue, s.price) > 0).sort((a,b) => calcUpside(b.fairValue, b.price) - calcUpside(a.fairValue, a.price)).slice(0, 100);
+        rankedList = pool.filter(s => calcUpside(s.fairValue, s.price) > 0).sort((a,b) => calcUpside(b.fairValue, b.price) - calcUpside(a.fairValue, a.price)).slice(0, lbScope === 'top50cap' ? 50 : 100);
       } else if (lbMode === 'analyst') {
-        rankedList = pool.filter(s => calcUpside(s.analystTarget, s.price) > 0).sort((a,b) => calcUpside(b.analystTarget, b.price) - calcUpside(a.analystTarget, a.price)).slice(0, 100);
+        rankedList = pool.filter(s => calcUpside(s.analystTarget, s.price) > 0).sort((a,b) => calcUpside(b.analystTarget, b.price) - calcUpside(a.analystTarget, a.price)).slice(0, lbScope === 'top50cap' ? 50 : 100);
       } else {
         rankedList = pool.sort((a,b) => (b.searchCount||0) - (a.searchCount||0));
       }
