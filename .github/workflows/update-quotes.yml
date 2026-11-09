@@ -1,0 +1,39 @@
+name: Update Taiwan Stock Quotes
+
+on:
+  schedule:
+    # Taiwan trading hours: 09:00 - 13:30 (UTC+8) -> 01:00 - 05:30 (UTC), Mon-Fri
+    # Runs every 15 minutes during trading hours
+    - cron: '*/15 1-5 * * 1-5'
+  workflow_dispatch: # Allow manual trigger via GitHub web UI
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-quotes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Taiwan Quotes from TWSE / TPEX MIS
+        run: |
+          python3 scripts/fetch_tw_quotes.py
+
+      - name: Commit and push if quotes updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/quotes.json
+          if git diff --staged --quiet; then
+            echo "No changes in quotes.json, skipping commit."
+          else
+            git commit -m "chore(data): 盤中自動排程同步台股即時報價 [skip ci]"
+            git push origin main
+          fi

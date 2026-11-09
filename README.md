@@ -1,7 +1,7 @@
 # 📊 Investing.com 股票公允價 & 分析師預估價即時雷達 (Investing Valuation Radar)
 
 [![GitHub Pages Deployment](https://img.shields.io/badge/線上_Live_Demo-GitHub_Pages-10b981?style=for-the-badge&logo=github)](https://zhijaysun0915.github.io/investing-valuation-radar/)
-[![Version](https://img.shields.io/badge/版本-v2.5.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
+[![Version](https://img.shields.io/badge/版本-v2.6.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![Issues](https://img.shields.io/badge/Issue_反饋-GitHub_Issues-f59e0b?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/issues)
 [![Releases](https://img.shields.io/badge/Releases-GitHub_Releases-8b5cf6?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![GitHub Repository](https://img.shields.io/badge/GitHub_Repo-zhijaysun0915%2Finvesting--valuation--radar-181717?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar)
@@ -49,7 +49,16 @@
      - 使用者可選擇填入個人的 Gemini API Key（僅留存於瀏覽器 localStorage，絕不上傳）。
      - 自動呼叫 Google Search 檢索 `site:investing.com/pro` 快照，進一步增強付費牆背後的公允價值數值。
 
-3. **📊 個股擴充欄位：即時股價與 5 大區間表現 (近1日、近1週、近1月、近1季、近1年)**
+3. **⚡ 台股盤中全自動動態更新機制 (方案 A + 方案 B 完整整合)**
+   - **方案 B：GitHub Actions 自動排程爬蟲 (`.github/workflows/update-quotes.yml`)**：
+     - 在台股交易日（週一至週五 09:00～13:30）每 15 分鐘全自動批次查詢證交所 (TWSE) 與櫃買中心 (TPEX) 官方真實盤中行情。
+     - 產出零跨域 (CORS-free)、零延遲的開源資料庫 `data/quotes.json`，並支援在 GitHub 網頁端一鍵手動觸發立即抓取。
+   - **方案 A：前端一鍵「🔄 同步最新盤中價」與「⏱️ 每 60 秒自動背景輪詢」**：
+     - 頂部導航列配置即時連線燈號與手動同步按鈕，進入網頁自動拉取最新盤中成交價，徹底擺脫本機舊快取的限制。
+     - 支援開著網頁每 60 秒自動背景更新，所有股票的「即時當天 %、近1週、近1月、近1季、近1年」表現、公允價折價空間、外資目標價空間全部即時動態重算！
+     - 右側檢視台與排行榜皆配置即時刷新按鈕，支援單一標的個別更新。
+
+4. **📊 個股擴充欄位：即時股價與 5 大區間表現 (近1日、近1週、近1月、近1季、近1年)**
    - **橫向比較表一鍵擴充**：點擊「📊 擴充表現欄位」即可於總覽表展開 1D / 1W / 1M / 1Q / 1Y 報酬率欄位，支援點擊表頭排序。
    - **獨立折疊明細卡**：每檔股票皆可單獨點擊展開，即時查看盤中振幅、昨收價、52週位階與各週期漲跌幅標籤（遵循台股標準：▲ 紅漲 ▼ 綠跌）。
    - **右側詳細檢視全面整合**：在 Split View 中提供專屬「即時盤況與多週期個股表現」儀表板區塊。

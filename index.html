@@ -98,6 +98,32 @@
 
       <!-- View Switcher & Global Actions -->
       <div class="flex items-center gap-2 flex-wrap">
+        <!-- Live Market Status & Sync Widget (Plan A + B) -->
+        <div class="inline-flex items-center gap-2 bg-slate-950/90 border border-emerald-500/30 rounded-xl px-2.5 py-1 text-xs shadow-lg shadow-emerald-950/20">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span id="marketSyncStatusText" class="font-mono text-emerald-300 text-[11px] font-semibold">盤中即時：已連線</span>
+          <button
+            id="btnSyncLiveQuotes"
+            onclick="syncLiveQuotes(true)"
+            class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/35 text-emerald-200 border border-emerald-500/40 text-[11px] font-semibold transition flex items-center gap-1 active:scale-95"
+            title="點擊立即連線同步台股最新盤中成交價、昨收與五大區間表現 (方案 A)"
+          >
+            <i class="fa-solid fa-arrows-rotate" id="syncSpinIcon"></i>
+            <span>同步最新盤中價</span>
+          </button>
+          <button
+            id="btnToggleAutoPoll"
+            onclick="toggleAutoPoll()"
+            class="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] font-mono transition"
+            title="切換是否每 60 秒自動背景輪詢最新盤中價 (方案 A+B)"
+          >
+            <span id="autoPollLabel">⏱️ 自動：開</span>
+          </button>
+        </div>
+
         <div class="inline-flex rounded-xl bg-slate-950 p-1 border border-slate-800">
           <button
             id="tabSplit"
@@ -136,7 +162,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.5.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.6.0</span>
         </button>
 
         <button onclick="openIssueModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看已知問題修復與回報紀錄">
@@ -387,6 +413,14 @@
 
           <div class="flex items-center gap-2 justify-between sm:justify-end flex-wrap">
             <button
+              onclick="syncLiveQuotes(true)"
+              class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/25 transition flex items-center gap-1 shrink-0 text-xs font-semibold"
+              title="立即連線證交所最新盤中報價並更新榜單所有即時行情"
+            >
+              <i class="fa-solid fa-arrows-rotate"></i>
+              <span>同步盤中價</span>
+            </button>
+            <button
               id="toggleLbPerfBtn"
               onclick="toggleLeaderboardPerformance()"
               class="px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/25 transition flex items-center gap-1 shrink-0 text-xs font-semibold"
@@ -516,7 +550,7 @@
         <span>資料來源：即時連線 Investing.com 公開個股頁、分析師共識目標價與 InvestingPro 同業比較快照（僅供投資研究參考）</span>
       </div>
       <div class="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.5.0</span>
+        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.6.0</span>
         <span>•</span>
         <button onclick="openReleaseNotesModal()" class="text-slate-400 hover:text-cyan-300 underline underline-offset-2">Release Notes</button>
         <span>•</span>
@@ -727,7 +761,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.5.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.6.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -751,6 +785,23 @@
             </a>
           </div>
         </div>
+        <!-- v2.6.0 -->
+        <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
+          <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
+          <div class="flex items-center justify-between flex-wrap gap-1">
+            <div class="font-bold text-white text-sm flex items-center gap-2">
+              <span>v2.6.0</span>
+              <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li><strong>⚡ 方案 B：GitHub Actions 盤中自動排程機器人</strong>：新增定時工作流，在台股交易日（09:00～13:30）每 15 分鐘全自動批次查詢證交所 (TWSE) 與櫃買中心 (TPEX) 即時報價，並更新至開源資料庫 <code>data/quotes.json</code>。</li>
+            <li><strong>🔄 方案 A：前端「一鍵盤中行情同步」與「⏱️ 每 60 秒自動背景輪詢」</strong>：頂部導航列、排行榜工具列與個股檢視台全面整合即時連線按鈕，進入網頁自動拉取最新盤中成交價，支援開著網頁每 60 秒自動背景更新。</li>
+            <li><strong>📈 全指標即時聯動重算</strong>：盤中成交價更新後，五大週期表現（當天%、週、月、季、年）、折價空間與目標價看漲空間瞬間動態重算，不再受限於本地舊快取。</li>
+          </ul>
+        </div>
+
         <!-- v2.5.0 -->
         <div class="relative pl-6 border-l-2 border-cyan-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-cyan-500 border-2 border-slate-950"></div>
@@ -2926,6 +2977,141 @@
       initCommunityPool();
       updateApiKeyBadge();
       renderApp();
+
+      // Plan A + B: Trigger background live quotes sync & start auto-poll
+      syncLiveQuotes(false);
+      startAutoPoll();
+    }
+
+    /*************************************************************************
+     * 2.1 LIVE REALTIME QUOTES SYNC (PLAN A + B ENGINE)
+     *************************************************************************/
+    let autoPollTimer = null;
+    let isAutoPollEnabled = true;
+
+    async function syncLiveQuotes(isManual = false) {
+      const spinIcon = document.getElementById('syncSpinIcon');
+      const statusText = document.getElementById('marketSyncStatusText');
+
+      if (spinIcon) spinIcon.classList.add('fa-spin');
+      if (statusText) statusText.innerText = '同步中...';
+
+      try {
+        const timestamp = Date.now();
+        const resp = await fetch(`./data/quotes.json?_t=${timestamp}`, {
+          cache: 'no-cache',
+          headers: { 'Cache-Control': 'no-cache' }
+        });
+        if (!resp.ok) {
+          throw new Error(`無法讀取 quotes.json (HTTP ${resp.status})`);
+        }
+        const data = await resp.json();
+        if (!data || !data.quotes) {
+          throw new Error('報價資料格式錯誤');
+        }
+
+        const quotes = data.quotes;
+        let matchedCount = 0;
+
+        // 1. Update stocks in radar
+        stocks.forEach(s => {
+          const q = quotes[s.code];
+          if (q && s.fairSource !== '手動校準') {
+            s.price = q.price;
+            s.prevClose = q.prevClose;
+            if (q.high) s.dayHigh = q.high;
+            if (q.low) s.dayLow = q.low;
+            if (q.volume) s.volume = q.volume;
+            s.lastUpdated = `證交所即時 (${q.time || data.updatedAt})`;
+            s.perf = getStockPerf(s);
+            matchedCount++;
+          }
+        });
+
+        // 2. Update TAIWAN_CORE_UNIVERSE
+        TAIWAN_CORE_UNIVERSE.forEach(u => {
+          const q = quotes[u.code];
+          if (q) {
+            u.price = q.price;
+            u.prevClose = q.prevClose;
+            if (q.high) u.dayHigh = q.high;
+            if (q.low) u.dayLow = q.low;
+            u.perf = getStockPerf(u);
+          }
+        });
+
+        // 3. Update Community Pool
+        if (communityPool && Array.isArray(communityPool)) {
+          communityPool.forEach(c => {
+            const q = quotes[c.code];
+            if (q) {
+              c.price = q.price;
+              c.prevClose = q.prevClose;
+              c.perf = getStockPerf(c);
+            }
+          });
+          saveCommunityPool();
+        }
+
+        saveToStorage();
+        renderApp();
+
+        if (statusText) {
+          const timePart = data.updatedAt ? data.updatedAt.split(' ')[1] : '';
+          statusText.innerText = `即時：${timePart || '已連線'}`;
+          statusText.title = `最後同步時間：${data.updatedAt}（共 ${data.total} 檔台股即時連線，GitHub Actions 自動每15分排程更新）`;
+        }
+
+        if (isManual) {
+          showToast(`✅ 已成功連線同步 ${data.total} 檔台股最新盤中成交價與五大區間表現！(${data.updatedAt})`, 'success');
+        }
+      } catch (err) {
+        console.warn('syncLiveQuotes warning:', err);
+        if (statusText) statusText.innerText = '盤中快照運作中';
+        if (isManual) {
+          showToast(`⚠️ 連線 quotes.json 失敗，目前維持最新本機快照。`, 'warning');
+        }
+      } finally {
+        if (spinIcon) spinIcon.classList.remove('fa-spin');
+      }
+    }
+
+    function toggleAutoPoll() {
+      isAutoPollEnabled = !isAutoPollEnabled;
+      const label = document.getElementById('autoPollLabel');
+      if (isAutoPollEnabled) {
+        if (label) label.innerText = '⏱️ 自動：開';
+        startAutoPoll();
+        showToast('已開啟每 60 秒盤中行情自動背景輪詢', 'info');
+      } else {
+        if (label) label.innerText = '⏱️ 自動：關';
+        stopAutoPoll();
+        showToast('已關閉自動輪詢（可隨時點擊按鈕手動更新）', 'info');
+      }
+    }
+
+    function startAutoPoll() {
+      stopAutoPoll();
+      autoPollTimer = setInterval(() => {
+        syncLiveQuotes(false);
+      }, 60000);
+    }
+
+    function stopAutoPoll() {
+      if (autoPollTimer) {
+        clearInterval(autoPollTimer);
+        autoPollTimer = null;
+      }
+    }
+
+    async function refreshSingleStock(code) {
+      showToast(`正在連線證交所更新 ${code} 盤中最新報價...`, 'info');
+      await syncLiveQuotes(false);
+      const s = stocks.find(x => x.code === code);
+      if (s) {
+        renderApp();
+        showToast(`✅ ${s.name} (${s.code}) 已更新最新報價：NT$ ${s.price}`, 'success');
+      }
     }
 
     function saveToStorage() {
@@ -3824,8 +4010,11 @@
 
             <div class="sm:text-right shrink-0 bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3">
               <div class="text-[11px] text-slate-400 flex items-center sm:justify-end gap-1.5">
-                <span>Investing.com 最新成交價</span>
+                <span>Investing / 證交所最新成交價</span>
                 ${stock.prevClose > 0 ? `<span class="text-slate-500">(昨收 ${formatNumber(stock.prevClose)})</span>` : ''}
+                <button onclick="refreshSingleStock('${stock.code}')" class="ml-1 text-slate-400 hover:text-cyan-300 transition" title="重新整理此股最新盤中報價">
+                  <i class="fa-solid fa-arrows-rotate text-[11px]"></i>
+                </button>
               </div>
               <div class="flex items-baseline sm:justify-end gap-2 mt-0.5">
                 <span class="text-2xl sm:text-3xl font-bold font-mono text-white">${cur}${formatNumber(stock.price)}</span>
