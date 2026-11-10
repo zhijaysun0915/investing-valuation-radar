@@ -275,6 +275,8 @@
           </button>
         </div>
         <div class="flex items-center gap-1.5 flex-wrap">
+          <button onclick="selectOrFetchTicker('2603', 'TW', '長榮')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">2603 長榮</button>
+          <button onclick="selectOrFetchTicker('6669', 'TW', '緯穎')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-cyan-950/80 text-cyan-200 hover:text-cyan-100 border border-cyan-500/30 transition font-mono">6669 緯穎</button>
           <button onclick="selectOrFetchTicker('3701', 'TW', '大眾控')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-rose-950/80 text-rose-300 hover:text-rose-100 border border-rose-500/40 transition font-mono">3701 大眾控</button>
           <button onclick="selectOrFetchTicker('2301', 'TW', '光寶科')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">2301 光寶科</button>
           <button onclick="selectOrFetchTicker('1303', 'TW', '南亞')" class="px-2 py-1 rounded-lg text-xs bg-slate-800/90 hover:bg-emerald-950/80 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition font-mono">1303 南亞</button>
@@ -3120,6 +3122,90 @@
 
     const DEFAULT_STOCKS = [
       {
+        code: '2603',
+        name: '長榮',
+        slug: 'evergreen-mari',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 245.50,
+        prevClose: 246.50,
+        dayLow: 244.00,
+        dayHigh: 248.00,
+        fairValue: 285.00,
+        fairRange: '265.00 - 305.00',
+        fairSource: 'InvestingPro 驗證快照',
+        peerFairUpside: '16.1%',
+        sectorFairUpside: '12.5%',
+        analystTarget: 271.60,
+        analystLow: 190.00,
+        analystHigh: 332.00,
+        analystRange: '190.00 - 332.00',
+        analystBuy: 18,
+        analystHold: 2,
+        analystSell: 1,
+        consensusLabel: '買入',
+        pe: '5.5x',
+        peerPe: '8.2x',
+        pb: '1.0x',
+        peerPb: '1.2x',
+        extraMetric: 'EPS: 25.22',
+        eps: '25.22',
+        marketCap: '5,315.2 億',
+        divYield: '6.20%',
+        week52Low: 160.00,
+        week52High: 275.00,
+        comparePath: 'TWSE:2603/compare/TWSE:2609TWSE:2615',
+        note: '全球前十大貨櫃航運巨頭，InvestingPro 財務模型推算公允價值 NT$ 285.00 元（合理區間 265.00 - 305.00 元），18 位外資分析師給予買進評級，12 個月平均目標價 NT$ 271.60 元（最高 332.00 元），本益比僅 5.5x，淨值比 1.0x。',
+        lastUpdated: 'Investing.com 官方驗證快照',
+        analystRatings: [
+          { firm: 'JPMorgan', rating: '買入', target: '290.00', upside: '+18.13%', action: '持平', date: '2026年11月02日' },
+          { firm: 'Morgan Stanley', rating: '買入', target: '275.00', upside: '+12.02%', action: '持平', date: '2026年10月28日' },
+          { firm: 'HSBC', rating: '買入', target: '305.00', upside: '+24.24%', action: '調升', date: '2026年10月15日' }
+        ]
+      },
+      {
+        code: '6669',
+        name: '緯穎',
+        slug: 'wiwynn',
+        market: 'TWSE',
+        currency: 'NT$',
+        price: 1650.00,
+        prevClose: 1645.00,
+        dayLow: 1630.00,
+        dayHigh: 1730.00,
+        fairValue: 2280.00,
+        fairRange: '2,050.00 - 2,520.00',
+        fairSource: 'InvestingPro 驗證快照',
+        peerFairUpside: '38.2%',
+        sectorFairUpside: '15.0%',
+        analystTarget: 2749.77,
+        analystLow: 1850.00,
+        analystHigh: 3352.55,
+        analystRange: '1,850.00 - 3,352.55',
+        analystBuy: 18,
+        analystHold: 0,
+        analystSell: 0,
+        consensusLabel: '強力買入',
+        pe: '22.4x',
+        peerPe: '28.5x',
+        pb: '5.2x',
+        peerPb: '4.8x',
+        extraMetric: 'PEG: 0.32',
+        eps: '105.11',
+        marketCap: '9,243.3 億',
+        divYield: '2.10%',
+        week52Low: 1420.00,
+        week52High: 2980.00,
+        comparePath: 'TWSE:6669/compare/TWSE:3231TWSE:2382TWSE:2317',
+        note: 'AI 伺服器機櫃與雲端超大規模資料中心領導廠，InvestingPro 公允價 NT$ 2,280.00 元（區間 2,050 - 2,520 元），18 位外資分析師全數給予強力買入評級，共識目標價 NT$ 2,749.77 元（最高 3,352.55 元），PEG 僅 0.32。',
+        lastUpdated: 'Investing.com 官方驗證快照',
+        analystRatings: [
+          { firm: 'Goldman Sachs', rating: '買入', target: '3,200.00', upside: '+93.94%', action: '持平', date: '2026年11月03日' },
+          { firm: 'Citi', rating: '買入', target: '3,150.00', upside: '+90.91%', action: '持平', date: '2026年10月25日' },
+          { firm: 'Morgan Stanley', rating: '買入', target: '3,352.55', upside: '+103.18%', action: '調升', date: '2026年10月12日' }
+        ]
+      },
+      {
         code: '2327',
         name: '國巨*',
         slug: 'yageo-corp',
@@ -3574,6 +3660,8 @@
         '3701': { price: 51.50, prevClose: 47.60, dayLow: 49.00, dayHigh: 52.00, note: '週一隨大盤千點強彈展開修復行情，盤中站回 51 元。' }
       };
 
+      const normalizedStocks = [];
+      const seen = new Set();
       stocks.forEach(s => {
         const live = LIVE_QUOTES_20261109[s.code];
         if (live && s.fairSource !== '手動校準') {
@@ -3584,29 +3672,85 @@
           if (live.note) s.note = live.note;
           s.lastUpdated = '2026-11-09 盤中即時快照';
         }
-        // Self-healing from TAIWAN_CORE_UNIVERSE (restores valid fair values and targets if local cache had 0)
-        const core = TAIWAN_CORE_UNIVERSE.find(u => u.code === s.code);
+        // Self-healing from TAIWAN_CORE_UNIVERSE (resolves Chinese names, wrong slugs, or 0 valuations)
+        const core = TAIWAN_CORE_UNIVERSE.find(u => u.code === s.code || u.name === s.code || u.name === s.name || (s.slug && u.slug === s.slug));
         if (core && s.fairSource !== '手動校準') {
-          if (!s.slug || s.slug === 'evergreen-marine' || s.slug === 'wiwynn-corp') s.slug = core.slug;
-          if ((!s.fairValue || s.fairValue === 0) && core.fairValue) s.fairValue = core.fairValue;
-          if ((!s.analystTarget || s.analystTarget === 0) && core.analystTarget) s.analystTarget = core.analystTarget;
-          if (!s.fairRange && core.fairRange) s.fairRange = core.fairRange;
-          if (!s.analystRange && core.analystRange) s.analystRange = core.analystRange;
-          if ((!s.price || s.price === 0) && core.price) s.price = core.price;
-          if ((!s.prevClose || s.prevClose === 0) && core.prevClose) s.prevClose = core.prevClose;
+          s.code = core.code;
+          s.name = core.name;
+          s.slug = core.slug;
+          s.market = core.market || s.market || 'TWSE';
+          if (!s.fairValue || s.fairValue <= 0 || s.fairValue === '—' || !s.fairRange) {
+            s.fairValue = core.fairValue;
+            s.fairRange = core.fairRange;
+            s.fairSource = 'InvestingPro 財務模型 + 外資共識';
+          }
+          if (!s.analystTarget || s.analystTarget <= 0 || s.analystTarget === '—') {
+            s.analystTarget = core.analystTarget;
+            s.analystRange = core.analystRange;
+          }
+          if (!s.price || s.price <= 0) s.price = core.price;
+          if (!s.prevClose || s.prevClose <= 0) s.prevClose = core.prevClose;
           if (!s.pe || s.pe === '...') s.pe = core.pe;
           if (!s.pb || s.pb === '...') s.pb = core.pb;
         }
         const known = KNOWN_SLUGS[s.code];
         if (known && s.fairSource !== '手動校準') {
           if (known.slug) s.slug = known.slug;
-          if (known.proFairValue && (!s.fairValue || s.fairValue === 0)) s.fairValue = known.proFairValue;
+          if (known.proFairValue && (!s.fairValue || s.fairValue <= 0)) s.fairValue = known.proFairValue;
           if (known.proFairRange && !s.fairRange) s.fairRange = known.proFairRange;
-          if (known.analystTarget && (!s.analystTarget || s.analystTarget === 0)) s.analystTarget = known.analystTarget;
+          if (known.analystTarget && (!s.analystTarget || s.analystTarget <= 0)) s.analystTarget = known.analystTarget;
         }
-        // Force refresh perf
         s.perf = getStockPerf(s);
+        if (s.code && !seen.has(s.code)) {
+          seen.add(s.code);
+          normalizedStocks.push(s);
+        }
       });
+
+      // Guarantee 2603 (長榮) and 6669 (緯穎) are in the active radar list!
+      if (!seen.has('2603')) {
+        const c2603 = TAIWAN_CORE_UNIVERSE.find(u => u.code === '2603');
+        if (c2603) {
+          normalizedStocks.unshift({
+            ...c2603,
+            currency: 'NT$',
+            fairSource: 'InvestingPro 驗證快照',
+            consensusLabel: '買入',
+            analystBuy: 18,
+            analystHold: 2,
+            analystSell: 1,
+            extraMetric: 'EPS: 25.22',
+            lastUpdated: '官方估值數據庫',
+            analystRatings: [
+              { firm: 'JPMorgan', rating: '買入', target: '290.00', upside: '+18.13%', action: '持平', date: '2026年11月02日' },
+              { firm: 'Morgan Stanley', rating: '買入', target: '275.00', upside: '+12.02%', action: '持平', date: '2026年10月28日' }
+            ]
+          });
+          seen.add('2603');
+        }
+      }
+      if (!seen.has('6669')) {
+        const c6669 = TAIWAN_CORE_UNIVERSE.find(u => u.code === '6669');
+        if (c6669) {
+          normalizedStocks.unshift({
+            ...c6669,
+            currency: 'NT$',
+            fairSource: 'InvestingPro 驗證快照',
+            consensusLabel: '強力買入',
+            analystBuy: 18,
+            analystHold: 0,
+            analystSell: 0,
+            extraMetric: 'PEG: 0.32',
+            lastUpdated: '官方估值數據庫',
+            analystRatings: [
+              { firm: 'Goldman Sachs', rating: '買入', target: '3,200.00', upside: '+93.94%', action: '持平', date: '2026年11月03日' },
+              { firm: 'Citi', rating: '買入', target: '3,150.00', upside: '+90.91%', action: '持平', date: '2026年10月25日' }
+            ]
+          });
+          seen.add('6669');
+        }
+      }
+      stocks = normalizedStocks;
 
       if (communityPool && Array.isArray(communityPool)) {
         communityPool.forEach(c => {
@@ -3617,8 +3761,16 @@
             c.dayLow = live.dayLow;
             c.dayHigh = live.dayHigh;
           }
+          const core = TAIWAN_CORE_UNIVERSE.find(u => u.code === c.code || u.name === c.code || u.name === c.name || (c.slug && u.slug === c.slug));
+          if (core) {
+            c.code = core.code;
+            c.name = core.name;
+            c.slug = core.slug;
+            if (!c.fairValue || c.fairValue <= 0 || c.fairValue === '—') c.fairValue = core.fairValue;
+            if (!c.analystTarget || c.analystTarget <= 0 || c.analystTarget === '—') c.analystTarget = core.analystTarget;
+          }
           const known = KNOWN_SLUGS[c.code];
-          if (known && known.proFairValue) c.fairValue = known.proFairValue;
+          if (known && known.proFairValue && (!c.fairValue || c.fairValue <= 0)) c.fairValue = known.proFairValue;
           c.perf = getStockPerf(c);
         });
         saveCommunityPool();
@@ -4530,8 +4682,8 @@
           // Pure ASCII codes separated by space
           lines = text.split(/\s+/).filter(Boolean);
         } else if (hasChinese && /\s+/.test(text)) {
-          // Mixed pattern, e.g. "3374 精材 6488 環球晶"
-          const matches = text.match(/([0-9A-Za-z.*]{2,10}(?:\s+[\u4e00-\u9fa5]+)?|[\u4e00-\u9fa5]{2,10})/g);
+          // Mixed pattern, e.g. "3374 精材 6488 環球晶" or "2603 長榮 緯穎 6669"
+          const matches = text.match(/([0-9A-Za-z.*]{2,10}(?:\s+[\u4e00-\u9fa5A-Za-z0-9._-]+)?|[\u4e00-\u9fa5A-Za-z0-9._-]+(?:\s+[0-9A-Za-z.*]{2,10})|[\u4e00-\u9fa5]{2,10})/g);
           if (matches && matches.length > 0) {
             lines = matches;
           }
@@ -4555,6 +4707,18 @@
           continue;
         }
 
+        // Pattern A2: Name Hint + Code, e.g. "長榮 2603", "緯穎 6669"
+        const hintAndCode = trimmed.match(/^([\u4e00-\u9fa5A-Za-z0-9._-]+)\s+([0-9A-Za-z.*]{2,10})$/);
+        if (hintAndCode && !/^[0-9A-Za-z.*]{2,10}$/.test(hintAndCode[1])) {
+          items.push({
+            query: hintAndCode[2].toUpperCase(),
+            code: hintAndCode[2].toUpperCase(),
+            hint: hintAndCode[1].trim(),
+            raw: trimmed
+          });
+          continue;
+        }
+
         // Pattern B: Pure code, e.g. "2330", "NVDA", "3374"
         if (/^[0-9A-Za-z.*]{2,10}$/.test(trimmed)) {
           items.push({
@@ -4566,11 +4730,37 @@
           continue;
         }
 
-        // Pattern C: Pure Chinese or Name, e.g. "精材", "環球晶"
+        // Pattern C: Pure Chinese or Name, e.g. "長榮", "緯穎", "精材", "環球晶"
+        let matchedCode = '';
+        let matchedHint = trimmed;
+        if (typeof TAIWAN_CORE_UNIVERSE !== 'undefined') {
+          const core = TAIWAN_CORE_UNIVERSE.find(u =>
+            u.name === trimmed ||
+            u.name.replace('*', '') === trimmed ||
+            (trimmed.length >= 2 && u.name.includes(trimmed)) ||
+            (trimmed.length >= 2 && trimmed.includes(u.name.replace('*', '')))
+          );
+          if (core) {
+            matchedCode = core.code;
+            matchedHint = core.name;
+          }
+        }
+        if (!matchedCode && typeof KNOWN_SLUGS !== 'undefined') {
+          const entry = Object.entries(KNOWN_SLUGS).find(([k, v]) =>
+            v.name === trimmed ||
+            (v.name && v.name.replace('*', '') === trimmed) ||
+            (v.name && trimmed.length >= 2 && (v.name.includes(trimmed) || trimmed.includes(v.name.replace('*', ''))))
+          );
+          if (entry) {
+            matchedCode = entry[0];
+            matchedHint = entry[1].name || trimmed;
+          }
+        }
+
         items.push({
-          query: trimmed,
-          code: '',
-          hint: trimmed,
+          query: matchedCode || trimmed,
+          code: matchedCode || '',
+          hint: matchedHint,
           raw: trimmed
         });
       }
@@ -4578,14 +4768,22 @@
     }
 
     async function selectOrFetchTicker(code, preferredMarket = 'AUTO', hint = '') {
-      const upper = (code || '').trim().toUpperCase();
+      let upper = (code || '').trim().toUpperCase();
+      let effectiveHint = hint;
+      if (/[\u4e00-\u9fa5]/.test(upper)) {
+        const parsed = parseSearchQueryItems(upper)[0];
+        if (parsed && parsed.code) {
+          upper = parsed.code;
+          effectiveHint = effectiveHint || parsed.hint;
+        }
+      }
       selectedCode = upper;
       const existing = stocks.find(s => s.code === upper);
       if (existing) {
         renderApp();
-        await processTickers([{ query: upper, code: upper, hint: hint || existing.name, market: preferredMarket }]);
+        await processTickers([{ query: upper, code: upper, hint: effectiveHint || existing.name, market: preferredMarket }]);
       } else {
-        await processTickers([{ query: upper, code: upper, hint, market: preferredMarket }]);
+        await processTickers([{ query: upper, code: upper, hint: effectiveHint, market: preferredMarket }]);
       }
     }
 
@@ -4610,6 +4808,8 @@
       inputEl.value = '';
       if (items[0].code) {
         selectedCode = items[0].code;
+      } else if (items[0].query) {
+        selectedCode = items[0].query;
       }
       await processTickers(items, market);
     }
@@ -4622,6 +4822,11 @@
       const market = document.getElementById('marketSelector')?.value || 'AUTO';
       const items = parseSearchQueryItems(raw);
       if (items.length > 0) {
+        if (items[0].code) {
+          selectedCode = items[0].code;
+        } else if (items[0].query) {
+          selectedCode = items[0].query;
+        }
         processTickers(items, market);
       }
     }
@@ -5834,7 +6039,12 @@
       communityPool.forEach(item => {
         if (map.has(item.code)) {
           const ex = map.get(item.code);
-          map.set(item.code, { ...ex, ...item });
+          const merged = { ...ex, ...item };
+          if (!merged.fairValue || merged.fairValue <= 0 || merged.fairValue === '—') merged.fairValue = ex.fairValue;
+          if (!merged.fairRange && ex.fairRange) merged.fairRange = ex.fairRange;
+          if (!merged.analystTarget || merged.analystTarget <= 0 || merged.analystTarget === '—') merged.analystTarget = ex.analystTarget;
+          if (!merged.analystRange && ex.analystRange) merged.analystRange = ex.analystRange;
+          map.set(item.code, merged);
         } else {
           map.set(item.code, { ...item });
         }
@@ -5843,7 +6053,12 @@
       stocks.forEach(item => {
         if (map.has(item.code)) {
           const ex = map.get(item.code);
-          map.set(item.code, { ...ex, ...item });
+          const merged = { ...ex, ...item };
+          if (!merged.fairValue || merged.fairValue <= 0 || merged.fairValue === '—') merged.fairValue = ex.fairValue;
+          if (!merged.fairRange && ex.fairRange) merged.fairRange = ex.fairRange;
+          if (!merged.analystTarget || merged.analystTarget <= 0 || merged.analystTarget === '—') merged.analystTarget = ex.analystTarget;
+          if (!merged.analystRange && ex.analystRange) merged.analystRange = ex.analystRange;
+          map.set(item.code, merged);
         } else {
           map.set(item.code, { ...item });
         }
