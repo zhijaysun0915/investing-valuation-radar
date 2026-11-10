@@ -1,7 +1,7 @@
 {
-  "version": "2.8.0",
-  "updatedAt": "2026-11-10 15:49:31",
-  "timestamp": 1794296971,
+  "version": "2.10.0",
+  "updatedAt": "2026-11-10 22:21:12",
+  "timestamp": 1794320472,
   "total": 126,
   "marketSessions": {
     "TWSE": {
@@ -17,22 +17,22 @@
       "isLive": false
     },
     "NASDAQ": {
-      "status": "CLOSED",
-      "desc": "美股已收盤",
-      "hours": "美東 16:00 收盤",
-      "isLive": false
+      "status": "PRE",
+      "desc": "美股盤前交易",
+      "hours": "美東 04:00~09:30",
+      "isLive": true
     },
     "NYSE": {
-      "status": "CLOSED",
-      "desc": "美股已收盤",
-      "hours": "美東 16:00 收盤",
-      "isLive": false
+      "status": "PRE",
+      "desc": "美股盤前交易",
+      "hours": "美東 04:00~09:30",
+      "isLive": true
     },
     "HKEX": {
-      "status": "OPEN",
-      "desc": "港股盤中交易",
-      "hours": "09:30~16:00",
-      "isLive": true
+      "status": "CLOSED",
+      "desc": "港股已收盤",
+      "hours": "16:00 收盤",
+      "isLive": false
     },
     "TSE": {
       "status": "CLOSED",
@@ -64,6 +64,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 1,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2454": {
@@ -88,6 +89,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 2,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2303": {
@@ -112,6 +114,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 13,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3711": {
@@ -136,6 +139,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 5,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2379": {
@@ -160,6 +164,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 46,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3034": {
@@ -184,6 +189,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 55,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3443": {
@@ -208,6 +214,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 18,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3661": {
@@ -232,6 +239,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 52,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3529": {
@@ -256,6 +264,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 72,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "6488": {
@@ -280,6 +289,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 50,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "5347": {
@@ -304,6 +314,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 61,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3374": {
@@ -328,6 +339,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 83,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2408": {
@@ -352,6 +364,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 12,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2344": {
@@ -376,6 +389,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 33,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3006": {
@@ -400,6 +414,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 95,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "8299": {
@@ -424,6 +439,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 48,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "6770": {
@@ -448,6 +464,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 57,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "6239": {
@@ -472,6 +489,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 70,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3260": {
@@ -496,6 +514,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 85,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2458": {
@@ -520,6 +539,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 101,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "2317": {
@@ -544,6 +564,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 3,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2382": {
@@ -568,6 +589,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 15,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3231": {
@@ -592,6 +614,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 36,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "6669": {
@@ -616,6 +639,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 20,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2356": {
@@ -640,6 +664,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 68,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2376": {
@@ -664,6 +689,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 65,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2357": {
@@ -688,6 +714,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 30,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2301": {
@@ -712,6 +739,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 38,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2308": {
@@ -736,6 +764,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 4,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2395": {
@@ -760,6 +789,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 40,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2324": {
@@ -784,6 +814,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 77,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2353": {
@@ -808,6 +839,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 88,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "4938": {
@@ -832,6 +864,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 58,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2345": {
@@ -856,6 +889,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 21,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "5388": {
@@ -880,6 +914,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 106,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "6285": {
@@ -904,6 +939,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 90,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2412": {
@@ -928,6 +964,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 14,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "4904": {
@@ -952,6 +989,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 47,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2327": {
@@ -976,6 +1014,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 22,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2492": {
@@ -1000,6 +1039,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 79,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3017": {
@@ -1024,6 +1064,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 16,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3324": {
@@ -1048,6 +1089,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 84,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3653": {
@@ -1072,6 +1114,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 24,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2421": {
@@ -1096,6 +1139,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 100,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2059": {
@@ -1120,6 +1164,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 26,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3533": {
@@ -1144,6 +1189,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 67,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3037": {
@@ -1168,6 +1214,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 11,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "8046": {
@@ -1192,6 +1239,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 31,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3189": {
@@ -1216,6 +1264,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 45,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2368": {
@@ -1240,6 +1289,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 39,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3044": {
@@ -1264,6 +1314,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 62,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "6274": {
@@ -1288,6 +1339,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 53,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2383": {
@@ -1312,6 +1364,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 9,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "8069": {
@@ -1336,6 +1389,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 73,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "6176": {
@@ -1360,6 +1414,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 105,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "2478": {
@@ -1384,6 +1439,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 111,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "2881": {
@@ -1408,6 +1464,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 7,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2882": {
@@ -1432,6 +1489,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 8,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2891": {
@@ -1456,6 +1514,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 10,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2886": {
@@ -1480,6 +1539,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 27,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2884": {
@@ -1504,6 +1564,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 25,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2892": {
@@ -1528,6 +1589,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 35,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2880": {
@@ -1552,6 +1614,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 28,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2885": {
@@ -1576,6 +1639,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 19,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2887": {
@@ -1600,6 +1664,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 17,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2890": {
@@ -1624,6 +1689,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 32,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "5880": {
@@ -1648,6 +1714,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 41,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2883": {
@@ -1672,6 +1739,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 34,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2834": {
@@ -1696,6 +1764,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 69,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "5876": {
@@ -1720,6 +1789,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 59,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2897": {
@@ -1744,6 +1814,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 103,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "2801": {
@@ -1768,6 +1839,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 49,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "1301": {
@@ -1792,6 +1864,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 42,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "1303": {
@@ -1816,6 +1889,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 6,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "1326": {
@@ -1840,6 +1914,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 44,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "6505": {
@@ -1864,6 +1939,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 23,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2002": {
@@ -1888,6 +1964,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 54,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "1519": {
@@ -1912,6 +1989,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 71,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "1513": {
@@ -1936,6 +2014,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 93,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "1504": {
@@ -1960,6 +2039,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 74,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "1503": {
@@ -1984,6 +2064,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 91,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "1101": {
@@ -2008,6 +2089,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 64,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "1102": {
@@ -2032,6 +2114,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 81,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "1216": {
@@ -2056,6 +2139,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 43,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "1402": {
@@ -2080,6 +2164,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 76,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "9904": {
@@ -2104,6 +2189,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 92,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "9910": {
@@ -2128,6 +2214,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 96,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2105": {
@@ -2152,6 +2239,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 89,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2912": {
@@ -2176,6 +2264,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 63,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2207": {
@@ -2200,6 +2289,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 56,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2201": {
@@ -2224,6 +2314,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 104,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "1605": {
@@ -2248,6 +2339,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 75,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2603": {
@@ -2272,6 +2364,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 37,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "2609": {
@@ -2296,6 +2389,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 66,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2615": {
@@ -2320,6 +2414,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 51,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2618": {
@@ -2344,6 +2439,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 60,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2610": {
@@ -2368,6 +2464,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 78,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2605": {
@@ -2392,6 +2489,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 107,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "6472": {
@@ -2416,6 +2514,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 98,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "1795": {
@@ -2440,6 +2539,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 99,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "6589": {
@@ -2464,6 +2564,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 110,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "4147": {
@@ -2488,6 +2589,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 109,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "6547": {
@@ -2512,6 +2614,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 108,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "3008": {
@@ -2536,6 +2639,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 29,
+      "isTop50Cap": true,
       "isTop100Cap": true
     },
     "3406": {
@@ -2560,6 +2664,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 86,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "2474": {
@@ -2584,6 +2689,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 87,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3023": {
@@ -2608,6 +2714,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 97,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "6533": {
@@ -2632,6 +2739,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 114,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "6789": {
@@ -2656,6 +2764,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 82,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "6805": {
@@ -2680,6 +2789,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 80,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3596": {
@@ -2704,6 +2814,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 102,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "6409": {
@@ -2728,6 +2839,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 94,
+      "isTop50Cap": false,
       "isTop100Cap": true
     },
     "3701": {
@@ -2752,6 +2864,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 113,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "2342": {
@@ -2776,6 +2889,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 116,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "4716": {
@@ -2800,6 +2914,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 117,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "4989": {
@@ -2824,6 +2939,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 115,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "6443": {
@@ -2848,6 +2964,7 @@
       "sessionHours": "13:30 收盤",
       "isSessionLive": false,
       "marketCapRank": 112,
+      "isTop50Cap": false,
       "isTop100Cap": false
     },
     "NVDA": {
@@ -2861,15 +2978,15 @@
       "high": 179.92,
       "low": 170.24,
       "volume": 456756830,
-      "time": "15:50:07",
+      "time": "22:21:24",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤",
-      "isSessionLive": false
+      "sessionStatus": "PRE",
+      "sessionDesc": "美股盤前交易",
+      "sessionHours": "美東 04:00~09:30",
+      "isSessionLive": true
     },
     "AAPL": {
       "code": "AAPL",
@@ -2882,15 +2999,15 @@
       "high": 352.28,
       "low": 344.78,
       "volume": 47499490,
-      "time": "15:50:07",
+      "time": "22:21:24",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤",
-      "isSessionLive": false
+      "sessionStatus": "PRE",
+      "sessionDesc": "美股盤前交易",
+      "sessionHours": "美東 04:00~09:30",
+      "isSessionLive": true
     },
     "TSLA": {
       "code": "TSLA",
@@ -2900,18 +3017,18 @@
       "change": 19.83,
       "changePct": 5.54,
       "open": 378.05,
-      "high": 382.15,
+      "high": 382.2,
       "low": 360.02,
       "volume": 36201597,
-      "time": "15:50:07",
+      "time": "22:21:24",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤",
-      "isSessionLive": false
+      "sessionStatus": "PRE",
+      "sessionDesc": "美股盤前交易",
+      "sessionHours": "美東 04:00~09:30",
+      "isSessionLive": true
     },
     "MSFT": {
       "code": "MSFT",
@@ -2924,15 +3041,15 @@
       "high": 548.28,
       "low": 538.7,
       "volume": 25282835,
-      "time": "15:50:07",
+      "time": "22:21:24",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤",
-      "isSessionLive": false
+      "sessionStatus": "PRE",
+      "sessionDesc": "美股盤前交易",
+      "sessionHours": "美東 04:00~09:30",
+      "isSessionLive": true
     },
     "AMD": {
       "code": "AMD",
@@ -2945,15 +3062,15 @@
       "high": 515.18,
       "low": 468.21,
       "volume": 50860939,
-      "time": "15:50:07",
+      "time": "22:21:24",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤",
-      "isSessionLive": false
+      "sessionStatus": "PRE",
+      "sessionDesc": "美股盤前交易",
+      "sessionHours": "美東 04:00~09:30",
+      "isSessionLive": true
     },
     "AVGO": {
       "code": "AVGO",
@@ -2966,15 +3083,15 @@
       "high": 323.05,
       "low": 304.29,
       "volume": 36557862,
-      "time": "15:50:07",
+      "time": "22:21:24",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤",
-      "isSessionLive": false
+      "sessionStatus": "PRE",
+      "sessionDesc": "美股盤前交易",
+      "sessionHours": "美東 04:00~09:30",
+      "isSessionLive": true
     },
     "TSM": {
       "code": "TSM",
@@ -2987,36 +3104,36 @@
       "high": 394.39,
       "low": 380.33,
       "volume": 15571695,
-      "time": "15:50:07",
+      "time": "22:21:24",
       "market": "NYSE",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤",
-      "isSessionLive": false
+      "sessionStatus": "PRE",
+      "sessionDesc": "美股盤前交易",
+      "sessionHours": "美東 04:00~09:30",
+      "isSessionLive": true
     },
     "0700": {
       "code": "0700",
       "name": "騰訊控股",
-      "price": 417.0,
+      "price": 417.8,
       "prevClose": 418.4,
-      "change": -1.4,
-      "changePct": -0.33,
-      "open": 417.0,
+      "change": -0.6,
+      "changePct": -0.14,
+      "open": 417.8,
       "high": 424.4,
       "low": 415.4,
-      "volume": 12234544,
-      "time": "15:50:07",
+      "volume": 15110760,
+      "time": "22:21:25",
       "market": "HKEX",
       "currency": "HK$",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "OPEN",
-      "sessionDesc": "港股盤中交易",
-      "sessionHours": "09:30~16:00",
-      "isSessionLive": true
+      "sessionStatus": "CLOSED",
+      "sessionDesc": "港股已收盤",
+      "sessionHours": "16:00 收盤",
+      "isSessionLive": false
     },
     "7203": {
       "code": "7203",
@@ -3029,7 +3146,7 @@
       "high": 3493.0,
       "low": 3407.0,
       "volume": 28932000,
-      "time": "15:50:08",
+      "time": "22:21:25",
       "market": "TSE",
       "currency": "¥",
       "marketCap": "—",

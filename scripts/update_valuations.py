@@ -33,18 +33,26 @@ def main():
     # Extract KNOWN_SLUGS
     m_slugs = re.search(r'const KNOWN_SLUGS = \{([\s\S]*?)\};', content)
     if m_slugs:
-        slug_matches = re.findall(
-            r"'([^']+)':\s*\{\s*slug:\s*'([^']*)',\s*name:\s*'([^']*)',\s*market:\s*'([^']*)'(?:,\s*proFairValue:\s*([0-9.]+))?(?:,\s*proFairRange:\s*'([^']*)')?",
-            m_slugs.group(1)
-        )
-        for code, slug, name, market, fv, fr in slug_matches:
+        slugs_body = m_slugs.group(1)
+        for block in re.finditer(r"'([^']+)':\s*\{([^}]+)\}", slugs_body):
+            code = block.group(1).strip()
+            props_str = block.group(2)
+
+            slug_m = re.search(r"slug:\s*'([^']*)'", props_str)
+            name_m = re.search(r"name:\s*'([^']*)'", props_str)
+            market_m = re.search(r"market:\s*'([^']*)'", props_str)
+            fv_m = re.search(r"proFairValue:\s*([0-9.]+)", props_str)
+            fr_m = re.search(r"proFairRange:\s*'([^']*)'", props_str)
+            at_m = re.search(r"analystTarget:\s*([0-9.]+)", props_str)
+
             valuations[code] = {
                 'code': code,
-                'name': name,
-                'slug': slug,
-                'market': market,
-                'fairValue': float(fv) if fv else None,
-                'fairRange': fr if fr else '',
+                'name': name_m.group(1) if name_m else '',
+                'slug': slug_m.group(1) if slug_m else '',
+                'market': market_m.group(1) if market_m else 'TWSE',
+                'fairValue': float(fv_m.group(1)) if fv_m else None,
+                'fairRange': fr_m.group(1) if fr_m else '',
+                'analystTarget': float(at_m.group(1)) if at_m else None,
                 'fairSource': 'InvestingPro 財務模型',
                 'updatedAt': now_str
             }
@@ -63,8 +71,9 @@ def main():
                         'slug': item.get('slug', existing.get('slug', '')),
                         'market': item.get('market', existing.get('market', 'TWSE')),
                         'fairValue': float(item.get('fairValue', 0)) if item.get('fairValue') else existing.get('fairValue'),
-                        'fairRange': existing.get('fairRange', ''),
-                        'analystTarget': float(item.get('analystTarget', 0)) if item.get('analystTarget') else None,
+                        'fairRange': item.get('fairRange') or existing.get('fairRange', ''),
+                        'analystTarget': float(item.get('analystTarget', 0)) if item.get('analystTarget') else existing.get('analystTarget'),
+                        'analystRange': item.get('analystRange', ''),
                         'pe': item.get('pe', ''),
                         'pb': item.get('pb', ''),
                         'fairSource': 'InvestingPro 財務模型 + 外資共識',
@@ -74,7 +83,7 @@ def main():
             print(f"Error parsing universe: {e}", file=sys.stderr)
 
     output_data = {
-        'version': '2.8.0',
+        'version': '2.10.0',
         'updatedAt': now_str,
         'timestamp': int(now_tw.timestamp()),
         'total': len(valuations),

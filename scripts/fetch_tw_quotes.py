@@ -37,17 +37,26 @@ def get_market_session(market, dt=None):
         return 'CLOSED', '今日已收盤', '13:30 收盤', False
 
     if m in ('NASDAQ', 'NYSE', 'AMEX'):
-        us_dt = dt.astimezone(US_TZ)
+        try:
+            from zoneinfo import ZoneInfo
+            us_dt = dt.astimezone(ZoneInfo("America/New_York"))
+        except Exception:
+            us_dt = dt.astimezone(timezone(timedelta(hours=-5)))
+        tz_name = us_dt.strftime('%Z')
+        is_dst = (tz_name == 'EDT')
+        tw_open = '21:30' if is_dst else '22:30'
+        tw_close = '04:00' if is_dst else '05:00'
+
         if us_dt.weekday() >= 5:
-            return 'WEEKEND', '美股週末休市', '美東 09:30~16:00', False
+            return 'WEEKEND', '美股週末休市', f'美東 09:30~16:00 ({tz_name})', False
         hm = us_dt.hour * 60 + us_dt.minute
         if 9 * 60 + 30 <= hm <= 16 * 60:
-            return 'OPEN', '美股盤中交易', '美東 09:30~16:00 (台 22:30~05:00)', True
+            return 'OPEN', '美股盤中交易', f'美東 09:30~16:00 (台 {tw_open}~{tw_close})', True
         if 4 * 60 <= hm < 9 * 60 + 30:
             return 'PRE', '美股盤前交易', '美東 04:00~09:30', True
         if 16 * 60 < hm <= 20 * 60:
-            return 'POST', '美股盤後交易', '美東 16:00~20:00', False
-        return 'CLOSED', '美股已收盤', '美東 16:00 收盤', False
+            return 'POST', '美股盤後交易', '美東 16:00~20:00 (Post-Market)', True
+        return 'CLOSED', '美股已收盤', f'美東 16:00 收盤 (今晚 {tw_open} 開盤)', False
 
     if m == 'HKEX':
         hk_dt = dt.astimezone(TW_TZ)
@@ -314,6 +323,14 @@ def main():
             }
 
     quotes = {}
+    if os.path.exists(output_path):
+        try:
+            with open(output_path, 'r', encoding='utf-8') as f:
+                old_data = json.load(f)
+                if isinstance(old_data, dict) and 'quotes' in old_data:
+                    quotes = old_data['quotes']
+        except Exception as e:
+            print(f"Notice: could not read old quotes: {e}", file=sys.stderr)
 
     # Query Taiwan stocks in batches
     tw_symbols = []
@@ -376,6 +393,7 @@ def main():
     for rank_idx, item in enumerate(tw_stocks_sorted, 1):
         code = item['code']
         quotes[code]['marketCapRank'] = rank_idx
+        quotes[code]['isTop50Cap'] = (rank_idx <= 50)
         quotes[code]['isTop100Cap'] = (rank_idx <= 100)
 
     # Query Global Stocks
@@ -392,7 +410,7 @@ def main():
                 quotes[code] = gq
 
     output_data = {
-        'version': '2.8.0',
+        'version': '2.10.0',
         'updatedAt': now_tw.strftime('%Y-%m-%d %H:%M:%S'),
         'timestamp': int(now_tw.timestamp()),
         'total': len(quotes),

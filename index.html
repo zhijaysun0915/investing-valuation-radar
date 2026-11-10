@@ -1120,8 +1120,8 @@
       '3711': { slug: 'ase-industrial', name: '日月光投控', market: 'TWSE' },
       '2408': { slug: 'nanya-tech', name: '南亞科', market: 'TWSE' },
       '2344': { slug: 'winbond', name: '華邦電', market: 'TWSE' },
-      '2603': { slug: 'evergreen-marine', name: '長榮', market: 'TWSE' },
-      '3231': { slug: 'wistron', name: '緯創', market: 'TWSE' },
+      '2603': { slug: 'evergreen-mari', name: '長榮', market: 'TWSE', currency: 'NT$', proFairValue: 285.00, proFairRange: '265.00 - 305.00', analystTarget: 271.60 },
+      '3231': { slug: 'wistron-corp', name: '緯創', market: 'TWSE', currency: 'NT$', proFairValue: 215.00, proFairRange: '195.00 - 238.00', analystTarget: 276.31 },
       '2357': { slug: 'asustek-computer', name: '華碩', market: 'TWSE' },
       '3017': { slug: 'asia-vital-components', name: '奇鋐', market: 'TWSE' },
       '6274': { slug: 'taiwan-union-technology', name: '台燿', market: 'TPEX' },
@@ -1137,7 +1137,7 @@
       '3443': { slug: 'global-unichip', name: '創意', market: 'TWSE', currency: 'NT$' },
       '3661': { slug: 'alchip-technologies', name: '世芯-KY', market: 'TWSE', currency: 'NT$' },
       '2345': { slug: 'accton-tech', name: '智邦', market: 'TWSE', currency: 'NT$' },
-      '6669': { slug: 'wiwynn-corp', name: '緯穎', market: 'TWSE', currency: 'NT$' },
+      '6669': { slug: 'wiwynn', name: '緯穎', market: 'TWSE', currency: 'NT$', proFairValue: 2280.00, proFairRange: '2,050.00 - 2,520.00', analystTarget: 2749.77 },
       '7203': { slug: 'toyota-motor-corporation', name: '豐田汽車 (Toyota)', market: 'TSE', currency: '¥' },
       '0700': { slug: 'tencent-holdings-hk', name: '騰訊控股', market: 'HKEX', currency: 'HK$' },
       'NVDA': { slug: 'nvidia-corp', name: '英偉達 (NVIDIA)', market: 'NASDAQ', currency: 'USD' },
@@ -1509,11 +1509,13 @@
   {
     "code": "3231",
     "name": "緯創",
-    "slug": "wistron",
+    "slug": "wistron-corp",
     "market": "TWSE",
     "price": 169.0,
-    "fairValue": 145,
-    "analystTarget": 165,
+    "fairValue": 215.0,
+    "fairRange": "195.00 - 238.00",
+    "analystTarget": 276.31,
+    "analystRange": "185.00 - 325.00",
     "pe": "16.1x",
     "pb": "2.8x",
     "prevClose": 160.0,
@@ -1525,13 +1527,15 @@
   {
     "code": "6669",
     "name": "緯穎",
-    "slug": "wiwynn-corp",
+    "slug": "wiwynn",
     "market": "TWSE",
     "price": 1650.0,
-    "fairValue": 2750,
-    "analystTarget": 3250,
+    "fairValue": 2280.0,
+    "fairRange": "2,050.00 - 2,520.00",
+    "analystTarget": 2749.77,
+    "analystRange": "1,850.00 - 3,352.55",
     "pe": "22.4x",
-    "pb": "8.5x",
+    "pb": "5.2x",
     "prevClose": 1555.0,
     "marketCap": "9,243.3 億",
     "marketCapVal": 924329623800,
@@ -2629,13 +2633,15 @@
   {
     "code": "2603",
     "name": "長榮",
-    "slug": "evergreen-marine",
+    "slug": "evergreen-mari",
     "market": "TWSE",
     "price": 245.5,
-    "fairValue": 285,
-    "analystTarget": 320,
+    "fairValue": 285.0,
+    "fairRange": "265.00 - 305.00",
+    "analystTarget": 271.60,
+    "analystRange": "190.00 - 332.00",
     "pe": "5.5x",
-    "pb": "0.9x",
+    "pb": "1.0x",
     "prevClose": 246.5,
     "marketCap": "5,315.2 億",
     "marketCapVal": 531518055518,
@@ -3578,10 +3584,25 @@
           if (live.note) s.note = live.note;
           s.lastUpdated = '2026-11-09 盤中即時快照';
         }
+        // Self-healing from TAIWAN_CORE_UNIVERSE (restores valid fair values and targets if local cache had 0)
+        const core = TAIWAN_CORE_UNIVERSE.find(u => u.code === s.code);
+        if (core && s.fairSource !== '手動校準') {
+          if (!s.slug || s.slug === 'evergreen-marine' || s.slug === 'wiwynn-corp') s.slug = core.slug;
+          if ((!s.fairValue || s.fairValue === 0) && core.fairValue) s.fairValue = core.fairValue;
+          if ((!s.analystTarget || s.analystTarget === 0) && core.analystTarget) s.analystTarget = core.analystTarget;
+          if (!s.fairRange && core.fairRange) s.fairRange = core.fairRange;
+          if (!s.analystRange && core.analystRange) s.analystRange = core.analystRange;
+          if ((!s.price || s.price === 0) && core.price) s.price = core.price;
+          if ((!s.prevClose || s.prevClose === 0) && core.prevClose) s.prevClose = core.prevClose;
+          if (!s.pe || s.pe === '...') s.pe = core.pe;
+          if (!s.pb || s.pb === '...') s.pb = core.pb;
+        }
         const known = KNOWN_SLUGS[s.code];
-        if (known && known.proFairValue && s.fairSource !== '手動校準') {
-          s.fairValue = known.proFairValue;
-          if (known.proFairRange) s.fairRange = known.proFairRange;
+        if (known && s.fairSource !== '手動校準') {
+          if (known.slug) s.slug = known.slug;
+          if (known.proFairValue && (!s.fairValue || s.fairValue === 0)) s.fairValue = known.proFairValue;
+          if (known.proFairRange && !s.fairRange) s.fairRange = known.proFairRange;
+          if (known.analystTarget && (!s.analystTarget || s.analystTarget === 0)) s.analystTarget = known.analystTarget;
         }
         // Force refresh perf
         s.perf = getStockPerf(s);
@@ -3655,19 +3676,27 @@
       }
 
       if (m === 'NASDAQ' || m === 'NYSE' || m === 'AMEX') {
-        const usDate = new Date(utcNow - (3600000 * 5)); // EST (UTC-5)
-        const usDay = usDate.getDay();
-        const usMin = usDate.getHours() * 60 + usDate.getMinutes();
+        const nyDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+        const usDay = nyDate.getDay();
+        const usMin = nyDate.getHours() * 60 + nyDate.getMinutes();
+        const tzName = /\b(EDT|EST)\b/.exec(new Date().toLocaleTimeString('en-US', { timeZone: 'America/New_York', timeZoneName: 'short' }))?.[1] || 'EST';
+        const isDst = tzName === 'EDT';
+        const twOpenTime = isDst ? '21:30' : '22:30';
+        const twCloseTime = isDst ? '04:00' : '05:00';
+
         if (usDay === 0 || usDay === 6) {
-          return { status: 'WEEKEND', label: '美股週末休市', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '美東 09:30~16:00', isLive: false };
+          return { status: 'WEEKEND', label: '美股週末休市', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: `美東 09:30~16:00 (${tzName})`, isLive: false };
         }
         if (usMin >= 570 && usMin <= 960) {
-          return { status: 'OPEN', label: '美股盤中交易', badgeClass: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 animate-pulse', dotClass: 'bg-emerald-400 animate-ping', hours: '美東 09:30~16:00 (台 22:30~05:00)', isLive: true };
+          return { status: 'OPEN', label: '美股盤中交易', badgeClass: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 animate-pulse', dotClass: 'bg-emerald-400 animate-ping', hours: `美東 09:30~16:00 (台 ${twOpenTime}~${twCloseTime})`, isLive: true };
         }
         if (usMin >= 240 && usMin < 570) {
           return { status: 'PRE', label: '美股盤前交易', badgeClass: 'bg-amber-500/20 text-amber-300 border border-amber-500/40', dotClass: 'bg-amber-400', hours: '美東 04:00~09:30', isLive: true };
         }
-        return { status: 'CLOSED', label: '美股已收盤', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: '美東 16:00 收盤 (今晚 22:30 開盤)', isLive: false };
+        if (usMin > 960 && usMin <= 1200) {
+          return { status: 'POST', label: '美股盤後交易', badgeClass: 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40', dotClass: 'bg-indigo-400', hours: '美東 16:00~20:00 (Post-Market)', isLive: true };
+        }
+        return { status: 'CLOSED', label: '美股已收盤', badgeClass: 'bg-slate-800 text-slate-400 border border-slate-700', dotClass: 'bg-slate-500', hours: `美東 16:00 收盤 (今晚 ${twOpenTime} 開盤)`, isLive: false };
       }
 
       if (m === 'HKEX') {
@@ -3826,6 +3855,7 @@
             if (q.marketCap) s.marketCap = q.marketCap;
             if (q.marketCapVal) s.marketCapVal = q.marketCapVal;
             if (q.marketCapRank) s.marketCapRank = q.marketCapRank;
+            if (q.isTop50Cap !== undefined) s.isTop50Cap = q.isTop50Cap;
             if (q.isTop100Cap !== undefined) s.isTop100Cap = q.isTop100Cap;
             s.lastUpdated = `證交所即時 (${q.time || data.updatedAt})`;
             s.perf = getStockPerf(s);
@@ -3841,6 +3871,12 @@
             u.prevClose = q.prevClose;
             if (q.high) u.dayHigh = q.high;
             if (q.low) u.dayLow = q.low;
+            if (q.volume) u.volume = q.volume;
+            if (q.marketCap) u.marketCap = q.marketCap;
+            if (q.marketCapVal) u.marketCapVal = q.marketCapVal;
+            if (q.marketCapRank) u.marketCapRank = q.marketCapRank;
+            if (q.isTop50Cap !== undefined) u.isTop50Cap = q.isTop50Cap;
+            if (q.isTop100Cap !== undefined) u.isTop100Cap = q.isTop100Cap;
             u.perf = getStockPerf(u);
           }
         });
@@ -3983,26 +4019,51 @@
       const cleanQuery = (query || '').trim();
       const upper = cleanQuery.toUpperCase();
 
-      // Check KNOWN_SLUGS with market preference validation
+      // Check KNOWN_SLUGS and TAIWAN_CORE_UNIVERSE with market preference validation
+      let matched = null;
       if (upper && KNOWN_SLUGS[upper]) {
-        const known = KNOWN_SLUGS[upper];
-        const isTw = known.market === 'TWSE' || known.market === 'TPEX';
-        // Only bypass KNOWN_SLUGS if user explicitly specified a non-matching foreign market
+        matched = { ...KNOWN_SLUGS[upper], code: upper };
+      } else {
+        // Find by name or hint in KNOWN_SLUGS
+        for (const [kCode, val] of Object.entries(KNOWN_SLUGS)) {
+          if (val.name && (val.name === cleanQuery || val.name.includes(cleanQuery) || cleanQuery.includes(val.name) || (hint && (val.name === hint || val.name.includes(hint) || hint.includes(val.name))))) {
+            matched = { ...val, code: kCode };
+            break;
+          }
+        }
+      }
+
+      if (!matched && typeof TAIWAN_CORE_UNIVERSE !== 'undefined') {
+        const core = TAIWAN_CORE_UNIVERSE.find(u =>
+          u.code === upper ||
+          (u.name && (u.name === cleanQuery || u.name.includes(cleanQuery) || cleanQuery.includes(u.name) || (hint && (u.name === hint || u.name.includes(hint) || hint.includes(u.name)))))
+        );
+        if (core) {
+          matched = {
+            slug: core.slug,
+            name: core.name,
+            code: core.code,
+            market: core.market || 'TWSE',
+            currency: 'NT$'
+          };
+        }
+      }
+
+      if (matched && matched.slug) {
+        const isTw = matched.market === 'TWSE' || matched.market === 'TPEX';
         const marketMismatch = (preferredMarket === 'JP' && isTw) ||
                                (preferredMarket === 'US' && isTw) ||
                                (preferredMarket === 'HK' && isTw) ||
                                (preferredMarket === 'TW' && !isTw);
         if (!marketMismatch) {
-          if (!hint || known.name.includes(hint) || hint.includes(known.name)) {
-            return {
-              slug: known.slug,
-              name: known.name,
-              code: upper,
-              market: known.market,
-              currency: known.currency || (isTw ? 'NT$' : 'USD'),
-              region: isTw ? 'TW' : (known.market === 'TSE' ? 'JP' : 'US')
-            };
-          }
+          return {
+            slug: matched.slug,
+            name: matched.name,
+            code: matched.code,
+            market: matched.market,
+            currency: matched.currency || (isTw ? 'NT$' : 'USD'),
+            region: isTw ? 'TW' : (matched.market === 'TSE' ? 'JP' : (matched.market === 'HKEX' ? 'HK' : 'US'))
+          };
         }
       }
 
@@ -4390,19 +4451,68 @@
     async function fetchLiveStockFromInvesting(query, preferredMarket = 'AUTO', hint = '') {
       const metaInfo = await resolveInvestingSlug(query, preferredMarket, hint);
       const eqUrl = `https://r.jina.ai/https://hk.investing.com/equities/${metaInfo.slug}`;
-      const resp = await fetch(eqUrl, {
-        headers: { 'X-Wait-For-Selector': 'h1' }
-      });
-      if (!resp.ok) {
-        throw new Error(`連線 Investing.com 個股頁失敗 (HTTP ${resp.status})`);
+      try {
+        const resp = await fetch(eqUrl, {
+          headers: { 'X-Wait-For-Selector': 'h1' }
+        });
+        if (!resp.ok) {
+          throw new Error(`連線 Investing.com 個股頁失敗 (HTTP ${resp.status})`);
+        }
+        const md = await resp.text();
+        if (!md || md.length < 500 || md.includes('Title: Just a moment...')) {
+          throw new Error('Investing.com 回應逾時或遭遇驗證');
+        }
+        let parsed = parseInvestingMarkdown(md, metaInfo.code || query, metaInfo);
+        parsed = await enhanceWithGeminiIfConfigured(parsed);
+        return parsed;
+      } catch (err) {
+        const upper = (metaInfo.code || query || '').toUpperCase();
+        const core = typeof TAIWAN_CORE_UNIVERSE !== 'undefined'
+          ? TAIWAN_CORE_UNIVERSE.find(u => u.code === upper || u.name === metaInfo.name || (hint && u.name === hint))
+          : null;
+        const known = KNOWN_SLUGS[upper];
+        if (core || (known && (known.proFairValue || known.analystTarget))) {
+          console.warn(`Jina 撈取 ${upper} 暫時受阻 (${err.message})，使用本地驗證快照`);
+          const fallbackData = {
+            code: core?.code || upper,
+            name: core?.name || known?.name || metaInfo.name,
+            slug: core?.slug || known?.slug || metaInfo.slug,
+            market: core?.market || known?.market || metaInfo.market,
+            currency: core?.currency || known?.currency || metaInfo.currency || 'NT$',
+            price: core?.price || 0,
+            prevClose: core?.prevClose || 0,
+            fairValue: core?.fairValue || known?.proFairValue || 0,
+            fairRange: core?.fairRange || known?.proFairRange || '—',
+            fairSource: core?.fairValue ? '核心估值數據庫' : 'InvestingPro 驗證快照',
+            peerFairUpside: '—',
+            sectorFairUpside: '—',
+            analystTarget: core?.analystTarget || known?.analystTarget || 0,
+            analystLow: 0,
+            analystHigh: 0,
+            analystRange: core?.analystRange || '—',
+            analystBuy: 0,
+            analystHold: 0,
+            analystSell: 0,
+            consensusLabel: '共識評級',
+            pe: core?.pe || '—',
+            peerPe: '—',
+            pb: core?.pb || '—',
+            peerPb: '—',
+            extraMetric: '備援快照',
+            eps: '—',
+            marketCap: core?.marketCap || '—',
+            divYield: '—',
+            week52Low: 0,
+            week52High: 0,
+            comparePath: '',
+            note: `線上 Investing.com 暫時連線逾時，已為您載入內建最新 InvestingPro 公允價與分析師共識預估價。`,
+            lastUpdated: '官方估值數據庫',
+            analystRatings: []
+          };
+          return fallbackData;
+        }
+        throw err;
       }
-      const md = await resp.text();
-      if (!md || md.length < 500 || md.includes('Title: Just a moment...')) {
-        throw new Error('Investing.com 回應逾時，請稍後再試');
-      }
-      let parsed = parseInvestingMarkdown(md, metaInfo.code || query, metaInfo);
-      parsed = await enhanceWithGeminiIfConfigured(parsed);
-      return parsed;
     }
 
     /*************************************************************************
@@ -4545,25 +4655,28 @@
         const exists = stocks.find(s => s.code === placeholderCode);
         if (!exists) {
           const known = KNOWN_SLUGS[placeholderCode] || {};
+          const core = typeof TAIWAN_CORE_UNIVERSE !== 'undefined'
+            ? TAIWAN_CORE_UNIVERSE.find(u => u.code === placeholderCode || u.name === item.hint || u.name === item.query)
+            : null;
           newPlaceholders.push({
             code: placeholderCode,
-            name: item.hint || known.name || `股票 ${placeholderCode}`,
-            slug: known.slug || '',
-            market: known.market || (item.market === 'JP' ? 'TSE' : (item.market === 'US' ? 'NASDAQ' : (item.market === 'HK' ? 'HKEX' : 'TWSE'))),
+            name: item.hint || core?.name || known.name || `股票 ${placeholderCode}`,
+            slug: core?.slug || known.slug || '',
+            market: core?.market || known.market || (item.market === 'JP' ? 'TSE' : (item.market === 'US' ? 'NASDAQ' : (item.market === 'HK' ? 'HKEX' : 'TWSE'))),
             currency: known.currency || (item.market === 'JP' ? '¥' : (item.market === 'US' ? 'USD' : (item.market === 'HK' ? 'HK$' : 'NT$'))),
-            price: 0,
-            prevClose: 0,
-            fairValue: known.proFairValue || 0,
-            fairRange: known.proFairRange || '撈取中...',
-            fairSource: '撈取中...',
-            analystTarget: 0,
-            analystRange: '撈取中...',
+            price: core?.price || 0,
+            prevClose: core?.prevClose || 0,
+            fairValue: core?.fairValue || known.proFairValue || 0,
+            fairRange: core?.fairRange || known.proFairRange || '撈取中...',
+            fairSource: core?.fairValue ? '核心估值數據庫' : (known.proFairValue ? 'InvestingPro 驗證快照' : '撈取中...'),
+            analystTarget: core?.analystTarget || known.analystTarget || 0,
+            analystRange: core?.analystRange || '撈取中...',
             analystBuy: 0,
             analystHold: 0,
             analystSell: 0,
             consensusLabel: '撈取中',
-            pe: '...',
-            pb: '...',
+            pe: core?.pe || '...',
+            pb: core?.pb || '...',
             extraMetric: '...',
             week52Low: 0,
             week52High: 0,
@@ -4603,9 +4716,43 @@
         } catch (err) {
           console.error(`撈取 ${displayLabel} 失敗:`, err);
           const idx = stocks.findIndex(s => s.code === lookupKey);
-          if (idx !== -1 && stocks[idx].price === 0) {
-            stocks[idx].note = `即時連線暫時受阻 (${err.message})。您可點擊「開啟 Investing.com 個股頁」查看或手動校準。`;
-            stocks[idx].lastUpdated = '連線逾時';
+          if (idx !== -1) {
+            const core = typeof TAIWAN_CORE_UNIVERSE !== 'undefined'
+              ? TAIWAN_CORE_UNIVERSE.find(u => u.code === lookupKey || u.name === item.hint || u.name === item.query)
+              : null;
+            const known = KNOWN_SLUGS[lookupKey] || {};
+            if (core) {
+              if (stocks[idx].price === 0 && core.price) stocks[idx].price = core.price;
+              if (stocks[idx].prevClose === 0 && core.prevClose) stocks[idx].prevClose = core.prevClose;
+              if (stocks[idx].fairValue <= 0 && core.fairValue) {
+                stocks[idx].fairValue = core.fairValue;
+                stocks[idx].fairRange = core.fairRange;
+                stocks[idx].fairSource = '核心估值數據庫';
+              }
+              if (stocks[idx].analystTarget <= 0 && core.analystTarget) {
+                stocks[idx].analystTarget = core.analystTarget;
+                stocks[idx].analystRange = core.analystRange;
+              }
+              if (stocks[idx].pe === '...') stocks[idx].pe = core.pe;
+              if (stocks[idx].pb === '...') stocks[idx].pb = core.pb;
+              if (!stocks[idx].slug) stocks[idx].slug = core.slug;
+            } else if (known) {
+              if (stocks[idx].fairValue <= 0 && known.proFairValue) {
+                stocks[idx].fairValue = known.proFairValue;
+                stocks[idx].fairRange = known.proFairRange || '';
+                stocks[idx].fairSource = 'InvestingPro 驗證快照';
+              }
+              if (stocks[idx].analystTarget <= 0 && known.analystTarget) {
+                stocks[idx].analystTarget = known.analystTarget;
+              }
+              if (!stocks[idx].slug) stocks[idx].slug = known.slug;
+            }
+            if (stocks[idx].price === 0) {
+              stocks[idx].note = `即時連線暫時受阻 (${err.message})。您可點擊「開啟 Investing.com 個股頁」查看或手動校準。`;
+              stocks[idx].lastUpdated = '連線逾時';
+            } else {
+              stocks[idx].lastUpdated = '備援數據庫';
+            }
           }
           showToast(`${displayLabel} 撈取提醒：${err.message}`, 'warning');
         } finally {
@@ -5525,6 +5672,7 @@
     let lbSearchQuery = '';
 
     let lbScope = 'top50cap'; // 'top50cap' (default) | 'top100cap' | 'all'
+    let currentLbPageItems = [];
 
     function setLeaderboardScope(scope) {
       lbScope = scope;
@@ -5852,6 +6000,7 @@
       const startIndex = (lbPage - 1) * lbPageSize;
       const endIndex = Math.min(startIndex + lbPageSize, totalCount);
       const pageItems = filtered.slice(startIndex, endIndex);
+      currentLbPageItems = pageItems;
 
       // Render Table Rows
       if (pageItems.length === 0) {
@@ -5879,16 +6028,19 @@
             rankBadge = `<span class="font-mono text-slate-400 font-medium">${rank}</span>`;
           }
 
-          const upside = stock.activeUpside !== undefined && stock.activeUpside !== null ? stock.activeUpside : 0;
-          const isPositive = upside > 0;
-          const isZero = upside === 0;
-          const isNegative = upside < 0;
-          const barWidth = Math.min(100, Math.max(6, Math.abs(upside)));
+          const hasValuation = stock.activeUpside !== undefined && stock.activeUpside !== null && stock.activeUpside !== -999 && stock.activeTarget > 0;
+          const upside = hasValuation ? stock.activeUpside : 0;
+          const isPositive = hasValuation && upside > 0;
+          const isZero = hasValuation && upside === 0;
+          const isNegative = hasValuation && upside < 0;
+          const barWidth = hasValuation ? Math.min(100, Math.max(6, Math.abs(upside))) : 0;
           const isInWatchlist = stocks.some(s => s.code === stock.code);
           const perf = getStockPerf(stock);
 
           let diagStatus = '';
-          if (upside >= 20) {
+          if (!hasValuation) {
+            diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-800 text-slate-400 border border-slate-700 whitespace-nowrap">未提供</span>`;
+          } else if (upside >= 20) {
             diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 whitespace-nowrap">深度低估</span>`;
           } else if (upside >= 10) {
             diagStatus = `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 whitespace-nowrap">定價過低</span>`;
@@ -5923,14 +6075,14 @@
                 <td class="py-3 px-2 text-center font-mono whitespace-nowrap">${formatPerfBadge(perf.y1)}</td>
               ` : ''}
               <td class="py-3 px-3 text-right font-mono text-cyan-300 font-medium whitespace-nowrap">
-                NT$ ${formatNumber(stock.activeTarget)}
+                ${hasValuation ? `NT$ ${formatNumber(stock.activeTarget)}` : '—'}
               </td>
               <td class="py-3 px-3 text-right whitespace-nowrap">
-                <div class="font-mono font-bold ${isPositive ? 'text-emerald-400' : (isNegative ? 'text-rose-400' : 'text-slate-300')} text-sm">
-                  ${isPositive ? '+' + upside.toFixed(1) + '%' : (isNegative ? upside.toFixed(1) + '%' : '0.0%')}
+                <div class="font-mono font-bold ${!hasValuation ? 'text-slate-500' : (isPositive ? 'text-emerald-400' : (isNegative ? 'text-rose-400' : 'text-slate-300'))} text-sm">
+                  ${!hasValuation ? '—' : (isPositive ? '+' + upside.toFixed(1) + '%' : (isNegative ? upside.toFixed(1) + '%' : '0.0%'))}
                 </div>
                 <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-1">
-                  <div class="h-full ${isPositive ? 'bg-gradient-to-r from-emerald-500 to-cyan-400' : (isNegative ? 'bg-rose-500/60' : 'bg-slate-600')} rounded-full transition-all duration-500" style="width: ${barWidth}%"></div>
+                  <div class="h-full ${!hasValuation ? 'bg-slate-800' : (isPositive ? 'bg-gradient-to-r from-emerald-500 to-cyan-400' : (isNegative ? 'bg-rose-500/60' : 'bg-slate-600'))} rounded-full transition-all duration-500" style="width: ${barWidth}%"></div>
                 </div>
               </td>
               <td class="py-3 px-2.5 text-center">${diagStatus}</td>
@@ -6088,21 +6240,7 @@
     }
 
     function addAllCurrentPageToRadar() {
-      const pool = getCombinedStockPool();
-      let rankedList = [];
-      if (lbMode === 'fairValue') {
-        rankedList = pool.filter(s => calcUpside(s.fairValue, s.price) > 0).sort((a,b) => calcUpside(b.fairValue, b.price) - calcUpside(a.fairValue, a.price)).slice(0, lbScope === 'top50cap' ? 50 : 100);
-      } else if (lbMode === 'analyst') {
-        rankedList = pool.filter(s => calcUpside(s.analystTarget, s.price) > 0).sort((a,b) => calcUpside(b.analystTarget, b.price) - calcUpside(a.analystTarget, a.price)).slice(0, lbScope === 'top50cap' ? 50 : 100);
-      } else {
-        rankedList = pool.sort((a,b) => (b.searchCount||0) - (a.searchCount||0));
-      }
-      if (lbSearchQuery) {
-        rankedList = rankedList.filter(s => s.code.toLowerCase().includes(lbSearchQuery) || (s.name && s.name.toLowerCase().includes(lbSearchQuery)));
-      }
-      const startIndex = (lbPage - 1) * lbPageSize;
-      const pageItems = rankedList.slice(startIndex, startIndex + lbPageSize);
-
+      const pageItems = (currentLbPageItems && currentLbPageItems.length > 0) ? currentLbPageItems : [];
       let addedCount = 0;
       pageItems.forEach(item => {
         if (!stocks.some(s => s.code === item.code)) {
