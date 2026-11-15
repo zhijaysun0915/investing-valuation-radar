@@ -1,7 +1,7 @@
 {
   "version": "2.10.0",
-  "updatedAt": "2026-11-10 22:20:56",
-  "timestamp": 1794320456,
+  "updatedAt": "2026-11-16 06:11:34",
+  "timestamp": 1794780694,
   "total": 126,
   "valuations": {
     "2330": {
@@ -16,7 +16,7 @@
       "pe": "21.9x",
       "pb": "7.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2327": {
       "code": "2327",
@@ -30,7 +30,7 @@
       "pe": "25.2x",
       "pb": "4.3x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2454": {
       "code": "2454",
@@ -44,7 +44,7 @@
       "pe": "54.5x",
       "pb": "11.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2342": {
       "code": "2342",
@@ -55,7 +55,7 @@
       "fairRange": "24.00 - 30.50",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3701": {
       "code": "3701",
@@ -66,7 +66,7 @@
       "fairRange": "32.00 - 39.50",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "4716": {
       "code": "4716",
@@ -77,7 +77,7 @@
       "fairRange": "11.00 - 14.50",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "4989": {
       "code": "4989",
@@ -88,7 +88,7 @@
       "fairRange": "32.00 - 41.00",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6443": {
       "code": "6443",
@@ -99,7 +99,7 @@
       "fairRange": "14.50 - 19.50",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2317": {
       "code": "2317",
@@ -113,7 +113,7 @@
       "pe": "14.8x",
       "pb": "1.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2492": {
       "code": "2492",
@@ -127,7 +127,7 @@
       "pe": "29.0x",
       "pb": "1.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "8299": {
       "code": "8299",
@@ -141,7 +141,7 @@
       "pe": "14.5x",
       "pb": "2.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3006": {
       "code": "3006",
@@ -155,7 +155,7 @@
       "pe": "19.8x",
       "pb": "1.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2308": {
       "code": "2308",
@@ -169,7 +169,7 @@
       "pe": "25.5x",
       "pb": "4.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2382": {
       "code": "2382",
@@ -183,7 +183,7 @@
       "pe": "19.2x",
       "pb": "4.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2303": {
       "code": "2303",
@@ -197,7 +197,7 @@
       "pe": "10.8x",
       "pb": "1.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2379": {
       "code": "2379",
@@ -211,7 +211,7 @@
       "pe": "18.2x",
       "pb": "4.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3037": {
       "code": "3037",
@@ -225,7 +225,7 @@
       "pe": "21.5x",
       "pb": "2.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3711": {
       "code": "3711",
@@ -239,7 +239,7 @@
       "pe": "16.5x",
       "pb": "2.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2408": {
       "code": "2408",
@@ -253,7 +253,7 @@
       "pe": "22.0x",
       "pb": "1.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2344": {
       "code": "2344",
@@ -267,7 +267,7 @@
       "pe": "18.5x",
       "pb": "1.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2603": {
       "code": "2603",
@@ -281,7 +281,7 @@
       "pe": "5.5x",
       "pb": "1.0x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3231": {
       "code": "3231",
@@ -295,7 +295,7 @@
       "pe": "16.1x",
       "pb": "2.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2357": {
       "code": "2357",
@@ -309,7 +309,7 @@
       "pe": "15.3x",
       "pb": "1.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3017": {
       "code": "3017",
@@ -323,7 +323,7 @@
       "pe": "27.8x",
       "pb": "7.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6274": {
       "code": "6274",
@@ -337,7 +337,7 @@
       "pe": "21.0x",
       "pb": "4.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3374": {
       "code": "3374",
@@ -351,7 +351,7 @@
       "pe": "24.3x",
       "pb": "4.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6488": {
       "code": "6488",
@@ -365,7 +365,7 @@
       "pe": "15.6x",
       "pb": "3.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2301": {
       "code": "2301",
@@ -379,7 +379,7 @@
       "pe": "15.8x",
       "pb": "3.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1301": {
       "code": "1301",
@@ -393,7 +393,7 @@
       "pe": "26.5x",
       "pb": "0.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1303": {
       "code": "1303",
@@ -407,7 +407,7 @@
       "pe": "24.2x",
       "pb": "0.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1326": {
       "code": "1326",
@@ -421,7 +421,7 @@
       "pe": "28.0x",
       "pb": "0.7x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6505": {
       "code": "6505",
@@ -435,7 +435,7 @@
       "pe": "25.1x",
       "pb": "1.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2881": {
       "code": "2881",
@@ -449,7 +449,7 @@
       "pe": "10.2x",
       "pb": "1.3x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2882": {
       "code": "2882",
@@ -463,7 +463,7 @@
       "pe": "10.5x",
       "pb": "1.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3443": {
       "code": "3443",
@@ -477,7 +477,7 @@
       "pe": "42.0x",
       "pb": "9.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3661": {
       "code": "3661",
@@ -491,7 +491,7 @@
       "pe": "45.2x",
       "pb": "12.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2345": {
       "code": "2345",
@@ -505,7 +505,7 @@
       "pe": "30.5x",
       "pb": "8.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6669": {
       "code": "6669",
@@ -519,7 +519,7 @@
       "pe": "22.4x",
       "pb": "5.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "7203": {
       "code": "7203",
@@ -530,7 +530,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "0700": {
       "code": "0700",
@@ -541,7 +541,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "NVDA": {
       "code": "NVDA",
@@ -552,7 +552,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "AAPL": {
       "code": "AAPL",
@@ -563,7 +563,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "TSLA": {
       "code": "TSLA",
@@ -574,7 +574,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "MSFT": {
       "code": "MSFT",
@@ -585,7 +585,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "AMD": {
       "code": "AMD",
@@ -596,7 +596,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "AVGO": {
       "code": "AVGO",
@@ -607,7 +607,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "TSM": {
       "code": "TSM",
@@ -618,7 +618,7 @@
       "fairRange": "",
       "analystTarget": null,
       "fairSource": "InvestingPro 財務模型",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3034": {
       "code": "3034",
@@ -632,7 +632,7 @@
       "pe": "14.1x",
       "pb": "4.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3529": {
       "code": "3529",
@@ -646,7 +646,7 @@
       "pe": "68.0x",
       "pb": "28.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "5347": {
       "code": "5347",
@@ -660,7 +660,7 @@
       "pe": "19.5x",
       "pb": "3.0x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6770": {
       "code": "6770",
@@ -674,7 +674,7 @@
       "pe": "25.0x",
       "pb": "0.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6239": {
       "code": "6239",
@@ -688,7 +688,7 @@
       "pe": "12.8x",
       "pb": "2.0x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3260": {
       "code": "3260",
@@ -702,7 +702,7 @@
       "pe": "11.2x",
       "pb": "1.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2458": {
       "code": "2458",
@@ -716,7 +716,7 @@
       "pe": "14.8x",
       "pb": "3.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2356": {
       "code": "2356",
@@ -730,7 +730,7 @@
       "pe": "18.0x",
       "pb": "2.3x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2376": {
       "code": "2376",
@@ -744,7 +744,7 @@
       "pe": "17.5x",
       "pb": "3.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2395": {
       "code": "2395",
@@ -758,7 +758,7 @@
       "pe": "28.0x",
       "pb": "5.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2324": {
       "code": "2324",
@@ -772,7 +772,7 @@
       "pe": "16.5x",
       "pb": "1.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2353": {
       "code": "2353",
@@ -786,7 +786,7 @@
       "pe": "20.1x",
       "pb": "1.7x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "4938": {
       "code": "4938",
@@ -800,7 +800,7 @@
       "pe": "14.2x",
       "pb": "1.3x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "5388": {
       "code": "5388",
@@ -814,7 +814,7 @@
       "pe": "13.8x",
       "pb": "2.7x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6285": {
       "code": "6285",
@@ -828,7 +828,7 @@
       "pe": "15.2x",
       "pb": "2.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2412": {
       "code": "2412",
@@ -842,7 +842,7 @@
       "pe": "25.4x",
       "pb": "2.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "4904": {
       "code": "4904",
@@ -856,7 +856,7 @@
       "pe": "24.2x",
       "pb": "2.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3324": {
       "code": "3324",
@@ -870,7 +870,7 @@
       "pe": "32.5x",
       "pb": "8.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3653": {
       "code": "3653",
@@ -884,7 +884,7 @@
       "pe": "48.0x",
       "pb": "15.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2421": {
       "code": "2421",
@@ -898,7 +898,7 @@
       "pe": "19.5x",
       "pb": "4.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2059": {
       "code": "2059",
@@ -912,7 +912,7 @@
       "pe": "30.2x",
       "pb": "8.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3533": {
       "code": "3533",
@@ -926,7 +926,7 @@
       "pe": "24.6x",
       "pb": "7.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "8046": {
       "code": "8046",
@@ -940,7 +940,7 @@
       "pe": "35.0x",
       "pb": "2.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3189": {
       "code": "3189",
@@ -954,7 +954,7 @@
       "pe": "28.5x",
       "pb": "1.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2368": {
       "code": "2368",
@@ -968,7 +968,7 @@
       "pe": "18.2x",
       "pb": "4.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3044": {
       "code": "3044",
@@ -982,7 +982,7 @@
       "pe": "14.5x",
       "pb": "3.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2383": {
       "code": "2383",
@@ -996,7 +996,7 @@
       "pe": "22.8x",
       "pb": "6.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "8069": {
       "code": "8069",
@@ -1010,7 +1010,7 @@
       "pe": "35.0x",
       "pb": "6.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6176": {
       "code": "6176",
@@ -1024,7 +1024,7 @@
       "pe": "12.8x",
       "pb": "2.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2478": {
       "code": "2478",
@@ -1038,7 +1038,7 @@
       "pe": "14.5x",
       "pb": "1.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2891": {
       "code": "2891",
@@ -1052,7 +1052,7 @@
       "pe": "10.8x",
       "pb": "1.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2886": {
       "code": "2886",
@@ -1066,7 +1066,7 @@
       "pe": "16.5x",
       "pb": "1.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2884": {
       "code": "2884",
@@ -1080,7 +1080,7 @@
       "pe": "17.2x",
       "pb": "1.7x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2892": {
       "code": "2892",
@@ -1094,7 +1094,7 @@
       "pe": "15.1x",
       "pb": "1.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2880": {
       "code": "2880",
@@ -1108,7 +1108,7 @@
       "pe": "16.0x",
       "pb": "1.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2885": {
       "code": "2885",
@@ -1122,7 +1122,7 @@
       "pe": "12.8x",
       "pb": "1.3x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2887": {
       "code": "2887",
@@ -1136,7 +1136,7 @@
       "pe": "12.0x",
       "pb": "1.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2890": {
       "code": "2890",
@@ -1150,7 +1150,7 @@
       "pe": "13.5x",
       "pb": "1.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "5880": {
       "code": "5880",
@@ -1164,7 +1164,7 @@
       "pe": "17.5x",
       "pb": "1.4x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2883": {
       "code": "2883",
@@ -1178,7 +1178,7 @@
       "pe": "10.9x",
       "pb": "1.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2834": {
       "code": "2834",
@@ -1192,7 +1192,7 @@
       "pe": "12.5x",
       "pb": "1.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "5876": {
       "code": "5876",
@@ -1206,7 +1206,7 @@
       "pe": "12.2x",
       "pb": "1.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2897": {
       "code": "2897",
@@ -1220,7 +1220,7 @@
       "pe": "10.5x",
       "pb": "0.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2801": {
       "code": "2801",
@@ -1234,7 +1234,7 @@
       "pe": "14.2x",
       "pb": "1.0x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2002": {
       "code": "2002",
@@ -1248,7 +1248,7 @@
       "pe": "32.0x",
       "pb": "1.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1519": {
       "code": "1519",
@@ -1262,7 +1262,7 @@
       "pe": "38.5x",
       "pb": "14.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1513": {
       "code": "1513",
@@ -1276,7 +1276,7 @@
       "pe": "23.5x",
       "pb": "4.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1504": {
       "code": "1504",
@@ -1290,7 +1290,7 @@
       "pe": "16.5x",
       "pb": "1.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1503": {
       "code": "1503",
@@ -1304,7 +1304,7 @@
       "pe": "31.0x",
       "pb": "4.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1101": {
       "code": "1101",
@@ -1318,7 +1318,7 @@
       "pe": "22.0x",
       "pb": "1.0x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1102": {
       "code": "1102",
@@ -1332,7 +1332,7 @@
       "pe": "13.5x",
       "pb": "0.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1216": {
       "code": "1216",
@@ -1346,7 +1346,7 @@
       "pe": "21.5x",
       "pb": "3.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1402": {
       "code": "1402",
@@ -1360,7 +1360,7 @@
       "pe": "18.0x",
       "pb": "0.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "9904": {
       "code": "9904",
@@ -1374,7 +1374,7 @@
       "pe": "11.5x",
       "pb": "0.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "9910": {
       "code": "9910",
@@ -1388,7 +1388,7 @@
       "pe": "22.5x",
       "pb": "4.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2105": {
       "code": "2105",
@@ -1402,7 +1402,7 @@
       "pe": "17.5x",
       "pb": "1.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2912": {
       "code": "2912",
@@ -1416,7 +1416,7 @@
       "pe": "26.0x",
       "pb": "8.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2207": {
       "code": "2207",
@@ -1430,7 +1430,7 @@
       "pe": "17.5x",
       "pb": "4.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2201": {
       "code": "2201",
@@ -1444,7 +1444,7 @@
       "pe": "14.8x",
       "pb": "1.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1605": {
       "code": "1605",
@@ -1458,7 +1458,7 @@
       "pe": "19.5x",
       "pb": "1.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2609": {
       "code": "2609",
@@ -1472,7 +1472,7 @@
       "pe": "6.8x",
       "pb": "0.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2615": {
       "code": "2615",
@@ -1486,7 +1486,7 @@
       "pe": "8.2x",
       "pb": "1.0x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2618": {
       "code": "2618",
@@ -1500,7 +1500,7 @@
       "pe": "8.5x",
       "pb": "1.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2610": {
       "code": "2610",
@@ -1514,7 +1514,7 @@
       "pe": "9.8x",
       "pb": "1.3x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2605": {
       "code": "2605",
@@ -1528,7 +1528,7 @@
       "pe": "12.5x",
       "pb": "0.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6472": {
       "code": "6472",
@@ -1542,7 +1542,7 @@
       "pe": "24.5x",
       "pb": "5.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "1795": {
       "code": "1795",
@@ -1556,7 +1556,7 @@
       "pe": "14.8x",
       "pb": "3.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6589": {
       "code": "6589",
@@ -1570,7 +1570,7 @@
       "pe": "45.0x",
       "pb": "3.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "4147": {
       "code": "4147",
@@ -1584,7 +1584,7 @@
       "pe": "52.0x",
       "pb": "4.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6547": {
       "code": "6547",
@@ -1598,7 +1598,7 @@
       "pe": "40.0x",
       "pb": "2.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3008": {
       "code": "3008",
@@ -1612,7 +1612,7 @@
       "pe": "16.5x",
       "pb": "2.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3406": {
       "code": "3406",
@@ -1626,7 +1626,7 @@
       "pe": "15.8x",
       "pb": "2.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "2474": {
       "code": "2474",
@@ -1640,7 +1640,7 @@
       "pe": "13.5x",
       "pb": "1.1x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3023": {
       "code": "3023",
@@ -1654,7 +1654,7 @@
       "pe": "18.5x",
       "pb": "3.8x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6533": {
       "code": "6533",
@@ -1668,7 +1668,7 @@
       "pe": "48.0x",
       "pb": "7.2x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6789": {
       "code": "6789",
@@ -1682,7 +1682,7 @@
       "pe": "38.0x",
       "pb": "3.9x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6805": {
       "code": "6805",
@@ -1696,7 +1696,7 @@
       "pe": "35.0x",
       "pb": "12.0x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "3596": {
       "code": "3596",
@@ -1710,7 +1710,7 @@
       "pe": "13.5x",
       "pb": "2.6x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     },
     "6409": {
       "code": "6409",
@@ -1724,7 +1724,7 @@
       "pe": "32.0x",
       "pb": "11.5x",
       "fairSource": "InvestingPro 財務模型 + 外資共識",
-      "updatedAt": "2026-11-10 22:20:56"
+      "updatedAt": "2026-11-16 06:11:34"
     }
   }
 }
