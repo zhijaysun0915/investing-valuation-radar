@@ -3541,49 +3541,94 @@
      * 1.5 PERFORMANCE & PERIOD RETURNS (近1日/週/月/季/年)
      *************************************************************************/
     const STOCK_PERF_PRESETS = {
-      '2330': { d1: 5.62, w1: 6.20, m1: 12.80, q1: 28.50, y1: 85.50 },
-      '2454': { d1: 9.88, w1: 8.40, m1: 14.20, q1: 25.80, y1: 55.20 },
-      '2308': { d1: 10.00, w1: 11.20, m1: 18.50, q1: 29.40, y1: 64.20 },
-      '2317': { d1: 6.46, w1: 7.80, m1: 11.20, q1: 22.70, y1: 74.40 },
-      '2327': { d1: 8.29, w1: 9.10, m1: 15.20, q1: 26.60, y1: 59.30 },
-      '2492': { d1: 8.32, w1: 7.50, m1: 18.40, q1: 32.80, y1: 68.60 },
-      '8299': { d1: 8.67, w1: 8.10, m1: 17.50, q1: 39.20, y1: 92.40 },
-      '3006': { d1: 8.43, w1: 9.20, m1: 22.80, q1: 36.30, y1: 72.10 },
-      '3701': { d1: 8.19, w1: 3.40, m1: 5.50, q1: 14.20, y1: 27.60 },
-      '2603': { d1: 4.88, w1: 7.20, m1: 12.60, q1: 22.50, y1: 38.20 },
-      '2609': { d1: 4.53, w1: 6.80, m1: 10.40, q1: 18.20, y1: 32.50 },
-      '2615': { d1: 4.88, w1: 7.10, m1: 11.80, q1: 20.80, y1: 35.40 },
-      '1795': { d1: 5.22, w1: 6.90, m1: 10.60, q1: 17.30, y1: 29.50 },
-      '3661': { d1: 8.93, w1: 12.40, m1: 19.20, q1: 34.50, y1: 75.20 },
-      '6488': { d1: 7.06, w1: 8.50, m1: 12.80, q1: 22.20, y1: 45.60 },
-      '6669': { d1: 8.47, w1: 11.20, m1: 17.80, q1: 31.40, y1: 82.10 },
-      '2301': { d1: 6.35, w1: 7.20, m1: 10.10, q1: 17.50, y1: 38.40 },
-      '1303': { d1: 4.65, w1: 3.20, m1: 6.10, q1: 8.80, y1: 16.50 },
-      '1326': { d1: 4.45, w1: 3.80, m1: 5.80, q1: 7.90, y1: 14.80 }
+      '2330': { basePrice: 2255.00, d1: 5.62, w1: 6.20, m1: 12.80, q1: 28.50, y1: 85.50 },
+      '2454': { basePrice: 3725.00, d1: 9.88, w1: 8.40, m1: 14.20, q1: 25.80, y1: 55.20 },
+      '2308': { basePrice: 1155.00, d1: 10.00, w1: 11.20, m1: 18.50, q1: 29.40, y1: 64.20 },
+      '2317': { basePrice: 239.00, d1: 6.46, w1: 7.80, m1: 11.20, q1: 22.70, y1: 74.40 },
+      '2327': { basePrice: 405.00, d1: 8.29, w1: 9.10, m1: 15.20, q1: 26.60, y1: 59.30 },
+      '2492': { basePrice: 280.00, d1: 8.32, w1: 7.50, m1: 18.40, q1: 32.80, y1: 68.60 },
+      '8299': { basePrice: 1630.00, d1: 8.67, w1: 8.10, m1: 17.50, q1: 39.20, y1: 92.40 },
+      '3006': { basePrice: 225.00, d1: 8.43, w1: 9.20, m1: 22.80, q1: 36.30, y1: 72.10 },
+      '3701': { basePrice: 51.50, d1: 8.19, w1: 3.40, m1: 5.50, q1: 14.20, y1: 27.60 },
+      '2603': { basePrice: 245.50, d1: 4.88, w1: 7.20, m1: 12.60, q1: 22.50, y1: 38.20 },
+      '2609': { basePrice: 118.50, d1: 4.53, w1: 6.80, m1: 10.40, q1: 18.20, y1: 32.50 },
+      '2615': { basePrice: 82.50, d1: 4.88, w1: 7.10, m1: 11.80, q1: 20.80, y1: 35.40 },
+      '1795': { basePrice: 310.50, d1: 5.22, w1: 6.90, m1: 10.60, q1: 17.30, y1: 29.50 },
+      '3661': { basePrice: 3110.00, d1: 8.93, w1: 12.40, m1: 19.20, q1: 34.50, y1: 75.20 },
+      '6488': { basePrice: 563.00, d1: 7.06, w1: 8.50, m1: 12.80, q1: 22.20, y1: 45.60 },
+      '6669': { basePrice: 1650.00, d1: 8.47, w1: 11.20, m1: 17.80, q1: 31.40, y1: 82.10 },
+      '2301': { basePrice: 132.50, d1: 6.35, w1: 7.20, m1: 10.10, q1: 17.50, y1: 38.40 },
+      '1303': { basePrice: 58.10, d1: 4.65, w1: 3.20, m1: 6.10, q1: 8.80, y1: 16.50 },
+      '1326': { basePrice: 55.60, d1: 4.45, w1: 3.80, m1: 5.80, q1: 7.90, y1: 14.80 }
     };
 
     function getStockPerf(s) {
-      // 1. Calculate live today change directly from real-time price & prevClose
-      const liveD1 = (s.price > 0 && s.prevClose > 0)
-        ? Number(((s.price - s.prevClose) / s.prevClose * 100).toFixed(2))
-        : null;
+      if (!s) return { d1: 0, w1: 0, m1: 0, q1: 0, y1: 0 };
 
-      if (s.perf && typeof s.perf.d1 === 'number') {
-        if (liveD1 !== null) s.perf.d1 = liveD1;
-        return s.perf;
+      // 1. Calculate live today change directly from real-time price & prevClose
+      const currentPrice = Number(s.price) || 0;
+      const prevClose = Number(s.prevClose) || currentPrice;
+      const liveD1 = (currentPrice > 0 && prevClose > 0)
+        ? Number(((currentPrice - prevClose) / prevClose * 100).toFixed(2))
+        : 0;
+
+      // 2. Resolve baseline reference performance (perfBase)
+      if (!s.perfBase) {
+        if (STOCK_PERF_PRESETS[s.code]) {
+          const preset = STOCK_PERF_PRESETS[s.code];
+          s.perfBase = {
+            basePrice: preset.basePrice || Number(s.prevClose || s.price || 1),
+            d1: preset.d1,
+            w1: preset.w1,
+            m1: preset.m1,
+            q1: preset.q1,
+            y1: preset.y1
+          };
+        } else if (s.perf && typeof s.perf.w1 === 'number') {
+          s.perfBase = {
+            basePrice: Number(s.basePrice || s.price || prevClose || 1),
+            d1: s.perf.d1 ?? liveD1,
+            w1: s.perf.w1 ?? 0,
+            m1: s.perf.m1 ?? 0,
+            q1: s.perf.q1 ?? 0,
+            y1: s.perf.y1 ?? 0
+          };
+        } else {
+          // Synthetic baseline anchored to yesterday close
+          const seed = (s.code || '').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+          const baseD1 = liveD1;
+          const baseW1 = Number((baseD1 * 1.5 + ((seed % 13) - 6) * 0.4).toFixed(2));
+          const baseM1 = Number((baseW1 * 1.8 + ((seed % 17) - 8) * 0.6).toFixed(2));
+          const baseQ1 = Number((baseM1 * 1.7 + ((seed % 23) - 10) * 0.9).toFixed(2));
+          const baseY1 = Number((baseQ1 * 2.0 + ((seed % 29) - 12) * 1.5).toFixed(2));
+          s.perfBase = {
+            basePrice: Number(s.prevClose || currentPrice || 1),
+            d1: baseD1,
+            w1: baseW1,
+            m1: baseM1,
+            q1: baseQ1,
+            y1: baseY1
+          };
+        }
       }
-      if (STOCK_PERF_PRESETS[s.code]) {
-        s.perf = { ...STOCK_PERF_PRESETS[s.code] };
-        if (liveD1 !== null) s.perf.d1 = liveD1;
-        return s.perf;
-      }
-      const d1 = liveD1 !== null ? liveD1 : 0;
-      const seed = (s.code || '').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-      const w1 = Number((d1 * 1.5 + ((seed % 13) - 6) * 0.4).toFixed(2));
-      const m1 = Number((w1 * 1.8 + ((seed % 17) - 8) * 0.6).toFixed(2));
-      const q1 = Number((m1 * 1.7 + ((seed % 23) - 10) * 0.9).toFixed(2));
-      const y1 = Number((q1 * 2.0 + ((seed % 29) - 12) * 1.5).toFixed(2));
-      s.perf = { d1, w1, m1, q1, y1 };
+
+      // 3. Dynamic real-time period returns recalculation based on current price
+      const basePrice = s.perfBase.basePrice > 0 ? s.perfBase.basePrice : prevClose;
+      const priceRatio = (currentPrice > 0 && basePrice > 0) ? (currentPrice / basePrice) : 1;
+
+      const liveW1 = Number((((1 + (s.perfBase.w1 || 0) / 100) * priceRatio - 1) * 100).toFixed(2));
+      const liveM1 = Number((((1 + (s.perfBase.m1 || 0) / 100) * priceRatio - 1) * 100).toFixed(2));
+      const liveQ1 = Number((((1 + (s.perfBase.q1 || 0) / 100) * priceRatio - 1) * 100).toFixed(2));
+      const liveY1 = Number((((1 + (s.perfBase.y1 || 0) / 100) * priceRatio - 1) * 100).toFixed(2));
+
+      s.perf = {
+        d1: liveD1,
+        w1: liveW1,
+        m1: liveM1,
+        q1: liveQ1,
+        y1: liveY1
+      };
+
       return s.perf;
     }
 
@@ -5377,7 +5422,7 @@
                     <span>即時股價與多週期個股表現 (Period Performance Returns)</span>
                     <span class="text-[10px] font-normal px-2 py-0.5 rounded bg-slate-800 text-slate-400">台股慣例: ▲紅漲 ▼綠跌</span>
                   </h3>
-                  <p class="text-[11px] text-slate-400">統計最新盤中即時行情與近 1 日、近 1 週、近 1 月、近 1 季與近 1 年歷史區間報酬率</p>
+                  <p class="text-[11px] text-slate-400">依當前最新成交價全自動即時回推連動更新：近 1 日 (當天盤中)、近 1 週、近 1 月、近 1 季與近 1 年</p>
                 </div>
               </div>
               <div class="flex items-center gap-2 font-mono text-xs">
@@ -5399,22 +5444,22 @@
               <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
                 <span class="text-xs text-slate-400 font-medium">近 1 週 (1W)</span>
                 <div class="my-2">${formatPerfBadge(getStockPerf(stock).w1)}</div>
-                <span class="text-[10px] text-slate-500 font-mono">5 日區間</span>
+                <span class="text-[10px] text-slate-500 font-mono">依現價即時回推</span>
               </div>
               <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
                 <span class="text-xs text-slate-400 font-medium">近 1 月 (1M)</span>
                 <div class="my-2">${formatPerfBadge(getStockPerf(stock).m1)}</div>
-                <span class="text-[10px] text-slate-500 font-mono">20 日月線</span>
+                <span class="text-[10px] text-slate-500 font-mono">依現價即時回推</span>
               </div>
               <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between">
                 <span class="text-xs text-slate-400 font-medium">近 1 季 (1Q)</span>
                 <div class="my-2">${formatPerfBadge(getStockPerf(stock).q1)}</div>
-                <span class="text-[10px] text-slate-500 font-mono">60 日季線</span>
+                <span class="text-[10px] text-slate-500 font-mono">依現價即時回推</span>
               </div>
               <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 text-center flex flex-col justify-between col-span-2 sm:col-span-1">
                 <span class="text-xs text-slate-400 font-medium">近 1 年 (1Y)</span>
                 <div class="my-2">${formatPerfBadge(getStockPerf(stock).y1)}</div>
-                <span class="text-[10px] text-slate-500 font-mono">250 日年線</span>
+                <span class="text-[10px] text-slate-500 font-mono">依現價即時回推</span>
               </div>
             </div>
 
@@ -6576,6 +6621,7 @@
       if (idx === -1) return;
 
       const d1Input = document.getElementById('editPerfD1');
+      const editedPrice = parseFloat(document.getElementById('editPrice').value) || 0;
       const perf = d1Input ? {
         d1: parseFloat(d1Input.value) || 0,
         w1: parseFloat(document.getElementById('editPerfW1').value) || 0,
@@ -6584,9 +6630,19 @@
         y1: parseFloat(document.getElementById('editPerfY1').value) || 0
       } : stocks[idx].perf;
 
+      const perfBase = {
+        basePrice: editedPrice > 0 ? editedPrice : (stocks[idx].prevClose || 1),
+        d1: perf.d1,
+        w1: perf.w1,
+        m1: perf.m1,
+        q1: perf.q1,
+        y1: perf.y1
+      };
+
       stocks[idx] = {
         ...stocks[idx],
         perf,
+        perfBase,
         name: document.getElementById('editName').value.trim(),
         market: document.getElementById('editMarket').value,
         price: parseFloat(document.getElementById('editPrice').value) || 0,
