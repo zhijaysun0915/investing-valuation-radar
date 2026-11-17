@@ -2,7 +2,7 @@
   "version": "2.10.0",
   "updatedAt": "2026-11-17 08:46:49",
   "timestamp": 1794876409,
-  "total": 126,
+  "total": 127,
   "marketSessions": {
     "TWSE": {
       "status": "PRE",
@@ -65,7 +65,14 @@
       "isSessionLive": false,
       "marketCapRank": 1,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -1.35,
+        "w1": -5.03,
+        "m1": -10.33,
+        "q1": -7.66,
+        "y1": 50.17
+      }
     },
     "2454": {
       "code": "2454",
@@ -90,7 +97,14 @@
       "isSessionLive": false,
       "marketCapRank": 2,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 8.96,
+        "w1": 0.26,
+        "m1": -8.68,
+        "q1": -0.13,
+        "y1": 212.2
+      }
     },
     "2303": {
       "code": "2303",
@@ -115,7 +129,14 @@
       "isSessionLive": false,
       "marketCapRank": 12,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -4.41,
+        "w1": -8.06,
+        "m1": -29.73,
+        "q1": -20.0,
+        "y1": 110.72
+      }
     },
     "3711": {
       "code": "3711",
@@ -140,7 +161,14 @@
       "isSessionLive": false,
       "marketCapRank": 5,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -6.0,
+        "w1": -14.05,
+        "m1": -22.39,
+        "q1": -11.56,
+        "y1": 136.36
+      }
     },
     "2379": {
       "code": "2379",
@@ -165,7 +193,14 @@
       "isSessionLive": false,
       "marketCapRank": 46,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.84,
+        "w1": -3.76,
+        "m1": -7.96,
+        "q1": -2.85,
+        "y1": 44.12
+      }
     },
     "3034": {
       "code": "3034",
@@ -190,7 +225,14 @@
       "isSessionLive": false,
       "marketCapRank": 55,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -4.5,
+        "m1": -22.05,
+        "q1": -14.61,
+        "y1": 15.88
+      }
     },
     "3443": {
       "code": "3443",
@@ -215,7 +257,14 @@
       "isSessionLive": false,
       "marketCapRank": 16,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.65,
+        "w1": -2.72,
+        "m1": -10.92,
+        "q1": 31.73,
+        "y1": 259.54
+      }
     },
     "3661": {
       "code": "3661",
@@ -240,7 +289,14 @@
       "isSessionLive": false,
       "marketCapRank": 49,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": 5.12,
+        "m1": -3.23,
+        "q1": -0.96,
+        "y1": -0.42
+      }
     },
     "3529": {
       "code": "3529",
@@ -265,7 +321,14 @@
       "isSessionLive": false,
       "marketCapRank": 70,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 2.09,
+        "w1": -1.58,
+        "m1": -19.11,
+        "q1": -3.54,
+        "y1": 1.4
+      }
     },
     "6488": {
       "code": "6488",
@@ -290,7 +353,14 @@
       "isSessionLive": false,
       "marketCapRank": 50,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 3.12,
+        "w1": -10.78,
+        "m1": -38.1,
+        "q1": -44.46,
+        "y1": 43.12
+      }
     },
     "5347": {
       "code": "5347",
@@ -315,7 +385,14 @@
       "isSessionLive": false,
       "marketCapRank": 59,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.2,
+        "w1": -5.28,
+        "m1": -23.24,
+        "q1": -17.16,
+        "y1": 38.67
+      }
     },
     "3374": {
       "code": "3374",
@@ -340,7 +417,14 @@
       "isSessionLive": false,
       "marketCapRank": 80,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -4.92,
+        "w1": -0.82,
+        "m1": -3.88,
+        "q1": 40.8,
+        "y1": 210.7
+      }
     },
     "2408": {
       "code": "2408",
@@ -365,7 +449,14 @@
       "isSessionLive": false,
       "marketCapRank": 14,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -5.59,
+        "w1": -14.1,
+        "m1": -24.54,
+        "q1": -31.6,
+        "y1": 97.6
+      }
     },
     "2344": {
       "code": "2344",
@@ -390,7 +481,14 @@
       "isSessionLive": false,
       "marketCapRank": 38,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -3.54,
+        "w1": -18.15,
+        "m1": -28.94,
+        "q1": -34.23,
+        "y1": 66.92
+      }
     },
     "3006": {
       "code": "3006",
@@ -415,7 +513,14 @@
       "isSessionLive": false,
       "marketCapRank": 96,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -5.54,
+        "m1": -10.88,
+        "q1": -13.24,
+        "y1": 132.03
+      }
     },
     "8299": {
       "code": "8299",
@@ -440,7 +545,14 @@
       "isSessionLive": false,
       "marketCapRank": 48,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -8.36,
+        "m1": -16.8,
+        "q1": -21.88,
+        "y1": 18.99
+      }
     },
     "6770": {
       "code": "6770",
@@ -465,7 +577,14 @@
       "isSessionLive": false,
       "marketCapRank": 58,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -2.05,
+        "w1": -13.01,
+        "m1": -21.13,
+        "q1": -22.67,
+        "y1": 47.14
+      }
     },
     "6239": {
       "code": "6239",
@@ -490,7 +609,14 @@
       "isSessionLive": false,
       "marketCapRank": 73,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -9.71,
+        "w1": -6.74,
+        "m1": -18.44,
+        "q1": -18.29,
+        "y1": 30.4
+      }
     },
     "3260": {
       "code": "3260",
@@ -515,7 +641,14 @@
       "isSessionLive": false,
       "marketCapRank": 87,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -5.58,
+        "w1": -9.69,
+        "m1": -17.91,
+        "q1": -30.38,
+        "y1": 32.21
+      }
     },
     "2458": {
       "code": "2458",
@@ -540,7 +673,14 @@
       "isSessionLive": false,
       "marketCapRank": 100,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -0.85,
+        "m1": -13.75,
+        "q1": -20.27,
+        "y1": -12.45
+      }
     },
     "2317": {
       "code": "2317",
@@ -565,7 +705,14 @@
       "isSessionLive": false,
       "marketCapRank": 3,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -1.14,
+        "w1": -9.32,
+        "m1": -8.56,
+        "q1": -10.61,
+        "y1": -7.2
+      }
     },
     "2382": {
       "code": "2382",
@@ -590,7 +737,14 @@
       "isSessionLive": false,
       "marketCapRank": 13,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 2.46,
+        "w1": -12.06,
+        "m1": -16.53,
+        "q1": -20.69,
+        "y1": -4.89
+      }
     },
     "3231": {
       "code": "3231",
@@ -615,7 +769,14 @@
       "isSessionLive": false,
       "marketCapRank": 35,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.31,
+        "w1": -8.19,
+        "m1": -12.78,
+        "q1": -13.74,
+        "y1": 13.77
+      }
     },
     "6669": {
       "code": "6669",
@@ -640,7 +801,14 @@
       "isSessionLive": false,
       "marketCapRank": 22,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.99,
+        "w1": -13.69,
+        "m1": -23.08,
+        "q1": -32.16,
+        "y1": -0.57
+      }
     },
     "2356": {
       "code": "2356",
@@ -665,7 +833,14 @@
       "isSessionLive": false,
       "marketCapRank": 72,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 2.33,
+        "w1": -22.13,
+        "m1": -27.66,
+        "q1": -34.43,
+        "y1": 2.76
+      }
     },
     "2376": {
       "code": "2376",
@@ -690,7 +865,14 @@
       "isSessionLive": false,
       "marketCapRank": 65,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.98,
+        "w1": -9.85,
+        "m1": -22.02,
+        "q1": -21.23,
+        "y1": 7.23
+      }
     },
     "2357": {
       "code": "2357",
@@ -715,7 +897,14 @@
       "isSessionLive": false,
       "marketCapRank": 29,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.24,
+        "w1": -6.56,
+        "m1": -14.85,
+        "q1": -10.7,
+        "y1": 35.41
+      }
     },
     "2301": {
       "code": "2301",
@@ -740,7 +929,14 @@
       "isSessionLive": false,
       "marketCapRank": 39,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -11.35,
+        "m1": -21.59,
+        "q1": -24.31,
+        "y1": 27.38
+      }
     },
     "2308": {
       "code": "2308",
@@ -765,7 +961,14 @@
       "isSessionLive": false,
       "marketCapRank": 4,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -8.93,
+        "w1": -17.25,
+        "m1": -35.67,
+        "q1": -40.23,
+        "y1": 15.17
+      }
     },
     "2395": {
       "code": "2395",
@@ -790,7 +993,14 @@
       "isSessionLive": false,
       "marketCapRank": 37,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 2.24,
+        "w1": -4.89,
+        "m1": -16.94,
+        "q1": -18.73,
+        "y1": 92.49
+      }
     },
     "2324": {
       "code": "2324",
@@ -815,7 +1025,14 @@
       "isSessionLive": false,
       "marketCapRank": 78,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.42,
+        "w1": -12.88,
+        "m1": -21.66,
+        "q1": -27.74,
+        "y1": -2.24
+      }
     },
     "2353": {
       "code": "2353",
@@ -840,7 +1057,14 @@
       "isSessionLive": false,
       "marketCapRank": 89,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -6.42,
+        "m1": -9.05,
+        "q1": -5.66,
+        "y1": 1.75
+      }
     },
     "4938": {
       "code": "4938",
@@ -865,7 +1089,14 @@
       "isSessionLive": false,
       "marketCapRank": 61,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.52,
+        "w1": -12.89,
+        "m1": -17.84,
+        "q1": -6.26,
+        "y1": 15.91
+      }
     },
     "2345": {
       "code": "2345",
@@ -890,7 +1121,14 @@
       "isSessionLive": false,
       "marketCapRank": 25,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -4.71,
+        "w1": -13.92,
+        "m1": -33.67,
+        "q1": -37.41,
+        "y1": 33.27
+      }
     },
     "5388": {
       "code": "5388",
@@ -915,7 +1153,14 @@
       "isSessionLive": false,
       "marketCapRank": 106,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 0.87,
+        "w1": 4.76,
+        "m1": -5.25,
+        "q1": -10.2,
+        "y1": -13.62
+      }
     },
     "6285": {
       "code": "6285",
@@ -940,7 +1185,14 @@
       "isSessionLive": false,
       "marketCapRank": 91,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -3.91,
+        "w1": -3.92,
+        "m1": -25.35,
+        "q1": -21.87,
+        "y1": 83.08
+      }
     },
     "2412": {
       "code": "2412",
@@ -965,7 +1217,14 @@
       "isSessionLive": false,
       "marketCapRank": 10,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.53,
+        "w1": 3.13,
+        "m1": 6.47,
+        "q1": 20.96,
+        "y1": 24.62
+      }
     },
     "4904": {
       "code": "4904",
@@ -990,7 +1249,14 @@
       "isSessionLive": false,
       "marketCapRank": 45,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.46,
+        "w1": 2.84,
+        "m1": -3.56,
+        "q1": 6.9,
+        "y1": 18.58
+      }
     },
     "2327": {
       "code": "2327",
@@ -1015,7 +1281,14 @@
       "isSessionLive": false,
       "marketCapRank": 24,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -2.14,
+        "w1": -13.33,
+        "m1": -32.4,
+        "q1": -37.33,
+        "y1": 59.38
+      }
     },
     "2492": {
       "code": "2492",
@@ -1040,7 +1313,14 @@
       "isSessionLive": false,
       "marketCapRank": 82,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -6.41,
+        "w1": -19.58,
+        "m1": -36.26,
+        "q1": -22.15,
+        "y1": 95.78
+      }
     },
     "3017": {
       "code": "3017",
@@ -1065,7 +1345,14 @@
       "isSessionLive": false,
       "marketCapRank": 17,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -4.93,
+        "w1": -11.47,
+        "m1": -25.6,
+        "q1": -20.19,
+        "y1": 73.94
+      }
     },
     "3324": {
       "code": "3324",
@@ -1090,7 +1377,14 @@
       "isSessionLive": false,
       "marketCapRank": 90,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -10.0,
+        "w1": -24.94,
+        "m1": -32.83,
+        "q1": -6.27,
+        "y1": -9.56
+      }
     },
     "3653": {
       "code": "3653",
@@ -1115,7 +1409,14 @@
       "isSessionLive": false,
       "marketCapRank": 26,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.56,
+        "w1": -25.13,
+        "m1": -33.92,
+        "q1": -20.6,
+        "y1": 69.67
+      }
     },
     "2421": {
       "code": "2421",
@@ -1140,7 +1441,14 @@
       "isSessionLive": false,
       "marketCapRank": 99,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.79,
+        "w1": -7.64,
+        "m1": -21.36,
+        "q1": -12.41,
+        "y1": -28.45
+      }
     },
     "2059": {
       "code": "2059",
@@ -1165,7 +1473,14 @@
       "isSessionLive": false,
       "marketCapRank": 28,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 3.86,
+        "w1": -23.35,
+        "m1": -33.82,
+        "q1": -53.42,
+        "y1": 76.72
+      }
     },
     "3533": {
       "code": "3533",
@@ -1190,7 +1505,14 @@
       "isSessionLive": false,
       "marketCapRank": 67,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -1.16,
+        "w1": -4.55,
+        "m1": -7.44,
+        "q1": 3.7,
+        "y1": 38.84
+      }
     },
     "3037": {
       "code": "3037",
@@ -1215,7 +1537,14 @@
       "isSessionLive": false,
       "marketCapRank": 15,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -9.76,
+        "w1": -23.07,
+        "m1": -43.12,
+        "q1": -43.63,
+        "y1": 280.3
+      }
     },
     "8046": {
       "code": "8046",
@@ -1240,7 +1569,14 @@
       "isSessionLive": false,
       "marketCapRank": 36,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -6.82,
+        "w1": -21.19,
+        "m1": -42.61,
+        "q1": -32.88,
+        "y1": 190.64
+      }
     },
     "3189": {
       "code": "3189",
@@ -1265,7 +1601,14 @@
       "isSessionLive": false,
       "marketCapRank": 54,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -9.97,
+        "w1": -27.25,
+        "m1": -44.81,
+        "q1": -36.16,
+        "y1": 283.04
+      }
     },
     "2368": {
       "code": "2368",
@@ -1290,7 +1633,14 @@
       "isSessionLive": false,
       "marketCapRank": 42,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -9.92,
+        "w1": -15.06,
+        "m1": -33.2,
+        "q1": -19.71,
+        "y1": 55.49
+      }
     },
     "3044": {
       "code": "3044",
@@ -1315,7 +1665,14 @@
       "isSessionLive": false,
       "marketCapRank": 62,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -8.96,
+        "w1": -7.5,
+        "m1": -24.09,
+        "q1": -8.84,
+        "y1": 43.84
+      }
     },
     "6274": {
       "code": "6274",
@@ -1340,7 +1697,14 @@
       "isSessionLive": false,
       "marketCapRank": 60,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -9.92,
+        "w1": -19.55,
+        "m1": -51.53,
+        "q1": -47.33,
+        "y1": 91.98
+      }
     },
     "2383": {
       "code": "2383",
@@ -1365,7 +1729,14 @@
       "isSessionLive": false,
       "marketCapRank": 11,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -9.88,
+        "w1": -18.9,
+        "m1": -30.93,
+        "q1": -39.8,
+        "y1": 144.14
+      }
     },
     "8069": {
       "code": "8069",
@@ -1390,7 +1761,14 @@
       "isSessionLive": false,
       "marketCapRank": 71,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 2.18,
+        "w1": -2.11,
+        "m1": -11.46,
+        "q1": -13.66,
+        "y1": -20.57
+      }
     },
     "6176": {
       "code": "6176",
@@ -1415,7 +1793,14 @@
       "isSessionLive": false,
       "marketCapRank": 104,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 1.67,
+        "w1": -1.13,
+        "m1": -13.94,
+        "q1": -27.12,
+        "y1": -51.23
+      }
     },
     "2478": {
       "code": "2478",
@@ -1440,7 +1825,14 @@
       "isSessionLive": false,
       "marketCapRank": 114,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 0.0,
+        "w1": -12.51,
+        "m1": -27.21,
+        "q1": -33.98,
+        "y1": 43.23
+      }
     },
     "2881": {
       "code": "2881",
@@ -1465,7 +1857,14 @@
       "isSessionLive": false,
       "marketCapRank": 6,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.33,
+        "w1": -1.63,
+        "m1": -5.05,
+        "q1": 17.12,
+        "y1": 63.94
+      }
     },
     "2882": {
       "code": "2882",
@@ -1490,7 +1889,14 @@
       "isSessionLive": false,
       "marketCapRank": 8,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 2.27,
+        "w1": 0.91,
+        "m1": -3.06,
+        "q1": 12.92,
+        "y1": 69.98
+      }
     },
     "2891": {
       "code": "2891",
@@ -1515,7 +1921,14 @@
       "isSessionLive": false,
       "marketCapRank": 9,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.56,
+        "w1": 5.16,
+        "m1": 5.59,
+        "q1": 19.41,
+        "y1": 83.65
+      }
     },
     "2886": {
       "code": "2886",
@@ -1540,7 +1953,14 @@
       "isSessionLive": false,
       "marketCapRank": 23,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.18,
+        "w1": 3.21,
+        "m1": 1.48,
+        "q1": 16.26,
+        "y1": 38.31
+      }
     },
     "2884": {
       "code": "2884",
@@ -1565,7 +1985,14 @@
       "isSessionLive": false,
       "marketCapRank": 20,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.21,
+        "w1": -0.64,
+        "m1": -5.47,
+        "q1": 23.41,
+        "y1": 54.47
+      }
     },
     "2892": {
       "code": "2892",
@@ -1590,7 +2017,14 @@
       "isSessionLive": false,
       "marketCapRank": 31,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.12,
+        "w1": 2.56,
+        "m1": 2.43,
+        "q1": 25.3,
+        "y1": 49.56
+      }
     },
     "2880": {
       "code": "2880",
@@ -1615,7 +2049,14 @@
       "isSessionLive": false,
       "marketCapRank": 27,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.39,
+        "w1": 2.94,
+        "m1": 4.31,
+        "q1": 30.26,
+        "y1": 77.23
+      }
     },
     "2885": {
       "code": "2885",
@@ -1640,7 +2081,14 @@
       "isSessionLive": false,
       "marketCapRank": 18,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 2.33,
+        "w1": -1.59,
+        "m1": -5.16,
+        "q1": 8.8,
+        "y1": 100.91
+      }
     },
     "2887": {
       "code": "2887",
@@ -1665,7 +2113,14 @@
       "isSessionLive": false,
       "marketCapRank": 19,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.26,
+        "w1": -0.38,
+        "m1": -7.2,
+        "q1": 7.97,
+        "y1": 110.57
+      }
     },
     "2890": {
       "code": "2890",
@@ -1690,7 +2145,14 @@
       "isSessionLive": false,
       "marketCapRank": 30,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -1.64,
+        "w1": -0.83,
+        "m1": -7.73,
+        "q1": 5.96,
+        "y1": 60.4
+      }
     },
     "5880": {
       "code": "5880",
@@ -1715,7 +2177,14 @@
       "isSessionLive": false,
       "marketCapRank": 40,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": 1.44,
+        "m1": 0.18,
+        "q1": 13.08,
+        "y1": 19.51
+      }
     },
     "2883": {
       "code": "2883",
@@ -1740,7 +2209,14 @@
       "isSessionLive": false,
       "marketCapRank": 32,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.87,
+        "w1": -2.98,
+        "m1": -10.6,
+        "q1": 12.34,
+        "y1": 116.14
+      }
     },
     "2834": {
       "code": "2834",
@@ -1765,7 +2241,14 @@
       "isSessionLive": false,
       "marketCapRank": 69,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.29,
+        "w1": -0.29,
+        "m1": -3.91,
+        "q1": 4.88,
+        "y1": 17.6
+      }
     },
     "5876": {
       "code": "5876",
@@ -1790,7 +2273,14 @@
       "isSessionLive": false,
       "marketCapRank": 56,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": 4.51,
+        "m1": -1.48,
+        "q1": 22.53,
+        "y1": 36.63
+      }
     },
     "2897": {
       "code": "2897",
@@ -1815,7 +2305,14 @@
       "isSessionLive": false,
       "marketCapRank": 103,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 0.48,
+        "w1": 0.0,
+        "m1": -5.5,
+        "q1": 1.48,
+        "y1": 13.94
+      }
     },
     "2801": {
       "code": "2801",
@@ -1840,7 +2337,14 @@
       "isSessionLive": false,
       "marketCapRank": 47,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.7,
+        "w1": 1.81,
+        "m1": -3.6,
+        "q1": 17.78,
+        "y1": 43.19
+      }
     },
     "1301": {
       "code": "1301",
@@ -1865,7 +2369,14 @@
       "isSessionLive": false,
       "marketCapRank": 43,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -3.43,
+        "m1": -13.68,
+        "q1": 18.84,
+        "y1": 56.61
+      }
     },
     "1303": {
       "code": "1303",
@@ -1890,7 +2401,14 @@
       "isSessionLive": false,
       "marketCapRank": 7,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -6.2,
+        "w1": -9.52,
+        "m1": -13.84,
+        "q1": 39.47,
+        "y1": 362.83
+      }
     },
     "1326": {
       "code": "1326",
@@ -1915,7 +2433,14 @@
       "isSessionLive": false,
       "marketCapRank": 44,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.86,
+        "w1": -1.4,
+        "m1": -6.62,
+        "q1": 24.34,
+        "y1": 107.35
+      }
     },
     "6505": {
       "code": "6505",
@@ -1940,7 +2465,14 @@
       "isSessionLive": false,
       "marketCapRank": 21,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.22,
+        "w1": 0.0,
+        "m1": -22.76,
+        "q1": 27.64,
+        "y1": 63.21
+      }
     },
     "2002": {
       "code": "2002",
@@ -1965,7 +2497,14 @@
       "isSessionLive": false,
       "marketCapRank": 53,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.83,
+        "w1": -3.75,
+        "m1": -7.95,
+        "q1": -5.28,
+        "y1": 0.0
+      }
     },
     "1519": {
       "code": "1519",
@@ -1990,7 +2529,14 @@
       "isSessionLive": false,
       "marketCapRank": 68,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 9.41,
+        "w1": -5.08,
+        "m1": -27.41,
+        "q1": -34.89,
+        "y1": -30.32
+      }
     },
     "1513": {
       "code": "1513",
@@ -2015,7 +2561,14 @@
       "isSessionLive": false,
       "marketCapRank": 94,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -3.41,
+        "m1": -12.65,
+        "q1": -13.72,
+        "y1": -2.41
+      }
     },
     "1504": {
       "code": "1504",
@@ -2040,7 +2593,14 @@
       "isSessionLive": false,
       "marketCapRank": 74,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.65,
+        "w1": -5.8,
+        "m1": -13.28,
+        "q1": -16.3,
+        "y1": -37.78
+      }
     },
     "1503": {
       "code": "1503",
@@ -2065,7 +2625,14 @@
       "isSessionLive": false,
       "marketCapRank": 88,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 6.71,
+        "w1": -4.4,
+        "m1": -15.98,
+        "q1": -17.26,
+        "y1": -2.69
+      }
     },
     "1101": {
       "code": "1101",
@@ -2090,7 +2657,14 @@
       "isSessionLive": false,
       "marketCapRank": 66,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.0,
+        "w1": -2.75,
+        "m1": -2.21,
+        "q1": 10.4,
+        "y1": 23.49
+      }
     },
     "1102": {
       "code": "1102",
@@ -2115,7 +2689,14 @@
       "isSessionLive": false,
       "marketCapRank": 77,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.28,
+        "w1": -6.42,
+        "m1": -9.27,
+        "q1": 1.33,
+        "y1": -9.03
+      }
     },
     "1216": {
       "code": "1216",
@@ -2140,7 +2721,14 @@
       "isSessionLive": false,
       "marketCapRank": 41,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.02,
+        "w1": 4.9,
+        "m1": -0.5,
+        "q1": 2.19,
+        "y1": 5.46
+      }
     },
     "1402": {
       "code": "1402",
@@ -2165,7 +2753,14 @@
       "isSessionLive": false,
       "marketCapRank": 75,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.37,
+        "w1": -0.55,
+        "m1": -6.41,
+        "q1": -3.57,
+        "y1": -4.42
+      }
     },
     "9904": {
       "code": "9904",
@@ -2190,7 +2785,14 @@
       "isSessionLive": false,
       "marketCapRank": 92,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.75,
+        "w1": 1.15,
+        "m1": -0.38,
+        "q1": 6.48,
+        "y1": -11.6
+      }
     },
     "9910": {
       "code": "9910",
@@ -2215,7 +2817,14 @@
       "isSessionLive": false,
       "marketCapRank": 95,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.6,
+        "w1": -3.69,
+        "m1": -4.39,
+        "q1": -5.09,
+        "y1": -48.98
+      }
     },
     "2105": {
       "code": "2105",
@@ -2240,7 +2849,14 @@
       "isSessionLive": false,
       "marketCapRank": 86,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.69,
+        "w1": -1.2,
+        "m1": -10.56,
+        "q1": -7.25,
+        "y1": -10.7
+      }
     },
     "2912": {
       "code": "2912",
@@ -2265,7 +2881,14 @@
       "isSessionLive": false,
       "marketCapRank": 63,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.23,
+        "w1": 1.19,
+        "m1": -6.78,
+        "q1": -2.52,
+        "y1": -10.13
+      }
     },
     "2207": {
       "code": "2207",
@@ -2290,7 +2913,14 @@
       "isSessionLive": false,
       "marketCapRank": 52,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.76,
+        "w1": 4.53,
+        "m1": -1.67,
+        "q1": 4.94,
+        "y1": -11.65
+      }
     },
     "2201": {
       "code": "2201",
@@ -2315,7 +2945,14 @@
       "isSessionLive": false,
       "marketCapRank": 105,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 0.0,
+        "w1": -4.12,
+        "m1": -12.93,
+        "q1": -11.11,
+        "y1": -34.44
+      }
     },
     "1605": {
       "code": "1605",
@@ -2340,7 +2977,14 @@
       "isSessionLive": false,
       "marketCapRank": 79,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -9.71,
+        "w1": -8.16,
+        "m1": -17.58,
+        "q1": -15.9,
+        "y1": -0.96
+      }
     },
     "2603": {
       "code": "2603",
@@ -2365,7 +3009,14 @@
       "isSessionLive": false,
       "marketCapRank": 33,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 4.86,
+        "w1": 0.39,
+        "m1": -2.1,
+        "q1": 6.65,
+        "y1": 41.32
+      }
     },
     "2609": {
       "code": "2609",
@@ -2390,7 +3041,14 @@
       "isSessionLive": false,
       "marketCapRank": 64,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.33,
+        "w1": 2.92,
+        "m1": -5.67,
+        "q1": 1.53,
+        "y1": 12.81
+      }
     },
     "2615": {
       "code": "2615",
@@ -2415,7 +3073,14 @@
       "isSessionLive": false,
       "marketCapRank": 51,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -0.91,
+        "w1": -4.48,
+        "m1": -10.13,
+        "q1": 0.0,
+        "y1": 30.84
+      }
     },
     "2618": {
       "code": "2618",
@@ -2440,7 +3105,14 @@
       "isSessionLive": false,
       "marketCapRank": 57,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.27,
+        "w1": 4.23,
+        "m1": 12.65,
+        "q1": 15.63,
+        "y1": 41.47
+      }
     },
     "2610": {
       "code": "2610",
@@ -2465,7 +3137,14 @@
       "isSessionLive": false,
       "marketCapRank": 76,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 0.44,
+        "w1": 1.32,
+        "m1": 12.41,
+        "q1": 16.08,
+        "y1": 20.63
+      }
     },
     "2605": {
       "code": "2605",
@@ -2490,7 +3169,14 @@
       "isSessionLive": false,
       "marketCapRank": 107,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 5.59,
+        "w1": 1.42,
+        "m1": -9.54,
+        "q1": -12.24,
+        "y1": 37.82
+      }
     },
     "6472": {
       "code": "6472",
@@ -2515,7 +3201,14 @@
       "isSessionLive": false,
       "marketCapRank": 98,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 5.23,
+        "w1": -9.45,
+        "m1": -14.06,
+        "q1": -12.47,
+        "y1": -36.81
+      }
     },
     "1795": {
       "code": "1795",
@@ -2540,7 +3233,14 @@
       "isSessionLive": false,
       "marketCapRank": 101,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 0.0,
+        "w1": -24.32,
+        "m1": -28.41,
+        "q1": -31.56,
+        "y1": -55.91
+      }
     },
     "6589": {
       "code": "6589",
@@ -2565,7 +3265,14 @@
       "isSessionLive": false,
       "marketCapRank": 109,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": -0.38,
+        "w1": 3.11,
+        "m1": 8.61,
+        "q1": 6.32,
+        "y1": -30.72
+      }
     },
     "4147": {
       "code": "4147",
@@ -2590,7 +3297,14 @@
       "isSessionLive": false,
       "marketCapRank": 108,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 2.38,
+        "w1": 5.64,
+        "m1": 5.12,
+        "q1": 2.08,
+        "y1": -4.78
+      }
     },
     "6547": {
       "code": "6547",
@@ -2615,7 +3329,14 @@
       "isSessionLive": false,
       "marketCapRank": 110,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 3.61,
+        "w1": -12.62,
+        "m1": -11.42,
+        "q1": -12.96,
+        "y1": 21.13
+      }
     },
     "3008": {
       "code": "3008",
@@ -2640,7 +3361,14 @@
       "isSessionLive": false,
       "marketCapRank": 34,
       "isTop50Cap": true,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -6.9,
+        "w1": -10.86,
+        "m1": -27.7,
+        "q1": -18.65,
+        "y1": 111.97
+      }
     },
     "3406": {
       "code": "3406",
@@ -2665,7 +3393,14 @@
       "isSessionLive": false,
       "marketCapRank": 84,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 9.9,
+        "w1": -9.39,
+        "m1": -21.53,
+        "q1": 24.81,
+        "y1": 83.04
+      }
     },
     "2474": {
       "code": "2474",
@@ -2690,7 +3425,14 @@
       "isSessionLive": false,
       "marketCapRank": 83,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 9.09,
+        "w1": 5.87,
+        "m1": 2.32,
+        "q1": -2.7,
+        "y1": -5.48
+      }
     },
     "3023": {
       "code": "3023",
@@ -2715,7 +3457,14 @@
       "isSessionLive": false,
       "marketCapRank": 97,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 1.17,
+        "w1": 1.52,
+        "m1": -13.27,
+        "q1": -16.77,
+        "y1": 25.82
+      }
     },
     "6533": {
       "code": "6533",
@@ -2740,7 +3489,14 @@
       "isSessionLive": false,
       "marketCapRank": 112,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 0.0,
+        "w1": 2.65,
+        "m1": -21.49,
+        "q1": -6.64,
+        "y1": -12.12
+      }
     },
     "6789": {
       "code": "6789",
@@ -2765,7 +3521,14 @@
       "isSessionLive": false,
       "marketCapRank": 85,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -1.38,
+        "w1": -8.47,
+        "m1": -20.46,
+        "q1": -17.91,
+        "y1": 43.87
+      }
     },
     "6805": {
       "code": "6805",
@@ -2790,7 +3553,14 @@
       "isSessionLive": false,
       "marketCapRank": 81,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": -3.88,
+        "w1": -16.58,
+        "m1": -28.91,
+        "q1": -7.78,
+        "y1": 11.04
+      }
     },
     "3596": {
       "code": "3596",
@@ -2815,7 +3585,14 @@
       "isSessionLive": false,
       "marketCapRank": 102,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": 1.89,
+        "w1": -3.28,
+        "m1": -16.14,
+        "q1": -17.19,
+        "y1": -27.99
+      }
     },
     "6409": {
       "code": "6409",
@@ -2840,7 +3617,14 @@
       "isSessionLive": false,
       "marketCapRank": 93,
       "isTop50Cap": false,
-      "isTop100Cap": true
+      "isTop100Cap": true,
+      "perf": {
+        "d1": 4.12,
+        "w1": 0.38,
+        "m1": -11.63,
+        "q1": -23.3,
+        "y1": -30.4
+      }
     },
     "3701": {
       "code": "3701",
@@ -2865,7 +3649,14 @@
       "isSessionLive": false,
       "marketCapRank": 111,
       "isTop50Cap": false,
-      "isTop100Cap": false
+      "isTop100Cap": false,
+      "perf": {
+        "d1": -2.21,
+        "w1": 0.0,
+        "m1": -9.02,
+        "q1": 46.5,
+        "y1": 78.57
+      }
     },
     "2342": {
       "code": "2342",
@@ -3155,6 +3946,23 @@
       "sessionDesc": "日股盤中交易",
       "sessionHours": "09:00~15:30 (JST)",
       "isSessionLive": true
+    },
+    "4931": {
+      "code": "4931",
+      "name": "新盛力",
+      "price": 153.5,
+      "prevClose": 162.0,
+      "change": -8.5,
+      "changePct": -5.25,
+      "market": "TPEX",
+      "currency": "NT$",
+      "perf": {
+        "d1": -5.25,
+        "w1": -17.25,
+        "m1": -27.08,
+        "q1": -42.72,
+        "y1": 18.99
+      }
     }
   }
 }

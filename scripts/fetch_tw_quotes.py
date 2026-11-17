@@ -308,6 +308,7 @@ def main():
         '0700': {'name': '騰訊控股', 'market': 'HKEX', 'currency': 'HK$'},
         '7203': {'name': '豐田汽車 (Toyota)', 'market': 'TSE', 'currency': '¥'},
         '3701': {'name': '大眾控', 'market': 'TWSE', 'currency': 'NT$'},
+        '4931': {'name': '新盛力', 'market': 'TPEX', 'currency': 'NT$'},
         '2342': {'name': '茂矽', 'market': 'TWSE', 'currency': 'NT$'},
         '4716': {'name': '大立高', 'market': 'TPEX', 'currency': 'NT$'},
         '4989': {'name': '榮科', 'market': 'TWSE', 'currency': 'NT$'},
