@@ -366,6 +366,15 @@
               <p id="lbMainDesc" class="text-xs text-slate-400 mt-0.5">
                 專注鎖定臺灣 50 指數核心權值成分股（台股市值前 50 大），在藍籌龍頭中挖掘超值折價與外資看漲機會。
               </p>
+              <div class="flex items-center gap-2 mt-2 flex-wrap">
+                <span id="lbSyncBadge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-[11px] font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span id="lbSyncTimeLabel">⚡ 依證交所即時成交價動態重算中</span>
+                </span>
+                <span class="text-[11px] text-slate-400">
+                  （公允折價空間與五大區間表現即時聯動回推，每 60 秒自動背景輪詢）
+                </span>
+              </div>
             </div>
           </div>
 
@@ -449,7 +458,7 @@
               <input
                 id="leaderboardSearchInput"
                 type="text"
-                placeholder="過濾百大榜單（輸入代碼或名稱，如 2330、長榮、2454）..."
+                placeholder="過濾百大榜單（輸入代碼或名稱，如 2330、長榮、2454、4931）..."
                 oninput="handleLeaderboardSearch(this.value)"
                 class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl pl-8 pr-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-xs"
               />
@@ -458,12 +467,13 @@
 
           <div class="flex items-center gap-2 justify-between sm:justify-end flex-wrap">
             <button
+              id="lbSyncBtn"
               onclick="syncLiveQuotes(true)"
-              class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/25 transition flex items-center gap-1 shrink-0 text-xs font-semibold"
+              class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/25 transition flex items-center gap-1 shrink-0 text-xs font-semibold shadow-sm"
               title="立即連線證交所最新盤中報價並更新榜單所有即時行情"
             >
-              <i class="fa-solid fa-arrows-rotate"></i>
-              <span>同步盤中價</span>
+              <i id="lbSyncSpinIcon" class="fa-solid fa-arrows-rotate"></i>
+              <span id="lbSyncBtnText">同步最新盤中價</span>
             </button>
             <button
               id="toggleLbPerfBtn"
@@ -2954,6 +2964,38 @@
     "marketCapVal": 73603474044,
     "marketCapRank": 93,
     "isTop100Cap": true
+  },
+  {
+    "code": "3701",
+    "name": "大眾控",
+    "slug": "fic-global",
+    "market": "TWSE",
+    "price": 51.5,
+    "fairValue": 62.0,
+    "analystTarget": 68.0,
+    "pe": "22.5x",
+    "pb": "1.8x",
+    "prevClose": 47.6,
+    "marketCap": "115.6 億",
+    "marketCapVal": 11560000000,
+    "marketCapRank": 170,
+    "isTop100Cap": false
+  },
+  {
+    "code": "4931",
+    "name": "新盛力",
+    "slug": "stl-technology-co-ltd",
+    "market": "TPEX",
+    "price": 153.5,
+    "fairValue": 168.0,
+    "analystTarget": 175.0,
+    "pe": "38.2x",
+    "pb": "3.4x",
+    "prevClose": 162.0,
+    "marketCap": "98.2 億",
+    "marketCapVal": 9820000000,
+    "marketCapRank": 185,
+    "isTop100Cap": false
   }
 ];
 
@@ -3917,17 +3959,14 @@ const STOCK_PERF_PRESETS = {
         saveCommunityPool();
       }
 
-      // Also ensure TAIWAN_CORE_UNIVERSE has prevClose and realistic positive Monday rebound
+      // Also ensure TAIWAN_CORE_UNIVERSE has prevClose
       TAIWAN_CORE_UNIVERSE.forEach(u => {
         const live = LIVE_QUOTES_20261109[u.code];
         if (live) {
           u.price = live.price;
           u.prevClose = live.prevClose;
-        } else if (!u.prevClose || u.prevClose === u.price) {
-          // Provide realistic Friday close so Monday surge is clear (+4.5% to +8.5%)
-          const hash = (u.code || '').split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
-          const surgeRate = 0.045 + ((hash % 45) * 0.001); // 4.5% ~ 9.0% surge today
-          u.prevClose = Number((u.price / (1 + surgeRate)).toFixed(2));
+        } else if (!u.prevClose) {
+          u.prevClose = u.price;
         }
         u.perf = getStockPerf(u);
       });
@@ -4115,9 +4154,14 @@ const STOCK_PERF_PRESETS = {
     async function syncLiveQuotes(isManual = false) {
       const spinIcon = document.getElementById('syncSpinIcon');
       const statusText = document.getElementById('marketSyncStatusText');
+      const lbSpinIcon = document.getElementById('lbSyncSpinIcon');
+      const lbBtnText = document.getElementById('lbSyncBtnText');
+      const lbTimeLabel = document.getElementById('lbSyncTimeLabel');
 
       if (spinIcon) spinIcon.classList.add('fa-spin');
+      if (lbSpinIcon) lbSpinIcon.classList.add('fa-spin');
       if (statusText) statusText.innerText = '同步中...';
+      if (lbBtnText) lbBtnText.innerText = '同步中...';
 
       try {
         const timestamp = Date.now();
@@ -4219,6 +4263,9 @@ const STOCK_PERF_PRESETS = {
 
         saveToStorage();
         renderApp();
+        if (currentLayout === 'leaderboard') {
+          renderLeaderboard();
+        }
 
         if (statusText) {
           const timePart = data.updatedAt ? data.updatedAt.split(' ')[1] : '';
@@ -4226,8 +4273,13 @@ const STOCK_PERF_PRESETS = {
           statusText.title = `最後同步時間：${data.updatedAt}（共 ${data.total} 檔台股即時連線，GitHub Actions 自動每15分排程更新）`;
         }
 
+        if (lbTimeLabel) {
+          const timePart = data.updatedAt ? data.updatedAt.split(' ')[1] : '';
+          lbTimeLabel.innerText = `⚡ 盤中即時連線：最後更新 ${timePart || data.updatedAt}（動態重算）`;
+        }
+
         if (isManual) {
-          showToast(`✅ 已成功連線同步 ${data.total} 檔台股最新盤中成交價與五大區間表現！(${data.updatedAt})`, 'success');
+          showToast(`✅ 已成功連線同步 ${data.total} 檔台股最新盤中成交價與排行榜五大區間表現！(${data.updatedAt})`, 'success');
         }
       } catch (err) {
         console.warn('syncLiveQuotes warning:', err);
@@ -4237,6 +4289,8 @@ const STOCK_PERF_PRESETS = {
         }
       } finally {
         if (spinIcon) spinIcon.classList.remove('fa-spin');
+        if (lbSpinIcon) lbSpinIcon.classList.remove('fa-spin');
+        if (lbBtnText) lbBtnText.innerText = '同步最新盤中價';
       }
     }
 
@@ -6211,6 +6265,18 @@ const STOCK_PERF_PRESETS = {
         if (map.has(item.code)) {
           const ex = map.get(item.code);
           const merged = { ...ex, ...item };
+          // 確保最新盤中即時股價、五大區間、市值維持最新，不被舊快取覆蓋
+          if (ex.price && (!item.price || item.fairSource !== '手動校準')) {
+            merged.price = ex.price;
+            merged.prevClose = ex.prevClose;
+            merged.dayHigh = ex.dayHigh;
+            merged.dayLow = ex.dayLow;
+            merged.volume = ex.volume;
+            merged.perfBase = ex.perfBase || merged.perfBase;
+            merged.marketCap = ex.marketCap;
+            merged.marketCapVal = ex.marketCapVal;
+            merged.marketCapRank = ex.marketCapRank;
+          }
           if (!merged.fairValue || merged.fairValue <= 0 || merged.fairValue === '—') merged.fairValue = ex.fairValue;
           if (!merged.fairRange && ex.fairRange) merged.fairRange = ex.fairRange;
           if (!merged.analystTarget || merged.analystTarget <= 0 || merged.analystTarget === '—') merged.analystTarget = ex.analystTarget;
@@ -6225,6 +6291,17 @@ const STOCK_PERF_PRESETS = {
         if (map.has(item.code)) {
           const ex = map.get(item.code);
           const merged = { ...ex, ...item };
+          if (item.fairSource !== '手動校準' && ex.price) {
+            merged.price = ex.price;
+            merged.prevClose = ex.prevClose;
+            merged.dayHigh = ex.dayHigh;
+            merged.dayLow = ex.dayLow;
+            merged.volume = ex.volume;
+            merged.perfBase = ex.perfBase || merged.perfBase;
+            merged.marketCap = ex.marketCap;
+            merged.marketCapVal = ex.marketCapVal;
+            merged.marketCapRank = ex.marketCapRank;
+          }
           if (!merged.fairValue || merged.fairValue <= 0 || merged.fairValue === '—') merged.fairValue = ex.fairValue;
           if (!merged.fairRange && ex.fairRange) merged.fairRange = ex.fairRange;
           if (!merged.analystTarget || merged.analystTarget <= 0 || merged.analystTarget === '—') merged.analystTarget = ex.analystTarget;
@@ -6343,16 +6420,16 @@ const STOCK_PERF_PRESETS = {
             <tr class="bg-slate-900/95 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
               <th class="py-3 px-3 text-center w-14 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('rank')">排名 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-3 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('price')">即時股價 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('price')" title="依證交所/櫃買最新盤中成交價即時更新"><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1"></span>即時股價 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-2.5 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('marketCap')" title="點擊依公司總市值排序">市值 (Rank) <i class="fa-solid fa-sort ml-0.5"></i></th>
               <!-- Performance columns in Leaderboard -->
-              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.d1')" title="即時當天盤中漲跌幅 (台股紅漲綠跌)"><span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse mr-1"></span>即時當天 % <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.w1')" title="近 1 週報酬率">近1週 <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.m1')" title="近 1 月報酬率">近1月 <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.q1')" title="近 1 季報酬率">近1季 <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.y1')" title="近 1 年報酬率">近1年 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.d1')" title="即時當天盤中漲跌幅 (台股紅漲綠跌)"><span class="inline-block w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse mr-1"></span>即時當天 % <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.w1')" title="依現價即時回推近 1 週報酬率">近1週 <span class="text-[9px] text-cyan-400 font-mono">⚡</span> <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.m1')" title="依現價即時回推近 1 月報酬率">近1月 <span class="text-[9px] text-cyan-400 font-mono">⚡</span> <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.q1')" title="依現價即時回推近 1 季報酬率">近1季 <span class="text-[9px] text-cyan-400 font-mono">⚡</span> <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('perf.y1')" title="依現價即時回推近 1 年報酬率">近1年 <span class="text-[9px] text-cyan-400 font-mono">⚡</span> <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('target')">${targetTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300 w-36" onclick="sortLeaderboardBy('upside')">${upsideTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300 w-36" onclick="sortLeaderboardBy('upside')" title="依即時盤中成交價動態重算折價看漲空間">${upsideTitle} <span class="text-[9px] text-emerald-400 font-mono">⚡即時</span> <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-2.5 text-center">估值診斷</th>
               <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('pe')">P/E <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('pb')">P/B <i class="fa-solid fa-sort ml-0.5"></i></th>
@@ -6364,10 +6441,10 @@ const STOCK_PERF_PRESETS = {
             <tr class="bg-slate-900/95 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
               <th class="py-3 px-3.5 text-center w-16 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('rank')">排名 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-4 cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('price')">即時股價 <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('price')" title="依證交所/櫃買最新盤中成交價即時更新"><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1"></span>即時股價 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('marketCap')" title="點擊依公司總市值排序">市值 (Rank) <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('target')">${targetTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300 w-44" onclick="sortLeaderboardBy('upside')">${upsideTitle} <i class="fa-solid fa-sort ml-0.5"></i></th>
+              <th class="py-3 px-4 text-right cursor-pointer hover:text-cyan-300 w-44" onclick="sortLeaderboardBy('upside')" title="依即時盤中成交價動態重算折價看漲空間">${upsideTitle} <span class="text-[9px] text-emerald-400 font-mono">⚡即時</span> <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-3 text-center">估值診斷</th>
               <th class="py-3 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('pe')">本益比 P/E <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3 px-3 text-center cursor-pointer hover:text-cyan-300" onclick="sortLeaderboardBy('pb')">淨值比 P/B <i class="fa-solid fa-sort ml-0.5"></i></th>
@@ -6486,9 +6563,9 @@ const STOCK_PERF_PRESETS = {
                   </button>
 
                   <button
-                    onclick="syncLeaderboardStock('${stock.code}')"
+                    onclick="syncLeaderboardStock('${stock.code}', this)"
                     class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs transition flex items-center gap-1"
-                    title="即時去 Investing.com 更新此標的"
+                    title="即時同步此標的最新即時行情與估值"
                   >
                     <i class="fa-solid fa-rotate text-cyan-400"></i>
                   </button>
@@ -6643,10 +6720,25 @@ const STOCK_PERF_PRESETS = {
       }
     }
 
-    async function syncLeaderboardStock(code) {
-      showToast(`正在即時爬取 ${code} 最新行情...`, 'info');
-      await syncSingleStock(code);
-      renderLeaderboard();
+    async function syncLeaderboardStock(code, btnEl) {
+      const icon = btnEl ? btnEl.querySelector('i') : null;
+      if (icon) icon.classList.add('fa-spin');
+      showToast(`正在即時連線同步 ${code} 最新盤中價與估值折價空間...`, 'info');
+      try {
+        await syncLiveQuotes(false);
+        renderLeaderboard();
+        const pool = getCombinedStockPool();
+        const target = pool.find(s => s.code === code);
+        const priceStr = target ? `NT$ ${formatNumber(target.price)}` : '';
+        const upside = target ? calcUpside(target.fairValue, target.price) : null;
+        const upStr = upside !== null ? `，折價空間 ${upside >= 0 ? '+' : ''}${upside.toFixed(1)}%` : '';
+        showToast(`✅ ${code} ${target?.name || ''} 最新即時行情已同步！(${priceStr}${upStr})`, 'success');
+      } catch (err) {
+        console.warn('syncLeaderboardStock warning:', err);
+        renderLeaderboard();
+      } finally {
+        if (icon) icon.classList.remove('fa-spin');
+      }
     }
 
     /*************************************************************************
@@ -6679,6 +6771,8 @@ const STOCK_PERF_PRESETS = {
 
       if (mode === 'leaderboard') {
         renderLeaderboard();
+        // 切換進入排行榜時自動觸發盤中即時報價連線，確保數據維持最新
+        syncLiveQuotes(false);
       }
     }
 
