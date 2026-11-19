@@ -162,7 +162,12 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.10.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.10.1</span>
+        </button>
+
+        <button onclick="openDisclaimerModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5" title="查看免責聲明與價格同步提醒">
+          <i class="fa-solid fa-scale-balanced text-amber-400"></i>
+          <span class="hidden sm:inline">免責聲明</span>
         </button>
 
         <button onclick="openIssueModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看已知問題修復與回報紀錄">
@@ -195,7 +200,28 @@
   </header>
 
   <!-- Main Workspace -->
-  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
+  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-5 space-y-4">
+
+    <!-- REAL-TIME SYNC & DISCLAIMER BANNER (價格同步與免責說明標語) -->
+    <div class="rounded-2xl bg-gradient-to-r from-amber-500/15 via-amber-500/10 to-slate-900 border border-amber-500/35 p-3.5 sm:px-4 sm:py-3 text-xs shadow-lg shadow-amber-950/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+      <div class="flex items-start gap-2.5 flex-1">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold text-[11px] shrink-0 border border-amber-500/40">
+          <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
+          <span>重要提醒</span>
+        </span>
+        <div class="text-slate-300 leading-relaxed text-xs">
+          <span class="text-amber-200 font-bold">【行情與估值延遲說明】</span>
+          本專案數據源自第三方公開快照與模型估算，<strong class="text-white font-semibold underline decoration-amber-400/80 underline-offset-2">各市場價格可能未即時同步或存在 15~20 分鐘法定延遲，實際成交價格請務必自行向券商或交易所即時行情查證確認</strong>。所載之公允價值與目標價僅供個人學習與學術研究參考，概不構成任何投資建議，投資盈虧請自行承擔。
+        </div>
+      </div>
+      <button
+        onclick="openDisclaimerModal()"
+        class="shrink-0 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-semibold transition flex items-center gap-1.5 self-end md:self-center"
+      >
+        <i class="fa-solid fa-scale-balanced"></i>
+        <span>完整法律聲明</span>
+      </button>
+    </div>
 
     <!-- GLOBAL PERSISTENT SEARCH & INPUT BAR (ALWAYS VISIBLE IN ALL 3 VIEWS) -->
     <section class="glass-panel rounded-2xl p-4 sm:p-5 shadow-xl space-y-3.5 relative overflow-hidden">
@@ -610,11 +636,13 @@
   <footer class="border-t border-slate-800/80 bg-slate-950/90 py-4 mt-8">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
       <div class="flex items-center gap-2 flex-wrap">
-        <i class="fa-solid fa-shield-halved text-cyan-500"></i>
-        <span>資料來源：即時連線 Investing.com 公開個股頁、分析師共識目標價與 InvestingPro 同業比較快照（僅供投資研究參考）</span>
+        <i class="fa-solid fa-scale-balanced text-amber-400"></i>
+        <span>免責聲明：本工具數據源自公開快照與網路解析，價格可能存在延遲或未同步，請務必自行確認；僅供學術研究參考，不構成投資建議。</span>
       </div>
       <div class="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.10.0</span>
+        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.10.1</span>
+        <span>•</span>
+        <button onclick="openDisclaimerModal()" class="text-amber-400 hover:text-amber-300 underline underline-offset-2">免責與法律聲明</button>
         <span>•</span>
         <button onclick="openReleaseNotesModal()" class="text-slate-400 hover:text-cyan-300 underline underline-offset-2">Release Notes</button>
         <span>•</span>
@@ -825,7 +853,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.10.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.10.1</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -849,13 +877,29 @@
             </a>
           </div>
         </div>
-        <!-- v2.10.0 -->
+        <!-- v2.10.1 -->
         <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
           <div class="flex items-center justify-between flex-wrap gap-1">
             <div class="font-bold text-white text-sm flex items-center gap-2">
-              <span>v2.10.0</span>
+              <span>v2.10.1</span>
               <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-400">2026-11-19</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li><strong>⚠️ 全面新增行情延遲與價格未同步重要標語</strong>：於首頁頂部常駐標記「行情與估值延遲提示」，明確告知各市場報價可能存在 15~20 分鐘法定延遲或未及時同步，提醒投資人務必向券商或交易所即時行情查證確認。</li>
+            <li><strong>⚖️ 整合完整法律與免責聲明彈窗 (Disclaimer & Terms)</strong>：於導覽列與頁腳新增「免責聲明」彈窗，完整揭示學術研究用途、資料來源延遲、投資風險自負與商標智慧財產權條款。</li>
+            <li><strong>🎯 全池估值深度校準</strong>：全面校準景碩 (3189) 及 26 檔核心權值股公允價值與目標價，修復歷史週期資料脫節問題。</li>
+          </ul>
+        </div>
+
+        <!-- v2.10.0 -->
+        <div class="relative pl-6 border-l-2 border-purple-500 space-y-2">
+          <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-purple-500 border-2 border-slate-950"></div>
+          <div class="flex items-center justify-between flex-wrap gap-1">
+            <div class="font-bold text-white text-sm flex items-center gap-2">
+              <span>v2.10.0</span>
             </div>
             <span class="font-mono text-[11px] text-slate-400">2026-11-09</span>
           </div>
@@ -1103,6 +1147,93 @@
     </div>
   </div>
 
+  <!-- MODAL 6: Disclaimer & Terms Modal -->
+  <div id="disclaimerModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4" onclick="if(event.target === this) closeDisclaimerModal()">
+    <div class="glass-panel rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-slate-700 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 p-4 sm:p-5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <span>免責聲明與法律聲明 (Disclaimer & Terms)</span>
+            </h3>
+            <p class="text-xs text-slate-400">在使用或開發本專案前請詳細閱讀以下聲明</p>
+          </div>
+        </div>
+        <button onclick="closeDisclaimerModal()" class="text-slate-400 hover:text-white p-1 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs text-slate-300">
+        <!-- Important Alert Box -->
+        <div class="p-3.5 bg-amber-500/10 border-l-4 border-amber-500 rounded-r-xl text-amber-200 text-xs flex items-start gap-2.5">
+          <i class="fa-solid fa-circle-exclamation text-amber-400 mt-0.5 shrink-0"></i>
+          <div class="leading-relaxed">
+            <strong class="font-bold text-amber-300">Important:</strong><br />
+            請在使用或開發本專案前詳細閱讀以下聲明：
+          </div>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <h4 class="font-bold text-white flex items-center gap-2 text-sm">
+            <span class="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 text-xs flex items-center justify-center font-mono">1</span>
+            <span>僅供學術研究與個人參考用途：</span>
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-400 pl-1 leading-relaxed">
+            <li>本工具為開源技術研究專案，旨在展示前端資料解析、無伺服器 API 串接與視覺化排版技術。</li>
+            <li>本應用程式所顯示的所有數據（包括但不限於最新股價、公允價值、分析師預估目標價、本益比、市帳率等）均不構成任何形式的投資建議、買賣推薦、招攬或財務顧問意見。</li>
+          </ul>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-amber-500/30 space-y-2">
+          <h4 class="font-bold text-white flex items-center gap-2 text-sm">
+            <span class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-300 text-xs flex items-center justify-center font-mono">2</span>
+            <span>資料來源與延遲（行情價格未同步提示）：</span>
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-300 pl-1 leading-relaxed">
+            <li>資料皆即時或依快照擷取自 Investing.com 公開網頁及搜尋引擎索引快照。<strong class="text-amber-300">各市場報價可能存在 15~20 分鐘以上的法定延遲，且可能受第三方網路連線或目標網站版面調整影響而未及時同步</strong>。</li>
+            <li><strong class="text-white">使用者在進行任何交易或決策前，請務必透過各大合格證券經紀商或官方交易所系統自行查證並確認即時成交價格</strong>。</li>
+            <li>開發者與專案貢獻者不對資料的即時性、準確性、完整性或連續性提供任何明示或暗示的擔保。</li>
+          </ul>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-red-500/30 space-y-2">
+          <h4 class="font-bold text-white flex items-center gap-2 text-sm">
+            <span class="w-5 h-5 rounded-full bg-red-500/20 text-red-300 text-xs flex items-center justify-center font-mono">3</span>
+            <span>投資風險警示：</span>
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-400 pl-1 leading-relaxed">
+            <li>股票、期貨、被動元件或任何金融工具之交易均涉及高度市場風險，可能導致部分或全部本金損失。投資人應獨立評估自身財務狀況、風險承受能力，並在必要時諮詢合格之註冊證券投資顧問。</li>
+            <li><strong class="text-slate-200">使用者因信賴或使用本工具之數據所做出之任何投資決策，概由使用者自行承擔全部風險與盈虧</strong>。</li>
+          </ul>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <h4 class="font-bold text-white flex items-center gap-2 text-sm">
+            <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-300 text-xs flex items-center justify-center font-mono">4</span>
+            <span>商標與智慧財產權：</span>
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-400 pl-1 leading-relaxed">
+            <li><code class="text-cyan-300 font-mono">Investing.com</code> 與 <code class="text-cyan-300 font-mono">InvestingPro</code> 為 Fusion Media Limited 之商標或註冊商標。本開源專案與該公司無任何官方附屬、贊助、授權或代言關係。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800 p-4 bg-slate-900/60 flex items-center justify-between text-xs">
+        <span class="text-slate-400">若您繼續使用本工具，即表示您已理解並同意上述所有條款。</span>
+        <button onclick="closeDisclaimerModal()" class="px-5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold transition">
+          我已閱讀並理解
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Toast Container -->
   <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
@@ -6970,6 +7101,22 @@ const STOCK_PERF_PRESETS = {
 
     function closeIssueModal() {
       const modal = document.getElementById('issueTrackerModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function openDisclaimerModal() {
+      const modal = document.getElementById('disclaimerModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeDisclaimerModal() {
+      const modal = document.getElementById('disclaimerModal');
       if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
