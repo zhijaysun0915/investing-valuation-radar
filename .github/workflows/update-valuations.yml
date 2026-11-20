@@ -1,17 +1,24 @@
-name: Update Valuations & Analyst Targets
+name: Daily Fundamentals Auto-Update (Analyst Targets / Fair Value / PE-PB / Period Returns)
 
 on:
   schedule:
-    # Runs every Sunday at 18:00 UTC (Monday 02:00 Taiwan time) to refresh weekly financial model valuations & analyst targets
-    - cron: '0 18 * * 0'
+    # Every weekday 15:10 Taiwan time (07:10 UTC), after TWSE/TPEX close & official P/E publication
+    - cron: '10 7 * * 1-5'
+    # Every weekday 06:30 Taiwan time (22:30 UTC prev day), after US close (refresh US analyst data)
+    - cron: '30 22 * * 1-5'
   workflow_dispatch: # Allow manual trigger via GitHub web UI anytime
 
 permissions:
   contents: write
 
+concurrency:
+  group: data-commit
+  cancel-in-progress: false
+
 jobs:
-  sync-valuations:
+  sync-fundamentals:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,18 +28,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run Valuations Sync Script
+      - name: Fetch fundamentals (Yahoo history + analyst consensus, TWSE/TPEX official PE/PB)
         run: |
-          python3 scripts/update_valuations.py
+          python3 scripts/update_fundamentals.py
 
-      - name: Commit and push if valuations updated
+      - name: Commit and push if updated
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/valuations.json
+          git add data/fundamentals.json
           if git diff --staged --quiet; then
-            echo "No changes in valuations.json, skipping commit."
+            echo "No changes in fundamentals.json, skipping commit."
           else
-            git commit -m "chore(data): 定期同步 InvestingPro 公允價值與外資分析師目標價 [skip ci]"
+            git commit -m "chore(data): 每日自動更新分析師目標價、公允價模型、本益比與區間報酬 [skip ci]"
+            git pull --rebase origin main
             git push origin main
           fi

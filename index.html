@@ -162,7 +162,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.10.1</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.11.0</span>
         </button>
 
         <button onclick="openDisclaimerModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5" title="查看免責聲明與價格同步提醒">
@@ -212,6 +212,7 @@
         <div class="text-slate-300 leading-relaxed text-xs">
           <span class="text-amber-200 font-bold">【行情與估值延遲說明】</span>
           本專案數據源自第三方公開快照與模型估算，<strong class="text-white font-semibold underline decoration-amber-400/80 underline-offset-2">各市場價格可能未即時同步或存在 15~20 分鐘法定延遲，實際成交價格請務必自行向券商或交易所即時行情查證確認</strong>。所載之公允價值與目標價僅供個人學習與學術研究參考，概不構成任何投資建議，投資盈虧請自行承擔。
+          <div id="fundamentalsUpdatedLabel" class="text-[11px] text-cyan-300/90 font-mono mt-1">目標價／公允價／本益比／區間報酬：每日自動更新載入中...</div>
         </div>
       </div>
       <button
@@ -640,7 +641,7 @@
         <span>免責聲明：本工具數據源自公開快照與網路解析，價格可能存在延遲或未同步，請務必自行確認；僅供學術研究參考，不構成投資建議。</span>
       </div>
       <div class="flex items-center gap-3 font-mono text-[11px] flex-wrap">
-        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.10.1</span>
+        <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-300 font-bold">Version v2.11.0</span>
         <span>•</span>
         <button onclick="openDisclaimerModal()" class="text-amber-400 hover:text-amber-300 underline underline-offset-2">免責與法律聲明</button>
         <span>•</span>
@@ -853,7 +854,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.10.1</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.11.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -877,13 +878,29 @@
             </a>
           </div>
         </div>
-        <!-- v2.10.1 -->
+        <!-- v2.11.0 -->
         <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
           <div class="flex items-center justify-between flex-wrap gap-1">
             <div class="font-bold text-white text-sm flex items-center gap-2">
-              <span>v2.10.1</span>
+              <span>v2.11.0</span>
               <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-400">2026-11-20</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li><strong>🔄 全面解除寫死數據（每日自動基本面與估值管線）</strong>：新增 <code>scripts/update_fundamentals.py</code> 與每日 GitHub Actions 排程（台股收盤 15:10、美股收盤 06:30），自動寫入 <code>data/fundamentals.json</code>，取代過去寫死在前端的靜態數值。</li>
+            <li><strong>📊 四大公開真實來源自動同步</strong>：① Yahoo Finance 一年日線真實計算 1週／1月／1季／1年區間報酬（127/127 全覆蓋，移除合成假數據）；② Yahoo Finance 外資分析師目標價與買進共識（115/127）；③ 證交所／櫃買中心官方每日 PE、PB、殖利率；④ 自動公允價模型（分析師目標折現 + 預估 EPS 成長調整 + 自動剔除過期快照）。</li>
+            <li><strong>🧹 移除舊版強制覆蓋</strong>：移除先前每次載入網頁都會覆寫股價的 <code>LIVE_QUOTES_20261109</code> 硬編碼常數。</li>
+          </ul>
+        </div>
+
+        <!-- v2.10.1 -->
+        <div class="relative pl-6 border-l-2 border-purple-500 space-y-2">
+          <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-purple-500 border-2 border-slate-950"></div>
+          <div class="flex items-center justify-between flex-wrap gap-1">
+            <div class="font-bold text-white text-sm flex items-center gap-2">
+              <span>v2.10.1</span>
             </div>
             <span class="font-mono text-[11px] text-slate-400">2026-11-19</span>
           </div>
@@ -3026,7 +3043,7 @@
     "code": "6533",
     "name": "晶心科",
     "slug": "andes-tech",
-    "market": "TPEX",
+    "market": "TWSE",
     "price": 216.0,
     "fairValue": 235.0,
     "analystTarget": 275.0,
@@ -3880,20 +3897,15 @@ const STOCK_PERF_PRESETS = {
             y1: s.perf.y1 ?? 0
           };
         } else {
-          // Synthetic baseline anchored to yesterday close and realistic broad-market pullback
-          const seed = (s.code || '').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-          const baseD1 = liveD1;
-          const baseW1 = Number(((baseD1 * 0.7) - 3.2 - ((seed % 7) * 0.4)).toFixed(2));
-          const baseM1 = Number(((baseW1 * 0.9) - 4.5 - ((seed % 11) * 0.5)).toFixed(2));
-          const baseQ1 = Number(((baseM1 * 0.8) - 2.0 + ((seed % 19) - 9) * 0.6).toFixed(2));
-          const baseY1 = Number((28.0 + ((seed % 31) - 10) * 1.5).toFixed(2));
+          // No real history available yet: show "—" instead of inventing numbers.
+          // Real history is filled in by data/fundamentals.json (daily GitHub Actions job).
           s.perfBase = {
             basePrice: Number(s.prevClose || currentPrice || 1),
-            d1: baseD1,
-            w1: baseW1,
-            m1: baseM1,
-            q1: baseQ1,
-            y1: baseY1
+            d1: liveD1,
+            w1: null,
+            m1: null,
+            q1: null,
+            y1: null
           };
         }
       }
@@ -3901,18 +3913,16 @@ const STOCK_PERF_PRESETS = {
       // 3. Dynamic real-time period returns recalculation based on current price
       const basePrice = s.perfBase.basePrice > 0 ? s.perfBase.basePrice : prevClose;
       const priceRatio = (currentPrice > 0 && basePrice > 0) ? (currentPrice / basePrice) : 1;
-
-      const liveW1 = Number((((1 + (s.perfBase.w1 || 0) / 100) * priceRatio - 1) * 100).toFixed(2));
-      const liveM1 = Number((((1 + (s.perfBase.m1 || 0) / 100) * priceRatio - 1) * 100).toFixed(2));
-      const liveQ1 = Number((((1 + (s.perfBase.q1 || 0) / 100) * priceRatio - 1) * 100).toFixed(2));
-      const liveY1 = Number((((1 + (s.perfBase.y1 || 0) / 100) * priceRatio - 1) * 100).toFixed(2));
+      const rescale = (v) => (v === null || v === undefined || isNaN(v))
+        ? null
+        : Number((((1 + v / 100) * priceRatio - 1) * 100).toFixed(2));
 
       s.perf = {
         d1: liveD1,
-        w1: liveW1,
-        m1: liveM1,
-        q1: liveQ1,
-        y1: liveY1
+        w1: rescale(s.perfBase.w1),
+        m1: rescale(s.perfBase.m1),
+        q1: rescale(s.perfBase.q1),
+        y1: rescale(s.perfBase.y1)
       };
 
       return s.perf;
@@ -3978,18 +3988,9 @@ const STOCK_PERF_PRESETS = {
         selectedCode = stocks[0].code;
       }
 
-      // 2026-11-09 (週一) 國安基金與限空令雙利多 盤中強彈真實行情
-      const LIVE_QUOTES_20261109 = {
-        '2330': { price: 2255.00, prevClose: 2135.00, dayLow: 2210.00, dayHigh: 2260.00, note: '週一受政策利多激勵強彈大漲逾 120 元，逼近 2,260 元。' },
-        '2454': { price: 3725.00, prevClose: 3390.00, dayLow: 3535.00, dayHigh: 3725.00, note: '週一盤中強攻漲停價 3,725 元，大漲 335 元！' },
-        '2308': { price: 1155.00, prevClose: 1050.00, dayLow: 1090.00, dayHigh: 1160.00, note: '週一盤中強勢亮燈攻漲停 1,160 元！' },
-        '2317': { price: 239.00, prevClose: 224.50, dayLow: 232.00, dayHigh: 240.50, note: '週一隨權值股強力反攻，盤中大漲逾 6% 攻上 239 元。' },
-        '2327': { price: 405.00, prevClose: 374.00, dayLow: 388.00, dayHigh: 408.00, note: '週一強勢回升大漲逾 8%，站回 400 元大關。' },
-        '2492': { price: 280.00, prevClose: 258.50, dayLow: 268.00, dayHigh: 282.50, note: '週一被動元件族群跌深強彈，盤中大漲逾 8% 站上 280 元。' },
-        '8299': { price: 1630.00, prevClose: 1500.00, dayLow: 1560.00, dayHigh: 1640.00, note: '週一 IC 設計與記憶體族群全面翻紅，大漲逾 130 元。' },
-        '3006': { price: 225.00, prevClose: 207.50, dayLow: 216.00, dayHigh: 226.50, note: '週一跌深反彈大漲逾 8.4%，重返 225 元。' },
-        '3701': { price: 51.50, prevClose: 47.60, dayLow: 49.00, dayHigh: 52.00, note: '週一隨大盤千點強彈展開修復行情，盤中站回 51 元。' }
-      };
+      // (Removed) Former hardcoded 2026-11-09 intraday snapshot that overwrote prices on every load.
+      // Prices now come exclusively from data/quotes.json (every 15 min) and data/fundamentals.json (daily).
+      const LIVE_QUOTES_20261109 = {};
 
       const normalizedStocks = [];
       const seen = new Set();
@@ -4124,9 +4125,11 @@ const STOCK_PERF_PRESETS = {
       updateApiKeyBadge();
       renderApp();
 
-      // Plan A + B: Trigger background live quotes sync & start auto-poll
-      syncLiveQuotes(false);
-      startAutoPoll();
+      // Plan A + B: Load daily auto-updated fundamentals first, then overlay live quotes & start auto-poll
+      syncFundamentals().finally(() => {
+        syncLiveQuotes(false);
+        startAutoPoll();
+      });
     }
 
     /*************************************************************************
@@ -4291,6 +4294,84 @@ const STOCK_PERF_PRESETS = {
       }
       isBatchUpdatingValuations = false;
       showToast(`🎉 已成功完成 ${successCount}/${stocks.length} 檔自選股 InvestingPro 公允價與分析師目標價線上檢索！`, 'success');
+    }
+
+    /*************************************************************************
+     * 2.05 DAILY FUNDAMENTALS SYNC (data/fundamentals.json, GitHub Actions daily)
+     *   - Analyst consensus target (Yahoo Finance), auto-model fair value,
+     *     official TWSE/TPEX P/E & P/B, real 1W/1M/1Q/1Y returns from price history.
+     *************************************************************************/
+    let fundamentalsMeta = null;
+
+    function applyFundamentals(target, f) {
+      if (!target || !f || target.fairSource === '手動校準') return false;
+      if (f.fairValue > 0) {
+        target.fairValue = f.fairValue;
+        target.fairRange = f.fairRange || target.fairRange;
+        target.fairSource = f.fairSource || '自動模型';
+      }
+      if (f.analystTarget > 0) {
+        target.analystTarget = f.analystTarget;
+        if (f.analystLow > 0) target.analystLow = f.analystLow;
+        if (f.analystHigh > 0) target.analystHigh = f.analystHigh;
+        if (f.analystLow > 0 && f.analystHigh > 0) {
+          target.analystRange = `${formatNumber(f.analystLow)} - ${formatNumber(f.analystHigh)}`;
+        }
+        if (f.consensusLabel) target.consensusLabel = f.consensusLabel;
+        if (f.analystCount) target.analystCount = f.analystCount;
+      }
+      if (f.pe) target.pe = f.pe;
+      if (f.pb) target.pb = f.pb;
+      if (f.perf && f.perf.basePrice > 0) {
+        target.perfBase = {
+          basePrice: f.perf.basePrice,
+          d1: null,
+          w1: f.perf.w1 ?? null,
+          m1: f.perf.m1 ?? null,
+          q1: f.perf.q1 ?? null,
+          y1: f.perf.y1 ?? null
+        };
+      }
+      target.fundamentalsUpdatedAt = f.updatedAt;
+      target.perf = getStockPerf(target);
+      return true;
+    }
+
+    async function syncFundamentals() {
+      try {
+        const resp = await fetch(`./data/fundamentals.json?_t=${Date.now()}`, { cache: 'no-cache' });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        const map = (data && data.stocks) || {};
+        fundamentalsMeta = { updatedAt: data.updatedAt, total: data.total, coverage: data.coverage };
+
+        stocks.forEach(s => applyFundamentals(s, map[s.code]));
+        TAIWAN_CORE_UNIVERSE.forEach(u => applyFundamentals(u, map[u.code]));
+        if (communityPool && Array.isArray(communityPool)) {
+          communityPool.forEach(c => applyFundamentals(c, map[c.code]));
+          saveCommunityPool();
+        }
+        Object.entries(map).forEach(([code, f]) => {
+          const k = KNOWN_SLUGS[code];
+          if (!k) return;
+          if (f.fairValue > 0) { k.proFairValue = f.fairValue; if (f.fairRange) k.proFairRange = f.fairRange; }
+          if (f.analystTarget > 0) k.analystTarget = f.analystTarget;
+        });
+
+        const label = document.getElementById('fundamentalsUpdatedLabel');
+        if (label && data.updatedAt) {
+          label.textContent = `目標價／公允價／本益比／區間報酬：每日自動更新，最後更新 ${data.updatedAt}`;
+        }
+        saveToStorage();
+        renderApp();
+        if (typeof currentLayout !== 'undefined' && currentLayout === 'leaderboard') renderLeaderboard();
+        return true;
+      } catch (err) {
+        console.warn('syncFundamentals warning:', err);
+        const label = document.getElementById('fundamentalsUpdatedLabel');
+        if (label) label.textContent = '每日基本面資料暫時無法載入，目前顯示內建快照（可能過期）';
+        return false;
+      }
     }
 
     /*************************************************************************
