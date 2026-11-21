@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Investing.com 股票公允價 & 分析師預估價即時雷達</title>
+  <title>股票模型參考價（非 InvestingPro）& 分析師預估價即時雷達</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
@@ -84,14 +84,14 @@
         <div>
           <div class="flex items-center gap-2 flex-wrap">
             <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">
-              Investing.com 股票公允價 & 分析師預估價雷達
+              股票模型參考價 & 分析師預估價雷達
             </h1>
             <span class="px-2 py-0.5 text-[11px] font-semibold rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
               免金鑰即時連線版
             </span>
           </div>
           <p class="text-xs text-slate-400 mt-0.5">
-            左側輸入台股 / 美股代碼，右側即時撈取 Investing.com 最新股價、公允價估值與外資分析師共識預估價
+            左側輸入台股 / 美股代碼，右側呈現最新股價、模型參考價（非 InvestingPro）與外資分析師共識預估價
           </p>
         </div>
       </div>
@@ -211,8 +211,8 @@
         </span>
         <div class="text-slate-300 leading-relaxed text-xs">
           <span class="text-amber-200 font-bold">【行情與估值延遲說明】</span>
-          本專案數據源自第三方公開快照與模型估算，<strong class="text-white font-semibold underline decoration-amber-400/80 underline-offset-2">各市場價格可能未即時同步或存在 15~20 分鐘法定延遲，實際成交價格請務必自行向券商或交易所即時行情查證確認</strong>。所載之公允價值與目標價僅供個人學習與學術研究參考，概不構成任何投資建議，投資盈虧請自行承擔。
-          <div id="fundamentalsUpdatedLabel" class="text-[11px] text-cyan-300/90 font-mono mt-1">目標價／公允價／本益比／區間報酬：每日自動更新載入中...</div>
+          本專案數據源自第三方公開快照與公開財務公式估算，<strong class="text-white font-semibold underline decoration-amber-400/80 underline-offset-2">各市場價格可能未即時同步或存在 15~20 分鐘法定延遲，實際成交價格請務必自行向券商或交易所即時行情查證確認</strong>。所載之<strong class="text-emerald-300">「模型參考價（非 InvestingPro）」</strong>係依分析師目標價折現與預估 EPS 成長推算，僅供個人學習與學術研究參考，概不構成任何投資建議。
+          <div id="fundamentalsUpdatedLabel" class="text-[11px] text-cyan-300/90 font-mono mt-1">目標價／模型參考價（非 InvestingPro）／本益比／區間報酬：每日自動更新載入中...</div>
         </div>
       </div>
       <button
@@ -399,7 +399,7 @@
                   <span id="lbSyncTimeLabel">⚡ 依證交所即時成交價動態重算中</span>
                 </span>
                 <span class="text-[11px] text-slate-400">
-                  （公允折價空間與五大區間表現即時聯動回推，每 60 秒自動背景輪詢）
+                  （模型參考折價空間與五大區間表現即時聯動回推，每 60 秒自動背景輪詢）
                 </span>
               </div>
             </div>
@@ -446,7 +446,7 @@
                 class="flex-1 md:flex-none px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-sm"
               >
                 <i class="fa-solid fa-gem text-emerald-400"></i>
-                <span>💎 公允價折價</span>
+                <span>💎 模型參考價折價</span>
               </button>
               <button
                 id="btnLbAnalyst"
@@ -663,7 +663,7 @@
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <h3 class="text-base font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-sliders text-cyan-400"></i>
-          <span id="editModalTitle">手動校準股票公允價與預估價</span>
+          <span id="editModalTitle">手動校準模型參考價與分析師預估價</span>
         </h3>
         <button onclick="closeEditModal()" class="text-slate-400 hover:text-white p-1">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -694,9 +694,9 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
           <div class="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-3 space-y-2">
-            <label class="block text-emerald-300 font-semibold">公允價 (Fair Value)</label>
+            <label class="block text-emerald-300 font-semibold">模型參考價（非 InvestingPro）</label>
             <input id="editFairValue" type="number" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono focus:border-emerald-400 focus:outline-none" />
-            <label class="block text-slate-400 text-[11px]">公允價區間 / 來源說明</label>
+            <label class="block text-slate-400 text-[11px]">模型參考價區間 / 來源說明</label>
             <input id="editFairRange" type="text" placeholder="例如：405.78 - 408.25" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-200 font-mono text-[11px] focus:border-emerald-400 focus:outline-none" />
           </div>
 
@@ -806,7 +806,7 @@
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <h3 class="text-base font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-satellite-dish text-cyan-400"></i>
-          <span>本工具如何即時去 Investing.com 撈取公允價與分析師預估價？</span>
+          <span>本工具的數據來源與「模型參考價（非 InvestingPro）」計算原理</span>
         </h3>
         <button onclick="toggleGuideModal()" class="text-slate-400 hover:text-white p-1">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -817,20 +817,21 @@
         <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-1.5">
           <h4 class="font-bold text-cyan-300 flex items-center gap-2">
             <span class="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-xs">1</span>
-            即時連線 Investing.com 公開個股頁（免 API Key 直接可用）
+            公開真實數據（每日自動排程 ＋ 盤中每 15 分鐘更新）
           </h4>
           <p class="text-slate-400 text-xs">
-            當您在左側輸入股票代碼（如 <code>2330</code>、<code>2327</code>、<code>NVDA</code>）時，前端會透過支援 CORS 的 <code>r.jina.ai</code> 瀏覽器渲染代理即時存取 <code>hk.investing.com</code>，直接從網頁中解析出：<strong>最新成交價、52 週高低點、12 個月分析師平均目標價、最高/最低預估價、買入/賣出分析師人數、各大外資機構（JPMorgan、摩根士丹利、野村、麥格理等）最新目標價明細表</strong>。
+            系統透過 GitHub Actions 自動抓取公開資料：<strong>台灣證交所／櫃買中心即時報價與官方 PE／PB／殖利率</strong>、<strong>Yahoo Finance 一年日線真實區間報酬（近1週／1月／1季／1年）</strong>與<strong>外資分析師 12 個月共識目標價及評級人數</strong>；單股搜尋時亦可即時解析 <code>hk.investing.com</code> 公開頁面之分析師評級明細。
           </p>
         </div>
 
-        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-1.5">
+        <div class="bg-slate-900/90 border border-emerald-500/30 rounded-xl p-4 space-y-1.5">
           <h4 class="font-bold text-emerald-300 flex items-center gap-2">
             <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs">2</span>
-            InvestingPro 公允價快照 & 同業多模型公允價推算
+            模型參考價（非 InvestingPro 官方公允價）
           </h4>
           <p class="text-slate-400 text-xs">
-            針對公允價值（Fair Value），系統優先載入已驗證的 <strong>InvestingPro 公開比較快照數值</strong>（或透過選填的 Gemini API Key 即時檢索 <code>site:investing.com/pro</code> 快照）；若個股快照被鎖定，系統會自動根據從 Investing.com 同業比較表撈出的 <strong>同業公允價值上升空間 (%)、同業市盈率 (P/E) 與市帳率 (P/B)</strong> 即時計算多模型推算公允價區間，並提供一鍵開啟 Google Pro 原始快照連結供您比對驗證。
+            <strong class="text-amber-300">重要說明：InvestingPro 公允價值屬付費訂閱內容，無免費公開 API，本工具顯示之「模型參考價」並非 InvestingPro 官方數值。</strong><br />
+            本系統之「模型參考價」由公開數據自動計算平均：① <strong>分析師 12M 目標價折現（目標價 ÷ 1.10）</strong>、② <strong>預估 EPS 成長調整價（現價 × clamp(預估EPS ÷ 過去EPS, 0.7~1.5)）</strong>。若您有訂閱 InvestingPro，可點擊個股卡片右上角「鉛筆編輯」手動輸入您查到的官方數值，系統會保留您的手動校準不被自動覆蓋。
           </p>
         </div>
       </div>
@@ -4360,7 +4361,7 @@ const STOCK_PERF_PRESETS = {
 
         const label = document.getElementById('fundamentalsUpdatedLabel');
         if (label && data.updatedAt) {
-          label.textContent = `目標價／公允價／本益比／區間報酬：每日自動更新，最後更新 ${data.updatedAt}`;
+          label.textContent = `目標價／模型參考價（非 InvestingPro）／本益比／區間報酬：每日自動更新，最後更新 ${data.updatedAt}`;
         }
         saveToStorage();
         renderApp();
@@ -5513,7 +5514,7 @@ const STOCK_PERF_PRESETS = {
                 ${isLoading ? '<i class="fa-solid fa-circle-notch fa-spin text-xs text-cyan-400"></i>' : ''}
               </div>
               <div class="flex items-center gap-3 mt-1 text-[11px] font-mono">
-                <span class="text-emerald-300">公允: ${s.fairValue > 0 ? formatNumber(s.fairValue) : '—'} ${proUp !== null ? `(${proUp >= 0 ? '+' : ''}${proUp.toFixed(0)}%)` : ''}</span>
+                <span class="text-emerald-300">模型參考: ${s.fairValue > 0 ? formatNumber(s.fairValue) : '—'} ${proUp !== null ? `(${proUp >= 0 ? '+' : ''}${proUp.toFixed(0)}%)` : ''}</span>
                 <span class="text-cyan-300">預估: ${s.analystTarget > 0 ? formatNumber(s.analystTarget) : '—'} ${anaUp !== null ? `(${anaUp >= 0 ? '+' : ''}${anaUp.toFixed(0)}%)` : ''}</span>
               </div>
             </div>
@@ -5646,7 +5647,7 @@ const STOCK_PERF_PRESETS = {
           <!-- 2. DUAL HERO CARDS: FAIR VALUE (公允價) & ANALYST PRICE TARGET (分析師預估價) -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
 
-            <!-- HERO CARD LEFT: 公允價 (FAIR VALUE) -->
+            <!-- HERO CARD LEFT: 模型參考價（非 InvestingPro） -->
             <div class="rounded-2xl p-5 bg-gradient-to-br from-emerald-950/40 via-slate-900/90 to-slate-900/90 border-2 border-emerald-500/40 shadow-lg shadow-emerald-500/5 flex flex-col justify-between space-y-4">
               <div>
                 <div class="flex items-center justify-between gap-2">
@@ -5655,17 +5656,17 @@ const STOCK_PERF_PRESETS = {
                       <i class="fa-solid fa-scale-balanced"></i>
                     </div>
                     <div>
-                      <h3 class="text-sm font-bold text-emerald-300">公允價 (InvestingPro Fair Value)</h3>
-                      <p class="text-[11px] text-slate-400">${stock.fairSource || '財務與同業多模型估值'} • ${stock.lastValuationUpdate || '2026-11'}</p>
+                      <h3 class="text-sm font-bold text-emerald-300">模型參考價（非 InvestingPro）</h3>
+                      <p class="text-[11px] text-slate-400">${stock.fairSource || '公開模型估算（非 InvestingPro）'} • ${stock.fundamentalsUpdatedAt || stock.lastValuationUpdate || '每日自動更新'}</p>
                     </div>
                   </div>
                   <button
                     onclick="refreshStockValuation('${stock.code}')"
                     class="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/35 text-emerald-200 border border-emerald-500/40 text-[11px] font-semibold transition flex items-center gap-1 active:scale-95 shrink-0"
-                    title="線上重新檢索 InvestingPro 官方最新公允價估值模型數據"
+                    title="重新檢索最新分析師目標價與模型參考價"
                   >
                     <i class="fa-solid fa-arrows-rotate"></i>
-                    <span>更新公允價</span>
+                    <span>更新參考價</span>
                   </button>
                   <span class="px-2.5 py-0.5 rounded-full text-xs font-bold border ${proStatusBadge}">
                     ${proStatusLabel}
@@ -5674,7 +5675,7 @@ const STOCK_PERF_PRESETS = {
 
                 <div class="mt-4 flex items-baseline justify-between bg-slate-950/70 rounded-xl p-4 border border-emerald-500/20">
                   <div>
-                    <div class="text-[11px] text-slate-400">模型推算公允價格</div>
+                    <div class="text-[11px] text-slate-400">公開公式推算參考價（非 InvestingPro）</div>
                     <div class="text-3xl sm:text-4xl font-bold font-mono text-white mt-0.5">
                       ${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '未提供'}
                     </div>
@@ -5690,11 +5691,11 @@ const STOCK_PERF_PRESETS = {
 
               <div class="space-y-2 pt-2 border-t border-slate-800/80 text-xs">
                 <div class="flex items-center justify-between text-slate-300">
-                  <span class="text-slate-400">公允價值模型區間：</span>
+                  <span class="text-slate-400">模型估算區間：</span>
                   <span class="font-mono font-semibold text-emerald-200">${cur}${stock.fairRange || '—'}</span>
                 </div>
                 <div class="flex items-center justify-between text-slate-300">
-                  <span class="text-slate-400">同業平均公允價值上升空間：</span>
+                  <span class="text-slate-400">同業參考上升空間：</span>
                   <span class="font-mono font-semibold text-slate-200">${stock.peerFairUpside || '—'} (板塊: ${stock.sectorFairUpside || '—'})</span>
                 </div>
                 <div class="flex items-center justify-between text-slate-300">
@@ -5782,7 +5783,7 @@ const STOCK_PERF_PRESETS = {
             <div class="flex items-center justify-between text-xs text-slate-300 mb-3">
               <span class="font-semibold flex items-center gap-1.5">
                 <i class="fa-solid fa-ruler-horizontal text-cyan-400"></i>
-                <span>股價位階尺規（現價 vs 公允價 vs 分析師目標價）</span>
+                <span>股價位階尺規（現價 vs 模型參考價 vs 分析師目標價）</span>
               </span>
               <span class="text-[11px] font-mono text-slate-400">
                 52週高低：${stock.week52Low > 0 ? formatNumber(stock.week52Low) : '—'} ~ ${stock.week52High > 0 ? formatNumber(stock.week52High) : '—'} (位階 ${Math.round(week52Pct)}%)
@@ -5805,7 +5806,7 @@ const STOCK_PERF_PRESETS = {
               ${stock.fairValue > 0 ? `
                 <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10" style="left: ${fairPos}%;">
                   <div class="w-4 h-4 rounded-full bg-emerald-400 border-2 border-slate-950 shadow-lg"></div>
-                  <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-emerald-300 whitespace-nowrap">公允價 ${Math.round(stock.fairValue)}</span>
+                  <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[11px] font-mono font-bold text-emerald-300 whitespace-nowrap">模型參考 ${Math.round(stock.fairValue)}</span>
                 </div>
               ` : ''}
 
@@ -6032,7 +6033,7 @@ const STOCK_PERF_PRESETS = {
         </div>
         <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-center justify-between">
           <div>
-            <p class="text-xs text-slate-400">平均公允價潛在空間</p>
+            <p class="text-xs text-slate-400">平均模型參考空間（非 InvestingPro）</p>
             <p class="text-2xl font-bold font-mono mt-1 ${avgProUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${avgProUpside >= 0 ? '+' : ''}${avgProUpside.toFixed(1)}%</p>
           </div>
           <i class="fa-solid fa-scale-balanced text-emerald-400 text-xl"></i>
@@ -6046,7 +6047,7 @@ const STOCK_PERF_PRESETS = {
         </div>
         <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-center justify-between">
           <div>
-            <p class="text-xs text-slate-400">低於公允價 (折價) 標的</p>
+            <p class="text-xs text-slate-400">低於模型參考價 (折價) 標的</p>
             <p class="text-2xl font-bold text-amber-400 font-mono mt-1">${undervaluedCount} / ${validPro.length}</p>
           </div>
           <i class="fa-solid fa-gem text-amber-400 text-xl"></i>
@@ -6119,7 +6120,7 @@ const STOCK_PERF_PRESETS = {
 
             <div class="grid grid-cols-2 gap-3">
               <div class="bg-slate-900/90 border border-emerald-500/30 rounded-xl p-3.5">
-                <div class="text-xs text-emerald-300 font-semibold">公允價 (Fair Value)</div>
+                <div class="text-xs text-emerald-300 font-semibold">模型參考價（非 InvestingPro）</div>
                 <div class="flex items-baseline justify-between mt-1.5">
                   <span class="text-xl font-bold font-mono text-white">${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '—'}</span>
                   ${proUpside !== null ? `<span class="text-xs font-mono font-bold ${proUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${proUpside >= 0 ? '+' : ''}${proUpside.toFixed(1)}%</span>` : ''}
@@ -6170,8 +6171,8 @@ const STOCK_PERF_PRESETS = {
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.m1')" title="近 1 月報酬率">近1月 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.q1')" title="近 1 季報酬率">近1季 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.y1')" title="近 1 年報酬率">近1年 <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')">公允價 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">公允空間 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')" title="公開模型估算參考價（非 InvestingPro）">模型參考價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">模型空間 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystTarget')">外資預估價 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystUpside')">外資空間 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-2 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('peNum')">P/E <i class="fa-solid fa-sort ml-0.5"></i></th>
@@ -6184,8 +6185,8 @@ const STOCK_PERF_PRESETS = {
             <tr class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
               <th class="py-3.5 px-4 cursor-pointer hover:text-cyan-300" onclick="sortByColumn('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('price')">即時股價 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')">公允價 (Fair Value) <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">公允價空間 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')" title="公開模型估算參考價（非 InvestingPro）">模型參考價（非 InvestingPro） <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">模型空間 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystTarget')">分析師預估價 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystUpside')">分析師空間 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-3 text-center">分析師共識</th>
@@ -6402,16 +6403,16 @@ const STOCK_PERF_PRESETS = {
       const thUpside = document.getElementById('lbThMetricUpside');
       if (thVal && thUpside) {
         if (mode === 'fairValue') {
-          thVal.textContent = '公允價 (Fair Value)';
-          thUpside.textContent = '公允折價空間';
+          thVal.textContent = '模型參考價（非 InvestingPro）';
+          thUpside.textContent = '模型折價空間';
         } else if (mode === 'analyst') {
           thVal.textContent = '分析師預估目標價';
           thUpside.textContent = '分析師看漲空間';
         } else if (mode === 'marketCap') {
-          thVal.textContent = '公允價值估值';
-          thUpside.textContent = '公允折價空間';
+          thVal.textContent = '模型參考價（非 InvestingPro）';
+          thUpside.textContent = '模型折價空間';
         } else {
-          thVal.textContent = '公允價 / 目標價';
+          thVal.textContent = '模型參考價 / 目標價';
           thUpside.textContent = '查詢熱度 / 空間';
         }
       }
@@ -6641,8 +6642,8 @@ const STOCK_PERF_PRESETS = {
 
       // Render Table Head
       if (thead) {
-        const targetTitle = lbMode === 'fairValue' ? 'InvestingPro 公允價' : (lbMode === 'analyst' ? '外資分析師目標價' : '基準估值');
-        const upsideTitle = lbMode === 'fairValue' ? '公允價折價空間' : (lbMode === 'analyst' ? '外資潛在看漲空間' : '最大潛在空間');
+        const targetTitle = lbMode === 'fairValue' ? '模型參考價（非 InvestingPro）' : (lbMode === 'analyst' ? '外資分析師目標價' : '模型參考價（非 InvestingPro）');
+        const upsideTitle = lbMode === 'fairValue' ? '模型折價空間' : (lbMode === 'analyst' ? '外資潛在看漲空間' : '最大潛在空間');
 
         if (showLbPerf) {
           thead.innerHTML = `
@@ -7211,7 +7212,7 @@ const STOCK_PERF_PRESETS = {
     }
 
     function exportCSV() {
-      const headers = ['代碼', '名稱', '市場', '最新股價', '公允價(Fair Value)', '公允價潛在空間(%)', '分析師預估價(Target)', '分析師潛在空間(%)', '分析師共識', '本益比(P/E)', '股價淨值比(P/B)', '備註'];
+      const headers = ['代碼', '名稱', '市場', '最新股價', '模型參考價(非InvestingPro)', '模型參考空間(%)', '分析師預估價(Target)', '分析師潛在空間(%)', '分析師共識', '本益比(P/E)', '股價淨值比(P/B)', '備註'];
       const rows = stocks.map(s => {
         const proUp = calcUpside(s.fairValue, s.price);
         const anaUp = calcUpside(s.analystTarget, s.price);
@@ -7236,7 +7237,7 @@ const STOCK_PERF_PRESETS = {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Investing_公允價與分析師預估價_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.download = `股票模型參考價與分析師預估價_${new Date().toISOString().slice(0, 10)}.csv`;
       a.click();
       URL.revokeObjectURL(url);
       showToast('已匯出 CSV 報表', 'success');

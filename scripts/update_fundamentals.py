@@ -321,7 +321,7 @@ def main():
 
         fair, rng, src, stale = compute_fair_value(price, analyst, s.get('snapshotFair'))
         if fair:
-            rec.update({'fairValue': fair, 'fairRange': rng, 'fairSource': f'自動模型（{src}）'})
+            rec.update({'fairValue': fair, 'fairRange': rng, 'fairSource': f'模型參考價（非 InvestingPro：{src}）'})
         rec['snapshotFair'] = s.get('snapshotFair')
         rec['snapshotStale'] = stale
 
