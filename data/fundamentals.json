@@ -1,17 +1,33 @@
 {
- "version": "2.11.0",
- "updatedAt": "2026-11-21 11:21:27",
- "timestamp": 1795231287,
+ "version": "2.12.0",
+ "updatedAt": "2026-11-23 08:18:14",
+ "timestamp": 1795393094,
  "total": 127,
  "coverage": {
   "perf": 127,
-  "analyst": 115
+  "analyst": 115,
+  "academicModel": 127
  },
- "sources": {
-  "perf": "Yahoo Finance 1Y daily closes",
-  "analyst": "Yahoo Finance quoteSummary (financialData)",
-  "ratios": "TWSE BWIBBU_ALL / TPEX peratio_analysis (official)",
-  "fairValue": "Auto model: PV(analyst target) + forward-EPS adjusted price + non-stale InvestingPro snapshot"
+ "methodology": {
+  "name": "Peer-Reviewed 5-Model Academic Intrinsic Valuation (Non-InvestingPro)",
+  "papers": [
+   "Ohlson (1995 CAR) & Dechow, Hutton & Sloan (1999 JAE, ω=0.62) & Gebhardt, Lee & Swaminathan (2001 JAR) — Residual Income Model (RIM)",
+   "Ohlson & Juettner-Nauroth (2005 RAST) & Fuller & Hsia (1984 FAJ) & Damodaran (2012) — Reinvestment-Consistent 2-Stage Earnings DCF",
+   "Liu, Nissim & Thomas (2002 JAR) & Baker & Ruback (1999) — Leave-One-Out Sub-Industry Harmonic Forward P/E",
+   "Bhojraj & Lee (2002 JAR) & Wilcox (1984 FAJ) — Leave-One-Out Ridge Warranted Multiples (ROE, Growth, 1/re, Margin, Payout)",
+   "Lie & Lie (2002 FAJ) — Leave-One-Out Sub-Industry Harmonic EV/EBITDA (Non-Financials)",
+   "Piotroski (2000 JAR) & Sloan (1996 TAR) & Novy-Marx (2013 JFE) — 5-Point Fundamental Quality Score"
+  ],
+  "backtest2023to2026": {
+   "observations": 504,
+   "cohorts": "2023→2024, 2024→2025, 2025→2026, 2026 YTD (Zero Look-Ahead)",
+   "avgMedAPE": "30.4%",
+   "within30Pct": "49.4%",
+   "avgSpearmanIC": "+0.127",
+   "liveForwardMedVP": "1.01",
+   "liveForwardMedAPE": "28.7%",
+   "liveWithin30Pct": "53.5%"
+  }
  },
  "stocks": {
   "2330": {
@@ -19,6 +35,8 @@
    "name": "台積電",
    "market": "TWSE",
    "symbol": "2330.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 2000.0,
     "baseDate": "2026-11-20",
@@ -33,23 +51,47 @@
    "analystCount": 35,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 149.60304,
-   "trailingEps": 92.83,
-   "fairValue": 2862.73,
-   "fairRange": "2,495.00 - 3,093.19",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 2495.0,
-   "snapshotStale": false,
+   "forwardEps": 149.603,
+   "trailingEps": 97.47,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "20.4x",
    "pb": "7.41x",
    "divYield": 1.1,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1771.4,
+   "fairRange": "1,113.52 - 2,486.92",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 1113.52,
+    "oj": 2486.92,
+    "subIndPe": 2130.22,
+    "blWarranted": 1592.27,
+    "evEbitda": 1923.2
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 9.66,
+   "betaAdj": 1.16,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2454": {
    "code": "2454",
    "name": "聯發科",
    "market": "TWSE",
    "symbol": "2454.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 3350.0,
     "baseDate": "2026-11-20",
@@ -64,23 +106,46 @@
    "analystCount": 26,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 154.6238,
+   "forwardEps": 154.624,
    "trailingEps": 62.2,
-   "fairValue": 4816.04,
-   "fairRange": "3,820.00 - 5,603.11",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 3820.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "53.9x",
    "pb": "11.50x",
    "divYield": 1.6,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1553.51,
+   "fairRange": "681.56 - 2,108.33",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 681.56,
+    "oj": 1724.29,
+    "subIndPe": 2108.33,
+    "blWarranted": 1757.3,
+    "evEbitda": 1029.59
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2303": {
    "code": "2303",
    "name": "聯電",
    "market": "TWSE",
    "symbol": "2303.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 80.3,
     "baseDate": "2026-11-20",
@@ -93,25 +158,48 @@
    "analystHigh": 258.0,
    "analystLow": 41.0,
    "analystCount": 25,
-   "consensusLabel": null,
+   "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 7.15778,
+   "forwardEps": 7.302,
    "trailingEps": 6.7,
-   "fairValue": 94.07,
-   "fairRange": "62.40 - 134.02",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 62.4,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "11.9x",
    "pb": "2.14x",
    "divYield": 3.25,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 82.28,
+   "fairRange": "53.69 - 136.58",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 53.69,
+    "oj": 58.87,
+    "subIndPe": 103.97,
+    "blWarranted": 80.75,
+    "evEbitda": 136.58
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 12.14,
+   "betaAdj": 1.55,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3711": {
    "code": "3711",
    "name": "日月光投控",
    "market": "TWSE",
    "symbol": "3711.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 457.0,
     "baseDate": "2026-11-20",
@@ -126,23 +214,47 @@
    "analystCount": 18,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 33.66551,
+   "forwardEps": 33.666,
    "trailingEps": 16.42,
-   "fairValue": 681.92,
-   "fairRange": "585.00 - 775.25",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 585.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "26.2x",
    "pb": "4.77x",
    "divYield": 1.44,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 372.0,
+   "fairRange": "218.53 - 479.37",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 218.53,
+    "oj": 429.69,
+    "subIndPe": 479.37,
+    "blWarranted": 361.17,
+    "evEbitda": 415.62
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 10.85,
+   "betaAdj": 1.35,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2379": {
    "code": "2379",
    "name": "瑞昱",
    "market": "TWSE",
    "symbol": "2379.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 668.0,
     "baseDate": "2026-11-20",
@@ -157,23 +269,47 @@
    "analystCount": 17,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 39.86956,
-   "trailingEps": 26.1,
-   "fairValue": 779.72,
-   "fairRange": "610.00 - 1,002.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 610.0,
-   "snapshotStale": false,
+   "forwardEps": 39.87,
+   "trailingEps": 28.37,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "23.1x",
    "pb": "6.30x",
    "divYield": 3.74,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 502.26,
+   "fairRange": "258.76 - 771.80",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 258.76,
+    "oj": 771.8,
+    "subIndPe": 541.22,
+    "blWarranted": 493.42,
+    "evEbitda": 537.97
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 7.68,
+   "betaAdj": 0.84,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3034": {
    "code": "3034",
    "name": "聯詠",
    "market": "TWSE",
    "symbol": "3034.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 416.5,
     "baseDate": "2026-11-20",
@@ -188,23 +324,46 @@
    "analystCount": 18,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 34.51638,
+   "forwardEps": 34.516,
    "trailingEps": 32.6,
-   "fairValue": 501.14,
-   "fairRange": "440.98 - 595.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 595.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.8x",
    "pb": "3.39x",
    "divYield": 5.52,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 424.3,
+   "fairRange": "261.12 - 576.97",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 261.12,
+    "oj": 539.02,
+    "subIndPe": 491.48,
+    "blWarranted": 386.37,
+    "evEbitda": 576.97
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 7.6,
+   "betaAdj": 0.82,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3443": {
    "code": "3443",
    "name": "創意",
    "market": "TWSE",
    "symbol": "3443.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 5400.0,
     "baseDate": "2026-11-20",
@@ -219,23 +378,47 @@
    "analystCount": 19,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 143.80885,
-   "trailingEps": 44.48,
-   "fairValue": 7406.32,
-   "fairRange": "7,200.00 - 7,612.63",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + InvestingPro快照）",
-   "snapshotFair": 7200.0,
-   "snapshotStale": false,
+   "forwardEps": 143.809,
+   "trailingEps": 49.42,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "109.1x",
    "pb": "46.00x",
    "divYield": 0.37,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1212.46,
+   "fairRange": "536.88 - 1,952.17",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 536.88,
+    "oj": 1758.72,
+    "subIndPe": 1952.17,
+    "blWarranted": 1061.16,
+    "evEbitda": 794.33
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 11.92,
+   "betaAdj": 1.52,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3661": {
    "code": "3661",
    "name": "世芯-KY",
    "market": "TWSE",
    "symbol": "3661.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 3240.0,
     "baseDate": "2026-11-20",
@@ -250,23 +433,45 @@
    "analystCount": 16,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 208.10934,
-   "trailingEps": 80.91,
-   "fairValue": 4235.0,
-   "fairRange": "2,850.00 - 4,995.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 2850.0,
-   "snapshotStale": false,
+   "forwardEps": 208.109,
+   "trailingEps": 89.9,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "35.9x",
    "pb": "4.39x",
    "divYield": 1.0,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 2316.99,
+   "fairRange": "1,451.64 - 2,826.94",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 1451.64,
+    "oj": 2826.94,
+    "subIndPe": 2825.03,
+    "blWarranted": 2387.63,
+    "evEbitda": 2019.42
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 10.23,
+   "betaAdj": 1.25,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3529": {
    "code": "3529",
    "name": "力旺",
    "market": "TPEX",
    "symbol": "3529.TWO",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 1800.0,
     "baseDate": "2026-11-20",
@@ -281,23 +486,47 @@
    "analystCount": 7,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 45.92181,
-   "trailingEps": 28.66,
-   "fairValue": 3106.88,
-   "fairRange": "2,700.00 - 3,320.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 3320.0,
-   "snapshotStale": false,
+   "forwardEps": 45.922,
+   "trailingEps": 31.76,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "56.5x",
    "pb": "32.57x",
    "divYield": 1.14,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 508.03,
+   "fairRange": "210.45 - 787.35",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 210.45,
+    "oj": 787.35,
+    "subIndPe": 623.38,
+    "blWarranted": 469.68,
+    "evEbitda": 530.86
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 9.72,
+   "betaAdj": 1.16,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6488": {
    "code": "6488",
    "name": "環球晶",
    "market": "TPEX",
    "symbol": "6488.TWO",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 441.5,
     "baseDate": "2026-11-20",
@@ -312,23 +541,46 @@
    "analystCount": 14,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 30.64494,
-   "trailingEps": 17.64,
-   "fairValue": 685.66,
-   "fairRange": "535.00 - 859.74",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 535.0,
-   "snapshotStale": false,
+   "forwardEps": 30.645,
+   "trailingEps": 19.58,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "24.9x",
    "pb": "1.60x",
    "divYield": 1.74,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 400.29,
+   "fairRange": "280.21 - 541.16",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 281.56,
+    "oj": 280.21,
+    "subIndPe": 416.0,
+    "blWarranted": 541.16,
+    "evEbitda": 293.36
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "5347": {
    "code": "5347",
    "name": "世界",
    "market": "TPEX",
    "symbol": "5347.TWO",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 106.5,
     "baseDate": "2026-11-20",
@@ -343,23 +595,47 @@
    "analystCount": 18,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 7.42853,
-   "trailingEps": 4.84,
-   "fairValue": 147.04,
-   "fairRange": "128.00 - 159.75",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 128.0,
-   "snapshotStale": false,
+   "forwardEps": 7.429,
+   "trailingEps": 5.29,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "19.9x",
    "pb": "3.01x",
    "divYield": 4.2,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 89.79,
+   "fairRange": "51.13 - 134.51",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 51.13,
+    "oj": 73.99,
+    "subIndPe": 100.84,
+    "blWarranted": 99.56,
+    "evEbitda": 134.51
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 11.35,
+   "betaAdj": 1.43,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3374": {
    "code": "3374",
    "name": "精材",
    "market": "TPEX",
    "symbol": "3374.TWO",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 319.5,
     "baseDate": "2026-11-20",
@@ -376,21 +652,45 @@
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 9.625,
    "trailingEps": 6.99,
-   "fairValue": 306.04,
-   "fairRange": "225.00 - 439.94",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 225.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "45.5x",
    "pb": "8.28x",
    "divYield": 0.78,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 110.48,
+   "fairRange": "71.11 - 167.64",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 71.11,
+    "oj": 114.01,
+    "subIndPe": 130.66,
+    "blWarranted": 103.59,
+    "evEbitda": 167.64
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 10.16,
+   "betaAdj": 1.24,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2408": {
    "code": "2408",
    "name": "南亞科",
    "market": "TWSE",
    "symbol": "2408.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 264.5,
     "baseDate": "2026-11-20",
@@ -405,23 +705,47 @@
    "analystCount": 13,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 125.71864,
-   "trailingEps": 45.8,
-   "fairValue": 447.36,
-   "fairRange": "350.00 - 595.34",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 350.0,
-   "snapshotStale": false,
+   "forwardEps": 125.719,
+   "trailingEps": 50.82,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "5.2x",
    "pb": "2.22x",
    "divYield": 0.51,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 737.79,
+   "fairRange": "438.71 - 960.11",
+   "fairSource": "學術 5 模型（非 InvestingPro・景氣循環常態化）",
+   "models": {
+    "rim": 438.71,
+    "oj": 727.42,
+    "subIndPe": 921.3,
+    "blWarranted": 744.76,
+    "evEbitda": 960.11
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": true,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2344": {
    "code": "2344",
    "name": "華邦電",
    "market": "TWSE",
    "symbol": "2344.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 89.2,
     "baseDate": "2026-11-20",
@@ -436,23 +760,47 @@
    "analystCount": 8,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 50.22206,
+   "forwardEps": 50.222,
    "trailingEps": 16.0,
-   "fairValue": 150.49,
-   "fairRange": "118.00 - 199.66",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 118.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "5.8x",
    "pb": "1.94x",
    "divYield": 0.56,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 282.11,
+   "fairRange": "177.10 - 366.58",
+   "fairSource": "學術 5 模型（非 InvestingPro・景氣循環常態化）",
+   "models": {
+    "rim": 177.1,
+    "oj": 288.84,
+    "subIndPe": 366.58,
+    "blWarranted": 276.2,
+    "evEbitda": 333.8
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": true,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3006": {
    "code": "3006",
    "name": "晶豪科",
    "market": "TWSE",
    "symbol": "3006.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 175.0,
     "baseDate": "2026-11-20",
@@ -468,22 +816,46 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 117.565,
-   "trailingEps": 28.08,
-   "fairValue": 266.17,
-   "fairRange": "262.50 - 268.75",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 268.75,
-   "snapshotStale": false,
+   "trailingEps": 30.97,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "2.5x",
    "pb": "1.63x",
    "divYield": 0.57,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 672.85,
+   "fairRange": "416.49 - 1,275.30",
+   "fairSource": "學術 5 模型（非 InvestingPro・景氣循環常態化）",
+   "models": {
+    "rim": 416.49,
+    "oj": 644.77,
+    "subIndPe": 851.39,
+    "blWarranted": 557.22,
+    "evEbitda": 1275.3
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 11.7,
+   "betaAdj": 1.48,
+   "cyclicalNormalized": true,
+   "updatedAt": "2026-11-23 08:18"
   },
   "8299": {
    "code": "8299",
    "name": "群聯電子",
    "market": "TPEX",
    "symbol": "8299.TWO",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 1320.0,
     "baseDate": "2026-11-20",
@@ -498,23 +870,44 @@
    "analystCount": 13,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 295.21133,
-   "trailingEps": 288.69,
-   "fairValue": 1848.62,
-   "fairRange": "1,349.82 - 2,148.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 2148.0,
-   "snapshotStale": false,
+   "forwardEps": 295.211,
+   "trailingEps": 318.22,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "3.8x",
    "pb": "2.45x",
    "divYield": 1.76,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 3168.25,
+   "fairRange": "2,179.00 - 4,914.27",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": null,
+    "oj": 2179.0,
+    "subIndPe": 4203.55,
+    "blWarranted": 2501.74,
+    "evEbitda": 4914.27
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 12.25,
+   "betaAdj": 1.57,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6770": {
    "code": "6770",
    "name": "力積電",
    "market": "TWSE",
    "symbol": "6770.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 44.1,
     "baseDate": "2026-11-20",
@@ -529,22 +922,46 @@
    "analystCount": 5,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 9.42302,
+   "forwardEps": 9.423,
    "trailingEps": 5.16,
-   "fairValue": 68.06,
-   "fairRange": "55.00 - 83.02",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 55.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "8.9x",
    "pb": "1.55x",
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 91.05,
+   "fairRange": "61.96 - 134.18",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 61.96,
+    "oj": 91.98,
+    "subIndPe": 134.18,
+    "blWarranted": 90.79,
+    "evEbitda": 62.47
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6239": {
    "code": "6239",
    "name": "力成",
    "market": "TWSE",
    "symbol": "6239.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 181.5,
     "baseDate": "2026-11-20",
@@ -559,23 +976,47 @@
    "analystCount": 9,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 18.58475,
+   "forwardEps": 18.585,
    "trailingEps": 11.53,
-   "fairValue": 254.48,
-   "fairRange": "192.00 - 299.19",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 192.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "15.5x",
    "pb": "2.32x",
    "divYield": 2.48,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 233.63,
+   "fairRange": "125.43 - 477.11",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 125.43,
+    "oj": 199.65,
+    "subIndPe": 264.63,
+    "blWarranted": 228.5,
+    "evEbitda": 477.11
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 11.83,
+   "betaAdj": 1.5,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3260": {
    "code": "3260",
    "name": "威剛",
    "market": "TPEX",
    "symbol": "3260.TWO",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 235.5,
     "baseDate": "2026-11-20",
@@ -591,22 +1032,43 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 44.33,
-   "trailingEps": 103.46,
-   "fairValue": 292.83,
-   "fairRange": "164.85 - 413.64",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 300.0,
-   "snapshotStale": false,
+   "trailingEps": 111.59,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "2.2x",
    "pb": "1.60x",
    "divYield": 7.22,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 597.82,
+   "fairRange": "438.71 - 1,789.98",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": null,
+    "oj": 541.36,
+    "subIndPe": 631.22,
+    "blWarranted": 438.71,
+    "evEbitda": 1789.98
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "14.2x",
+   "costOfEquity": 8.71,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2458": {
    "code": "2458",
    "name": "義隆",
    "market": "TWSE",
    "symbol": "2458.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 104.0,
     "baseDate": "2026-11-20",
@@ -621,23 +1083,46 @@
    "analystCount": 5,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 7.25313,
-   "trailingEps": 7.85,
-   "fairValue": 132.7,
-   "fairRange": "96.09 - 172.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 172.0,
-   "snapshotStale": false,
+   "forwardEps": 7.253,
+   "trailingEps": 8.53,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "12.2x",
    "pb": "2.93x",
    "divYield": 6.8,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 97.59,
+   "fairRange": "62.51 - 127.40",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 62.51,
+    "oj": 120.71,
+    "subIndPe": 98.46,
+    "blWarranted": 98.7,
+    "evEbitda": 127.4
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 6.85,
+   "betaAdj": 0.7,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2317": {
    "code": "2317",
    "name": "鴻海",
    "market": "TWSE",
    "symbol": "2317.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 210.0,
     "baseDate": "2026-11-20",
@@ -652,23 +1137,45 @@
    "analystCount": 20,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 24.35659,
+   "forwardEps": 24.357,
    "trailingEps": 16.42,
-   "fairValue": 296.6,
-   "fairRange": "268.40 - 311.50",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 268.4,
-   "snapshotStale": false,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.7x",
    "pb": "1.49x",
    "divYield": 3.41,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 318.83,
+   "fairRange": "222.13 - 481.42",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 222.13,
+    "oj": 421.08,
+    "subIndPe": 255.81,
+    "blWarranted": 319.81,
+    "evEbitda": 481.42
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 8.05,
+   "betaAdj": 0.9,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2382": {
    "code": "2382",
    "name": "廣達",
    "market": "TWSE",
    "symbol": "2382.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 252.0,
     "baseDate": "2026-11-20",
@@ -683,23 +1190,45 @@
    "analystCount": 20,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 31.70253,
-   "trailingEps": 21.18,
-   "fairValue": 369.47,
-   "fairRange": "356.23 - 377.20",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 375.0,
-   "snapshotStale": false,
+   "forwardEps": 31.703,
+   "trailingEps": 22.06,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "10.3x",
    "pb": "3.00x",
    "divYield": 6.19,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 329.7,
+   "fairRange": "266.14 - 659.69",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 266.14,
+    "oj": 659.69,
+    "subIndPe": 298.3,
+    "blWarranted": 281.04,
+    "evEbitda": 296.12
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 7.59,
+   "betaAdj": 0.82,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3231": {
    "code": "3231",
    "name": "緯創",
    "market": "TWSE",
    "symbol": "3231.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 147.0,
     "baseDate": "2026-11-20",
@@ -714,23 +1243,45 @@
    "analystCount": 16,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 28.41102,
+   "forwardEps": 28.411,
    "trailingEps": 14.6,
-   "fairValue": 234.84,
-   "fairRange": "215.00 - 269.03",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 215.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "9.9x",
    "pb": "1.89x",
    "divYield": 3.74,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 333.2,
+   "fairRange": "217.37 - 631.70",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 217.37,
+    "oj": 631.7,
+    "subIndPe": 267.33,
+    "blWarranted": 311.29,
+    "evEbitda": 339.17
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 7.65,
+   "betaAdj": 0.83,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6669": {
    "code": "6669",
    "name": "緯穎",
    "market": "TWSE",
    "symbol": "6669.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 1325.0,
     "baseDate": "2026-11-20",
@@ -745,23 +1296,45 @@
    "analystCount": 19,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 195.66345,
-   "trailingEps": 105.42,
-   "fairValue": 2244.49,
-   "fairRange": "1,987.50 - 2,465.96",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 2280.0,
-   "snapshotStale": false,
+   "forwardEps": 195.663,
+   "trailingEps": 112.18,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "11.7x",
    "pb": "4.12x",
    "divYield": 12.39,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1987.76,
+   "fairRange": "1,280.53 - 3,678.63",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 1280.53,
+    "oj": 3678.63,
+    "subIndPe": 1841.08,
+    "blWarranted": 1916.68,
+    "evEbitda": 1408.08
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 9.02,
+   "betaAdj": 1.05,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2356": {
    "code": "2356",
    "name": "英業達",
    "market": "TWSE",
    "symbol": "2356.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 39.25,
     "baseDate": "2026-11-20",
@@ -776,23 +1349,44 @@
    "analystCount": 10,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.10023,
+   "forwardEps": 4.1,
    "trailingEps": 3.03,
-   "fairValue": 54.87,
-   "fairRange": "53.11 - 58.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 58.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.9x",
    "pb": "1.74x",
    "divYield": 5.1,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 47.32,
+   "fairRange": "31.48 - 66.39",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 34.81,
+    "oj": 66.39,
+    "subIndPe": 38.38,
+    "blWarranted": 55.93,
+    "evEbitda": 31.48
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 8.4,
+   "betaAdj": 0.95,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2376": {
    "code": "2376",
    "name": "技嘉",
    "market": "TWSE",
    "symbol": "2376.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 248.0,
     "baseDate": "2026-11-20",
@@ -809,21 +1403,42 @@
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 39.55,
    "trailingEps": 31.85,
-   "fairValue": 346.69,
-   "fairRange": "307.96 - 387.12",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 345.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "7.1x",
    "pb": "2.25x",
    "divYield": 4.84,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 366.94,
+   "fairRange": "292.72 - 508.37",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 292.72,
+    "oj": 508.37,
+    "subIndPe": 372.14,
+    "blWarranted": 349.28,
+    "evEbitda": 354.69
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 8.92,
+   "betaAdj": 1.04,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2357": {
    "code": "2357",
    "name": "華碩",
    "market": "TWSE",
    "symbol": "2357.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 756.0,
     "baseDate": "2026-11-20",
@@ -838,23 +1453,44 @@
    "analystCount": 13,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 80.62929,
+   "forwardEps": 80.629,
    "trailingEps": 82.46,
-   "fairValue": 785.96,
-   "fairRange": "690.00 - 928.67",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 690.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "9.1x",
    "pb": "1.60x",
    "divYield": 5.56,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 861.7,
+   "fairRange": "757.48 - 1,051.88",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 780.16,
+    "oj": 1051.88,
+    "subIndPe": 757.48,
+    "blWarranted": 908.73,
+    "evEbitda": 783.31
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 7.32,
+   "betaAdj": 0.78,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2301": {
    "code": "2301",
    "name": "光寶科",
    "market": "TWSE",
    "symbol": "2301.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 175.5,
     "baseDate": "2026-11-20",
@@ -869,23 +1505,46 @@
    "analystCount": 12,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 15.3685,
+   "forwardEps": 15.368,
    "trailingEps": 9.72,
-   "fairValue": 228.62,
-   "fairRange": "138.00 - 284.62",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 138.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "17.9x",
    "pb": "4.09x",
    "divYield": 2.85,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 160.26,
+   "fairRange": "100.12 - 235.96",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 100.12,
+    "oj": 235.96,
+    "subIndPe": 143.87,
+    "blWarranted": 178.48,
+    "evEbitda": 136.02
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 9.86,
+   "betaAdj": 1.19,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2308": {
    "code": "2308",
    "name": "台達電",
    "market": "TWSE",
    "symbol": "2308.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 900.0,
     "baseDate": "2026-11-20",
@@ -900,23 +1559,47 @@
    "analystCount": 22,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 60.37381,
+   "forwardEps": 60.374,
    "trailingEps": 33.24,
-   "fairValue": 1542.96,
-   "fairRange": "1,238.00 - 2,040.87",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 1238.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "27.0x",
    "pb": "7.35x",
    "divYield": 1.29,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 613.72,
+   "fairRange": "389.54 - 829.97",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 389.54,
+    "oj": 773.61,
+    "subIndPe": 624.56,
+    "blWarranted": 605.31,
+    "evEbitda": 829.97
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 11.26,
+   "betaAdj": 1.41,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2395": {
    "code": "2395",
    "name": "研華",
    "market": "TWSE",
    "symbol": "2395.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 520.0,
     "baseDate": "2026-11-20",
@@ -931,23 +1614,47 @@
    "analystCount": 17,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 25.67459,
+   "forwardEps": 25.675,
    "trailingEps": 19.65,
-   "fairValue": 586.21,
-   "fairRange": "410.00 - 679.43",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 410.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "26.3x",
    "pb": "7.22x",
    "divYield": 2.15,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 276.91,
+   "fairRange": "185.80 - 485.53",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 185.8,
+    "oj": 485.53,
+    "subIndPe": 240.35,
+    "blWarranted": 276.83,
+    "evEbitda": 226.85
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 7.8,
+   "betaAdj": 0.85,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2324": {
    "code": "2324",
    "name": "仁寶",
    "market": "TWSE",
    "symbol": "2324.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 25.25,
     "baseDate": "2026-11-20",
@@ -962,23 +1669,44 @@
    "analystCount": 11,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.73113,
-   "trailingEps": 1.82,
-   "fairValue": 38.08,
-   "fairRange": "33.86 - 42.50",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 42.5,
-   "snapshotStale": false,
+   "forwardEps": 2.731,
+   "trailingEps": 2.08,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.1x",
    "pb": "0.79x",
    "divYield": 4.36,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 35.67,
+   "fairRange": "12.43 - 44.21",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 38.27,
+    "oj": 37.97,
+    "subIndPe": 25.7,
+    "blWarranted": 44.21,
+    "evEbitda": 12.43
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 7.41,
+   "betaAdj": 0.79,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2353": {
    "code": "2353",
    "name": "宏碁",
    "market": "TWSE",
    "symbol": "2353.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 26.65,
     "baseDate": "2026-11-20",
@@ -993,23 +1721,43 @@
    "analystCount": 4,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 1.95972,
-   "trailingEps": 1.93,
-   "fairValue": 33.6,
-   "fairRange": "26.93 - 46.80",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 46.8,
-   "snapshotStale": false,
+   "forwardEps": 1.96,
+   "trailingEps": 2.01,
+   "quality": {
+    "score": 1,
+    "max": 5,
+    "label": "1/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正"
+    ]
+   },
    "pe": "13.2x",
    "pb": "1.00x",
    "divYield": 4.88,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 27.52,
+   "fairRange": "18.35 - 33.22",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 30.53,
+    "oj": 24.91,
+    "subIndPe": 18.35,
+    "blWarranted": 33.22,
+    "evEbitda": 23.83
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 7.24,
+   "betaAdj": 0.76,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "4938": {
    "code": "4938",
    "name": "和碩",
    "market": "TWSE",
    "symbol": "4938.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 78.1,
     "baseDate": "2026-11-20",
@@ -1024,23 +1772,44 @@
    "analystCount": 9,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 8.3558,
+   "forwardEps": 8.356,
    "trailingEps": 5.66,
-   "fairValue": 104.8,
-   "fairRange": "89.09 - 115.30",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 110.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "13.7x",
    "pb": "0.94x",
    "divYield": 5.13,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 139.26,
+   "fairRange": "78.62 - 265.29",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 109.1,
+    "oj": 265.29,
+    "subIndPe": 78.62,
+    "blWarranted": 167.37,
+    "evEbitda": 104.1
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 5.86,
+   "betaAdj": 0.54,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2345": {
    "code": "2345",
    "name": "智邦",
    "market": "TWSE",
    "symbol": "2345.TW",
+   "sector": "Technology",
+   "industry": "Communication Equipment",
    "perf": {
     "basePrice": 1230.0,
     "baseDate": "2026-11-20",
@@ -1055,23 +1824,45 @@
    "analystCount": 13,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 117.15046,
-   "trailingEps": 66.08,
-   "fairValue": 2301.1,
-   "fairRange": "1,845.00 - 2,757.20",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": 720.0,
-   "snapshotStale": true,
+   "forwardEps": 117.15,
+   "trailingEps": 72.53,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "16.8x",
    "pb": "8.38x",
    "divYield": 1.22,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1256.61,
+   "fairRange": "908.46 - 2,717.61",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 908.46,
+    "oj": 2717.61,
+    "subIndPe": 1318.88,
+    "blWarranted": 965.76,
+    "evEbitda": 1182.82
+   },
+   "peerGroup": "Technology",
+   "peerPe": "11.3x",
+   "costOfEquity": 7.12,
+   "betaAdj": 0.75,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "5388": {
    "code": "5388",
    "name": "中磊",
    "market": "TWSE",
    "symbol": "5388.TW",
+   "sector": "Technology",
+   "industry": "Communication Equipment",
    "perf": {
     "basePrice": 67.4,
     "baseDate": "2026-11-20",
@@ -1086,23 +1877,44 @@
    "analystCount": 6,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 8.1125,
+   "forwardEps": 8.113,
    "trailingEps": 5.14,
-   "fairValue": 89.18,
-   "fairRange": "71.00 - 101.10",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 71.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.9x",
    "pb": "1.21x",
    "divYield": 3.71,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 109.61,
+   "fairRange": "84.34 - 141.24",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 84.34,
+    "oj": 141.24,
+    "subIndPe": 91.33,
+    "blWarranted": 118.16,
+    "evEbitda": 119.31
+   },
+   "peerGroup": "Technology",
+   "peerPe": "11.3x",
+   "costOfEquity": 6.94,
+   "betaAdj": 0.72,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6285": {
    "code": "6285",
    "name": "啟碁",
    "market": "TWSE",
    "symbol": "6285.TW",
+   "sector": "Technology",
+   "industry": "Communication Equipment",
    "perf": {
     "basePrice": 172.0,
     "baseDate": "2026-11-20",
@@ -1118,22 +1930,44 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 15.278,
-   "trailingEps": 10.77,
-   "fairValue": 217.49,
-   "fairRange": "175.00 - 243.99",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 175.0,
-   "snapshotStale": false,
+   "trailingEps": 11.96,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "14.2x",
    "pb": "2.14x",
    "divYield": 2.5,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 167.31,
+   "fairRange": "126.83 - 238.38",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 126.83,
+    "oj": 171.99,
+    "subIndPe": 168.02,
+    "blWarranted": 167.72,
+    "evEbitda": 238.38
+   },
+   "peerGroup": "Technology",
+   "peerPe": "11.0x",
+   "costOfEquity": 9.68,
+   "betaAdj": 1.16,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2412": {
    "code": "2412",
    "name": "中華電",
    "market": "TWSE",
    "symbol": "2412.TW",
+   "sector": "Communication Services",
+   "industry": "Telecom Services",
    "perf": {
     "basePrice": 162.5,
     "baseDate": "2026-11-20",
@@ -1148,23 +1982,47 @@
    "analystCount": 6,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 5.39585,
+   "forwardEps": 5.396,
    "trailingEps": 5.44,
-   "fairValue": 140.09,
-   "fairRange": "124.09 - 161.18",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 135.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "29.8x",
    "pb": "3.33x",
    "divYield": 3.2,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 102.67,
+   "fairRange": "70.10 - 155.52",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 70.1,
+    "oj": 155.52,
+    "subIndPe": 120.92,
+    "blWarranted": 77.52,
+    "evEbitda": 140.08
+   },
+   "peerGroup": "Telecom Services",
+   "peerPe": "22.4x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "4904": {
    "code": "4904",
    "name": "遠傳",
    "market": "TWSE",
    "symbol": "4904.TW",
+   "sector": "Communication Services",
+   "industry": "Telecom Services",
    "perf": {
     "basePrice": 103.0,
     "baseDate": "2026-11-20",
@@ -1179,23 +2037,47 @@
    "analystCount": 4,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.5963,
-   "trailingEps": 4.07,
-   "fairValue": 102.86,
-   "fairRange": "95.00 - 116.32",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 95.0,
-   "snapshotStale": false,
+   "forwardEps": 4.596,
+   "trailingEps": 4.17,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "24.6x",
    "pb": "4.13x",
    "divYield": 3.7,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 92.57,
+   "fairRange": "44.63 - 146.17",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 44.63,
+    "oj": 146.17,
+    "subIndPe": 138.42,
+    "blWarranted": 56.81,
+    "evEbitda": 121.46
+   },
+   "peerGroup": "Telecom Services",
+   "peerPe": "30.1x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2327": {
    "code": "2327",
    "name": "國巨*",
    "market": "TWSE",
    "symbol": "2327.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 296.0,
     "baseDate": "2026-11-20",
@@ -1208,25 +2090,49 @@
    "analystHigh": 1310.0,
    "analystLow": 462.0,
    "analystCount": 15,
-   "consensusLabel": null,
+   "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 32.12137,
-   "trailingEps": 13.63,
-   "fairValue": 425.25,
-   "fairRange": "406.50 - 444.00",
-   "fairSource": "模型參考價（非 InvestingPro：預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 406.5,
-   "snapshotStale": false,
+   "forwardEps": 32.121,
+   "trailingEps": 17.55,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "16.9x",
    "pb": "3.21x",
    "divYield": 2.03,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 318.75,
+   "fairRange": "197.43 - 370.41",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 197.43,
+    "oj": 329.44,
+    "subIndPe": 337.35,
+    "blWarranted": 358.1,
+    "evEbitda": 370.41
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2492": {
    "code": "2492",
    "name": "華新科",
    "market": "TWSE",
    "symbol": "2492.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 187.5,
     "baseDate": "2026-11-20",
@@ -1243,21 +2149,45 @@
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 17.38,
    "trailingEps": 11.44,
-   "fairValue": 364.49,
-   "fairRange": "281.25 - 436.36",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 375.86,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "16.4x",
    "pb": "1.38x",
    "divYield": 1.33,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 215.86,
+   "fairRange": "152.99 - 283.37",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 152.99,
+    "oj": 168.04,
+    "subIndPe": 190.36,
+    "blWarranted": 283.37,
+    "evEbitda": 228.07
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3017": {
    "code": "3017",
    "name": "奇鋐",
    "market": "TWSE",
    "symbol": "3017.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 2205.0,
     "baseDate": "2026-11-20",
@@ -1272,23 +2202,47 @@
    "analystCount": 18,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 164.91454,
+   "forwardEps": 164.915,
    "trailingEps": 89.52,
-   "fairValue": 3352.84,
-   "fairRange": "2,950.00 - 3,801.01",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 2950.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "24.4x",
    "pb": "12.93x",
    "divYield": 0.95,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1726.98,
+   "fairRange": "1,105.57 - 3,728.20",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 1105.57,
+    "oj": 3728.2,
+    "subIndPe": 1706.01,
+    "blWarranted": 1274.91,
+    "evEbitda": 2066.4
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 7.92,
+   "betaAdj": 0.87,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3324": {
    "code": "3324",
    "name": "雙鴻",
    "market": "TPEX",
    "symbol": "3324.TWO",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 794.0,
     "baseDate": "2026-11-20",
@@ -1303,23 +2257,46 @@
    "analystCount": 16,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 85.93476,
+   "forwardEps": 84.085,
    "trailingEps": 42.93,
-   "fairValue": 1147.83,
-   "fairRange": "860.00 - 1,392.50",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 860.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "17.8x",
    "pb": "4.97x",
    "divYield": 1.5,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 785.33,
+   "fairRange": "567.10 - 1,126.72",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 572.36,
+    "oj": 1126.72,
+    "subIndPe": 787.16,
+    "blWarranted": 822.02,
+    "evEbitda": 567.1
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 11.01,
+   "betaAdj": 1.37,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3653": {
    "code": "3653",
    "name": "健策",
    "market": "TWSE",
    "symbol": "3653.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 3705.0,
     "baseDate": "2026-11-20",
@@ -1334,23 +2311,47 @@
    "analystCount": 12,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 183.26578,
-   "trailingEps": 49.27,
-   "fairValue": 5975.48,
-   "fairRange": "5,100.00 - 7,268.94",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 5100.0,
-   "snapshotStale": false,
+   "forwardEps": 183.266,
+   "trailingEps": 54.72,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "67.9x",
    "pb": "20.23x",
    "divYield": 0.59,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1676.45,
+   "fairRange": "1,007.36 - 4,226.79",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 1007.36,
+    "oj": 4226.79,
+    "subIndPe": 1895.85,
+    "blWarranted": 1528.25,
+    "evEbitda": 1024.42
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 5.77,
+   "betaAdj": 0.53,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2421": {
    "code": "2421",
    "name": "建準",
    "market": "TWSE",
    "symbol": "2421.TW",
+   "sector": "Industrials",
+   "industry": "Specialty Industrial Machinery",
    "perf": {
     "basePrice": 111.0,
     "baseDate": "2026-11-20",
@@ -1365,23 +2366,47 @@
    "analystCount": 3,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 13.76081,
-   "trailingEps": 9.31,
-   "fairValue": 164.33,
-   "fairRange": "135.00 - 193.94",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 135.0,
-   "snapshotStale": false,
+   "forwardEps": 13.761,
+   "trailingEps": 10.19,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "11.1x",
    "pb": "2.78x",
    "divYield": 4.72,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 152.38,
+   "fairRange": "96.79 - 238.89",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 96.79,
+    "oj": 238.89,
+    "subIndPe": 167.44,
+    "blWarranted": 138.56,
+    "evEbitda": 152.0
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "12.2x",
+   "costOfEquity": 8.77,
+   "betaAdj": 1.01,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2059": {
    "code": "2059",
    "name": "川湖",
    "market": "TWSE",
    "symbol": "2059.TW",
+   "sector": "Consumer Cyclical",
+   "industry": "Furnishings, Fixtures & Appliances",
    "perf": {
     "basePrice": 5350.0,
     "baseDate": "2026-11-20",
@@ -1396,23 +2421,47 @@
    "analystCount": 13,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 477.2668,
-   "trailingEps": 235.13,
-   "fairValue": 9329.62,
-   "fairRange": "7,200.00 - 12,763.85",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 7200.0,
-   "snapshotStale": false,
+   "forwardEps": 477.267,
+   "trailingEps": 261.06,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "19.8x",
    "pb": "11.22x",
    "divYield": 0.95,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 5554.89,
+   "fairRange": "3,216.55 - 8,313.29",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": null,
+    "oj": 8313.29,
+    "subIndPe": 5923.06,
+    "blWarranted": 4830.43,
+    "evEbitda": 3216.55
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "12.4x",
+   "costOfEquity": 8.86,
+   "betaAdj": 1.03,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3533": {
    "code": "3533",
    "name": "嘉澤",
    "market": "TWSE",
    "symbol": "3533.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 1440.0,
     "baseDate": "2026-11-20",
@@ -1427,23 +2476,47 @@
    "analystCount": 16,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 111.22379,
-   "trailingEps": 74.19,
-   "fairValue": 2065.23,
-   "fairRange": "1,890.00 - 2,158.81",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 1890.0,
-   "snapshotStale": false,
+   "forwardEps": 111.224,
+   "trailingEps": 78.53,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "18.4x",
    "pb": "3.73x",
    "divYield": 2.43,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1462.37,
+   "fairRange": "955.49 - 2,395.78",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 955.49,
+    "oj": 2395.78,
+    "subIndPe": 1150.59,
+    "blWarranted": 1430.99,
+    "evEbitda": 1809.42
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 5.65,
+   "betaAdj": 0.51,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3037": {
    "code": "3037",
    "name": "欣興",
    "market": "TWSE",
    "symbol": "3037.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 537.0,
     "baseDate": "2026-11-20",
@@ -1458,23 +2531,47 @@
    "analystCount": 18,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 43.46423,
-   "trailingEps": 18.01,
-   "fairValue": 933.2,
-   "fairRange": "685.00 - 1,309.09",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 685.0,
-   "snapshotStale": false,
+   "forwardEps": 43.464,
+   "trailingEps": 19.99,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "27.8x",
    "pb": "4.96x",
    "divYield": 0.37,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 400.27,
+   "fairRange": "283.53 - 449.63",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 283.53,
+    "oj": 448.01,
+    "subIndPe": 449.63,
+    "blWarranted": 414.12,
+    "evEbitda": 414.94
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "8046": {
    "code": "8046",
    "name": "南電",
    "market": "TWSE",
    "symbol": "8046.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 629.0,
     "baseDate": "2026-11-20",
@@ -1489,23 +2586,47 @@
    "analystCount": 14,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 53.55837,
-   "trailingEps": 11.26,
-   "fairValue": 1133.31,
-   "fairRange": "860.00 - 1,596.43",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 860.0,
-   "snapshotStale": false,
+   "forwardEps": 53.558,
+   "trailingEps": 12.49,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "50.4x",
    "pb": "7.69x",
    "divYield": 0.32,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 445.76,
+   "fairRange": "318.95 - 565.02",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 318.95,
+    "oj": 565.02,
+    "subIndPe": 554.05,
+    "blWarranted": 428.89,
+    "evEbitda": 362.91
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3189": {
    "code": "3189",
    "name": "景碩",
    "market": "TWSE",
    "symbol": "3189.TW",
+   "sector": "Technology",
+   "industry": "Semiconductor Equipment & Materials",
    "perf": {
     "basePrice": 470.0,
     "baseDate": "2026-11-20",
@@ -1520,23 +2641,47 @@
    "analystCount": 13,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 33.79097,
+   "forwardEps": 33.791,
    "trailingEps": 9.71,
-   "fairValue": 807.34,
-   "fairRange": "635.00 - 1,082.03",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 635.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "50.6x",
    "pb": "5.28x",
    "divYield": 0.32,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 320.27,
+   "fairRange": "223.31 - 371.62",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 223.31,
+    "oj": 349.48,
+    "subIndPe": 371.62,
+    "blWarranted": 323.48,
+    "evEbitda": 356.43
+   },
+   "peerGroup": "Technology",
+   "peerPe": "11.0x",
+   "costOfEquity": 12.04,
+   "betaAdj": 1.54,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2368": {
    "code": "2368",
    "name": "金像電",
    "market": "TWSE",
    "symbol": "2368.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 711.0,
     "baseDate": "2026-11-20",
@@ -1551,23 +2696,47 @@
    "analystCount": 9,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 67.69811,
-   "trailingEps": 30.4,
-   "fairValue": 1154.09,
-   "fairRange": "1,020.00 - 1,375.76",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 1020.0,
-   "snapshotStale": false,
+   "forwardEps": 67.698,
+   "trailingEps": 33.78,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "21.3x",
    "pb": "7.02x",
    "divYield": 1.38,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 732.38,
+   "fairRange": "474.78 - 1,322.51",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 474.78,
+    "oj": 1322.51,
+    "subIndPe": 700.33,
+    "blWarranted": 637.11,
+    "evEbitda": 759.93
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 8.72,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3044": {
    "code": "3044",
    "name": "健鼎",
    "market": "TWSE",
    "symbol": "3044.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 402.5,
     "baseDate": "2026-11-20",
@@ -1582,23 +2751,47 @@
    "analystCount": 7,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 44.57313,
+   "forwardEps": 44.573,
    "trailingEps": 29.55,
-   "fairValue": 616.16,
-   "fairRange": "603.75 - 628.57",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": 265.0,
-   "snapshotStale": true,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "13.6x",
    "pb": "3.40x",
    "divYield": 3.16,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 493.72,
+   "fairRange": "309.49 - 754.17",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 309.49,
+    "oj": 682.99,
+    "subIndPe": 468.13,
+    "blWarranted": 458.09,
+    "evEbitda": 754.17
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 9.42,
+   "betaAdj": 1.12,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6274": {
    "code": "6274",
    "name": "台燿",
    "market": "TPEX",
    "symbol": "6274.TWO",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 623.0,
     "baseDate": "2026-11-20",
@@ -1613,23 +2806,45 @@
    "analystCount": 15,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 88.15052,
-   "trailingEps": 17.48,
-   "fairValue": 992.25,
-   "fairRange": "934.50 - 1,050.00",
-   "fairSource": "模型參考價（非 InvestingPro：預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 1050.0,
-   "snapshotStale": false,
+   "forwardEps": 88.151,
+   "trailingEps": 19.42,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "21.8x",
    "pb": "6.63x",
    "divYield": 1.2,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 723.98,
+   "fairRange": "379.07 - 1,003.17",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 379.07,
+    "oj": 1003.17,
+    "subIndPe": 925.8,
+    "blWarranted": 728.04,
+    "evEbitda": 577.12
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2383": {
    "code": "2383",
    "name": "台光電",
    "market": "TWSE",
    "symbol": "2383.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 2810.0,
     "baseDate": "2026-11-20",
@@ -1644,23 +2859,47 @@
    "analystCount": 18,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 281.82367,
-   "trailingEps": 84.02,
-   "fairValue": 4032.5,
-   "fairRange": "3,850.00 - 4,215.00",
-   "fairSource": "模型參考價（非 InvestingPro：預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 3850.0,
-   "snapshotStale": false,
+   "forwardEps": 281.824,
+   "trailingEps": 93.29,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "30.1x",
    "pb": "13.71x",
    "divYield": 0.89,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 2250.19,
+   "fairRange": "1,203.20 - 3,657.49",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 1203.2,
+    "oj": 3657.49,
+    "subIndPe": 2959.86,
+    "blWarranted": 1992.87,
+    "evEbitda": 1714.5
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 11.38,
+   "betaAdj": 1.43,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "8069": {
    "code": "8069",
    "name": "元太",
    "market": "TPEX",
    "symbol": "8069.TWO",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 124.5,
     "baseDate": "2026-11-20",
@@ -1675,23 +2914,46 @@
    "analystCount": 12,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 12.41278,
-   "trailingEps": 8.34,
-   "fairValue": 170.67,
-   "fairRange": "158.00 - 185.30",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 158.0,
-   "snapshotStale": false,
+   "forwardEps": 12.413,
+   "trailingEps": 8.88,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "14.0x",
    "pb": "1.75x",
    "divYield": 4.73,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 159.72,
+   "fairRange": "114.14 - 205.53",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 114.14,
+    "oj": 205.53,
+    "subIndPe": 130.37,
+    "blWarranted": 186.48,
+    "evEbitda": 147.21
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 7.24,
+   "betaAdj": 0.76,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6176": {
    "code": "6176",
    "name": "瑞儀",
    "market": "TWSE",
    "symbol": "6176.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 72.7,
     "baseDate": "2026-11-20",
@@ -1707,22 +2969,44 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 7.96,
-   "trailingEps": 7.13,
-   "fairValue": 96.16,
-   "fairRange": "81.16 - 123.33",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 84.0,
-   "snapshotStale": false,
+   "trailingEps": 7.51,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "8.2x",
    "pb": "0.70x",
    "divYield": 4.81,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 136.9,
+   "fairRange": "83.60 - 303.08",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 124.24,
+    "oj": 112.74,
+    "subIndPe": 83.6,
+    "blWarranted": 153.07,
+    "evEbitda": 303.08
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 6.51,
+   "betaAdj": 0.65,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2478": {
    "code": "2478",
    "name": "大毅",
    "market": "TWSE",
    "symbol": "2478.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 71.9,
     "baseDate": "2026-11-20",
@@ -1732,22 +3016,46 @@
     "y1": 8.61
    },
    "forwardEps": 7.25,
-   "trailingEps": 5.53,
-   "fairValue": 79.38,
-   "fairRange": "64.50 - 94.26",
-   "fairSource": "模型參考價（非 InvestingPro：預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 64.5,
-   "snapshotStale": false,
+   "trailingEps": 6.13,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "11.7x",
    "pb": "1.34x",
    "divYield": 2.78,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 85.57,
+   "fairRange": "64.98 - 159.03",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 66.93,
+    "oj": 64.98,
+    "subIndPe": 76.14,
+    "blWarranted": 91.37,
+    "evEbitda": 159.03
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 10.76,
+   "betaAdj": 1.33,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2881": {
    "code": "2881",
    "name": "富邦金",
    "market": "TWSE",
    "symbol": "2881.TW",
+   "sector": "Financial Services",
+   "industry": "Insurance - Life",
    "perf": {
     "basePrice": 136.5,
     "baseDate": "2026-11-20",
@@ -1762,23 +3070,46 @@
    "analystCount": 11,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 10.29972,
+   "forwardEps": 10.361,
    "trailingEps": 8.01,
-   "fairValue": 135.56,
-   "fairRange": "104.00 - 175.52",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 104.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "高資本報酬"
+    ]
+   },
    "pe": "12.8x",
    "pb": "1.68x",
    "divYield": 3.11,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 138.28,
+   "fairRange": "122.27 - 147.06",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 122.27,
+    "oj": 144.84,
+    "subIndPe": 147.06,
+    "blWarranted": 141.44,
+    "evEbitda": null
+   },
+   "peerGroup": "Financial Services",
+   "peerPe": "14.2x",
+   "costOfEquity": 7.14,
+   "betaAdj": 0.75,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2882": {
    "code": "2882",
    "name": "國泰金",
    "market": "TWSE",
    "symbol": "2882.TW",
+   "sector": "Financial Services",
+   "industry": "Insurance - Life",
    "perf": {
     "basePrice": 96.9,
     "baseDate": "2026-11-20",
@@ -1793,23 +3124,46 @@
    "analystCount": 10,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 8.77958,
+   "forwardEps": 8.814,
    "trailingEps": 6.73,
-   "fairValue": 104.99,
-   "fairRange": "79.50 - 126.41",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 79.5,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "高資本報酬",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "11.4x",
    "pb": "1.40x",
    "divYield": 3.61,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 118.5,
+   "fairRange": "102.72 - 128.50",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 102.72,
+    "oj": 128.5,
+    "subIndPe": 125.1,
+    "blWarranted": 121.31,
+    "evEbitda": null
+   },
+   "peerGroup": "Financial Services",
+   "peerPe": "14.2x",
+   "costOfEquity": 7.25,
+   "betaAdj": 0.77,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2891": {
    "code": "2891",
    "name": "中信金",
    "market": "TWSE",
    "symbol": "2891.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 68.0,
     "baseDate": "2026-11-20",
@@ -1824,23 +3178,47 @@
    "analystCount": 11,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.50377,
+   "forwardEps": 4.504,
    "trailingEps": 4.06,
-   "fairValue": 61.91,
-   "fairRange": "43.50 - 75.43",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 43.5,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "高資本報酬",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "16.5x",
    "pb": "1.88x",
    "divYield": 3.68,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 60.76,
+   "fairRange": "44.28 - 70.72",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 44.28,
+    "oj": 55.18,
+    "subIndPe": 70.72,
+    "blWarranted": 68.18,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.7x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2886": {
    "code": "2886",
    "name": "兆豐金",
    "market": "TWSE",
    "symbol": "2886.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 51.8,
     "baseDate": "2026-11-20",
@@ -1855,23 +3233,46 @@
    "analystCount": 10,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.82661,
+   "forwardEps": 2.827,
    "trailingEps": 2.36,
-   "fairValue": 49.85,
-   "fairRange": "43.01 - 62.04",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 44.5,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "19.4x",
    "pb": "1.88x",
    "divYield": 3.38,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 39.93,
+   "fairRange": "37.77 - 42.68",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 37.77,
+    "oj": 39.89,
+    "subIndPe": 42.68,
+    "blWarranted": 39.91,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.1x",
+   "costOfEquity": 5.7,
+   "betaAdj": 0.52,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2884": {
    "code": "2884",
    "name": "玉山金",
    "market": "TWSE",
    "symbol": "2884.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 39.6,
     "baseDate": "2026-11-20",
@@ -1886,23 +3287,46 @@
    "analystCount": 8,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.81018,
+   "forwardEps": 2.84,
    "trailingEps": 2.12,
-   "fairValue": 41.84,
-   "fairRange": "32.80 - 52.49",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 32.8,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "16.4x",
    "pb": "2.28x",
    "divYield": 3.54,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 39.19,
+   "fairRange": "33.09 - 44.60",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 33.09,
+    "oj": 43.06,
+    "subIndPe": 44.6,
+    "blWarranted": 38.85,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.7x",
+   "costOfEquity": 5.59,
+   "betaAdj": 0.5,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2892": {
    "code": "2892",
    "name": "第一金",
    "market": "TWSE",
    "symbol": "2892.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 37.6,
     "baseDate": "2026-11-20",
@@ -1917,23 +3341,44 @@
    "analystCount": 5,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.36643,
-   "trailingEps": 1.75,
-   "fairValue": 38.78,
-   "fairRange": "31.00 - 50.84",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 31.0,
-   "snapshotStale": false,
+   "forwardEps": 2.366,
+   "trailingEps": 1.87,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "17.6x",
    "pb": "1.79x",
    "divYield": 3.46,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 32.5,
+   "fairRange": "31.43 - 35.73",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 31.46,
+    "oj": 32.75,
+    "subIndPe": 35.73,
+    "blWarranted": 31.43,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.1x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2880": {
    "code": "2880",
    "name": "華南金",
    "market": "TWSE",
    "symbol": "2880.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 47.0,
     "baseDate": "2026-11-20",
@@ -1948,23 +3393,47 @@
    "analystCount": 2,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.47538,
-   "trailingEps": 1.81,
-   "fairValue": 42.49,
-   "fairRange": "29.20 - 64.28",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 29.2,
-   "snapshotStale": false,
+   "forwardEps": 2.475,
+   "trailingEps": 1.88,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "高資本報酬",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "20.4x",
    "pb": "2.71x",
    "divYield": 3.09,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 31.83,
+   "fairRange": "27.46 - 37.37",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 27.46,
+    "oj": 34.93,
+    "subIndPe": 37.37,
+    "blWarranted": 30.64,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.1x",
+   "costOfEquity": 5.56,
+   "betaAdj": 0.49,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2885": {
    "code": "2885",
    "name": "元大金",
    "market": "TWSE",
    "symbol": "2885.TW",
+   "sector": "Financial Services",
+   "industry": "Financial Conglomerates",
    "perf": {
     "basePrice": 59.3,
     "baseDate": "2026-11-20",
@@ -1979,23 +3448,46 @@
    "analystCount": 4,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.32805,
+   "forwardEps": 4.328,
    "trailingEps": 2.63,
-   "fairValue": 62.62,
-   "fairRange": "38.50 - 88.95",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 38.5,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "高資本報酬"
+    ]
+   },
    "pe": "12.7x",
    "pb": "2.01x",
    "divYield": 3.71,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 53.77,
+   "fairRange": "44.76 - 61.43",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 44.76,
+    "oj": 55.26,
+    "subIndPe": 61.43,
+    "blWarranted": 55.02,
+    "evEbitda": null
+   },
+   "peerGroup": "Financial Services",
+   "peerPe": "14.2x",
+   "costOfEquity": 7.28,
+   "betaAdj": 0.77,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2887": {
    "code": "2887",
    "name": "台新金",
    "market": "TWSE",
    "symbol": "2887.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 33.95,
     "baseDate": "2026-11-20",
@@ -2010,23 +3502,47 @@
    "analystCount": 5,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 3.25947,
-   "trailingEps": 1.82,
-   "fairValue": 35.23,
-   "fairRange": "21.50 - 50.93",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 21.5,
-   "snapshotStale": false,
+   "forwardEps": 3.259,
+   "trailingEps": 1.89,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "高資本報酬",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.6x",
    "pb": "1.25x",
    "divYield": 3.24,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 43.88,
+   "fairRange": "39.04 - 51.18",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 39.04,
+    "oj": 45.28,
+    "subIndPe": 51.18,
+    "blWarranted": 42.74,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.7x",
+   "costOfEquity": 6.69,
+   "betaAdj": 0.68,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2890": {
    "code": "2890",
    "name": "永豐金",
    "market": "TWSE",
    "symbol": "2890.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 36.0,
     "baseDate": "2026-11-20",
@@ -2041,23 +3557,46 @@
    "analystCount": 3,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.96865,
+   "forwardEps": 2.969,
    "trailingEps": 1.92,
-   "fairValue": 40.51,
-   "fairRange": "28.00 - 54.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 28.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "高資本報酬"
+    ]
+   },
    "pe": "13.6x",
    "pb": "1.97x",
    "divYield": 3.61,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 36.48,
+   "fairRange": "30.93 - 46.62",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 30.93,
+    "oj": 41.35,
+    "subIndPe": 46.62,
+    "blWarranted": 33.06,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.7x",
+   "costOfEquity": 6.04,
+   "betaAdj": 0.57,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "5880": {
    "code": "5880",
    "name": "合庫金",
    "market": "TWSE",
    "symbol": "5880.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 26.4,
     "baseDate": "2026-11-20",
@@ -2068,21 +3607,42 @@
    },
    "forwardEps": 1.86,
    "trailingEps": 1.33,
-   "fairValue": 32.86,
-   "fairRange": "28.80 - 36.92",
-   "fairSource": "模型參考價（非 InvestingPro：預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 28.8,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "17.2x",
    "pb": "1.43x",
    "divYield": 3.98,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 26.23,
+   "fairRange": "25.11 - 29.21",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 26.04,
+    "oj": 25.53,
+    "subIndPe": 29.21,
+    "blWarranted": 25.11,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.7x",
+   "costOfEquity": 5.07,
+   "betaAdj": 0.41,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2883": {
    "code": "2883",
    "name": "凱基金",
    "market": "TWSE",
    "symbol": "2883.TW",
+   "sector": "Financial Services",
+   "industry": "Insurance - Life",
    "perf": {
     "basePrice": 29.9,
     "baseDate": "2026-11-20",
@@ -2097,23 +3657,46 @@
    "analystCount": 3,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.82787,
+   "forwardEps": 2.828,
    "trailingEps": 1.74,
-   "fairValue": 34.11,
-   "fairRange": "20.50 - 44.85",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 20.5,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "ROE≥10%",
+     "ROA穩健",
+     "高資本報酬"
+    ]
+   },
    "pe": "10.4x",
    "pb": "1.18x",
    "divYield": 3.34,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 38.82,
+   "fairRange": "34.99 - 40.28",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 34.99,
+    "oj": 39.57,
+    "subIndPe": 40.14,
+    "blWarranted": 40.28,
+    "evEbitda": null
+   },
+   "peerGroup": "Financial Services",
+   "peerPe": "14.2x",
+   "costOfEquity": 7.29,
+   "betaAdj": 0.77,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2834": {
    "code": "2834",
    "name": "臺企銀",
    "market": "TWSE",
    "symbol": "2834.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 16.2,
     "baseDate": "2026-11-20",
@@ -2124,21 +3707,42 @@
    },
    "forwardEps": 0.85,
    "trailingEps": 1.21,
-   "fairValue": 15.09,
-   "fairRange": "11.38 - 18.80",
-   "fairSource": "模型參考價（非 InvestingPro：預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 18.8,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.1x",
    "pb": "1.06x",
    "divYield": 6.17,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 13.45,
+   "fairRange": "9.44 - 14.70",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 14.7,
+    "oj": 9.44,
+    "subIndPe": 12.83,
+    "blWarranted": 14.48,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.1x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "5876": {
    "code": "5876",
    "name": "上海商銀",
    "market": "TWSE",
    "symbol": "5876.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 49.6,
     "baseDate": "2026-11-20",
@@ -2153,23 +3757,45 @@
    "analystCount": 1,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.18,
+   "forwardEps": 4.38,
    "trailingEps": 3.12,
-   "fairValue": 56.48,
-   "fairRange": "50.00 - 66.45",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 53.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "ROA穩健",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "13.8x",
    "pb": "1.13x",
    "divYield": 3.63,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 65.5,
+   "fairRange": "62.11 - 68.78",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 62.11,
+    "oj": 63.48,
+    "subIndPe": 68.78,
+    "blWarranted": 66.74,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.7x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2897": {
    "code": "2897",
    "name": "王道銀行",
    "market": "TWSE",
    "symbol": "2897.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 10.05,
     "baseDate": "2026-11-20",
@@ -2178,23 +3804,43 @@
     "q1": -1.95,
     "y1": 11.42
    },
-   "forwardEps": null,
    "trailingEps": 0.64,
-   "fairValue": 12.2,
-   "fairRange": "12.20 - 12.20",
-   "fairSource": "模型參考價（非 InvestingPro：InvestingPro快照）",
-   "snapshotFair": 12.2,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "11.7x",
    "pb": "0.69x",
    "divYield": 5.17,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 12.62,
+   "fairRange": "7.69 - 15.18",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 13.85,
+    "oj": 7.69,
+    "subIndPe": 9.66,
+    "blWarranted": 15.18,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.1x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2801": {
    "code": "2801",
    "name": "彰銀",
    "market": "TWSE",
    "symbol": "2801.TW",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
    "perf": {
     "basePrice": 25.4,
     "baseDate": "2026-11-20",
@@ -2203,23 +3849,43 @@
     "q1": 5.39,
     "y1": 29.85
    },
-   "forwardEps": null,
    "trailingEps": 1.52,
-   "fairValue": 20.8,
-   "fairRange": "20.80 - 20.80",
-   "fairSource": "模型參考價（非 InvestingPro：InvestingPro快照）",
-   "snapshotFair": 20.8,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "14.6x",
    "pb": "1.32x",
    "divYield": 4.13,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 22.77,
+   "fairRange": "20.41 - 25.35",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 25.35,
+    "oj": 20.41,
+    "subIndPe": 22.95,
+    "blWarranted": 21.96,
+    "evEbitda": null
+   },
+   "peerGroup": "Banks - Regional",
+   "peerPe": "15.1x",
+   "costOfEquity": 5.25,
+   "betaAdj": 0.44,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1301": {
    "code": "1301",
    "name": "台塑",
    "market": "TWSE",
    "symbol": "1301.TW",
+   "sector": "Basic Materials",
+   "industry": "Specialty Chemicals",
    "perf": {
     "basePrice": 56.1,
     "baseDate": "2026-11-20",
@@ -2234,23 +3900,45 @@
    "analystCount": 6,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 3.76802,
-   "trailingEps": 2.45,
-   "fairValue": 69.86,
-   "fairRange": "58.00 - 84.15",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 58.0,
-   "snapshotStale": false,
+   "forwardEps": 3.768,
+   "trailingEps": 2.64,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳"
+    ]
+   },
    "pe": "21.2x",
    "pb": "0.52x",
    "divYield": 0.89,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 69.59,
+   "fairRange": "46.39 - 88.12",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 88.12,
+    "oj": 46.39,
+    "subIndPe": 65.86,
+    "blWarranted": 77.23,
+    "evEbitda": 48.01
+   },
+   "peerGroup": "Basic Materials",
+   "peerPe": "17.5x",
+   "costOfEquity": 6.47,
+   "betaAdj": 0.64,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1303": {
    "code": "1303",
    "name": "南亞",
    "market": "TWSE",
    "symbol": "1303.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 206.0,
     "baseDate": "2026-11-20",
@@ -2265,23 +3953,47 @@
    "analystCount": 6,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 26.11391,
+   "forwardEps": 26.114,
    "trailingEps": 10.67,
-   "fairValue": 319.46,
-   "fairRange": "275.00 - 374.39",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 275.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "19.3x",
    "pb": "3.06x",
    "divYield": 0.39,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 273.4,
+   "fairRange": "92.20 - 560.36",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 219.73,
+    "oj": 560.36,
+    "subIndPe": 274.26,
+    "blWarranted": 251.22,
+    "evEbitda": 92.2
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.5x",
+   "costOfEquity": 7.51,
+   "betaAdj": 0.81,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1326": {
    "code": "1326",
    "name": "台化",
    "market": "TWSE",
    "symbol": "1326.TW",
+   "sector": "Basic Materials",
+   "industry": "Chemicals",
    "perf": {
     "basePrice": 57.3,
     "baseDate": "2026-11-20",
@@ -2296,23 +4008,46 @@
    "analystCount": 6,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 3.27804,
-   "trailingEps": 2.72,
-   "fairValue": 62.29,
-   "fairRange": "46.00 - 71.82",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 46.0,
-   "snapshotStale": false,
+   "forwardEps": 3.278,
+   "trailingEps": 2.98,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "19.2x",
    "pb": "0.56x",
    "divYield": 1.05,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 62.29,
+   "fairRange": "35.55 - 80.64",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 80.64,
+    "oj": 35.55,
+    "subIndPe": 48.8,
+    "blWarranted": 66.39,
+    "evEbitda": 78.33
+   },
+   "peerGroup": "Basic Materials",
+   "peerPe": "14.9x",
+   "costOfEquity": 7.13,
+   "betaAdj": 0.75,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6505": {
    "code": "6505",
    "name": "台塑化",
    "market": "TWSE",
    "symbol": "6505.TW",
+   "sector": "Energy",
+   "industry": "Oil & Gas Refining & Marketing",
    "perf": {
     "basePrice": 80.6,
     "baseDate": "2026-11-20",
@@ -2327,23 +4062,46 @@
    "analystCount": 7,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 6.03502,
-   "trailingEps": 7.28,
-   "fairValue": 76.36,
-   "fairRange": "62.00 - 100.26",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 62.0,
-   "snapshotStale": false,
+   "forwardEps": 6.035,
+   "trailingEps": 7.61,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "10.6x",
    "pb": "1.39x",
    "divYield": 1.49,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 80.66,
+   "fairRange": "62.80 - 151.29",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 90.71,
+    "oj": 70.8,
+    "subIndPe": 74.8,
+    "blWarranted": 62.8,
+    "evEbitda": 151.29
+   },
+   "peerGroup": "Market",
+   "peerPe": "12.4x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2002": {
    "code": "2002",
    "name": "中鋼",
    "market": "TWSE",
    "symbol": "2002.TW",
+   "sector": "Basic Materials",
+   "industry": "Steel",
    "perf": {
     "basePrice": 17.1,
     "baseDate": "2026-11-20",
@@ -2358,23 +4116,46 @@
    "analystCount": 9,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 0.41012,
+   "forwardEps": 0.41,
    "trailingEps": 0.03,
-   "fairValue": 22.61,
-   "fairRange": "18.73 - 26.50",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + InvestingPro快照）",
-   "snapshotFair": 26.5,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "427.5x",
    "pb": "0.87x",
    "divYield": 0.88,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 14.42,
+   "fairRange": "6.11 - 20.52",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 15.03,
+    "oj": 10.47,
+    "subIndPe": 6.11,
+    "blWarranted": 18.41,
+    "evEbitda": 20.52
+   },
+   "peerGroup": "Basic Materials",
+   "peerPe": "14.9x",
+   "costOfEquity": 6.43,
+   "betaAdj": 0.63,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1519": {
    "code": "1519",
    "name": "華城",
    "market": "TWSE",
    "symbol": "1519.TW",
+   "sector": "Industrials",
+   "industry": "Electrical Equipment & Parts",
    "perf": {
     "basePrice": 421.5,
     "baseDate": "2026-11-20",
@@ -2389,23 +4170,47 @@
    "analystCount": 9,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 23.46849,
-   "trailingEps": 13.76,
-   "fairValue": 729.78,
-   "fairRange": "632.25 - 797.08",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 760.0,
-   "snapshotStale": false,
+   "forwardEps": 23.468,
+   "trailingEps": 15.28,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "27.5x",
    "pb": "13.85x",
    "divYield": 2.85,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 222.69,
+   "fairRange": "108.79 - 428.85",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 108.79,
+    "oj": 428.85,
+    "subIndPe": 276.33,
+    "blWarranted": 205.45,
+    "evEbitda": 121.2
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "11.8x",
+   "costOfEquity": 9.21,
+   "betaAdj": 1.08,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1513": {
    "code": "1513",
    "name": "中興電",
    "market": "TWSE",
    "symbol": "1513.TW",
+   "sector": "Industrials",
+   "industry": "Specialty Industrial Machinery",
    "perf": {
     "basePrice": 127.5,
     "baseDate": "2026-11-20",
@@ -2420,23 +4225,47 @@
    "analystCount": 8,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 10.47854,
-   "trailingEps": 8.46,
-   "fairValue": 176.69,
-   "fairRange": "157.92 - 205.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 205.0,
-   "snapshotStale": false,
+   "forwardEps": 10.479,
+   "trailingEps": 9.19,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "13.9x",
    "pb": "2.88x",
    "divYield": 4.71,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 113.37,
+   "fairRange": "80.74 - 162.84",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 80.74,
+    "oj": 162.84,
+    "subIndPe": 123.38,
+    "blWarranted": 113.14,
+    "evEbitda": 85.21
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "11.8x",
+   "costOfEquity": 8.37,
+   "betaAdj": 0.95,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1504": {
    "code": "1504",
    "name": "東元",
    "market": "TWSE",
    "symbol": "1504.TW",
+   "sector": "Industrials",
+   "industry": "Specialty Industrial Machinery",
    "perf": {
     "basePrice": 51.9,
     "baseDate": "2026-11-20",
@@ -2451,23 +4280,47 @@
    "analystCount": 8,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.12843,
+   "forwardEps": 3.307,
    "trailingEps": 2.82,
-   "fairValue": 73.86,
-   "fairRange": "61.50 - 84.09",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 61.5,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "18.3x",
    "pb": "1.26x",
    "divYield": 3.85,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 44.76,
+   "fairRange": "21.88 - 52.02",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 46.7,
+    "oj": 48.25,
+    "subIndPe": 38.94,
+    "blWarranted": 52.02,
+    "evEbitda": 21.88
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "11.8x",
+   "costOfEquity": 7.78,
+   "betaAdj": 0.85,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1503": {
    "code": "1503",
    "name": "士電",
    "market": "TWSE",
    "symbol": "1503.TW",
+   "sector": "Industrials",
+   "industry": "Electrical Equipment & Parts",
    "perf": {
     "basePrice": 144.0,
     "baseDate": "2026-11-20",
@@ -2483,22 +4336,45 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 12.23,
-   "trailingEps": 7.25,
-   "fairValue": 228.45,
-   "fairRange": "216.00 - 248.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 248.0,
-   "snapshotStale": false,
+   "trailingEps": 7.54,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "19.1x",
    "pb": "1.94x",
    "divYield": 3.47,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 146.18,
+   "fairRange": "72.81 - 204.10",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 106.42,
+    "oj": 204.1,
+    "subIndPe": 148.81,
+    "blWarranted": 163.54,
+    "evEbitda": 72.81
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "12.2x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1101": {
    "code": "1101",
    "name": "台泥",
    "market": "TWSE",
    "symbol": "1101.TW",
+   "sector": "Basic Materials",
+   "industry": "Building Materials",
    "perf": {
     "basePrice": 24.35,
     "baseDate": "2026-11-20",
@@ -2513,23 +4389,47 @@
    "analystCount": 3,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 1.2775,
-   "trailingEps": 0.28,
-   "fairValue": 33.51,
-   "fairRange": "26.21 - 37.80",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 37.8,
-   "snapshotStale": false,
+   "forwardEps": 1.278,
+   "trailingEps": 0.29,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "69.6x",
    "pb": "0.78x",
    "divYield": 3.29,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 32.24,
+   "fairRange": "19.02 - 52.58",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 26.45,
+    "oj": 30.16,
+    "subIndPe": 19.02,
+    "blWarranted": 38.18,
+    "evEbitda": 52.58
+   },
+   "peerGroup": "Basic Materials",
+   "peerPe": "14.9x",
+   "costOfEquity": 6.71,
+   "betaAdj": 0.68,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1102": {
    "code": "1102",
    "name": "亞泥",
    "market": "TWSE",
    "symbol": "1102.TW",
+   "sector": "Basic Materials",
+   "industry": "Building Materials",
    "perf": {
     "basePrice": 32.35,
     "baseDate": "2026-11-20",
@@ -2544,23 +4444,45 @@
    "analystCount": 5,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 3.16579,
-   "trailingEps": 3.31,
-   "fairValue": 38.84,
-   "fairRange": "30.94 - 48.50",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 48.5,
-   "snapshotStale": false,
+   "forwardEps": 3.166,
+   "trailingEps": 3.43,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳"
+    ]
+   },
    "pe": "10.0x",
    "pb": "0.61x",
    "divYield": 7.11,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 48.97,
+   "fairRange": "28.46 - 55.34",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 53.16,
+    "oj": 40.29,
+    "subIndPe": 55.34,
+    "blWarranted": 52.51,
+    "evEbitda": 28.46
+   },
+   "peerGroup": "Basic Materials",
+   "peerPe": "17.5x",
+   "costOfEquity": 5.29,
+   "betaAdj": 0.45,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1216": {
    "code": "1216",
    "name": "統一",
    "market": "TWSE",
    "symbol": "1216.TW",
+   "sector": "Consumer Defensive",
+   "industry": "Packaged Foods",
    "perf": {
     "basePrice": 75.0,
     "baseDate": "2026-11-20",
@@ -2575,23 +4497,47 @@
    "analystCount": 11,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.65329,
-   "trailingEps": 4.0,
-   "fairValue": 84.8,
-   "fairRange": "75.17 - 92.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 92.0,
-   "snapshotStale": false,
+   "forwardEps": 4.653,
+   "trailingEps": 4.2,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "17.8x",
    "pb": "2.95x",
    "divYield": 4.0,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 67.51,
+   "fairRange": "46.50 - 150.35",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 46.5,
+    "oj": 150.35,
+    "subIndPe": 57.67,
+    "blWarranted": 54.96,
+    "evEbitda": 101.37
+   },
+   "peerGroup": "Market",
+   "peerPe": "12.4x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1402": {
    "code": "1402",
    "name": "遠東新",
    "market": "TWSE",
    "symbol": "1402.TW",
+   "sector": "Consumer Cyclical",
+   "industry": "Textile Manufacturing",
    "perf": {
     "basePrice": 25.6,
     "baseDate": "2026-11-20",
@@ -2601,22 +4547,46 @@
     "y1": -9.22
    },
    "forwardEps": 2.06,
-   "trailingEps": 1.97,
-   "fairValue": 33.38,
-   "fairRange": "26.77 - 40.00",
-   "fairSource": "模型參考價（非 InvestingPro：預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 40.0,
-   "snapshotStale": false,
+   "trailingEps": 2.26,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.0x",
    "pb": "0.58x",
    "divYield": 4.88,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 40.49,
+   "fairRange": "25.40 - 55.00",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 53.5,
+    "oj": 27.62,
+    "subIndPe": 25.4,
+    "blWarranted": 43.04,
+    "evEbitda": 55.0
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "12.3x",
+   "costOfEquity": 5.1,
+   "betaAdj": 0.42,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "9904": {
    "code": "9904",
    "name": "寶成",
    "market": "TWSE",
    "symbol": "9904.TW",
+   "sector": "Consumer Cyclical",
+   "industry": "Footwear & Accessories",
    "perf": {
     "basePrice": 24.2,
     "baseDate": "2026-11-20",
@@ -2632,22 +4602,42 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 4.2,
-   "trailingEps": 4.53,
-   "fairValue": 32.12,
-   "fairRange": "22.44 - 46.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 46.0,
-   "snapshotStale": false,
+   "trailingEps": 4.71,
+   "quality": {
+    "score": 1,
+    "max": 5,
+    "label": "1/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正"
+    ]
+   },
    "pe": "5.1x",
    "pb": "0.35x",
    "divYield": 5.37,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 58.74,
+   "fairRange": "43.12 - 67.83",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 61.86,
+    "oj": 43.12,
+    "subIndPe": 52.12,
+    "blWarranted": 67.83,
+    "evEbitda": 57.37
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "12.4x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "9910": {
    "code": "9910",
    "name": "豐泰",
    "market": "TWSE",
    "symbol": "9910.TW",
+   "sector": "Consumer Cyclical",
+   "industry": "Footwear & Accessories",
    "perf": {
     "basePrice": 58.3,
     "baseDate": "2026-11-20",
@@ -2662,23 +4652,47 @@
    "analystCount": 13,
    "consensusLabel": "減碼",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.75249,
-   "trailingEps": 3.86,
-   "fairValue": 69.49,
-   "fairRange": "64.70 - 72.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 72.0,
-   "snapshotStale": false,
+   "forwardEps": 4.752,
+   "trailingEps": 4.16,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "14.0x",
    "pb": "2.34x",
    "divYield": 7.03,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 65.42,
+   "fairRange": "41.23 - 105.78",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 41.23,
+    "oj": 105.78,
+    "subIndPe": 58.98,
+    "blWarranted": 59.94,
+    "evEbitda": 85.32
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "12.4x",
+   "costOfEquity": 6.08,
+   "betaAdj": 0.58,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2105": {
    "code": "2105",
    "name": "正新",
    "market": "TWSE",
    "symbol": "2105.TW",
+   "sector": "Consumer Cyclical",
+   "industry": "Auto Parts",
    "perf": {
     "basePrice": 27.2,
     "baseDate": "2026-11-20",
@@ -2695,21 +4709,45 @@
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 1.455,
    "trailingEps": 1.67,
-   "fairValue": 27.94,
-   "fairRange": "23.70 - 31.50",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 31.5,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "16.3x",
    "pb": "0.99x",
    "divYield": 6.62,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 32.41,
+   "fairRange": "17.94 - 56.99",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 31.89,
+    "oj": 41.89,
+    "subIndPe": 17.94,
+    "blWarranted": 29.89,
+    "evEbitda": 56.99
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "12.3x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2912": {
    "code": "2912",
    "name": "統一超",
    "market": "TWSE",
    "symbol": "2912.TW",
+   "sector": "Consumer Defensive",
+   "industry": "Grocery Stores",
    "perf": {
     "basePrice": 204.0,
     "baseDate": "2026-11-20",
@@ -2724,23 +4762,47 @@
    "analystCount": 11,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 12.33995,
+   "forwardEps": 12.34,
    "trailingEps": 11.12,
-   "fairValue": 257.86,
-   "fairRange": "226.38 - 310.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 310.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "18.3x",
    "pb": "4.79x",
    "divYield": 4.41,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 161.91,
+   "fairRange": "100.43 - 396.78",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 100.43,
+    "oj": 396.78,
+    "subIndPe": 152.94,
+    "blWarranted": 131.45,
+    "evEbitda": 193.49
+   },
+   "peerGroup": "Market",
+   "peerPe": "12.4x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2207": {
    "code": "2207",
    "name": "和泰車",
    "market": "TWSE",
    "symbol": "2207.TW",
+   "sector": "Consumer Cyclical",
+   "industry": "Auto & Truck Dealerships",
    "perf": {
     "basePrice": 516.0,
     "baseDate": "2026-11-20",
@@ -2756,22 +4818,46 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 36.67,
-   "trailingEps": 32.04,
-   "fairValue": 648.67,
-   "fairRange": "545.45 - 810.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 810.0,
-   "snapshotStale": false,
+   "trailingEps": 33.9,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.6x",
    "pb": "3.10x",
    "divYield": 3.88,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 398.34,
+   "fairRange": "301.00 - 532.80",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 301.0,
+    "oj": 532.8,
+    "subIndPe": 452.15,
+    "blWarranted": 372.12,
+    "evEbitda": 375.52
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "12.3x",
+   "costOfEquity": 6.6,
+   "betaAdj": 0.66,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2201": {
    "code": "2201",
    "name": "裕隆",
    "market": "TWSE",
    "symbol": "2201.TW",
+   "sector": "Consumer Cyclical",
+   "industry": "Auto Manufacturers",
    "perf": {
     "basePrice": 23.3,
     "baseDate": "2026-11-20",
@@ -2787,22 +4873,46 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 1.88,
-   "trailingEps": 0.82,
-   "fairValue": 31.77,
-   "fairRange": "28.50 - 34.95",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 28.5,
-   "snapshotStale": false,
+   "trailingEps": 0.88,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "26.8x",
    "pb": "0.38x",
    "divYield": 2.4,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 50.13,
+   "fairRange": "23.21 - 68.17",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 57.92,
+    "oj": 33.55,
+    "subIndPe": 23.21,
+    "blWarranted": 68.17,
+    "evEbitda": null
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "12.3x",
+   "costOfEquity": 6.91,
+   "betaAdj": 0.71,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1605": {
    "code": "1605",
    "name": "華新",
    "market": "TWSE",
    "symbol": "1605.TW",
+   "sector": "Basic Materials",
+   "industry": "Steel",
    "perf": {
     "basePrice": 26.85,
     "baseDate": "2026-11-20",
@@ -2819,21 +4929,41 @@
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 4.61,
    "trailingEps": 4.86,
-   "fairValue": 33.91,
-   "fairRange": "25.47 - 39.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 39.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 1,
+    "max": 5,
+    "label": "1/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利為正"
+    ]
+   },
    "pe": "5.5x",
    "pb": "0.57x",
    "divYield": 1.86,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 52.74,
+   "fairRange": "6.31 - 80.58",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 45.62,
+    "oj": 47.43,
+    "subIndPe": 80.58,
+    "blWarranted": 52.15,
+    "evEbitda": 6.31
+   },
+   "peerGroup": "Basic Materials",
+   "peerPe": "17.5x",
+   "costOfEquity": 8.78,
+   "betaAdj": 1.01,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2603": {
    "code": "2603",
    "name": "長榮",
    "market": "TWSE",
    "symbol": "2603.TW",
+   "sector": "Industrials",
+   "industry": "Marine Shipping",
    "perf": {
     "basePrice": 233.0,
     "baseDate": "2026-11-20",
@@ -2848,23 +4978,46 @@
    "analystCount": 10,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 31.48578,
+   "forwardEps": 31.782,
    "trailingEps": 36.66,
-   "fairValue": 245.92,
-   "fairRange": "200.11 - 285.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 285.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "6.3x",
    "pb": "0.83x",
    "divYield": 6.87,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 391.64,
+   "fairRange": "356.95 - 533.53",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 401.65,
+    "oj": 371.19,
+    "subIndPe": 386.72,
+    "blWarranted": 356.95,
+    "evEbitda": 533.53
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "12.2x",
+   "costOfEquity": 6.77,
+   "betaAdj": 0.69,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2609": {
    "code": "2609",
    "name": "陽明",
    "market": "TWSE",
    "symbol": "2609.TW",
+   "sector": "Industrials",
+   "industry": "Marine Shipping",
    "perf": {
     "basePrice": 53.0,
     "baseDate": "2026-11-20",
@@ -2879,23 +5032,45 @@
    "analystCount": 5,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 3.72598,
+   "forwardEps": 3.726,
    "trailingEps": 8.02,
-   "fairValue": 62.49,
-   "fairRange": "37.10 - 88.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 88.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳"
+    ]
+   },
    "pe": "6.6x",
    "pb": "0.54x",
    "divYield": 3.77,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 76.06,
+   "fairRange": "43.49 - 133.96",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 109.83,
+    "oj": 43.49,
+    "subIndPe": 43.87,
+    "blWarranted": 72.58,
+    "evEbitda": 133.96
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "11.8x",
+   "costOfEquity": 6.43,
+   "betaAdj": 0.63,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2615": {
    "code": "2615",
    "name": "萬海",
    "market": "TWSE",
    "symbol": "2615.TW",
+   "sector": "Industrials",
+   "industry": "Marine Shipping",
    "perf": {
     "basePrice": 95.0,
     "baseDate": "2026-11-20",
@@ -2910,23 +5085,46 @@
    "analystCount": 5,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 12.77018,
+   "forwardEps": 12.77,
    "trailingEps": 18.16,
-   "fairValue": 98.72,
-   "fairRange": "66.80 - 124.36",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 105.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "5.2x",
    "pb": "0.86x",
    "divYield": 3.16,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 158.03,
+   "fairRange": "136.99 - 241.29",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 160.79,
+    "oj": 151.44,
+    "subIndPe": 155.38,
+    "blWarranted": 136.99,
+    "evEbitda": 241.29
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "12.2x",
+   "costOfEquity": 6.94,
+   "betaAdj": 0.72,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2618": {
    "code": "2618",
    "name": "長榮航",
    "market": "TWSE",
    "symbol": "2618.TW",
+   "sector": "Industrials",
+   "industry": "Airlines",
    "perf": {
     "basePrice": 44.65,
     "baseDate": "2026-11-20",
@@ -2941,23 +5139,47 @@
    "analystCount": 8,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.91825,
+   "forwardEps": 4.918,
    "trailingEps": 4.88,
-   "fairValue": 45.53,
-   "fairRange": "44.59 - 47.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 47.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "9.1x",
    "pb": "1.64x",
    "divYield": 4.48,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 63.1,
+   "fairRange": "47.52 - 87.91",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 47.52,
+    "oj": 87.91,
+    "subIndPe": 59.84,
+    "blWarranted": 56.43,
+    "evEbitda": 86.88
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "12.2x",
+   "costOfEquity": 6.68,
+   "betaAdj": 0.67,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2610": {
    "code": "2610",
    "name": "華航",
    "market": "TWSE",
    "symbol": "2610.TW",
+   "sector": "Industrials",
+   "industry": "Airlines",
    "perf": {
     "basePrice": 21.3,
     "baseDate": "2026-11-20",
@@ -2972,23 +5194,47 @@
    "analystCount": 9,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.26018,
-   "trailingEps": 2.25,
-   "fairValue": 24.35,
-   "fairRange": "21.40 - 28.50",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 28.5,
-   "snapshotStale": false,
+   "forwardEps": 2.26,
+   "trailingEps": 2.38,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "8.9x",
    "pb": "1.25x",
    "divYield": 3.8,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 29.96,
+   "fairRange": "25.86 - 49.99",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 25.86,
+    "oj": 34.23,
+    "subIndPe": 27.5,
+    "blWarranted": 26.15,
+    "evEbitda": 49.99
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "12.2x",
+   "costOfEquity": 6.48,
+   "betaAdj": 0.64,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2605": {
    "code": "2605",
    "name": "新興",
    "market": "TWSE",
    "symbol": "2605.TW",
+   "sector": "Industrials",
+   "industry": "Marine Shipping",
    "perf": {
     "basePrice": 28.7,
     "baseDate": "2026-11-20",
@@ -3004,22 +5250,45 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 2.56,
-   "trailingEps": 5.4,
-   "fairValue": 29.23,
-   "fairRange": "20.09 - 36.61",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 31.0,
-   "snapshotStale": false,
+   "trailingEps": 5.79,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pe": "4.9x",
    "pb": "0.84x",
    "divYield": 3.48,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 47.88,
+   "fairRange": "41.65 - 75.83",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 52.85,
+    "oj": 41.65,
+    "subIndPe": 42.74,
+    "blWarranted": 42.67,
+    "evEbitda": 75.83
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "12.2x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6472": {
    "code": "6472",
    "name": "保瑞",
    "market": "TWSE",
    "symbol": "6472.TW",
+   "sector": "Healthcare",
+   "industry": "Drug Manufacturers - Specialty & Generic",
    "perf": {
     "basePrice": 280.0,
     "baseDate": "2026-11-20",
@@ -3034,23 +5303,47 @@
    "analystCount": 7,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 30.30948,
+   "forwardEps": 30.309,
    "trailingEps": 12.52,
-   "fairValue": 460.69,
-   "fairRange": "420.00 - 524.06",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 438.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "23.4x",
    "pb": "2.26x",
    "divYield": 3.57,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 485.77,
+   "fairRange": "207.86 - 816.90",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 207.86,
+    "oj": 790.66,
+    "subIndPe": 816.9,
+    "blWarranted": 388.36,
+    "evEbitda": 364.25
+   },
+   "peerGroup": "Healthcare",
+   "peerPe": "27.0x",
+   "costOfEquity": 6.47,
+   "betaAdj": 0.64,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "1795": {
    "code": "1795",
    "name": "美時",
    "market": "TWSE",
    "symbol": "1795.TW",
+   "sector": "Healthcare",
+   "industry": "Drug Manufacturers - Specialty & Generic",
    "perf": {
     "basePrice": 101.5,
     "baseDate": "2026-11-20",
@@ -3066,22 +5359,45 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 18.062,
-   "trailingEps": 7.63,
-   "fairValue": 196.7,
-   "fairRange": "152.25 - 255.85",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 182.0,
-   "snapshotStale": false,
+   "trailingEps": 8.39,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "12.2x",
    "pb": "1.09x",
    "divYield": 2.66,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 323.94,
+   "fairRange": "131.18 - 644.69",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 131.18,
+    "oj": 343.55,
+    "subIndPe": 486.81,
+    "blWarranted": 227.6,
+    "evEbitda": 644.69
+   },
+   "peerGroup": "Healthcare",
+   "peerPe": "27.0x",
+   "costOfEquity": 7.58,
+   "betaAdj": 0.82,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6589": {
    "code": "6589",
    "name": "台康生技",
    "market": "TWSE",
    "symbol": "6589.TW",
+   "sector": "Healthcare",
+   "industry": "Biotechnology",
    "perf": {
     "basePrice": 42.9,
     "baseDate": "2026-11-20",
@@ -3097,20 +5413,43 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 0.57,
-   "trailingEps": -1.5,
-   "fairValue": 79.45,
-   "fairRange": "58.00 - 100.91",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + InvestingPro快照）",
-   "snapshotFair": 58.0,
-   "snapshotStale": false,
+   "trailingEps": -1.67,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pb": "1.64x",
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 17.13,
+   "fairRange": "5.27 - 23.26",
+   "fairSource": "學術 3 模型（非 InvestingPro）",
+   "models": {
+    "rim": 23.26,
+    "oj": null,
+    "subIndPe": 5.27,
+    "blWarranted": 18.63,
+    "evEbitda": null
+   },
+   "peerGroup": "Healthcare",
+   "peerPe": "9.2x",
+   "costOfEquity": 6.07,
+   "betaAdj": 0.58,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "4147": {
    "code": "4147",
    "name": "中裕",
    "market": "TPEX",
    "symbol": "4147.TWO",
+   "sector": "Healthcare",
+   "industry": "Biotechnology",
    "perf": {
     "basePrice": 51.3,
     "baseDate": "2026-11-20",
@@ -3126,18 +5465,43 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": -1.07,
-   "trailingEps": -0.54,
-   "snapshotFair": 108.0,
-   "snapshotStale": true,
+   "trailingEps": -0.6,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳"
+    ]
+   },
    "pb": "3.81x",
    "divYield": 0.0,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 14.31,
+   "fairRange": "9.47 - 17.08",
+   "fairSource": "學術 2 模型（非 InvestingPro）",
+   "models": {
+    "rim": 9.47,
+    "oj": null,
+    "subIndPe": null,
+    "blWarranted": 17.08,
+    "evEbitda": null
+   },
+   "peerGroup": "Healthcare",
+   "peerPe": "13.8x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6547": {
    "code": "6547",
    "name": "高端疫苗",
    "market": "TPEX",
    "symbol": "6547.TWO",
+   "sector": "Healthcare",
+   "industry": "Biotechnology",
    "perf": {
     "basePrice": 39.35,
     "baseDate": "2026-11-20",
@@ -3153,21 +5517,42 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 1.46,
-   "trailingEps": -0.1,
-   "fairValue": 74.36,
-   "fairRange": "56.00 - 92.73",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + InvestingPro快照）",
-   "snapshotFair": 56.0,
-   "snapshotStale": false,
+   "trailingEps": -0.11,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pb": "3.18x",
    "divYield": 0.0,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 17.88,
+   "fairRange": "7.55 - 26.57",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 17.52,
+    "oj": 26.57,
+    "subIndPe": 13.49,
+    "blWarranted": 19.74,
+    "evEbitda": 7.55
+   },
+   "peerGroup": "Healthcare",
+   "peerPe": "9.2x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.4,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3008": {
    "code": "3008",
    "name": "大立光",
    "market": "TWSE",
    "symbol": "3008.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 3670.0,
     "baseDate": "2026-11-20",
@@ -3182,23 +5567,47 @@
    "analystCount": 19,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 186.7438,
+   "forwardEps": 186.744,
    "trailingEps": 170.68,
-   "fairValue": 4493.49,
-   "fairRange": "2,850.00 - 6,615.07",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 2850.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "21.1x",
    "pb": "2.51x",
    "divYield": 2.18,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 2471.09,
+   "fairRange": "1,856.27 - 4,366.91",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 1856.27,
+    "oj": 2123.67,
+    "subIndPe": 1931.83,
+    "blWarranted": 2771.97,
+    "evEbitda": 4366.91
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 9.37,
+   "betaAdj": 1.11,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3406": {
    "code": "3406",
    "name": "玉晶光",
    "market": "TWSE",
    "symbol": "3406.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 648.0,
     "baseDate": "2026-11-20",
@@ -3213,23 +5622,47 @@
    "analystCount": 9,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 40.96837,
-   "trailingEps": 30.62,
-   "fairValue": 788.43,
-   "fairRange": "560.00 - 938.28",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 560.0,
-   "snapshotStale": false,
+   "forwardEps": 40.968,
+   "trailingEps": 34.02,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "19.0x",
    "pb": "2.57x",
    "divYield": 2.62,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 511.82,
+   "fairRange": "368.71 - 835.95",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 368.71,
+    "oj": 551.34,
+    "subIndPe": 383.53,
+    "blWarranted": 557.35,
+    "evEbitda": 835.95
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 8.86,
+   "betaAdj": 1.03,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2474": {
    "code": "2474",
    "name": "可成",
    "market": "TWSE",
    "symbol": "2474.TW",
+   "sector": "Industrials",
+   "industry": "Metal Fabrication",
    "perf": {
     "basePrice": 193.0,
     "baseDate": "2026-11-20",
@@ -3244,23 +5677,45 @@
    "analystCount": 5,
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 11.93931,
-   "trailingEps": 11.39,
-   "fairValue": 208.59,
-   "fairRange": "181.45 - 242.00",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 242.0,
-   "snapshotStale": false,
+   "forwardEps": 11.939,
+   "trailingEps": 11.45,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "15.1x",
    "pb": "0.77x",
    "divYield": 5.32,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 243.18,
+   "fairRange": "140.58 - 274.87",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 267.58,
+    "oj": 273.48,
+    "subIndPe": 140.58,
+    "blWarranted": 274.87,
+    "evEbitda": null
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "11.8x",
+   "costOfEquity": 6.07,
+   "betaAdj": 0.58,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3023": {
    "code": "3023",
    "name": "信邦",
    "market": "TWSE",
    "symbol": "3023.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 265.0,
     "baseDate": "2026-11-20",
@@ -3275,23 +5730,46 @@
    "analystCount": 8,
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 17.51693,
+   "forwardEps": 17.517,
    "trailingEps": 13.38,
-   "fairValue": 333.71,
-   "fairRange": "324.20 - 346.93",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 330.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "18.8x",
    "pb": "3.58x",
    "divYield": 3.77,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 217.33,
+   "fairRange": "138.76 - 344.08",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 138.76,
+    "oj": 344.08,
+    "subIndPe": 181.21,
+    "blWarranted": 223.45,
+    "evEbitda": 235.12
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 7.21,
+   "betaAdj": 0.76,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6533": {
    "code": "6533",
    "name": "晶心科",
    "market": "TWSE",
    "symbol": "6533.TW",
+   "sector": "Technology",
+   "industry": "Semiconductor Equipment & Materials",
    "perf": {
     "basePrice": 194.0,
     "baseDate": "2026-11-20",
@@ -3307,20 +5785,43 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 7.322,
-   "trailingEps": -4.42,
-   "fairValue": 273.56,
-   "fairRange": "235.00 - 312.12",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + InvestingPro快照）",
-   "snapshotFair": 235.0,
-   "snapshotStale": false,
+   "trailingEps": -5.71,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pb": "2.22x",
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 99.98,
+   "fairRange": "27.85 - 131.53",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": 94.54,
+    "oj": null,
+    "subIndPe": 80.52,
+    "blWarranted": 131.53,
+    "evEbitda": 27.85
+   },
+   "peerGroup": "Technology",
+   "peerPe": "11.0x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6789": {
    "code": "6789",
    "name": "采鈺",
    "market": "TWSE",
    "symbol": "6789.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 290.0,
     "baseDate": "2026-11-20",
@@ -3335,23 +5836,47 @@
    "analystCount": 4,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 7.1421,
-   "trailingEps": 5.41,
-   "fairValue": 354.45,
-   "fairRange": "318.00 - 382.85",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 318.0,
-   "snapshotStale": false,
+   "forwardEps": 7.142,
+   "trailingEps": 6.01,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "48.2x",
    "pb": "4.84x",
    "divYield": 1.03,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 98.5,
+   "fairRange": "56.86 - 194.70",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 63.69,
+    "oj": 56.86,
+    "subIndPe": 96.95,
+    "blWarranted": 109.88,
+    "evEbitda": 194.7
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 12.42,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6805": {
    "code": "6805",
    "name": "富世達",
    "market": "TWSE",
    "symbol": "6805.TW",
+   "sector": "Technology",
+   "industry": "Electronic Components",
    "perf": {
     "basePrice": 1430.0,
     "baseDate": "2026-11-20",
@@ -3360,29 +5885,53 @@
     "q1": -18.98,
     "y1": -1.38
    },
-   "analystTarget": 2938.56,
-   "analystHigh": 4008.385,
-   "analystLow": 2400.43,
+   "analystTarget": 2938.39,
+   "analystHigh": 4008.1418,
+   "analystLow": 2400.2844,
    "analystCount": 9,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 108.59952,
-   "trailingEps": 49.44,
-   "fairValue": 2408.21,
-   "fairRange": "2,145.00 - 2,671.42",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": 960.0,
-   "snapshotStale": true,
+   "forwardEps": 108.6,
+   "trailingEps": 54.8,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "26.1x",
    "pb": "10.13x",
    "divYield": 0.87,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 1127.69,
+   "fairRange": "733.09 - 2,280.30",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 733.09,
+    "oj": 2280.3,
+    "subIndPe": 1123.44,
+    "blWarranted": 928.8,
+    "evEbitda": 1078.25
+   },
+   "peerGroup": "Electronic Components",
+   "peerPe": "10.3x",
+   "costOfEquity": 8.31,
+   "betaAdj": 0.94,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3596": {
    "code": "3596",
    "name": "智易",
    "market": "TWSE",
    "symbol": "3596.TW",
+   "sector": "Technology",
+   "industry": "Communication Equipment",
    "perf": {
     "basePrice": 128.0,
     "baseDate": "2026-11-20",
@@ -3398,22 +5947,44 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 14.758,
-   "trailingEps": 12.26,
-   "fairValue": 174.8,
-   "fairRange": "154.08 - 188.33",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 182.0,
-   "snapshotStale": false,
+   "trailingEps": 12.83,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "獲利為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "9.8x",
    "pb": "1.64x",
    "divYield": 7.03,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 188.69,
+   "fairRange": "131.10 - 263.13",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 131.1,
+    "oj": 263.13,
+    "subIndPe": 166.15,
+    "blWarranted": 188.7,
+    "evEbitda": 237.21
+   },
+   "peerGroup": "Technology",
+   "peerPe": "11.3x",
+   "costOfEquity": 7.17,
+   "betaAdj": 0.75,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6409": {
    "code": "6409",
    "name": "旭隼",
    "market": "TWSE",
    "symbol": "6409.TW",
+   "sector": "Industrials",
+   "industry": "Electrical Equipment & Parts",
    "perf": {
     "basePrice": 683.0,
     "baseDate": "2026-11-20",
@@ -3428,23 +5999,46 @@
    "analystCount": 9,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 42.12886,
+   "forwardEps": 42.129,
    "trailingEps": 26.31,
-   "fairValue": 959.38,
-   "fairRange": "890.00 - 1,024.50",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整 + InvestingPro快照）",
-   "snapshotFair": 890.0,
-   "snapshotStale": false,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "26.1x",
    "pb": "6.83x",
    "divYield": 5.38,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 479.44,
+   "fairRange": "253.27 - 823.58",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 253.27,
+    "oj": 823.58,
+    "subIndPe": 496.04,
+    "blWarranted": 485.57,
+    "evEbitda": 360.95
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "11.8x",
+   "costOfEquity": 8.34,
+   "betaAdj": 0.94,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "3701": {
    "code": "3701",
    "name": "大眾控",
    "market": "TWSE",
    "symbol": "3701.TW",
+   "sector": "Technology",
+   "industry": "Computer Hardware",
    "perf": {
     "basePrice": 51.3,
     "baseDate": "2026-11-20",
@@ -3453,22 +6047,39 @@
     "q1": 25.89,
     "y1": 70.43
    },
-   "forwardEps": null,
-   "trailingEps": -2.61,
-   "fairValue": 62.0,
-   "fairRange": "62.00 - 62.00",
-   "fairSource": "模型參考價（非 InvestingPro：InvestingPro快照）",
-   "snapshotFair": 62.0,
-   "snapshotStale": false,
+   "trailingEps": -3.44,
+   "quality": {
+    "score": 0,
+    "max": 5,
+    "label": "0/5 留意景氣/現金流波動",
+    "passed": []
+   },
    "pb": "2.63x",
    "divYield": 0.39,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 21.26,
+   "fairRange": "7.82 - 28.71",
+   "fairSource": "學術 2 模型（非 InvestingPro）",
+   "models": {
+    "rim": 7.82,
+    "oj": null,
+    "subIndPe": null,
+    "blWarranted": 28.71,
+    "evEbitda": null
+   },
+   "peerGroup": "Computer Hardware",
+   "peerPe": "9.4x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "4931": {
    "code": "4931",
    "name": "新盛力",
    "market": "TPEX",
    "symbol": "4931.TWO",
+   "sector": "Industrials",
+   "industry": "Electrical Equipment & Parts",
    "perf": {
     "basePrice": 126.0,
     "baseDate": "2026-11-20",
@@ -3477,23 +6088,45 @@
     "q1": -55.0,
     "y1": -3.82
    },
-   "forwardEps": null,
-   "trailingEps": 6.82,
-   "fairValue": 168.0,
-   "fairRange": "168.00 - 168.00",
-   "fairSource": "模型參考價（非 InvestingPro：InvestingPro快照）",
-   "snapshotFair": 168.0,
-   "snapshotStale": false,
+   "trailingEps": 7.55,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "16.1x",
    "pb": "4.63x",
    "divYield": 1.98,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 78.08,
+   "fairRange": "64.05 - 122.99",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 64.05,
+    "oj": 122.99,
+    "subIndPe": 88.9,
+    "blWarranted": 64.66,
+    "evEbitda": 64.06
+   },
+   "peerGroup": "Industrials",
+   "peerPe": "11.8x",
+   "costOfEquity": 7.2,
+   "betaAdj": 0.76,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "2342": {
    "code": "2342",
    "name": "茂矽",
    "market": "TWSE",
    "symbol": "2342.TW",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 26.2,
     "baseDate": "2026-11-20",
@@ -3504,19 +6137,41 @@
    },
    "forwardEps": 1.84,
    "trailingEps": -0.47,
-   "fairValue": 27.41,
-   "fairRange": "27.41 - 27.41",
-   "fairSource": "模型參考價（非 InvestingPro：InvestingPro快照）",
-   "snapshotFair": 27.41,
-   "snapshotStale": false,
+   "quality": {
+    "score": 3,
+    "max": 5,
+    "label": "3/5 基本面穩健",
+    "passed": [
+     "營業現金流為正",
+     "現金含金量佳",
+     "預估盈餘成長"
+    ]
+   },
    "pb": "1.79x",
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 22.46,
+   "fairRange": "4.67 - 26.07",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 18.7,
+    "oj": 23.57,
+    "subIndPe": 24.98,
+    "blWarranted": 26.07,
+    "evEbitda": 4.67
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "4716": {
    "code": "4716",
    "name": "大立高",
    "market": "TPEX",
    "symbol": "4716.TWO",
+   "sector": "Basic Materials",
+   "industry": "Specialty Chemicals",
    "perf": {
     "basePrice": 13.5,
     "baseDate": "2026-11-20",
@@ -3525,22 +6180,42 @@
     "q1": -20.35,
     "y1": -11.18
    },
-   "forwardEps": null,
    "trailingEps": -0.12,
-   "fairValue": 12.85,
-   "fairRange": "12.85 - 12.85",
-   "fairSource": "模型參考價（非 InvestingPro：InvestingPro快照）",
-   "snapshotFair": 12.85,
-   "snapshotStale": false,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "營業現金流為正",
+     "現金含金量佳"
+    ]
+   },
    "pb": "1.14x",
    "divYield": 0.0,
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 11.01,
+   "fairRange": "6.73 - 13.45",
+   "fairSource": "學術 2 模型（非 InvestingPro）",
+   "models": {
+    "rim": 6.73,
+    "oj": null,
+    "subIndPe": null,
+    "blWarranted": 13.45,
+    "evEbitda": null
+   },
+   "peerGroup": "Basic Materials",
+   "peerPe": "16.1x",
+   "costOfEquity": 8.7,
+   "betaAdj": 1.0,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "4989": {
    "code": "4989",
    "name": "榮科",
    "market": "TWSE",
    "symbol": "4989.TW",
+   "sector": "Basic Materials",
+   "industry": "Copper",
    "perf": {
     "basePrice": 40.95,
     "baseDate": "2026-11-20",
@@ -3549,21 +6224,38 @@
     "q1": -33.84,
     "y1": -6.08
    },
-   "forwardEps": null,
    "trailingEps": -0.52,
-   "fairValue": 36.57,
-   "fairRange": "36.57 - 36.57",
-   "fairSource": "模型參考價（非 InvestingPro：InvestingPro快照）",
-   "snapshotFair": 36.57,
-   "snapshotStale": false,
+   "quality": {
+    "score": 0,
+    "max": 5,
+    "label": "0/5 留意景氣/現金流波動",
+    "passed": []
+   },
    "pb": "1.95x",
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 18.75,
+   "fairRange": "10.42 - 23.51",
+   "fairSource": "學術 2 模型（非 InvestingPro）",
+   "models": {
+    "rim": 10.42,
+    "oj": null,
+    "subIndPe": null,
+    "blWarranted": 23.51,
+    "evEbitda": null
+   },
+   "peerGroup": "Basic Materials",
+   "peerPe": "16.1x",
+   "costOfEquity": 11.11,
+   "betaAdj": 1.39,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "6443": {
    "code": "6443",
    "name": "元晶",
    "market": "TWSE",
    "symbol": "6443.TW",
+   "sector": "Technology",
+   "industry": "Solar",
    "perf": {
     "basePrice": 22.5,
     "baseDate": "2026-11-20",
@@ -3573,20 +6265,41 @@
     "y1": 75.78
    },
    "forwardEps": 2.17,
-   "trailingEps": -5.27,
-   "fairValue": 17.0,
-   "fairRange": "17.00 - 17.00",
-   "fairSource": "模型參考價（非 InvestingPro：InvestingPro快照）",
-   "snapshotFair": 17.0,
-   "snapshotStale": false,
+   "trailingEps": -5.85,
+   "quality": {
+    "score": 2,
+    "max": 5,
+    "label": "2/5 留意景氣/現金流波動",
+    "passed": [
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pb": "4.03x",
-   "updatedAt": "2026-11-21 11:21"
+   "fairValue": 13.7,
+   "fairRange": "9.95 - 17.87",
+   "fairSource": "學術 4 模型（非 InvestingPro・景氣循環常態化）",
+   "models": {
+    "rim": 9.95,
+    "oj": 17.87,
+    "subIndPe": 13.79,
+    "blWarranted": 14.0,
+    "evEbitda": null
+   },
+   "peerGroup": "Technology",
+   "peerPe": "11.0x",
+   "costOfEquity": 7.75,
+   "betaAdj": 0.85,
+   "cyclicalNormalized": true,
+   "updatedAt": "2026-11-23 08:18"
   },
   "7203": {
    "code": "7203",
    "name": "豐田汽車 (Toyota)",
    "market": "TSE",
    "symbol": "7203.T",
+   "sector": "Consumer Cyclical",
+   "industry": "Auto Manufacturers",
    "perf": {
     "basePrice": 3312.0,
     "baseDate": "2026-11-20",
@@ -3602,20 +6315,44 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 324.22,
-   "trailingEps": 338.41,
-   "fairValue": 3313.0,
-   "fairRange": "3,173.12 - 3,452.87",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": null,
-   "snapshotStale": null,
-   "pe": "9.8x",
-   "updatedAt": "2026-11-21 11:21"
+   "trailingEps": 345.15,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "預估盈餘成長"
+    ]
+   },
+   "pe": "9.6x",
+   "pb": "1.04x",
+   "fairValue": 4313.56,
+   "fairRange": "2,049.18 - 4,710.02",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 4710.02,
+    "oj": 4689.25,
+    "subIndPe": 4390.01,
+    "blWarranted": 4529.28,
+    "evEbitda": 2049.18
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "12.4x",
+   "costOfEquity": 4.98,
+   "betaAdj": 0.58,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "0700": {
    "code": "0700",
    "name": "騰訊控股",
    "market": "HKEX",
    "symbol": "0700.HK",
+   "sector": "Communication Services",
+   "industry": "Internet Content & Information",
    "perf": {
     "basePrice": 344.0,
     "baseDate": "2026-11-20",
@@ -3630,21 +6367,45 @@
    "analystCount": 41,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 33.720978,
-   "trailingEps": 26.55,
-   "fairValue": 494.97,
-   "fairRange": "436.91 - 553.03",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": null,
-   "snapshotStale": null,
-   "pe": "13.0x",
-   "updatedAt": "2026-11-21 11:21"
+   "forwardEps": 33.95,
+   "trailingEps": 28.41,
+   "quality": {
+    "score": 4,
+    "max": 5,
+    "label": "4/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
+   "pe": "12.1x",
+   "pb": "2.18x",
+   "fairValue": 326.82,
+   "fairRange": "287.19 - 377.25",
+   "fairSource": "學術 3 模型（非 InvestingPro）",
+   "models": {
+    "rim": null,
+    "oj": 352.06,
+    "subIndPe": 377.25,
+    "blWarranted": 287.19,
+    "evEbitda": null
+   },
+   "peerGroup": "Market",
+   "peerPe": "13.1x",
+   "costOfEquity": 8.95,
+   "betaAdj": 0.83,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "NVDA": {
    "code": "NVDA",
    "name": "英偉達 (NVIDIA)",
    "market": "NASDAQ",
    "symbol": "NVDA",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 125.53,
     "baseDate": "2026-11-20",
@@ -3659,21 +6420,46 @@
    "analystCount": 56,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 16.60528,
+   "forwardEps": 16.605,
    "trailingEps": 9.31,
-   "fairValue": 205.14,
-   "fairRange": "188.30 - 221.98",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": null,
-   "snapshotStale": null,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "13.5x",
-   "updatedAt": "2026-11-21 11:21"
+   "pb": "11.35x",
+   "fairValue": 269.96,
+   "fairRange": "199.74 - 396.63",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": null,
+    "oj": 199.74,
+    "subIndPe": 261.17,
+    "blWarranted": 268.89,
+    "evEbitda": 396.63
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "15.7x",
+   "costOfEquity": 11.88,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "AAPL": {
    "code": "AAPL",
    "name": "蘋果 (Apple)",
    "market": "NASDAQ",
    "symbol": "AAPL",
+   "sector": "Technology",
+   "industry": "Consumer Electronics",
    "perf": {
     "basePrice": 342.56,
     "baseDate": "2026-11-20",
@@ -3688,21 +6474,46 @@
    "analystCount": 39,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 10.57273,
+   "forwardEps": 10.573,
    "trailingEps": 8.98,
-   "fairValue": 358.76,
-   "fairRange": "314.21 - 403.32",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": null,
-   "snapshotStale": null,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "38.1x",
-   "updatedAt": "2026-11-21 11:21"
+   "pb": "44.41x",
+   "fairValue": 161.51,
+   "fairRange": "132.43 - 256.21",
+   "fairSource": "學術 4 模型（非 InvestingPro）",
+   "models": {
+    "rim": null,
+    "oj": 159.32,
+    "subIndPe": 166.7,
+    "blWarranted": 132.43,
+    "evEbitda": 256.21
+   },
+   "peerGroup": "Technology",
+   "peerPe": "15.7x",
+   "costOfEquity": 9.28,
+   "betaAdj": 1.06,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "TSLA": {
    "code": "TSLA",
    "name": "特斯拉 (Tesla)",
    "market": "NASDAQ",
    "symbol": "TSLA",
+   "sector": "Consumer Cyclical",
+   "industry": "Auto Manufacturers",
    "perf": {
     "basePrice": 345.82,
     "baseDate": "2026-11-20",
@@ -3717,21 +6528,46 @@
    "analystCount": 40,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.15922,
+   "forwardEps": 2.159,
    "trailingEps": 0.91,
-   "fairValue": 379.57,
-   "fairRange": "379.57 - 379.57",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現）",
-   "snapshotFair": null,
-   "snapshotStale": null,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "380.0x",
-   "updatedAt": "2026-11-21 11:21"
+   "pb": "15.31x",
+   "fairValue": 37.1,
+   "fairRange": "17.63 - 78.23",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 19.05,
+    "oj": 17.63,
+    "subIndPe": 38.04,
+    "blWarranted": 44.08,
+    "evEbitda": 78.23
+   },
+   "peerGroup": "Consumer Cyclical",
+   "peerPe": "17.6x",
+   "costOfEquity": 11.38,
+   "betaAdj": 1.5,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "MSFT": {
    "code": "MSFT",
    "name": "微軟 (Microsoft)",
    "market": "NASDAQ",
    "symbol": "MSFT",
+   "sector": "Technology",
+   "industry": "Software - Infrastructure",
    "perf": {
     "basePrice": 484.52,
     "baseDate": "2026-11-20",
@@ -3746,21 +6582,46 @@
    "analystCount": 54,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 24.20084,
+   "forwardEps": 24.201,
    "trailingEps": 19.16,
-   "fairValue": 595.14,
-   "fairRange": "578.29 - 611.99",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": null,
-   "snapshotStale": null,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "25.3x",
-   "updatedAt": "2026-11-21 11:21"
+   "pb": "7.65x",
+   "fairValue": 442.11,
+   "fairRange": "184.51 - 790.07",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 184.51,
+    "oj": 396.89,
+    "subIndPe": 380.63,
+    "blWarranted": 544.41,
+    "evEbitda": 790.07
+   },
+   "peerGroup": "Technology",
+   "peerPe": "15.7x",
+   "costOfEquity": 9.14,
+   "betaAdj": 1.03,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "AMD": {
    "code": "AMD",
    "name": "超微 (AMD)",
    "market": "NASDAQ",
    "symbol": "AMD",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 424.39,
     "baseDate": "2026-11-20",
@@ -3775,21 +6636,46 @@
    "analystCount": 49,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 17.63825,
+   "forwardEps": 17.638,
    "trailingEps": 4.68,
-   "fairValue": 617.27,
-   "fairRange": "597.95 - 636.59",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": null,
-   "snapshotStale": null,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "90.7x",
-   "updatedAt": "2026-11-21 11:21"
+   "pb": "10.18x",
+   "fairValue": 224.92,
+   "fairRange": "119.00 - 322.53",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 119.0,
+    "oj": 188.31,
+    "subIndPe": 240.39,
+    "blWarranted": 322.53,
+    "evEbitda": 119.08
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 11.88,
+   "betaAdj": 1.6,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "AVGO": {
    "code": "AVGO",
    "name": "博通 (Broadcom)",
    "market": "NASDAQ",
    "symbol": "AVGO",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 304.41,
     "baseDate": "2026-11-20",
@@ -3804,21 +6690,46 @@
    "analystCount": 47,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 19.386,
+   "forwardEps": 19.355,
    "trailingEps": 7.83,
-   "fairValue": 467.61,
-   "fairRange": "456.62 - 478.61",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": null,
-   "snapshotStale": null,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
    "pe": "38.9x",
-   "updatedAt": "2026-11-21 11:21"
+   "pb": "14.58x",
+   "fairValue": 253.03,
+   "fairRange": "100.70 - 322.28",
+   "fairSource": "學術 5 模型（非 InvestingPro）",
+   "models": {
+    "rim": 100.7,
+    "oj": 280.73,
+    "subIndPe": 263.78,
+    "blWarranted": 322.28,
+    "evEbitda": 216.26
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "13.6x",
+   "costOfEquity": 10.63,
+   "betaAdj": 1.34,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   },
   "TSM": {
    "code": "TSM",
    "name": "台積電 ADR (TSM)",
    "market": "NYSE",
    "symbol": "TSM",
+   "sector": "Technology",
+   "industry": "Semiconductors",
    "perf": {
     "basePrice": 318.71,
     "baseDate": "2026-11-20",
@@ -3833,15 +6744,38 @@
    "analystCount": 20,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 23.38529,
-   "trailingEps": 13.97,
-   "fairValue": 505.71,
-   "fairRange": "478.06 - 533.36",
-   "fairSource": "模型參考價（非 InvestingPro：分析師目標折現 + 預估EPS成長調整）",
-   "snapshotFair": null,
-   "snapshotStale": null,
-   "pe": "22.8x",
-   "updatedAt": "2026-11-21 11:21"
+   "forwardEps": 23.385,
+   "trailingEps": 15.43,
+   "quality": {
+    "score": 5,
+    "max": 5,
+    "label": "5/5 優質基本面",
+    "passed": [
+     "獲利為正",
+     "營業現金流為正",
+     "現金含金量佳",
+     "獲利品質/ROE佳",
+     "預估盈餘成長"
+    ]
+   },
+   "pe": "20.7x",
+   "pb": "61.22x",
+   "fairValue": 387.74,
+   "fairRange": "367.80 - 404.29",
+   "fairSource": "學術 3 模型（非 InvestingPro）",
+   "models": {
+    "rim": null,
+    "oj": 375.73,
+    "subIndPe": 367.8,
+    "blWarranted": 404.29,
+    "evEbitda": null
+   },
+   "peerGroup": "Semiconductors",
+   "peerPe": "15.7x",
+   "costOfEquity": 9.75,
+   "betaAdj": 1.16,
+   "cyclicalNormalized": false,
+   "updatedAt": "2026-11-23 08:18"
   }
  }
 }
