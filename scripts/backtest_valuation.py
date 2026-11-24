@@ -172,10 +172,10 @@ def main():
             g_est = 0.06
             if eps > 0 and eps_prev and eps_prev > 0:
                 raw_g = (eps / eps_prev) - 1.0
-                g_sust = uf.clamp(roe * (1.0 - uf.clamp(payout, 0.15, 0.75)), 0.0, 0.20)
-                g_est = uf.clamp(0.35 * uf.clamp(raw_g, -0.25, 0.35) + 0.65 * g_sust, -0.08, 0.18)
+                g_sust = uf.clamp(roe * (1.0 - uf.clamp(payout, 0.15, 0.70)), 0.0, 0.22)
+                g_est = uf.clamp(0.40 * uf.compress_growth(raw_g) + 0.60 * g_sust, -0.08, 0.22)
             e1 = eps * (1.0 + g_est) if eps > 0 else eps
-            e2 = e1 * (1.0 + g_est * 0.75) if e1 > 0 else e1
+            e2 = e1 * (1.0 + g_est * 0.78) if e1 > 0 else e1
 
             pit[code] = {
                 'code': code, 'name': rec['name'], 'market': rec['market'], 'region': region,

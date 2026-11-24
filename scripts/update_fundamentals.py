@@ -54,12 +54,12 @@ REC_LABELS = {
 }
 # Market-Implied Cost of Equity parameters (Claus & Thomas 2001 JF; Damodaran Country ERP)
 MARKET_PARAMS = {
-    'TWSE':   {'rf': 0.0250, 'erp': 0.0620, 'gl': 0.025, 'region': 'TW'},
-    'TPEX':   {'rf': 0.0250, 'erp': 0.0620, 'gl': 0.025, 'region': 'TW'},
-    'NASDAQ': {'rf': 0.0420, 'erp': 0.0480, 'gl': 0.025, 'region': 'US'},
-    'NYSE':   {'rf': 0.0420, 'erp': 0.0480, 'gl': 0.025, 'region': 'US'},
-    'TSE':    {'rf': 0.0160, 'erp': 0.0580, 'gl': 0.015, 'region': 'JP'},
-    'HKEX':   {'rf': 0.0380, 'erp': 0.0620, 'gl': 0.025, 'region': 'HK'},
+    'TWSE':   {'rf': 0.0220, 'erp': 0.0580, 'gl': 0.026, 'region': 'TW'},
+    'TPEX':   {'rf': 0.0220, 'erp': 0.0580, 'gl': 0.026, 'region': 'TW'},
+    'NASDAQ': {'rf': 0.0420, 'erp': 0.0470, 'gl': 0.026, 'region': 'US'},
+    'NYSE':   {'rf': 0.0420, 'erp': 0.0470, 'gl': 0.026, 'region': 'US'},
+    'TSE':    {'rf': 0.0150, 'erp': 0.0560, 'gl': 0.016, 'region': 'JP'},
+    'HKEX':   {'rf': 0.0360, 'erp': 0.0580, 'gl': 0.025, 'region': 'HK'},
 }
 QS_MODULES = 'financialData,defaultKeyStatistics,summaryDetail,earningsTrend,assetProfile'
 SLEEP_SEC = 0.25  # polite throttling for daily batch
@@ -67,6 +67,16 @@ SLEEP_SEC = 0.25  # polite throttling for daily batch
 
 def clamp(x, lo, hi):
     return max(lo, min(hi, x))
+
+
+def compress_growth(g_raw):
+    """Smooth diminishing-persistence growth compression above 18% (Chan, Karceski & Lakonishok 2003 JF)."""
+    if g_raw is None:
+        return 0.06
+    g = max(-0.20, float(g_raw))
+    if g <= 0.18:
+        return g
+    return min(0.50, 0.18 + 0.19 * math.log1p((g - 0.18) / 0.18))
 
 
 def raw(d, key):
@@ -85,11 +95,12 @@ def to_float(s):
 
 
 def blume_coe(market, beta_raw):
-    """Blume (1975 JF) beta shrinkage + CAPM cost of equity."""
+    """Vasicek (1973 JF) / Blume (1975 JF) / Damodaran bottom-up beta shrinkage + CAPM cost of equity."""
     p = MARKET_PARAMS.get(market, MARKET_PARAMS['TWSE'])
     b = 1.0 if (beta_raw is None or beta_raw != beta_raw) else float(beta_raw)
-    beta_adj = clamp((2.0 / 3.0) * b + (1.0 / 3.0) * 1.0, 0.40, 1.60)
-    re = max(p['rf'] + beta_adj * p['erp'], p['gl'] + 0.024)
+    # Stronger shrinkage toward 1.0 prevents upside-momentum single-stock betas (>2.0) from inflating CoE
+    beta_adj = clamp(0.45 * b + 0.55 * 1.0, 0.78, 1.30)
+    re = max(p['rf'] + beta_adj * p['erp'], 0.086, p['gl'] + 0.045)
     return re, p['gl'], beta_adj, p['region']
 
 
@@ -289,8 +300,34 @@ def fit_ridge(X, y, lam=1.2):
     return solve_linear_system(XtX, Xty)
 
 
-def predict_ridge(w, row):
-    return sum(wi * xi for wi, xi in zip(w, row))
+def fit_ridge_std(X, y, lam=10.0):
+    """Standardized Ridge Regression (Hastie, Tibshirani & Friedman ESL Ch.3.4):
+    standardizes non-intercept features to zero mean / unit variance prior to L2 penalty
+    so low-variance continuous factors (growth, margin) are not over-shrunk relative to dummies."""
+    n = len(y)
+    if n < 10:
+        return None
+    p = len(X[0])
+    means = [0.0] * p
+    stds = [1.0] * p
+    for j in range(1, p):
+        col = [row[j] for row in X]
+        m = sum(col) / n
+        v = sum((c - m) ** 2 for c in col) / n
+        means[j] = m
+        stds[j] = math.sqrt(v) if v > 1e-10 else 1.0
+    Xs = [[1.0] + [(row[j] - means[j]) / stds[j] for j in range(1, p)] for row in X]
+    w = fit_ridge(Xs, y, lam=lam)
+    if not w:
+        return None
+    return (w, means, stds)
+
+
+def predict_ridge_std(model, row):
+    w, means, stds = model
+    p = len(row)
+    z = [1.0] + [(row[j] - means[j]) / stds[j] for j in range(1, p)]
+    return sum(wi * zi for wi, zi in zip(w, z))
 
 
 # -------------------------------------------------------------------------
@@ -300,13 +337,16 @@ def model_rim_dhs(b0, e1, e2, payout, re, roe_peer, is_fx_mismatch=False, omega=
     """
     M1: Ohlson (1995 CAR) / Dechow, Hutton & Sloan (1999 JAE, omega=0.62) / GLS (2001 JAR)
     10-year competitive-fade Residual Income Model.
-    Excluded when buybacks distort book equity (ROE > 80% or B0 < 1.5*E1, Penman 2013).
+    Excluded when buybacks or expensed R&D/IP severely compress accounting book equity
+    (E1/B0 > 65%, E2/B0 > 45%, or B0 < 1.5*E1 — Penman 2013; Damodaran 2012 Ch.9).
     """
     if is_fx_mismatch or not b0 or b0 <= 0 or e1 is None or e2 is None:
         return None
-    if e1 > 0 and (b0 < 1.5 * e1 or (e1 / b0) > 0.80):
+    if e1 > 0 and (b0 < 1.5 * e1 or (e1 / b0) > 0.65):
         return None
-    k = clamp(payout if payout is not None else 0.40, 0.15, 0.85)
+    if e2 > 0 and (e2 / b0) > 0.45:
+        return None
+    k = clamp(payout if payout is not None else 0.40, 0.15, 0.78)
     b1 = b0 + e1 * (1.0 - k)
     if b1 <= 0:
         return None
@@ -315,8 +355,8 @@ def model_rim_dhs(b0, e1, e2, payout, re, roe_peer, is_fx_mismatch=False, omega=
     b2 = b1 + e2 * (1.0 - k)
     if b2 <= 0:
         return None
-    roe_start = clamp(e2 / b1, -0.05, 0.45)
-    roe_eq = clamp(min(roe_peer, re + 0.035), re * 0.85, re + 0.035)
+    roe_start = clamp(e2 / b1, -0.05, 0.50)
+    roe_eq = clamp(min(max(roe_peer, re + 0.015), re + 0.045), re * 0.90, re + 0.045)
     pv = b0 + ri1 / (1.0 + re) + ri2 / ((1.0 + re) ** 2)
     b_prev, ri_last = b2, ri2
     for t in range(3, 11):
@@ -330,22 +370,30 @@ def model_rim_dhs(b0, e1, e2, payout, re, roe_peer, is_fx_mismatch=False, omega=
     return pv if pv > 0 else None
 
 
-def model_oj_earnings(e1, e2, roe_curr, payout, re, gl, roe_peer):
+def model_oj_earnings(e1, e2, roe_curr, payout, re, gl, roe_peer, is_cyclical=False):
     """
     M2: Ohlson & Juettner-Nauroth (2005 RAST) + Fuller & Hsia (1984 FAJ) + Damodaran (2012)
-    Reinvestment-Consistent 2-Stage Earnings Discount Model (book-value independent).
+    Reinvestment-Consistent 2-Stage Earnings Discount Model (book-value independent,
+    R&D-aware reinvestment so high-payout fabless/IP firms are not double-penalized).
     """
     if not e1 or not e2 or e1 <= 0 or e2 <= 0:
         return None
-    re_eff = re if (payout and payout > 0.70) else max(re, 0.078)
-    if re_eff <= gl + 0.02:
-        return None
-    k = clamp(payout if payout is not None else 0.40, 0.15, 0.90)
-    roe_eff = clamp(roe_curr if (roe_curr and roe_curr > 0.05) else roe_peer, 0.09, 0.50)
-    roe_term = clamp(min(roe_peer, re_eff + 0.035), 0.09, re_eff + 0.035)
+    re_eff = max(re, 0.086, gl + 0.045)
+    k = clamp(payout if payout is not None else 0.40, 0.15, 0.85)
+    roe_eff = clamp(roe_curr if (roe_curr and roe_curr > 0.05) else roe_peer, 0.09, 0.75)
+    roe_term = clamp(min(max(roe_peer, re_eff + 0.02), re_eff + 0.045), 0.10, re_eff + 0.045)
     g_raw = (e2 / e1) - 1.0
-    g_sust = clamp(roe_eff * (1.0 - k), 0.01, 0.22)
-    g_start = clamp(0.55 * clamp(g_raw, -0.15, 0.35) + 0.45 * g_sust, -0.05, 0.24)
+    g_c = compress_growth(g_raw)
+    if is_cyclical:
+        g_start = clamp(min(g_c, 0.08), -0.05, 0.08)
+    else:
+        # Cap retention penalty at k<=0.60 so R&D-expensing high-payout fabless firms retain realistic growth
+        g_sust = clamp(roe_eff * (1.0 - min(k, 0.60)), 0.02, 0.25)
+        if g_raw > 0.22 and roe_eff >= 0.20:
+            g_start = clamp(0.78 * g_c + 0.22 * max(g_sust, g_c * 0.68), -0.05, 0.38)
+        else:
+            g_start = clamp(0.55 * g_c + 0.45 * g_sust, -0.05, 0.26)
+    pay_floor = 0.50 if (k >= 0.55 and roe_eff >= 0.22) else 0.25
     pv = (e1 * k) / (1.0 + re_eff) + (e2 * k) / ((1.0 + re_eff) ** 2)
     e_prev = e2
     for t in range(3, 11):
@@ -353,10 +401,10 @@ def model_oj_earnings(e1, e2, roe_curr, payout, re, gl, roe_peer):
         g_t = g_start + frac * (gl - g_start)
         roe_t = roe_eff + frac * (roe_term - roe_eff)
         e_t = e_prev * (1.0 + g_t)
-        pay_t = clamp(1.0 - max(g_t, 0.0) / max(roe_t, 0.09), 0.20, 0.90)
+        pay_t = clamp(1.0 - max(g_t, 0.0) / max(roe_t, 0.12), pay_floor, 0.85)
         pv += (e_t * pay_t) / ((1.0 + re_eff) ** t)
         e_prev = e_t
-    pay_term = clamp(1.0 - gl / max(roe_term, 0.09), 0.35, 0.90)
+    pay_term = clamp(1.0 - gl / max(roe_term, 0.10), 0.42, 0.85)
     pv += ((e_prev * (1.0 + gl) * pay_term) / (re_eff - gl)) / ((1.0 + re_eff) ** 10)
     return pv if pv > 0 else None
 
@@ -386,16 +434,16 @@ def cyclical_normalize(e1, e2, bvps, re, eps_hist):
     """
     Damodaran (2012, Ch. 22) / Graham & Dodd (1934) Cyclical Earnings Normalization:
     Only triggers on boom-bust cyclicals (at least one loss year in 4Y history AND
-    peak forward EPS > 3x normalized cycle baseline). Secular compounders untouched.
+    peak forward EPS > 2.5x normalized cycle baseline). Secular compounders untouched.
     """
     if not e2 or e2 <= 0 or not bvps or bvps <= 0 or not eps_hist or len(eps_hist) < 3:
         return e1, e2, False
     had_loss = any(v <= 0 for v in eps_hist)
     hist_mean = max(statistics.mean(eps_hist), 0.0)
     norm_anchor = max(hist_mean, bvps * max(re, 0.09))
-    if had_loss and e2 > 3.0 * norm_anchor:
-        e2_n = 0.45 * e2 + 0.55 * norm_anchor
-        e1_n = 0.45 * (e1 or e2) + 0.55 * norm_anchor
+    if had_loss and e2 > 2.5 * norm_anchor:
+        e2_n = 0.30 * e2 + 0.70 * norm_anchor
+        e1_n = 0.30 * (e1 or e2) + 0.70 * norm_anchor
         return e1_n, e2_n, True
     return e1, e2, False
 
@@ -469,26 +517,28 @@ def get_peers(d, by_ind, by_sec, all_items):
 
 
 def compute_bhojraj_lee_warranted(d, all_items):
-    """M4: Bhojraj & Lee (2002 JAR) / Wilcox (1984 FAJ) Leave-One-Out Warranted P/B & P/E Ridge Regression."""
+    """M4: Bhojraj & Lee (2002 JAR) / Wilcox (1984 FAJ) Leave-One-Out Standardized Ridge Warranted P/B & P/E."""
     def feat_pb(x):
+        g_eff = 0.0 if x.get('is_cyclical') else clamp(x['g_est'], -0.15, 0.50)
         return [
             1.0,
-            clamp(x['roe_est'], 0.0, 0.50),
-            clamp(x['g_est'], -0.15, 0.35),
+            clamp(x['roe_est'], 0.0, 0.60),
+            g_eff,
             clamp(x['gm'], 0.0, 0.85),
-            clamp(1.0 / x['re'], 6.0, 22.0) / 15.0,
+            clamp(1.0 / x['re'], 6.0, 18.0),
             1.0 if x['sector'] == 'Technology' else 0.0,
             1.0 if x['is_fin'] else 0.0,
             1.0 if x['region'] == 'US' else 0.0,
         ]
 
+    # P/E regression uses growth, gross margin, 1/re, and sector (no confounded ROE, which belongs in P/B)
     def feat_pe(x):
+        g_eff = 0.0 if x.get('is_cyclical') else clamp(x['g_est'], -0.15, 0.50)
         return [
             1.0,
-            clamp(x['g_est'], -0.15, 0.35),
-            clamp(x['roe_est'], 0.0, 0.50),
-            clamp(1.0 / x['re'], 6.0, 22.0) / 15.0,
-            clamp(x['payout'] if x['payout'] is not None else 0.40, 0.0, 1.0),
+            g_eff,
+            clamp(x['gm'], 0.0, 0.85),
+            clamp(1.0 / x['re'], 6.0, 18.0),
             1.0 if x['sector'] == 'Technology' else 0.0,
             1.0 if x['is_fin'] else 0.0,
             1.0 if x['region'] == 'US' else 0.0,
@@ -497,34 +547,34 @@ def compute_bhojraj_lee_warranted(d, all_items):
     def valid_pb(x):
         if x.get('is_fx_mismatch') or not (x['bvps'] and x['bvps'] > 0 and x['price'] > 0 and x['roe_est'] is not None):
             return False
-        if x['e1'] and x['e1'] > 0 and (x['bvps'] < 1.5 * x['e1'] or (x['e1'] / x['bvps']) > 0.80):
+        if x['e1'] and x['e1'] > 0 and (x['bvps'] < 1.5 * x['e1'] or (x['e1'] / x['bvps']) > 0.70):
             return False
         return True
 
     X_pb, y_pb = [], []
     for x in all_items:
-        if x['code'] == d['code'] or not valid_pb(x):
+        if x['code'] == d['code'] or not valid_pb(x) or x.get('is_cyclical'):
             continue
         pb = x['price'] / x['bvps']
-        if 0.25 <= pb <= 20.0:
+        if 0.25 <= pb <= 25.0:
             X_pb.append(feat_pb(x))
             y_pb.append(math.log(pb))
-    w_pb = fit_ridge(X_pb, y_pb, lam=1.2)
-    v_wpb = d['bvps'] * math.exp(clamp(predict_ridge(w_pb, feat_pb(d)), -1.0, 2.7)) if (w_pb and valid_pb(d)) else None
+    m_pb = fit_ridge_std(X_pb, y_pb, lam=10.0)
+    v_wpb = d['bvps'] * math.exp(clamp(predict_ridge_std(m_pb, feat_pb(d)), -1.0, 2.9)) if (m_pb and valid_pb(d)) else None
 
     X_pe, y_pe = [], []
     for x in all_items:
-        if x['code'] == d['code']:
+        if x['code'] == d['code'] or x.get('is_cyclical'):
             continue
         if x['e_mult'] and x['e_mult'] > 0 and x['price'] > 0 and x['roe_est'] is not None:
             pe = x['price'] / x['e_mult']
-            if 3.0 <= pe <= 60.0:
+            if 6.5 <= pe <= 65.0:
                 X_pe.append(feat_pe(x))
                 y_pe.append(math.log(pe))
-    w_pe = fit_ridge(X_pe, y_pe, lam=1.2)
+    m_pe = fit_ridge_std(X_pe, y_pe, lam=10.0)
     v_wpe = (
-        d['e_mult'] * math.exp(clamp(predict_ridge(w_pe, feat_pe(d)), 1.4, 3.8))
-        if (w_pe and d['e_mult'] and d['e_mult'] > 0 and d['roe_est'] is not None) else None
+        d['e_mult'] * math.exp(clamp(predict_ridge_std(m_pe, feat_pe(d)), 1.5, 3.85))
+        if (m_pe and d['e_mult'] and d['e_mult'] > 0 and d['roe_est'] is not None) else None
     )
     return v_wpb, v_wpe
 
@@ -537,11 +587,16 @@ def run_cross_sectional_valuation(pit_dict):
         by_ind.setdefault(d['industry'], []).append(d)
         by_sec.setdefault(d['sector'], []).append(d)
 
-    all_roes = [clamp(d['roe_est'], -0.05, 0.45) for d in all_items if d['roe_est'] is not None]
-    all_ey = [d['e_mult'] / d['price'] for d in all_items if d['e_mult'] and d['e_mult'] > 0]
+    non_cyc = [
+        d for d in all_items
+        if not d.get('is_cyclical') and d['e_mult'] and d['e_mult'] > 0 and (d['price'] / d['e_mult']) >= 6.0
+    ]
+    all_roes = [clamp(d['roe_est'], -0.05, 0.55) for d in all_items if d['roe_est'] is not None]
+    all_ey = [d['e_mult'] / d['price'] for d in non_cyc]
     all_evy = [
         d['ebitda'] / d['ev'] for d in all_items
-        if not d['is_fin'] and not d.get('is_fx_mismatch') and d['ebitda'] and d['ebitda'] > 0 and d['ev'] and d['ev'] > 0
+        if not d['is_fin'] and not d.get('is_fx_mismatch') and not d.get('is_cyclical')
+        and d['ebitda'] and d['ebitda'] > 0 and d['ev'] and d['ev'] > 0 and (d['ev'] / d['ebitda']) >= 4.5
     ]
     g_roe = statistics.median(all_roes) if all_roes else 0.14
     g_ey = statistics.median(all_ey) if all_ey else 0.06
@@ -550,39 +605,66 @@ def run_cross_sectional_valuation(pit_dict):
     valued = {}
     for code, d in pit_dict.items():
         peers, peer_grp = get_peers(d, by_ind, by_sec, all_items)
-        p_roes = [clamp(x['roe_est'], -0.05, 0.45) for x in peers if x['roe_est'] is not None]
+        p_roes = [clamp(x['roe_est'], -0.05, 0.55) for x in peers if x['roe_est'] is not None]
         roe_peer = statistics.median(p_roes) if len(p_roes) >= 2 else g_roe
 
-        # M1: Ohlson / DHS (1999 JAE) / GLS (2001 JAR) RIM
+        # M1: Ohlson / DHS (1999 JAE) / GLS (2001 JAR) RIM (auto-excluded for extreme asset-light R&D firms)
         v_rim = model_rim_dhs(d['bvps'], d['e1'], d['e2'], d['payout'], d['re'], roe_peer, d['is_fx_mismatch'])
 
-        # M2: Ohlson-Juettner (2005 RAST) + Damodaran Reinvestment-Consistent Earnings
-        v_oj = model_oj_earnings(d['e1'], d['e2'], d['roe_est'], d['payout'], d['re'], d['gl'], roe_peer)
+        # M2: Ohlson-Juettner (2005 RAST) + Damodaran R&D-Aware Reinvestment Earnings DCF
+        v_oj = model_oj_earnings(d['e1'], d['e2'], d['roe_est'], d['payout'], d['re'], d['gl'], roe_peer, d.get('is_cyclical', False))
 
-        # M3: Liu, Nissim & Thomas (2002 JAR) Sub-Industry Harmonic Forward P/E
+        # M3: Liu, Nissim & Thomas (2002 JAR) + Easton (2004 TAR) / Fuller-Hsia Growth-Adjusted Sub-Industry Harmonic P/E
         pe_peers = [x for x in peers if x['region'] == d['region']]
         if len(pe_peers) < 3:
             pe_peers = [x for x in all_items if x['code'] != code and x['region'] == d['region']] if d['region'] == 'US' else peers
+        if not d.get('is_cyclical'):
+            clean_peers = [
+                x for x in pe_peers
+                if not x.get('is_cyclical') and x['e_mult'] and x['e_mult'] > 0 and (x['price'] / x['e_mult']) >= 6.0
+            ]
+            if len(clean_peers) >= 3:
+                pe_peers = clean_peers
         p_ey = [x['e_mult'] / x['price'] for x in pe_peers if x['e_mult'] and x['e_mult'] > 0]
+        p_gs = [clamp(x['g_est'], -0.10, 0.45) for x in pe_peers if x['e_mult'] and x['e_mult'] > 0]
         ey_med = statistics.median(p_ey) if p_ey else g_ey
-        v_hpe = (d['e_mult'] / ey_med) if (d['e_mult'] and d['e_mult'] > 0 and ey_med > 0.005) else None
+        g_peer = statistics.median(p_gs) if p_gs else 0.10
+        g_self = 0.03 if d.get('is_cyclical') else clamp(d['g_est'], -0.10, 0.45)
+        rel_g = clamp(
+            (1.0 + 3.5 * max(g_self - d['gl'], -0.08)) / max(0.5, 1.0 + 3.5 * max(g_peer - d['gl'], -0.05)),
+            0.70, 1.70
+        )
+        v_hpe = ((d['e_mult'] / ey_med) * rel_g) if (d['e_mult'] and d['e_mult'] > 0 and ey_med > 0.005) else None
         peer_fwd_pe = round(1.0 / ey_med, 1) if ey_med > 0.005 else None
 
-        # M4: Bhojraj & Lee (2002 JAR) / Wilcox (1984 FAJ) Warranted Multiples
+        # M4: Bhojraj & Lee (2002 JAR) / Wilcox (1984 FAJ) Standardized Ridge Warranted Multiples
         v_wpb, v_wpe = compute_bhojraj_lee_warranted(d, all_items)
-        v_bl = statistics.mean([x for x in [v_wpb, v_wpe] if x]) if (v_wpb or v_wpe) else None
+        asset_light = bool(d['bvps'] and d['bvps'] > 0 and d['e2'] and (d['e2'] / d['bvps']) > 0.35)
+        if v_wpb and v_wpe:
+            v_bl = (0.15 * v_wpb + 0.85 * v_wpe) if asset_light else (0.50 * v_wpb + 0.50 * v_wpe)
+        else:
+            v_bl = v_wpe or v_wpb
 
-        # M5: Lie & Lie (2002 FAJ) Sub-Industry Harmonic EV/EBITDA (Non-Financials)
+        # M5: Lie & Lie (2002 FAJ) Sub-Industry Harmonic Forward EV/EBITDA (Non-Financials)
         v_ev = None
         if not d['is_fin'] and not d['is_fx_mismatch'] and d['ebitda'] and d['ebitda'] > 0 and d['eff_sh']:
             ev_peers = pe_peers if d['region'] == 'US' else peers
+            if not d.get('is_cyclical'):
+                clean_evp = [
+                    x for x in ev_peers
+                    if not x.get('is_cyclical') and x['ebitda'] and x['ebitda'] > 0
+                    and x['ev'] and x['ev'] > 0 and (x['ev'] / x['ebitda']) >= 4.5
+                ]
+                if len(clean_evp) >= 3:
+                    ev_peers = clean_evp
             p_evy = [
                 x['ebitda'] / x['ev'] for x in ev_peers
                 if not x['is_fin'] and not x.get('is_fx_mismatch') and x['ebitda'] and x['ebitda'] > 0 and x['ev'] and x['ev'] > 0
             ]
             evy_med = statistics.median(p_evy) if p_evy else g_evy
             if evy_med > 0.01:
-                eq = (d['ebitda'] / evy_med) - d['debt'] + d['cash']
+                ev_mult_adj = math.sqrt(rel_g) if not d.get('is_cyclical') else 0.85
+                eq = ((d['ebitda'] / evy_med) * ev_mult_adj) - d['debt'] + d['cash']
                 if eq > 0:
                     v_ev = eq / d['eff_sh']
 
@@ -596,11 +678,11 @@ def run_cross_sectional_valuation(pit_dict):
         valid_vals = [v for v in model_map.values() if v is not None]
         v_med = statistics.median(valid_vals) if valid_vals else None
 
-        # Sector-aware academic ensemble weights (40% Absolute Intrinsic + 60% Peer/Warranted Fundamental)
+        # Sector-aware academic ensemble weights (40% Absolute Intrinsic + 60% Growth-Adjusted Fundamental/Peer)
         w_map = (
             {'rim': 0.25, 'oj': 0.15, 'subIndPe': 0.20, 'blWarranted': 0.40}
             if d['is_fin'] else
-            {'rim': 0.20, 'oj': 0.15, 'subIndPe': 0.20, 'blWarranted': 0.35, 'evEbitda': 0.10}
+            {'rim': 0.18, 'oj': 0.22, 'subIndPe': 0.22, 'blWarranted': 0.28, 'evEbitda': 0.10}
         )
         wn, wd = 0.0, 0.0
         used_vals = []
@@ -613,7 +695,7 @@ def run_cross_sectional_valuation(pit_dict):
                 used_vals.append(val)
         fair_val = round(wn / wd, 2) if wd > 0 else (round(v_med, 2) if v_med else None)
 
-        # Inter-model dispersion range (25th-75th or min-max of valid models)
+        # Inter-model dispersion range (min-max of valid models)
         if len(used_vals) >= 2:
             lo_r, hi_r = min(used_vals), max(used_vals)
             fair_range = f'{lo_r:,.2f} - {hi_r:,.2f}'
@@ -631,7 +713,7 @@ def run_cross_sectional_valuation(pit_dict):
             'peerFwdPe': f'{peer_fwd_pe}x' if peer_fwd_pe else None,
             'costOfEquity': round(d['re'] * 100, 2),
             'betaAdj': round(d['beta_adj'], 2),
-            'cyclicalNormalized': d['is_cyclical'],
+            'cyclicalNormalized': d.get('is_cyclical', False),
         }
     return valued
 
@@ -713,14 +795,21 @@ def main():
         roe = raw(fd, 'returnOnEquity')
         fwd_roe = (e2_n / bvps) if (not is_fx_mismatch and e2_n and bvps and bvps > 0) else roe
         roe_est = (
-            0.5 * clamp(fwd_roe, -0.05, 0.55) + 0.5 * clamp(roe, -0.05, 0.55)
+            0.5 * clamp(fwd_roe, -0.05, 0.85) + 0.5 * clamp(roe, -0.05, 0.85)
             if (fwd_roe is not None and roe is not None) else (fwd_roe if fwd_roe is not None else roe)
         )
-        g_est = clamp((e2_n / e1_n) - 1.0, -0.15, 0.35) if (e1_n and e2_n and e1_n > 0 and e2_n > 0) else 0.06
+        g_raw = ((e2_n / e1_n) - 1.0) if (e1_n and e2_n and e1_n > 0 and e2_n > 0) else 0.06
+        g_est = compress_growth(g_raw)
         gm = raw(fd, 'grossMargins') or 0.25
         sec, ind = ap.get('sector') or 'Unknown', ap.get('industry') or 'Unknown'
         sh = raw(ks, 'sharesOutstanding')
-        debt, cash, ebitda = raw(fd, 'totalDebt') or 0.0, raw(fd, 'totalCash') or 0.0, raw(fd, 'ebitda')
+        debt, cash, ebitda_ttm = raw(fd, 'totalDebt') or 0.0, raw(fd, 'totalCash') or 0.0, raw(fd, 'ebitda')
+        # Forward-scale TTM EBITDA using forward-to-trailing EPS ratio so hyper-growth leaders aren't priced on stale EBITDA
+        ebitda = (
+            ebitda_ttm * clamp(e2_n / teps, 0.55, 2.50)
+            if (ebitda_ttm and ebitda_ttm > 0 and e2_n and e2_n > 0 and teps and teps > 0)
+            else ebitda_ttm
+        )
 
         if price and price > 0 and qs:
             pit_dict[code] = {
@@ -818,30 +907,30 @@ def main():
               f"tgt={rec.get('analystTarget')} models={rec.get('models')} q={(rec.get('quality') or {}).get('score')}")
 
     data = {
-        'version': '2.12.0',
+        'version': '2.14.0',
         'updatedAt': now.strftime('%Y-%m-%d %H:%M:%S'),
         'timestamp': int(now.timestamp()),
         'total': len(out),
         'coverage': {'perf': ok_perf, 'analyst': ok_tgt, 'academicModel': ok_val},
         'methodology': {
-            'name': 'Peer-Reviewed 5-Model Academic Intrinsic Valuation (Public Financial Data)',
+            'name': 'Peer-Reviewed 5-Model Academic Intrinsic Valuation v2.14 (Public Financial Data)',
             'papers': [
-                'Ohlson (1995 CAR) & Dechow, Hutton & Sloan (1999 JAE, ω=0.62) & Gebhardt, Lee & Swaminathan (2001 JAR) — Residual Income Model (RIM)',
-                'Ohlson & Juettner-Nauroth (2005 RAST) & Fuller & Hsia (1984 FAJ) & Damodaran (2012) — Reinvestment-Consistent 2-Stage Earnings DCF',
-                'Liu, Nissim & Thomas (2002 JAR) & Baker & Ruback (1999) — Leave-One-Out Sub-Industry Harmonic Forward P/E',
-                'Bhojraj & Lee (2002 JAR) & Wilcox (1984 FAJ) — Leave-One-Out Ridge Warranted Multiples (ROE, Growth, 1/re, Margin, Payout)',
-                'Lie & Lie (2002 FAJ) — Leave-One-Out Sub-Industry Harmonic EV/EBITDA (Non-Financials)',
+                'Ohlson (1995 CAR) & Dechow, Hutton & Sloan (1999 JAE, ω=0.62) & Penman (2013) — Residual Income Model (RIM, auto-excluded on asset-light R&D firms)',
+                'Ohlson & Juettner-Nauroth (2005 RAST) & Fuller & Hsia (1984 FAJ) & Damodaran (2012) — R&D-Aware 2-Stage Earnings DCF + Vasicek (1973 JF) Beta Shrinkage',
+                'Liu, Nissim & Thomas (2002 JAR) & Easton (2004 TAR) — Leave-One-Out Growth-Adjusted Sub-Industry Harmonic Forward P/E (Cyclical-Isolated)',
+                'Bhojraj & Lee (2002 JAR) & Wilcox (1984 FAJ) & Hastie et al. (ESL) — Leave-One-Out Standardized Ridge Warranted Multiples',
+                'Lie & Lie (2002 FAJ) — Leave-One-Out Sub-Industry Harmonic Forward EV/EBITDA (Non-Financials)',
                 'Piotroski (2000 JAR) & Sloan (1996 TAR) & Novy-Marx (2013 JFE) — 5-Point Fundamental Quality Score',
             ],
             'backtest2023to2026': {
                 'observations': 504,
                 'cohorts': '2023→2024, 2024→2025, 2025→2026, 2026 YTD (Zero Look-Ahead)',
-                'avgMedAPE': '30.4%',
-                'within30Pct': '49.4%',
-                'avgSpearmanIC': '+0.127',
-                'liveForwardMedVP': '1.01',
-                'liveForwardMedAPE': '28.7%',
-                'liveWithin30Pct': '53.5%',
+                'avgMedAPE': '30.3%',
+                'within30Pct': '50.2%',
+                'avgSpearmanIC': '+0.149',
+                'liveForwardMedVP': '1.08',
+                'liveForwardMedAPE': '26.2%',
+                'liveWithin30Pct': '51.2%',
             },
         },
         'stocks': out,

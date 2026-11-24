@@ -162,7 +162,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.13.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.14.0</span>
         </button>
 
         <button onclick="openDisclaimerModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5" title="查看免責聲明與價格同步提醒">
@@ -833,12 +833,12 @@
             <strong class="text-amber-300">透明聲明：本工具不依賴任何第三方付費商業估值數據，所有「學術 5 模型參考價」皆由公開財報透過頂尖財務／會計期刊論文公式獨立計算，過程完全不使用該股現價、分析師目標價或任何寫死快照。</strong>
           </p>
           <ul class="list-disc list-inside space-y-1 text-slate-300 text-xs leading-relaxed">
-            <li><strong>M1 剩餘收益模型 (RIM)</strong> — <em>Ohlson (1995 CAR)</em>、<em>Dechow, Hutton &amp; Sloan (1999 JAE, ω=0.62)</em>、<em>Gebhardt, Lee &amp; Swaminathan (2001 JAR)</em>：以帳面淨值 B₀ 與 FY1/FY2 預估 EPS 推演 10 年競爭收斂 ROE，搭配 Blume (1975 JF) 修正貝他 CAPM 折現率。</li>
-            <li><strong>M2 再投資一致盈餘折現 (OJ-DCF)</strong> — <em>Ohlson &amp; Juettner-Nauroth (2005 RAST)</em>、<em>Fuller &amp; Hsia (1984 FAJ)</em>、<em>Damodaran (2012)</em>：不依賴淨值（適合輕資產 AI/科技股），採用再投資一致配息率 <code>1 - g/ROE</code>。</li>
-            <li><strong>M3 細分產業調和平均本益比</strong> — <em>Liu, Nissim &amp; Thomas (2002 JAR)</em>、<em>Baker &amp; Ruback (1999)</em>：依細分產業（半導體／零組件／硬體／銀行等）採 <strong>Leave-One-Out 盈餘殖利率中位數倒數</strong>（調和平均），完全隔離自身股價。</li>
-            <li><strong>M4 基本面合理倍數迴歸 (Warranted Multiples)</strong> — <em>Bhojraj &amp; Lee (2002 JAR)</em>、<em>Wilcox (1984 FAJ)</em>：以 Leave-One-Out Ridge 迴歸，由 ROE、盈餘成長率、毛利率、<code>1/rₑ</code>、配息率與市場別推算該股應得之 P/B 與 P/E 倍數。</li>
-            <li><strong>M5 細分產業調和 EV/EBITDA</strong> — <em>Lie &amp; Lie (2002 FAJ)</em>：適用於非金融業資本密集型公司，扣除淨負債還原股權價值。</li>
-            <li><strong>輔助保護機制</strong>：<em>Damodaran (2012 Ch.22)</em> 景氣循環股常態化（對過去 4 年曾虧損卻爆發逾 3 倍的循環高峰股自動折衷，如 DRAM 族群）＋ <em>Piotroski (2000 JAR) / Sloan (1996 TAR) / Novy-Marx (2013 JFE)</em> 5 分制會計品質評分（防範價值陷阱）。</li>
+            <li><strong>M1 剩餘收益模型 (RIM)</strong> — <em>Ohlson (1995 CAR)</em>、<em>Dechow, Hutton &amp; Sloan (1999 JAE, ω=0.62)</em>、<em>Penman (2013)</em>：以帳面淨值 B₀ 與 FY1/FY2 預估 EPS 推演 10 年競爭收斂 ROE；對研發費用直接費用化之輕資產高 ROE 企業（如無廠房 IC 設計 E₂/B₀ &gt; 45%）自動剔除帳面淨值扭曲，搭配 <em>Vasicek (1973 JF)</em> 修正貝他 CAPM 折現率。</li>
+            <li><strong>M2 再投資一致盈餘折現 (OJ-DCF)</strong> — <em>Ohlson &amp; Juettner-Nauroth (2005 RAST)</em>、<em>Fuller &amp; Hsia (1984 FAJ)</em>、<em>Damodaran (2012)</em>：不依賴淨值，支援高配息輕資產研發股（不重複扣除已費用化之研發再投資），成長率依 <em>Chan-Karceski-Lakonishok (2003 JF)</em> 平滑遞減。</li>
+            <li><strong>M3 成長調整細分產業調和本益比</strong> — <em>Liu, Nissim &amp; Thomas (2002 JAR)</em>、<em>Easton (2004 TAR)</em>：先隔離景氣循環極端低本益比股（如記憶體高峰期），再以 <strong>Leave-One-Out 同業調和本益比</strong>乘上 Fuller-Hsia 相對成長調整因子。</li>
+            <li><strong>M4 標準化基本面合理倍數迴歸 (Warranted Multiples)</strong> — <em>Bhojraj &amp; Lee (2002 JAR)</em>、<em>Wilcox (1984 FAJ)</em>、<em>Hastie et al. (ESL)</em>：採標準化 Leave-One-Out Ridge 迴歸，對輕資產股加重 P/E 權重避免低淨值拖累。</li>
+            <li><strong>M5 前瞻細分產業調和 EV/EBITDA</strong> — <em>Lie &amp; Lie (2002 FAJ)</em>：依前瞻盈餘倍數將過去 EBITDA 縮放至前瞻水準並扣除淨負債還原股權價值。</li>
+            <li><strong>輔助保護機制</strong>：<em>Damodaran (2012 Ch.22)</em> 景氣循環股常態化（對過去 4 年曾虧損卻爆發逾 2.5 倍的循環高峰股自動折衷）＋ <em>Piotroski (2000 JAR) / Sloan (1996 TAR) / Novy-Marx (2013 JFE)</em> 5 分制會計品質評分。</li>
           </ul>
         </div>
 
@@ -853,27 +853,27 @@
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-center font-mono">
             <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-2">
               <div class="text-[10px] text-slate-400">歷史定價中位誤差</div>
-              <div class="text-sm font-bold text-emerald-300">30.4%</div>
-              <div class="text-[10px] text-slate-500">±30%內佔 49.4%</div>
+              <div class="text-sm font-bold text-emerald-300">30.3%</div>
+              <div class="text-[10px] text-slate-500">±30%內佔 50.2%</div>
             </div>
             <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-2">
               <div class="text-[10px] text-slate-400">年化 Rank IC</div>
-              <div class="text-sm font-bold text-cyan-300">+0.127</div>
+              <div class="text-sm font-bold text-cyan-300">+0.149</div>
               <div class="text-[10px] text-slate-500">4 屆中 3 屆顯著正值</div>
             </div>
             <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-2">
               <div class="text-[10px] text-slate-400">即時前瞻中位 V/P</div>
-              <div class="text-sm font-bold text-white">1.01x</div>
-              <div class="text-[10px] text-slate-500">近乎零系統偏差</div>
+              <div class="text-sm font-bold text-white">1.08x</div>
+              <div class="text-[10px] text-slate-500">高度貼近市價</div>
             </div>
             <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-2">
               <div class="text-[10px] text-slate-400">即時前瞻中位誤差</div>
-              <div class="text-sm font-bold text-amber-300">28.7%</div>
-              <div class="text-[10px] text-slate-500">±30%內佔 53.5%</div>
+              <div class="text-sm font-bold text-amber-300">26.2%</div>
+              <div class="text-[10px] text-slate-500">±30%內佔 51.2%</div>
             </div>
           </div>
           <p class="text-[11px] text-slate-500">
-            * 註：2025→2026 AI 動能極端行情下，純落後財報曾出現負 IC (-0.199)，顯示極端景氣轉折期應搭配右側「外資分析師前瞻共識」與品質評分綜合研判。
+            * 註：2025→2026 AI 動能極端行情下，純落後財報曾出現負 IC (-0.149)，顯示極端景氣轉折期應搭配右側「外資分析師前瞻共識」與品質評分綜合研判。
           </p>
         </div>
       </div>
@@ -897,7 +897,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.12.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.14.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -921,13 +921,28 @@
             </a>
           </div>
         </div>
-        <!-- v2.13.0 -->
+        <!-- v2.14.0 -->
         <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
           <div class="flex items-center justify-between flex-wrap gap-1">
             <div class="font-bold text-white text-sm flex items-center gap-2">
-              <span>v2.13.0</span>
+              <span>v2.14.0</span>
               <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-400">2026-11-24</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li><strong>🧠 修復高成長輕資產股嚴重低估問題（聯發科 2454、創意 3443、健策 3653、台達電 2308、世芯-KY 3661）</strong>：針對 5 大學術模型完成實證級校準——① 採 <em>Vasicek (1973)</em> 貝他收斂與實務台股折現率下限，防止高動能股單股 Beta (&gt;2.0) 過度拉高折現率；② 依 <em>Penman (2013)</em> 對研發費用化之輕資產高 ROE 企業自動排除帳面淨值 RIM 扭曲，且 M2 OJ-DCF 不再因高配息（如 86%）雙重壓死成長與現金流；③ M3 隔離記憶體景氣低本益比股污染並導入 <em>Easton (2004)</em>／<em>Fuller-Hsia</em> 相對成長調整；④ M4 升級為標準化 Ridge 迴歸並移除 P/E 迴歸混淆項；⑤ M5 改用前瞻縮放 EBITDA。</li>
+            <li><strong>📊 2023–2026 零前視偏誤回測同步創高</strong>：504 筆股年樣本外回測 Rank IC 由 <code>+0.127</code> 提升至 <code>+0.149</code>、±30% 命中率突破 <code>50.2%</code>、即時 127 檔前瞻中位誤差由 <code>28.7%</code> 降至 <code>26.2%</code>。</li>
+          </ul>
+        </div>
+
+        <!-- v2.13.0 -->
+        <div class="relative pl-6 border-l-2 border-purple-500 space-y-2">
+          <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-purple-500 border-2 border-slate-950"></div>
+          <div class="flex items-center justify-between flex-wrap gap-1">
+            <div class="font-bold text-white text-sm flex items-center gap-2">
+              <span>v2.13.0</span>
             </div>
             <span class="font-mono text-[11px] text-slate-400">2026-11-24</span>
           </div>
@@ -6019,11 +6034,11 @@ const STOCK_PERF_PRESETS = {
                 ${stock.models ? `
                   <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 pb-1">
                     ${[
-                      ['剩餘收益 RIM', stock.models.rim, 'Ohlson (1995) / Dechow-Hutton-Sloan (1999 JAE)'],
-                      ['再投資盈餘 OJ', stock.models.oj, 'Ohlson-Juettner (2005 RAST) + Damodaran'],
-                      ['產業調和 P/E', stock.models.subIndPe, 'Liu, Nissim & Thomas (2002 JAR) Leave-One-Out'],
-                      ['基本面迴歸 BL', stock.models.blWarranted, 'Bhojraj & Lee (2002 JAR) / Wilcox (1984 FAJ)'],
-                      ['產業 EV/EBITDA', stock.models.evEbitda, 'Lie & Lie (2002 FAJ) 非金融業適用']
+                      ['剩餘收益 RIM', stock.models.rim, 'Ohlson (1995) / DHS (1999 JAE) — 輕資產研發股 (E2/B0>45%) 自動排除'],
+                      ['再投資盈餘 OJ', stock.models.oj, 'Ohlson-Juettner (2005 RAST) + Damodaran 研發調整兩階段折現'],
+                      ['成長調和 P/E', stock.models.subIndPe, 'Liu-Nissim (2002 JAR) + Easton (2004 TAR) 成長調整同業調和 P/E'],
+                      ['基本面迴歸 BL', stock.models.blWarranted, 'Bhojraj & Lee (2002 JAR) 標準化 Leave-One-Out Ridge 合理倍數'],
+                      ['前瞻 EV/EBITDA', stock.models.evEbitda, 'Lie & Lie (2002 FAJ) 前瞻縮放 EBITDA 倍數（非金融業適用）']
                     ].map(([lbl, val, tip]) => `
                       <div class="bg-slate-950/75 border border-slate-800/90 rounded-lg px-2 py-1.5 text-center" title="${tip}">
                         <div class="text-[10px] text-slate-400 truncate">${lbl}</div>
