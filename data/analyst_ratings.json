@@ -1,27 +1,63 @@
 {
   "version": "2.15.0",
-  "updatedAt": "2026-11-24 14:49:30",
-  "timestamp": 1795502970,
-  "total": 22,
+  "updatedAt": "2026-11-25 02:52:06",
+  "timestamp": 1795546326,
+  "total": 26,
   "freshFetched": {
     "us": 7,
-    "investing": 15
+    "investing": 9
   },
   "stocks": {
     "NVDA": {
       "code": "NVDA",
       "name": "英偉達 (NVIDIA)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
-          "firm": "Needham",
+          "firm": "Melius Research",
+          "rating": "持有",
+          "target": "185.00",
+          "targetNum": 185.0,
+          "prevTarget": "315.00",
+          "action": "調降",
+          "date": "2026年11月13日"
+        },
+        {
+          "firm": "DA Davidson",
           "rating": "買入",
           "target": "200.00",
           "targetNum": 200.0,
-          "prevTarget": "200.00",
-          "action": "持平",
-          "date": "2026年11月24日"
+          "prevTarget": "300.00",
+          "action": "調降",
+          "date": "2026年11月13日"
+        },
+        {
+          "firm": "Craig-Hallum",
+          "rating": "持有",
+          "target": "180.00",
+          "targetNum": 180.0,
+          "prevTarget": "—",
+          "action": "首次評級",
+          "date": "2026年11月13日"
+        },
+        {
+          "firm": "B of A Securities",
+          "rating": "買入",
+          "target": "280.00",
+          "targetNum": 280.0,
+          "prevTarget": "350.00",
+          "action": "調降",
+          "date": "2026年11月13日"
+        },
+        {
+          "firm": "BMO Capital",
+          "rating": "優於大盤",
+          "target": "240.00",
+          "targetNum": 240.0,
+          "prevTarget": "340.00",
+          "action": "調降",
+          "date": "2026年11月13日"
         },
         {
           "firm": "Baird",
@@ -30,61 +66,25 @@
           "targetNum": 200.0,
           "prevTarget": "200.00",
           "action": "持平",
-          "date": "2026年11月24日"
+          "date": "2026年11月13日"
+        },
+        {
+          "firm": "Goldman Sachs",
+          "rating": "買入",
+          "target": "220.00",
+          "targetNum": 220.0,
+          "prevTarget": "300.00",
+          "action": "調降",
+          "date": "2026年11月13日"
         },
         {
           "firm": "Citigroup",
           "rating": "買入",
-          "target": "240.00",
-          "targetNum": 240.0,
-          "prevTarget": "225.00",
-          "action": "調升",
-          "date": "2026年11月24日"
-        },
-        {
-          "firm": "Bernstein",
-          "rating": "優於大盤",
-          "target": "200.00",
-          "targetNum": 200.0,
-          "prevTarget": "200.00",
-          "action": "持平",
-          "date": "2026年11月23日"
-        },
-        {
-          "firm": "Freedom Broker",
-          "rating": "買入",
-          "target": "230.00",
-          "targetNum": 230.0,
-          "prevTarget": "305.00",
+          "target": "225.00",
+          "targetNum": 225.0,
+          "prevTarget": "285.00",
           "action": "調降",
-          "date": "2026年11月19日"
-        },
-        {
-          "firm": "Jefferies",
-          "rating": "買入",
-          "target": "250.00",
-          "targetNum": 250.0,
-          "prevTarget": "300.00",
-          "action": "調降",
-          "date": "2026年11月19日"
-        },
-        {
-          "firm": "JP Morgan",
-          "rating": "加碼",
-          "target": "230.00",
-          "targetNum": 230.0,
-          "prevTarget": "215.00",
-          "action": "調升",
-          "date": "2026年11月19日"
-        },
-        {
-          "firm": "UBS",
-          "rating": "買入",
-          "target": "220.00",
-          "targetNum": 220.0,
-          "prevTarget": "240.00",
-          "action": "調降",
-          "date": "2026年11月18日"
+          "date": "2026年11月12日"
         }
       ]
     },
@@ -92,7 +92,7 @@
       "code": "AAPL",
       "name": "蘋果 (Apple)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
           "firm": "China Renaissance",
@@ -172,26 +172,8 @@
       "code": "TSLA",
       "name": "特斯拉 (Tesla)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
-        {
-          "firm": "HSBC",
-          "rating": "持有",
-          "target": "359.00",
-          "targetNum": 359.0,
-          "prevTarget": "157.00",
-          "action": "調升",
-          "date": "2026年11月20日"
-        },
-        {
-          "firm": "GLJ Research",
-          "rating": "賣出",
-          "target": "24.86",
-          "targetNum": 24.86,
-          "prevTarget": "24.86",
-          "action": "持平",
-          "date": "2026年11月13日"
-        },
         {
           "firm": "GLJ Research",
           "rating": "賣出",
@@ -245,6 +227,24 @@
           "prevTarget": "400.00",
           "action": "調升",
           "date": "2026年10月23日"
+        },
+        {
+          "firm": "BNP Paribas",
+          "rating": "中立",
+          "target": "420.00",
+          "targetNum": 420.0,
+          "prevTarget": "266.00",
+          "action": "調升",
+          "date": "2026年10月23日"
+        },
+        {
+          "firm": "RBC Capital",
+          "rating": "優於大盤",
+          "target": "480.00",
+          "targetNum": 480.0,
+          "prevTarget": "480.00",
+          "action": "持平",
+          "date": "2026年10月23日"
         }
       ]
     },
@@ -252,26 +252,8 @@
       "code": "MSFT",
       "name": "微軟 (Microsoft)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
-        {
-          "firm": "RBC Capital",
-          "rating": "優於大盤",
-          "target": "640.00",
-          "targetNum": 640.0,
-          "prevTarget": "640.00",
-          "action": "持平",
-          "date": "2026年11月20日"
-        },
-        {
-          "firm": "TD Cowen",
-          "rating": "買入",
-          "target": "650.00",
-          "targetNum": 650.0,
-          "prevTarget": "650.00",
-          "action": "持平",
-          "date": "2026年11月18日"
-        },
         {
           "firm": "Bernstein",
           "rating": "優於大盤",
@@ -325,6 +307,24 @@
           "prevTarget": "625.00",
           "action": "調升",
           "date": "2026年10月29日"
+        },
+        {
+          "firm": "Citizens",
+          "rating": "Market Outperform",
+          "target": "625.00",
+          "targetNum": 625.0,
+          "prevTarget": "550.00",
+          "action": "調升",
+          "date": "2026年10月29日"
+        },
+        {
+          "firm": "Truist Securities",
+          "rating": "買入",
+          "target": "630.00",
+          "targetNum": 630.0,
+          "prevTarget": "600.00",
+          "action": "調升",
+          "date": "2026年10月29日"
         }
       ]
     },
@@ -332,7 +332,7 @@
       "code": "AMD",
       "name": "超微 (AMD)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
           "firm": "B of A Securities",
@@ -412,17 +412,8 @@
       "code": "AVGO",
       "name": "博通 (Broadcom)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
-        {
-          "firm": "Rothschild & Co",
-          "rating": "中立",
-          "target": "398.00",
-          "targetNum": 398.0,
-          "prevTarget": "595.00",
-          "action": "調降",
-          "date": "2026年11月13日"
-        },
         {
           "firm": "Rosenblatt",
           "rating": "買入",
@@ -485,6 +476,15 @@
           "prevTarget": "—",
           "action": "首次評級",
           "date": "2026年09月04日"
+        },
+        {
+          "firm": "Raymond James",
+          "rating": "優於大盤",
+          "target": "475.00",
+          "targetNum": 475.0,
+          "prevTarget": "450.00",
+          "action": "調升",
+          "date": "2026年09月04日"
         }
       ]
     },
@@ -492,7 +492,7 @@
       "code": "TSM",
       "name": "台積電 ADR (TSM)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
           "firm": "Bernstein",
@@ -920,7 +920,7 @@
       "code": "2603",
       "name": "長榮",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
           "firm": "JPMorgan",
@@ -968,7 +968,7 @@
       "code": "8299",
       "name": "群聯電子",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
           "firm": "Macquarie",
@@ -1084,7 +1084,7 @@
       "code": "2382",
       "name": "廣達",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
           "firm": "Goldman Sachs",
@@ -1306,7 +1306,7 @@
       "code": "2408",
       "name": "南亞科",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
           "firm": "Macquarie",
@@ -1364,7 +1364,7 @@
       "code": "2344",
       "name": "華邦電",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-24 14:49",
+      "updatedAt": "2026-11-25 02:52",
       "ratings": [
         {
           "firm": "JPMorgan",
@@ -1415,6 +1415,208 @@
           "prevTarget": "140.00",
           "action": "持平",
           "date": "2026年02月12日"
+        }
+      ]
+    },
+    "0700": {
+      "code": "0700",
+      "name": "騰訊控股",
+      "source": "Investing.com 公開分析師共識表",
+      "updatedAt": "2026-11-25 02:52",
+      "ratings": [
+        {
+          "firm": "JPMorgan",
+          "rating": "買入",
+          "target": "560.00",
+          "targetNum": 560.0,
+          "upside": "+63.93%",
+          "prevTarget": "625.00",
+          "action": "持平",
+          "date": "2026年11月20日"
+        },
+        {
+          "firm": "Citi",
+          "rating": "買入",
+          "target": "629.00",
+          "targetNum": 629.0,
+          "upside": "+84.13%",
+          "prevTarget": "755.00",
+          "action": "持平",
+          "date": "2026年11月20日"
+        },
+        {
+          "firm": "StoneX",
+          "rating": "買入",
+          "target": "520.00",
+          "targetNum": 520.0,
+          "upside": "+52.22%",
+          "prevTarget": "625.00",
+          "action": "持平",
+          "date": "2026年11月19日"
+        },
+        {
+          "firm": "Nomura/Instinet",
+          "rating": "買入",
+          "target": "582.00",
+          "targetNum": 582.0,
+          "upside": "+70.37%",
+          "prevTarget": "659.00",
+          "action": "持平",
+          "date": "2026年11月19日"
+        },
+        {
+          "firm": "CLSA",
+          "rating": "買入",
+          "target": "650.00",
+          "targetNum": 650.0,
+          "upside": "+90.28%",
+          "prevTarget": "685.00",
+          "action": "持平",
+          "date": "2026年11月19日"
+        }
+      ]
+    },
+    "1303": {
+      "code": "1303",
+      "name": "南亞",
+      "source": "Investing.com 公開分析師共識表",
+      "updatedAt": "2026-11-25 02:52",
+      "ratings": [
+        {
+          "firm": "UBS",
+          "rating": "買入",
+          "target": "390.00",
+          "targetNum": 390.0,
+          "upside": "+56.63%",
+          "prevTarget": "300.00",
+          "action": "持平",
+          "date": "2026年10月19日"
+        },
+        {
+          "firm": "JPMorgan",
+          "rating": "買入",
+          "target": "415.00",
+          "targetNum": 415.0,
+          "upside": "+66.67%",
+          "prevTarget": "350.00",
+          "action": "持平",
+          "date": "2026年10月14日"
+        },
+        {
+          "firm": "Macquarie",
+          "rating": "買入",
+          "target": "506.00",
+          "targetNum": 506.0,
+          "upside": "+103.21%",
+          "prevTarget": "424.00",
+          "action": "持平",
+          "date": "2026年10月13日"
+        },
+        {
+          "firm": "UBS",
+          "rating": "買入",
+          "target": "300.00",
+          "targetNum": 300.0,
+          "upside": "+20.48%",
+          "prevTarget": "-",
+          "action": "升級",
+          "date": "2026年09月28日"
+        },
+        {
+          "firm": "JPMorgan",
+          "rating": "買入",
+          "target": "350.00",
+          "targetNum": 350.0,
+          "upside": "+40.56%",
+          "prevTarget": "300.00",
+          "action": "持平",
+          "date": "2026年09月02日"
+        }
+      ]
+    },
+    "3653": {
+      "code": "3653",
+      "name": "健策",
+      "source": "Investing.com 公開分析師共識表",
+      "updatedAt": "2026-11-25 02:52",
+      "ratings": [
+        {
+          "firm": "JPMorgan",
+          "rating": "買入",
+          "target": "9,500.00",
+          "targetNum": 9500.0,
+          "upside": "+134.57%",
+          "prevTarget": "8,800.00",
+          "action": "持平",
+          "date": "2026年11月12日"
+        },
+        {
+          "firm": "Nomura/Instinet",
+          "rating": "買入",
+          "target": "8,650.00",
+          "targetNum": 8650.0,
+          "upside": "+113.58%",
+          "prevTarget": "4,785.00",
+          "action": "持平",
+          "date": "2026年11月12日"
+        },
+        {
+          "firm": "CLSA",
+          "rating": "買入",
+          "target": "9,500.00",
+          "targetNum": 9500.0,
+          "upside": "+134.57%",
+          "prevTarget": "8,800.00",
+          "action": "持平",
+          "date": "2026年11月12日"
+        },
+        {
+          "firm": "JPMorgan",
+          "rating": "買入",
+          "target": "8,800.00",
+          "targetNum": 8800.0,
+          "upside": "+117.28%",
+          "prevTarget": "7,500.00",
+          "action": "持平",
+          "date": "2026年10月29日"
+        },
+        {
+          "firm": "JPMorgan",
+          "rating": "買入",
+          "target": "7,500.00",
+          "targetNum": 7500.0,
+          "upside": "+85.19%",
+          "prevTarget": "6,200.00",
+          "action": "持平",
+          "date": "2026年09月30日"
+        }
+      ]
+    },
+    "6239": {
+      "code": "6239",
+      "name": "力成",
+      "source": "Investing.com 公開分析師共識表",
+      "updatedAt": "2026-11-25 02:52",
+      "ratings": [
+        {
+          "firm": "CLSA",
+          "rating": "買入",
+          "target": "320.00",
+          "targetNum": 320.0,
+          "upside": "+52.38%",
+          "prevTarget": "370.00",
+          "action": "持平",
+          "date": "2026年10月28日"
+        },
+        {
+          "firm": "CLSA",
+          "rating": "買入",
+          "target": "370.00",
+          "targetNum": 370.0,
+          "upside": "+76.19%",
+          "prevTarget": "125.00",
+          "action": "升級",
+          "date": "2026年06月11日"
         }
       ]
     }
