@@ -3,7 +3,7 @@
 Daily Academic Multi-Model Fundamentals & Valuation Auto-Updater (v2.12.0)
 
 Zero paid API keys. Zero circularity with current stock price or analyst targets.
-Zero reliance on hardcoded InvestingPro snapshots.
+Zero reliance on hardcoded third-party valuation snapshots.
 
 Free public data sources:
   1. Yahoo Finance chart API (1y daily closes)     -> real 1W / 1M / 1Q / 1Y period returns
@@ -799,7 +799,7 @@ def main():
             rec.update({
                 'fairValue': v['fairValue'],
                 'fairRange': v['fairRange'],
-                'fairSource': f"學術 {v['modelCount']} 模型（非 InvestingPro{cyc_tag}）",
+                'fairSource': f"學術 {v['modelCount']} 模型（公開財報估算{cyc_tag}）",
                 'models': v['models'],
                 'peerGroup': v['peerGroup'],
                 'peerPe': v['peerFwdPe'],
@@ -824,7 +824,7 @@ def main():
         'total': len(out),
         'coverage': {'perf': ok_perf, 'analyst': ok_tgt, 'academicModel': ok_val},
         'methodology': {
-            'name': 'Peer-Reviewed 5-Model Academic Intrinsic Valuation (Non-InvestingPro)',
+            'name': 'Peer-Reviewed 5-Model Academic Intrinsic Valuation (Public Financial Data)',
             'papers': [
                 'Ohlson (1995 CAR) & Dechow, Hutton & Sloan (1999 JAE, ω=0.62) & Gebhardt, Lee & Swaminathan (2001 JAR) — Residual Income Model (RIM)',
                 'Ohlson & Juettner-Nauroth (2005 RAST) & Fuller & Hsia (1984 FAJ) & Damodaran (2012) — Reinvestment-Consistent 2-Stage Earnings DCF',

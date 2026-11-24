@@ -1,6 +1,6 @@
 ---
 name: 個股估值校準與資料反饋 (Stock Valuation Feedback)
-about: 提供特定個股的最新收盤行情、InvestingPro 模型公允價或外資目標價校準建議
+about: 提供特定個股的最新收盤行情、模型參考價或外資目標價校準建議
 title: '[Valuation]: 股票代碼與名稱'
 labels: ['valuation-calibration', 'community-feedback']
 assignees: ''
@@ -13,8 +13,8 @@ assignees: ''
 
 ### 行情與估值數據校準反饋
 - **真實即時股價 (NT$)**: 
-- **InvestingPro 模型公允價 (NT$)**: 
-- **公允價合理區間 (Fair Range)**: 
+- **模型參考價 (NT$)**: 
+- **模型參考區間 (Fair Range)**: 
 - **外資機構平均目標價 (NT$)**: 
 
 ### 期間表現數據 (選填)

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>股票模型參考價（非 InvestingPro）& 分析師預估價即時雷達</title>
+  <title>股票學術模型參考價 & 分析師預估價即時雷達</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
@@ -91,7 +91,7 @@
             </span>
           </div>
           <p class="text-xs text-slate-400 mt-0.5">
-            左側輸入台股 / 美股代碼，右側呈現最新股價、模型參考價（非 InvestingPro）與外資分析師共識預估價
+            左側輸入台股 / 美股代碼，右側呈現最新股價、學術多模型參考價與外資分析師共識預估價
           </p>
         </div>
       </div>
@@ -211,8 +211,8 @@
         </span>
         <div class="text-slate-300 leading-relaxed text-xs">
           <span class="text-amber-200 font-bold">【行情與估值延遲說明】</span>
-          本專案數據源自第三方公開財報與行情介面，<strong class="text-white font-semibold underline decoration-amber-400/80 underline-offset-2">各市場價格可能未即時同步或存在 15~20 分鐘法定延遲，實際成交價格請務必自行向券商或交易所即時行情查證確認</strong>。所載之<strong class="text-emerald-300">「模型參考價（非 InvestingPro）」</strong>採用經 2023–2026 實證回測之 <strong>5 套學術同儕審查模型</strong>（Ohlson-DHS 剩餘收益、OJ 再投資盈餘、Liu-Nissim 同業調和本益比、Bhojraj-Lee 基本面迴歸、Lie-Lie EV/EBITDA，完全獨立於個股現價與分析師目標價），僅供學術研究參考，概不構成任何投資建議。
-          <div id="fundamentalsUpdatedLabel" class="text-[11px] text-cyan-300/90 font-mono mt-1">目標價／學術五模型參考價（非 InvestingPro）／本益比／區間報酬：每日自動更新載入中...</div>
+          本專案數據源自第三方公開財報與行情介面，<strong class="text-white font-semibold underline decoration-amber-400/80 underline-offset-2">各市場價格可能未即時同步或存在 15~20 分鐘法定延遲，實際成交價格請務必自行向券商或交易所即時行情查證確認</strong>。所載之<strong class="text-emerald-300">「學術多模型參考價」</strong>採用經 2023–2026 實證回測之 <strong>5 套學術同儕審查模型</strong>（Ohlson-DHS 剩餘收益、OJ 再投資盈餘、Liu-Nissim 同業調和本益比、Bhojraj-Lee 基本面迴歸、Lie-Lie EV/EBITDA，完全獨立於個股現價與分析師目標價），僅供學術研究參考，概不構成任何投資建議。
+          <div id="fundamentalsUpdatedLabel" class="text-[11px] text-cyan-300/90 font-mono mt-1">目標價／學術五模型參考價／本益比／區間報酬：每日自動更新載入中...</div>
         </div>
       </div>
       <button
@@ -694,7 +694,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
           <div class="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-3 space-y-2">
-            <label class="block text-emerald-300 font-semibold">模型參考價（非 InvestingPro）</label>
+            <label class="block text-emerald-300 font-semibold">模型參考價（學術多模型）</label>
             <input id="editFairValue" type="number" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white font-mono focus:border-emerald-400 focus:outline-none" />
             <label class="block text-slate-400 text-[11px]">模型參考價區間 / 來源說明</label>
             <input id="editFairRange" type="text" placeholder="例如：405.78 - 408.25" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-200 font-mono text-[11px] focus:border-emerald-400 focus:outline-none" />
@@ -786,7 +786,7 @@
           <strong>預設免金鑰引擎已啟用：</strong>不需填寫任何 API Key，系統即可直接透過無伺服器代理即時撈取 Investing.com 個股頁面的最新股價、<strong>分析師 12M 預估目標價、外資機構評級明細表、同業本益比/市帳率與同業模型公允價</strong>！
         </div>
         <p class="text-slate-400">
-          若您希望同時啟用 <strong>Gemini AI + Google Search Grounding</strong> 來自動擷取 Google 搜尋引擎對 <code>site:investing.com/pro</code> 的付費牆快照數值，可於下方輸入您的 Gemini API Key（僅保存在您的瀏覽器 <code>localStorage</code>）：
+          若您希望同時啟用 <strong>Gemini AI + Google Search Grounding</strong> 來透過 Google 搜尋引擎檢索公開財報與市場研究估值區間作為補充參考，可於下方輸入您的 Gemini API Key（僅保存在您的瀏覽器 <code>localStorage</code>）：
         </p>
         <div>
           <label class="block text-slate-300 font-medium mb-1">Gemini API Key (選填)</label>
@@ -806,7 +806,7 @@
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <h3 class="text-base font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-satellite-dish text-cyan-400"></i>
-          <span>本工具的數據來源與「模型參考價（非 InvestingPro）」計算原理</span>
+          <span>本工具的數據來源與「學術多模型參考價」計算原理</span>
         </h3>
         <button onclick="toggleGuideModal()" class="text-slate-400 hover:text-white p-1">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -827,10 +827,10 @@
         <div class="bg-slate-900/90 border border-emerald-500/30 rounded-xl p-4 space-y-2">
           <h4 class="font-bold text-emerald-300 flex items-center gap-2">
             <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs">2</span>
-            學術 5 模型參考價（非 InvestingPro 官方公允價・零循環參照）
+            學術 5 模型參考價（公開財報自算・零循環參照）
           </h4>
           <p class="text-slate-400 text-xs leading-relaxed">
-            <strong class="text-amber-300">透明聲明：InvestingPro 公允價值屬付費訂閱內容，無免費公開 API；本工具提供的是基於頂尖財務／會計期刊論文之「學術 5 模型參考價」，計算過程完全不使用該股現價、分析師目標價或任何寫死快照。</strong>
+            <strong class="text-amber-300">透明聲明：本工具不依賴任何第三方付費商業估值數據，所有「學術 5 模型參考價」皆由公開財報透過頂尖財務／會計期刊論文公式獨立計算，過程完全不使用該股現價、分析師目標價或任何寫死快照。</strong>
           </p>
           <ul class="list-disc list-inside space-y-1 text-slate-300 text-xs leading-relaxed">
             <li><strong>M1 剩餘收益模型 (RIM)</strong> — <em>Ohlson (1995 CAR)</em>、<em>Dechow, Hutton &amp; Sloan (1999 JAE, ω=0.62)</em>、<em>Gebhardt, Lee &amp; Swaminathan (2001 JAR)</em>：以帳面淨值 B₀ 與 FY1/FY2 預估 EPS 推演 10 年競爭收斂 ROE，搭配 Blume (1975 JF) 修正貝他 CAPM 折現率。</li>
@@ -932,7 +932,7 @@
             <span class="font-mono text-[11px] text-slate-400">2026-11-23</span>
           </div>
           <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
-            <li><strong>🎓 全面升級「學術 5 模型內在價值引擎（非 InvestingPro）」</strong>：徹底淘汰舊版依賴現價／目標價／寫死快照的簡化公式，改採 5 篇頂尖財務會計期刊模型（Ohlson-DHS 1999 JAE 剩餘收益、Ohlson-Juettner 2005 RAST 再投資盈餘、Liu-Nissim-Thomas 2002 JAR 細分產業調和本益比、Bhojraj-Lee 2002 JAR Leave-One-Out Ridge 基本面合理倍數、Lie-Lie 2002 FAJ 產業 EV/EBITDA），完全零循環參照。</li>
+            <li><strong>🎓 全面升級「學術 5 模型內在價值引擎」</strong>：徹底淘汰舊版依賴現價／目標價／寫死快照的簡化公式，改採 5 篇頂尖財務會計期刊模型（Ohlson-DHS 1999 JAE 剩餘收益、Ohlson-Juettner 2005 RAST 再投資盈餘、Liu-Nissim-Thomas 2002 JAR 細分產業調和本益比、Bhojraj-Lee 2002 JAR Leave-One-Out Ridge 基本面合理倍數、Lie-Lie 2002 FAJ 產業 EV/EBITDA），完全零循環參照。</li>
             <li><strong>📈 通過 2023–2026 樣本外歷史實證回測（零前視偏誤）</strong>：新增可重現回測腳本 <code>scripts/backtest_valuation.py</code>，4 屆共 504 筆股年樣本達成平均 Rank IC <code>+0.127</code>、歷史定價中位誤差 <code>30.4%</code>；即時前瞻中位 V/P <code>1.01x</code>、誤差 <code>28.7%</code>。</li>
             <li><strong>🛡️ 品質評分與循環股常態化</strong>：新增 Piotroski (2000)／Sloan (1996)／Novy-Marx (2013) 5 分制會計品質評分、Damodaran Ch.22 景氣循環股常態化（如 DRAM 族群）與跨幣別 ADR／財報單位自動防呆，並於個股卡片完整拆解 5 大子模型估值結果。</li>
           </ul>
@@ -1033,7 +1033,7 @@
             <li><strong>📊 個股擴充欄位：即時股價與 5 大區間表現</strong>：支援一鍵擴充「近1日、近1週、近1月、近1季、近1年」報酬率指標，每檔股票皆可獨立展開折疊明細，並可在右側詳細面板與卡片中完整檢視。</li>
             <li><strong>🌐 GitHub Issue 與 Release 深度整合</strong>：全站與彈窗均直連 GitHub Releases 與 Issues，支援線上直接反饋、提出功能建議與查閱開源發行歷程。</li>
             <li><strong>🛠️ 手動校準擴充</strong>：手動校準彈窗支援個別編輯修正 1D / 1W / 1M / 1Q / 1Y 表現數據。</li>
-            <li><strong>🎯 客觀公開金融模型術語標準化</strong>：全面移除更新記錄中任何特定個人或私人名稱，回歸 InvestingPro 財務模型估值與公開機構數據標準。</li>
+            <li><strong>🎯 客觀公開金融模型術語標準化</strong>：全面移除更新記錄中任何特定個人或私人名稱，回歸公開財務模型估值與公開機構數據標準。</li>
           </ul>
         </div>
 
@@ -1051,7 +1051,7 @@
             <li><strong>🏆 台股潛力 Top 100 雙向排行榜分頁</strong>：新增獨立分頁，提供「公允價折價榜 Top 100」與「分析師看漲榜 Top 100」。</li>
             <li><strong>📄 完整分頁功能 (Pagination)</strong>：支援每頁 20 / 50 / 100 筆切換，具備前三名勳章（🥇 1, 🥈 2, 🥉 3）、上一頁/下一頁與頁碼跳轉。</li>
             <li><strong>🌐 社群共編標的池 (Crowdsourced Pool)</strong>：使用者查過的標的自動收錄至共享庫，支援熱度追蹤、整頁加入雷達與 JSON 匯出/匯入。</li>
-            <li><strong>🎯 數據合理性與即時盤況校準</strong>：全面校準核心標的之最新行情、InvestingPro 模型公允價與外資目標價。</li>
+            <li><strong>🎯 數據合理性與即時盤況校準</strong>：全面校準核心標的之最新行情、模型參考價與外資目標價。</li>
             <li><strong>🏷️ 新增版本與 Release Notes 彈窗、Issue 追蹤專區</strong>：提供完整版號標記與問題修復透明化歷程。</li>
           </ul>
         </div>
@@ -1064,7 +1064,7 @@
             <span class="font-mono text-[11px] text-slate-400">2026-11-08</span>
           </div>
           <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
-            <li><strong>🎯 財務模型基準庫更新</strong>：同步更新多檔權值股之 InvestingPro 官方財務模型基準數據。</li>
+            <li><strong>🎯 財務模型基準庫更新</strong>：同步更新多檔權值股之公開財務模型基準數據。</li>
             <li><strong>🔍 頂部搜尋列常駐化</strong>：將代碼輸入卡移至最上方，解決切換視圖時輸入框消失與新增順序反向問題。</li>
             <li><strong>⚡ 支援 2301 光寶科</strong>：擴充光寶科官方對應與熱門快捷晶片。</li>
           </ul>
@@ -1297,7 +1297,7 @@
             <span>商標與智慧財產權：</span>
           </h4>
           <ul class="list-disc list-inside space-y-1.5 text-slate-400 pl-1 leading-relaxed">
-            <li><code class="text-cyan-300 font-mono">Investing.com</code> 與 <code class="text-cyan-300 font-mono">InvestingPro</code> 為 Fusion Media Limited 之商標或註冊商標。本開源專案與該公司無任何官方附屬、贊助、授權或代言關係。</li>
+            <li>本專案所提及之第三方公開財經平台與交易所名稱及商標均歸其各自權利人所有。本開源專案為獨立學術研究工具，與任何第三方財經網站或商業估值平台無任何官方附屬、贊助、授權或代言關係。</li>
           </ul>
         </div>
       </div>
@@ -3400,7 +3400,7 @@
         dayHigh: 248.00,
         fairValue: 285.00,
         fairRange: '265.00 - 305.00',
-        fairSource: 'InvestingPro 驗證快照',
+        fairSource: '模型基準快照',
         peerFairUpside: '16.1%',
         sectorFairUpside: '12.5%',
         analystTarget: 271.60,
@@ -3422,7 +3422,7 @@
         week52Low: 160.00,
         week52High: 275.00,
         comparePath: 'TWSE:2603/compare/TWSE:2609TWSE:2615',
-        note: '全球前十大貨櫃航運巨頭，InvestingPro 財務模型推算公允價值 NT$ 285.00 元（合理區間 265.00 - 305.00 元），18 位外資分析師給予買進評級，12 個月平均目標價 NT$ 271.60 元（最高 332.00 元），本益比僅 5.5x，淨值比 1.0x。',
+        note: '全球前十大貨櫃航運巨頭，財務模型推算參考價 NT$ 285.00 元（合理區間 265.00 - 305.00 元），18 位外資分析師給予買進評級，12 個月平均目標價 NT$ 271.60 元（最高 332.00 元），本益比僅 5.5x，淨值比 1.0x。',
         lastUpdated: 'Investing.com 官方驗證快照',
         analystRatings: [
           { firm: 'JPMorgan', rating: '買入', target: '290.00', upside: '+18.13%', action: '持平', date: '2026年11月02日' },
@@ -3442,7 +3442,7 @@
         dayHigh: 1730.00,
         fairValue: 2280.00,
         fairRange: '2,050.00 - 2,520.00',
-        fairSource: 'InvestingPro 驗證快照',
+        fairSource: '模型基準快照',
         peerFairUpside: '38.2%',
         sectorFairUpside: '15.0%',
         analystTarget: 2749.77,
@@ -3464,7 +3464,7 @@
         week52Low: 1420.00,
         week52High: 2980.00,
         comparePath: 'TWSE:6669/compare/TWSE:3231TWSE:2382TWSE:2317',
-        note: 'AI 伺服器機櫃與雲端超大規模資料中心領導廠，InvestingPro 公允價 NT$ 2,280.00 元（區間 2,050 - 2,520 元），18 位外資分析師全數給予強力買入評級，共識目標價 NT$ 2,749.77 元（最高 3,352.55 元），PEG 僅 0.32。',
+        note: 'AI 伺服器機櫃與雲端超大規模資料中心領導廠，模型參考價 NT$ 2,280.00 元（區間 2,050 - 2,520 元），18 位外資分析師全數給予強力買入評級，共識目標價 NT$ 2,749.77 元（最高 3,352.55 元），PEG 僅 0.32。',
         lastUpdated: 'Investing.com 官方驗證快照',
         analystRatings: [
           { firm: 'Goldman Sachs', rating: '買入', target: '3,200.00', upside: '+93.94%', action: '持平', date: '2026年11月03日' },
@@ -3484,7 +3484,7 @@
         dayHigh: 408.00,
         fairValue: 406.50,
         fairRange: '399.57 - 408.25',
-        fairSource: 'InvestingPro 驗證快照',
+        fairSource: '模型基準快照',
         peerFairUpside: '17.4%',
         sectorFairUpside: '13.7%',
         analystTarget: 961.47,
@@ -3506,7 +3506,7 @@
         week52Low: 218.00,
         week52High: 1220.00,
         comparePath: 'TWSE:2327/compare/TWSE:2478TPEX:6173TWSE:2308TWSE:2481TWSE:3026',
-        note: '已完成 1拆4 面額變更（2.5元），InvestingPro 公允價 406.50 元，15 位外資分析師全數給予買進評級，共識目標價 961.47 元（最高 1,310 元）。',
+        note: '已完成 1拆4 面額變更（2.5元），模型參考價 406.50 元，15 位外資分析師全數給予買進評級，共識目標價 961.47 元（最高 1,310 元）。',
         lastUpdated: 'Investing.com 即時快照',
         analystRatings: [
           { firm: 'JPMorgan', rating: '買入', target: '1,050.00', upside: '+180.75%', action: '持平', date: '2026年10月30日' },
@@ -3526,7 +3526,7 @@
         dayHigh: 2260.00,
         fairValue: 2495.00,
         fairRange: '2,280.00 - 2,710.00',
-        fairSource: 'InvestingPro 同業模型',
+        fairSource: '同業估值模型',
         peerFairUpside: '11.9%',
         sectorFairUpside: '13.7%',
         analystTarget: 3409.80,
@@ -3568,7 +3568,7 @@
         dayHigh: 3725.00,
         fairValue: 3171.00,
         fairRange: '3,510.00 - 4,130.00',
-        fairSource: 'InvestingPro 同業模型',
+        fairSource: '同業估值模型',
         peerFairUpside: '12.7%',
         sectorFairUpside: '13.7%',
         analystTarget: 6124.19,
@@ -3612,7 +3612,7 @@
         dayHigh: 240.50,
         fairValue: 268.40,
         fairRange: '245.00 - 291.80',
-        fairSource: 'InvestingPro 同業模型',
+        fairSource: '同業估值模型',
         peerFairUpside: '19.5%',
         sectorFairUpside: '13.7%',
         analystTarget: 347.50,
@@ -3650,7 +3650,7 @@
         dayHigh: 1640.00,
         fairValue: 2148.00,
         fairRange: '1,980.00 - 2,315.00',
-        fairSource: 'InvestingPro 驗證快照',
+        fairSource: '模型基準快照',
         peerFairUpside: '18.2%',
         sectorFairUpside: '13.7%',
         analystTarget: 2697.38,
@@ -3688,7 +3688,7 @@
         dayHigh: 282.50,
         fairValue: 375.86,
         fairRange: '370.29 - 381.43',
-        fairSource: 'InvestingPro 驗證快照',
+        fairSource: '模型基準快照',
         peerFairUpside: '17.4%',
         sectorFairUpside: '13.7%',
         analystTarget: 480.00,
@@ -3710,7 +3710,7 @@
         week52Low: 111.00,
         week52High: 645.00,
         comparePath: 'TWSE:2492/compare/TPEX:3624TWSE:2375TWSE:6155TWSE:2478TWSE:2327',
-        note: '最新收盤價 258.50 元，低於 InvestingPro 財務模型公允價 375.86 元（+45.4% 折價空間）與分析師目標價 480.00 元。',
+        note: '最新收盤價 258.50 元，低於財務模型參考價 375.86 元（+45.4% 折價空間）與分析師目標價 480.00 元。',
         lastUpdated: 'Investing.com 即時快照',
         analystRatings: []
       },
@@ -3726,7 +3726,7 @@
         dayHigh: 226.50,
         fairValue: 268.75,
         fairRange: '201.45 - 299.04',
-        fairSource: 'InvestingPro 驗證快照',
+        fairSource: '模型基準快照',
         peerFairUpside: '15.2%',
         sectorFairUpside: '13.7%',
         analystTarget: 294.00,
@@ -3748,7 +3748,7 @@
         week52Low: 76.10,
         week52High: 319.00,
         comparePath: 'TWSE:3006/compare/TWSE:2344TWSE:2408TPEX:5351TPEX:3581TPEX:8064',
-        note: '利基型記憶體 IC 設計，InvestingPro 公允價 268.75 元，外資分析師目標價 294.00 元（+41.69% 上漲潛力）。',
+        note: '利基型記憶體 IC 設計，模型參考價 268.75 元，外資分析師目標價 294.00 元（+41.69% 上漲潛力）。',
         lastUpdated: 'Investing.com 即時快照',
         analystRatings: []
       },
@@ -3764,7 +3764,7 @@
         dayHigh: 1160.00,
         fairValue: 1238.00,
         fairRange: '1,150.00 - 1,325.00',
-        fairSource: 'InvestingPro 驗證快照',
+        fairSource: '模型基準快照',
         peerFairUpside: '17.4%',
         sectorFairUpside: '13.7%',
         analystTarget: 1450.00,
@@ -4073,7 +4073,7 @@ const STOCK_PERF_PRESETS = {
           if (!s.fairValue || s.fairValue <= 0 || s.fairValue === '—' || !s.fairRange) {
             s.fairValue = core.fairValue;
             s.fairRange = core.fairRange;
-            s.fairSource = 'InvestingPro 財務模型 + 外資共識';
+            s.fairSource = '公開財務模型 + 外資共識';
           }
           if (!s.analystTarget || s.analystTarget <= 0 || s.analystTarget === '—') {
             s.analystTarget = core.analystTarget;
@@ -4105,7 +4105,7 @@ const STOCK_PERF_PRESETS = {
           normalizedStocks.unshift({
             ...c2603,
             currency: 'NT$',
-            fairSource: 'InvestingPro 驗證快照',
+            fairSource: '模型基準快照',
             consensusLabel: '買入',
             analystBuy: 18,
             analystHold: 2,
@@ -4126,7 +4126,7 @@ const STOCK_PERF_PRESETS = {
           normalizedStocks.unshift({
             ...c6669,
             currency: 'NT$',
-            fairSource: 'InvestingPro 驗證快照',
+            fairSource: '模型基準快照',
             consensusLabel: '強力買入',
             analystBuy: 18,
             analystHold: 0,
@@ -4352,7 +4352,7 @@ const STOCK_PERF_PRESETS = {
         }
       }
       isBatchUpdatingValuations = false;
-      showToast(`🎉 已成功完成 ${successCount}/${stocks.length} 檔自選股 InvestingPro 公允價與分析師目標價線上檢索！`, 'success');
+      showToast(`🎉 已成功完成 ${successCount}/${stocks.length} 檔自選股模型參考價與分析師目標價線上檢索！`, 'success');
     }
 
     /*************************************************************************
@@ -4367,7 +4367,7 @@ const STOCK_PERF_PRESETS = {
       if (f.fairValue > 0) {
         target.fairValue = f.fairValue;
         target.fairRange = f.fairRange || target.fairRange;
-        target.fairSource = f.fairSource || '學術多模型（非 InvestingPro）';
+        target.fairSource = f.fairSource || '學術多模型（公開財報估算）';
       }
       if (f.models) target.models = f.models;
       if (f.quality) target.quality = f.quality;
@@ -4426,7 +4426,7 @@ const STOCK_PERF_PRESETS = {
 
         const label = document.getElementById('fundamentalsUpdatedLabel');
         if (label && data.updatedAt) {
-          label.textContent = `目標價／學術五模型參考價（非 InvestingPro）／品質評分／官方本益比：每日自動更新，最後更新 ${data.updatedAt}`;
+          label.textContent = `目標價／學術五模型參考價／品質評分／官方本益比：每日自動更新，最後更新 ${data.updatedAt}`;
         }
         saveToStorage();
         renderApp();
@@ -4669,12 +4669,8 @@ const STOCK_PERF_PRESETS = {
     }
 
     function getGoogleCompareSearchUrl(stock) {
-      if (stock.comparePath) {
-        const q = `site:investing.com/pro "${stock.comparePath.split('/compare')[0]}/compare"`;
-        return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
-      }
-      const m = stock.market === 'TPEX' ? 'TPEX' : 'TWSE';
-      return `https://www.google.com/search?q=${encodeURIComponent(`site:investing.com/pro "${m}:${stock.code}/compare"`)}`;
+      const q = `${stock.code} ${stock.name || ''} 目標價 本益比 財報 估值`.trim();
+      return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
     }
 
     function getInvestingPageUrl(stock) {
@@ -4902,7 +4898,7 @@ const STOCK_PERF_PRESETS = {
       else if (md.includes('貨幣 JPY') || md.includes('目標價為JPY')) currency = '¥';
 
       let market = metaInfo.market || known.market || (currency === 'USD' ? 'NASDAQ' : (currency === '¥' ? 'TSE' : (currency === 'HK$' ? 'HKEX' : 'TWSE')));
-      const compMatch = md.match(/https:\/\/hk\.investing\.com\/pro\/(([A-Z]+):[^\)\s]+\/compare\/[^\)\s]+)/);
+      const compMatch = md.match(/\b((TWSE|TPEX|NASDAQ|NYSE|TSE|TYO|HKEX|HKG):[^\)\s\/]+\/compare\/[^\)\s]+)/);
       const comparePath = compMatch ? compMatch[1] : '';
       if (compMatch && compMatch[2]) {
         if (compMatch[2].includes('TPEX')) market = 'TPEX';
@@ -4995,10 +4991,10 @@ const STOCK_PERF_PRESETS = {
       const marketCap = mcapMatch ? mcapMatch[1].trim() : '—';
       const divYield = divMatch ? divMatch[1].trim() : '—';
 
-      // 8. Calculate Fair Value (Use verified InvestingPro Fair Value if available, otherwise compute from Peer Multiples & Peer Fair Value Upside)
+      // 8. Calculate Fair Value (Use cached academic/baseline model Fair Value if available, otherwise compute from Peer Multiples & Peer Fair Value Upside)
       let fairValue = known.proFairValue || 0;
       let fairRange = known.proFairRange || '';
-      let fairSource = known.proFairValue ? 'InvestingPro 驗證快照' : 'Investing.com 同業估值模型';
+      let fairSource = known.proFairValue ? '模型基準快照' : '同業相對估值模型';
 
       if (!fairValue && price > 0) {
         const models = [];
@@ -5092,7 +5088,7 @@ const STOCK_PERF_PRESETS = {
 
       try {
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-        const prompt = `請透過 Google Search 查詢 Investing.com / InvestingPro 針對股票 ${stockData.code} (${stockData.name}) 的公開快照 (site:investing.com/pro "${stockData.market}:${stockData.code}/compare")，若搜尋結果摘要中有明確的 InvestingPro 公允價值 (Fair Value) 數字，請回傳純 JSON: {"fairValue": 數字, "fairRange": "區間字串"}。若無則回傳 {}。`;
+        const prompt = `請透過 Google Search 查詢股票 ${stockData.code} (${stockData.name}) 的最新公開財報、法人研究報告與合理估值區間，若有明確的市場合理估值參考價數字，請回傳純 JSON: {"fairValue": 數字, "fairRange": "區間字串"}。若無則回傳 {}。`;
         const resp = await fetch(apiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -5110,7 +5106,7 @@ const STOCK_PERF_PRESETS = {
             if (parsed.fairValue && parseFloat(parsed.fairValue) > 0) {
               stockData.fairValue = parseFloat(parsed.fairValue);
               if (parsed.fairRange) stockData.fairRange = parsed.fairRange;
-              stockData.fairSource = 'Gemini AI + Pro 快照';
+              stockData.fairSource = 'Gemini AI 公開檢索輔助';
             }
           }
         }
@@ -5155,7 +5151,7 @@ const STOCK_PERF_PRESETS = {
             prevClose: core?.prevClose || 0,
             fairValue: core?.fairValue || known?.proFairValue || 0,
             fairRange: core?.fairRange || known?.proFairRange || '—',
-            fairSource: core?.fairValue ? '核心估值數據庫' : 'InvestingPro 驗證快照',
+            fairSource: core?.fairValue ? '核心估值數據庫' : '模型基準快照',
             peerFairUpside: '—',
             sectorFairUpside: '—',
             analystTarget: core?.analystTarget || known?.analystTarget || 0,
@@ -5177,7 +5173,7 @@ const STOCK_PERF_PRESETS = {
             week52Low: 0,
             week52High: 0,
             comparePath: '',
-            note: `線上 Investing.com 暫時連線逾時，已為您載入內建最新 InvestingPro 公允價與分析師共識預估價。`,
+            note: `線上公開行情暫時連線逾時，已為您載入內建最新模型參考價與分析師共識預估價。`,
             lastUpdated: '官方估值數據庫',
             analystRatings: []
           };
@@ -5393,7 +5389,7 @@ const STOCK_PERF_PRESETS = {
             prevClose: core?.prevClose || 0,
             fairValue: core?.fairValue || known.proFairValue || 0,
             fairRange: core?.fairRange || known.proFairRange || '撈取中...',
-            fairSource: core?.fairValue ? '核心估值數據庫' : (known.proFairValue ? 'InvestingPro 驗證快照' : '撈取中...'),
+            fairSource: core?.fairValue ? '核心估值數據庫' : (known.proFairValue ? '模型基準快照' : '撈取中...'),
             analystTarget: core?.analystTarget || known.analystTarget || 0,
             analystRange: core?.analystRange || '撈取中...',
             analystBuy: 0,
@@ -5465,7 +5461,7 @@ const STOCK_PERF_PRESETS = {
               if (stocks[idx].fairValue <= 0 && known.proFairValue) {
                 stocks[idx].fairValue = known.proFairValue;
                 stocks[idx].fairRange = known.proFairRange || '';
-                stocks[idx].fairSource = 'InvestingPro 驗證快照';
+                stocks[idx].fairSource = '模型基準快照';
               }
               if (stocks[idx].analystTarget <= 0 && known.analystTarget) {
                 stocks[idx].analystTarget = known.analystTarget;
@@ -5669,7 +5665,7 @@ const STOCK_PERF_PRESETS = {
             <div class="absolute inset-0 z-20 bg-slate-950/75 backdrop-blur-sm flex flex-col items-center justify-center gap-3">
               <i class="fa-solid fa-circle-notch fa-spin text-3xl text-cyan-400"></i>
               <p class="text-sm font-bold text-white">正在即時連線 Investing.com 撈取 ${stock.code} 最新資料...</p>
-              <p class="text-xs text-slate-400">解析最新成交價、InvestingPro 公允價指標與外資分析師共識目標價</p>
+              <p class="text-xs text-slate-400">解析最新成交價、模型參考價指標與外資分析師共識目標價</p>
             </div>
           ` : ''}
 
@@ -5712,7 +5708,7 @@ const STOCK_PERF_PRESETS = {
           <!-- 2. DUAL HERO CARDS: FAIR VALUE (公允價) & ANALYST PRICE TARGET (分析師預估價) -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
 
-            <!-- HERO CARD LEFT: 模型參考價（非 InvestingPro） -->
+            <!-- HERO CARD LEFT: 學術多模型參考價 -->
             <div class="rounded-2xl p-5 bg-gradient-to-br from-emerald-950/40 via-slate-900/90 to-slate-900/90 border-2 border-emerald-500/40 shadow-lg shadow-emerald-500/5 flex flex-col justify-between space-y-4">
               <div>
                 <div class="flex items-center justify-between gap-2">
@@ -5721,8 +5717,8 @@ const STOCK_PERF_PRESETS = {
                       <i class="fa-solid fa-scale-balanced"></i>
                     </div>
                     <div>
-                      <h3 class="text-sm font-bold text-emerald-300">模型參考價（非 InvestingPro）</h3>
-                      <p class="text-[11px] text-slate-400">${stock.fairSource || '公開模型估算（非 InvestingPro）'} • ${stock.fundamentalsUpdatedAt || stock.lastValuationUpdate || '每日自動更新'}</p>
+                      <h3 class="text-sm font-bold text-emerald-300">學術多模型參考價</h3>
+                      <p class="text-[11px] text-slate-400">${stock.fairSource || '公開財報多模型估算'} • ${stock.fundamentalsUpdatedAt || stock.lastValuationUpdate || '每日自動更新'}</p>
                     </div>
                   </div>
                   <button
@@ -5740,7 +5736,7 @@ const STOCK_PERF_PRESETS = {
 
                 <div class="mt-4 flex items-baseline justify-between bg-slate-950/70 rounded-xl p-4 border border-emerald-500/20">
                   <div>
-                    <div class="text-[11px] text-slate-400">公開公式推算參考價（非 InvestingPro）</div>
+                    <div class="text-[11px] text-slate-400">公開財報學術模型推算參考價</div>
                     <div class="text-3xl sm:text-4xl font-bold font-mono text-white mt-0.5">
                       ${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '未提供'}
                     </div>
@@ -6079,7 +6075,7 @@ const STOCK_PERF_PRESETS = {
                 class="px-3 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-medium transition flex items-center gap-1.5"
               >
                 <i class="fa-brands fa-google"></i>
-                <span>開啟 Pro 公允價快照搜尋</span>
+                <span>開啟 Google 公開研究搜尋</span>
               </a>
             </div>
 
@@ -6122,7 +6118,7 @@ const STOCK_PERF_PRESETS = {
         </div>
         <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-center justify-between">
           <div>
-            <p class="text-xs text-slate-400">平均模型參考空間（非 InvestingPro）</p>
+            <p class="text-xs text-slate-400">平均模型參考空間</p>
             <p class="text-2xl font-bold font-mono mt-1 ${avgProUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${avgProUpside >= 0 ? '+' : ''}${avgProUpside.toFixed(1)}%</p>
           </div>
           <i class="fa-solid fa-scale-balanced text-emerald-400 text-xl"></i>
@@ -6209,7 +6205,7 @@ const STOCK_PERF_PRESETS = {
 
             <div class="grid grid-cols-2 gap-3">
               <div class="bg-slate-900/90 border border-emerald-500/30 rounded-xl p-3.5">
-                <div class="text-xs text-emerald-300 font-semibold">模型參考價（非 InvestingPro）</div>
+                <div class="text-xs text-emerald-300 font-semibold">學術多模型參考價</div>
                 <div class="flex items-baseline justify-between mt-1.5">
                   <span class="text-xl font-bold font-mono text-white">${stock.fairValue > 0 ? `${cur}${formatNumber(stock.fairValue)}` : '—'}</span>
                   ${proUpside !== null ? `<span class="text-xs font-mono font-bold ${proUpside >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${proUpside >= 0 ? '+' : ''}${proUpside.toFixed(1)}%</span>` : ''}
@@ -6260,7 +6256,7 @@ const STOCK_PERF_PRESETS = {
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.m1')" title="近 1 月報酬率">近1月 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.q1')" title="近 1 季報酬率">近1季 <i class="fa-solid fa-sort ml-0.5"></i></th>
               <th class="py-3.5 px-2.5 text-center cursor-pointer hover:text-cyan-300" onclick="sortByColumn('perf.y1')" title="近 1 年報酬率">近1年 <i class="fa-solid fa-sort ml-0.5"></i></th>
-              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')" title="公開模型估算參考價（非 InvestingPro）">模型參考價 <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')" title="公開財報學術多模型估算參考價">模型參考價 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">模型空間 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystTarget')">外資預估價 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-3 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystUpside')">外資空間 <i class="fa-solid fa-sort ml-1"></i></th>
@@ -6274,7 +6270,7 @@ const STOCK_PERF_PRESETS = {
             <tr class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
               <th class="py-3.5 px-4 cursor-pointer hover:text-cyan-300" onclick="sortByColumn('code')">代碼 / 名稱 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('price')">即時股價 <i class="fa-solid fa-sort ml-1"></i></th>
-              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')" title="公開模型估算參考價（非 InvestingPro）">模型參考價（非 InvestingPro） <i class="fa-solid fa-sort ml-1"></i></th>
+              <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('fairValue')" title="公開財報學術多模型估算參考價">學術模型參考價 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('proUpside')">模型空間 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystTarget')">分析師預估價 <i class="fa-solid fa-sort ml-1"></i></th>
               <th class="py-3.5 px-4 text-right cursor-pointer hover:text-cyan-300" onclick="sortByColumn('analystUpside')">分析師空間 <i class="fa-solid fa-sort ml-1"></i></th>
@@ -6492,13 +6488,13 @@ const STOCK_PERF_PRESETS = {
       const thUpside = document.getElementById('lbThMetricUpside');
       if (thVal && thUpside) {
         if (mode === 'fairValue') {
-          thVal.textContent = '模型參考價（非 InvestingPro）';
+          thVal.textContent = '學術模型參考價';
           thUpside.textContent = '模型折價空間';
         } else if (mode === 'analyst') {
           thVal.textContent = '分析師預估目標價';
           thUpside.textContent = '分析師看漲空間';
         } else if (mode === 'marketCap') {
-          thVal.textContent = '模型參考價（非 InvestingPro）';
+          thVal.textContent = '學術模型參考價';
           thUpside.textContent = '模型折價空間';
         } else {
           thVal.textContent = '模型參考價 / 目標價';
@@ -6731,7 +6727,7 @@ const STOCK_PERF_PRESETS = {
 
       // Render Table Head
       if (thead) {
-        const targetTitle = lbMode === 'fairValue' ? '模型參考價（非 InvestingPro）' : (lbMode === 'analyst' ? '外資分析師目標價' : '模型參考價（非 InvestingPro）');
+        const targetTitle = lbMode === 'fairValue' ? '學術模型參考價' : (lbMode === 'analyst' ? '外資分析師目標價' : '學術模型參考價');
         const upsideTitle = lbMode === 'fairValue' ? '模型折價空間' : (lbMode === 'analyst' ? '外資潛在看漲空間' : '最大潛在空間');
 
         if (showLbPerf) {
@@ -7002,7 +6998,7 @@ const STOCK_PERF_PRESETS = {
           prevClose: target.prevClose || target.price || 0,
           fairValue: target.fairValue || 0,
           fairRange: target.fairRange || `${(target.fairValue * 0.92).toFixed(2)} - ${(target.fairValue * 1.08).toFixed(2)}`,
-          fairSource: 'InvestingPro 基準模型',
+          fairSource: '公開基準模型',
           analystTarget: target.analystTarget || 0,
           analystRange: target.analystRange || `${(target.analystTarget * 0.85).toFixed(2)} - ${(target.analystTarget * 1.15).toFixed(2)}`,
           consensusLabel: target.analystTarget > target.price ? '買入' : '公允',
@@ -7220,7 +7216,7 @@ const STOCK_PERF_PRESETS = {
       const val = document.getElementById('geminiApiKeyInput').value.trim();
       if (val) {
         localStorage.setItem(API_KEY_STORAGE, val);
-        showToast('已儲存 Gemini API Key！將自動輔助檢索 InvestingPro 快照', 'success');
+        showToast('已儲存 Gemini API Key！將自動輔助檢索公開財報研究區間', 'success');
       } else {
         localStorage.removeItem(API_KEY_STORAGE);
         showToast('已切換為預設免金鑰即時撈取模式', 'info');
@@ -7301,7 +7297,7 @@ const STOCK_PERF_PRESETS = {
     }
 
     function exportCSV() {
-      const headers = ['代碼', '名稱', '市場', '最新股價', '模型參考價(非InvestingPro)', '模型參考空間(%)', '分析師預估價(Target)', '分析師潛在空間(%)', '分析師共識', '本益比(P/E)', '股價淨值比(P/B)', '備註'];
+      const headers = ['代碼', '名稱', '市場', '最新股價', '學術模型參考價', '模型參考空間(%)', '分析師預估價(Target)', '分析師潛在空間(%)', '分析師共識', '本益比(P/E)', '股價淨值比(P/B)', '備註'];
       const rows = stocks.map(s => {
         const proUp = calcUpside(s.fairValue, s.price);
         const anaUp = calcUpside(s.analystTarget, s.price);

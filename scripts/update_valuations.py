@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Valuations & Analyst Targets Sync Script
-Refreshes official InvestingPro Fair Value benchmarks, uncertainty ranges,
+Valuations & Analyst Targets Sync Script (Legacy snapshot export)
+Refreshes baseline model reference benchmarks, uncertainty ranges,
 Wall Street analyst 12M consensus targets, and analyst ratings count.
 Outputs `data/valuations.json`.
 """
@@ -53,7 +53,7 @@ def main():
                 'fairValue': float(fv_m.group(1)) if fv_m else None,
                 'fairRange': fr_m.group(1) if fr_m else '',
                 'analystTarget': float(at_m.group(1)) if at_m else None,
-                'fairSource': 'InvestingPro 財務模型',
+                'fairSource': '公開財務模型',
                 'updatedAt': now_str
             }
 
@@ -76,7 +76,7 @@ def main():
                         'analystRange': item.get('analystRange', ''),
                         'pe': item.get('pe', ''),
                         'pb': item.get('pb', ''),
-                        'fairSource': 'InvestingPro 財務模型 + 外資共識',
+                        'fairSource': '公開財務模型 + 外資共識',
                         'updatedAt': now_str
                     }
         except Exception as e:
