@@ -32,15 +32,19 @@ jobs:
         run: |
           python3 scripts/update_fundamentals.py
 
+      - name: Fetch institutional analyst ratings & price target tables (Yahoo US + Investing.com TW/HK/JP)
+        run: |
+          python3 scripts/update_analyst_ratings.py || echo "Warning: analyst_ratings partial update"
+
       - name: Commit and push if updated
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/fundamentals.json
+          git add data/fundamentals.json data/analyst_ratings.json
           if git diff --staged --quiet; then
-            echo "No changes in fundamentals.json, skipping commit."
+            echo "No changes in fundamentals/analyst_ratings, skipping commit."
           else
-            git commit -m "chore(data): 每日自動更新分析師目標價、公允價模型、本益比與區間報酬 [skip ci]"
+            git commit -m "chore(data): 每日自動更新學術六模型估值、外資券商目標價明細與區間報酬 [skip ci]"
             git pull --rebase origin main
             git push origin main
           fi

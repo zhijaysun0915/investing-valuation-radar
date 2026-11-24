@@ -1,15 +1,15 @@
 # 📊 股票模型參考價 & 分析師預估價即時雷達 (Stock Valuation Radar)
 
 [![GitHub Pages Deployment](https://img.shields.io/badge/線上_Live_Demo-GitHub_Pages-10b981?style=for-the-badge&logo=github)](https://zhijaysun0915.github.io/investing-valuation-radar/)
-[![Version](https://img.shields.io/badge/版本-v2.14.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
+[![Version](https://img.shields.io/badge/版本-v2.15.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![Issues](https://img.shields.io/badge/Issue_反饋-GitHub_Issues-f59e0b?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/issues)
 [![Releases](https://img.shields.io/badge/Releases-GitHub_Releases-8b5cf6?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![GitHub Repository](https://img.shields.io/badge/GitHub_Repo-zhijaysun0915%2Finvesting--valuation--radar-181717?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-專為台股（TWSE / TPEX）與美股（NASDAQ / NYSE）研究設計的 **學術 5 模型參考價與外資分析師共識預估價 (Analyst Price Target) 即時查詢雷達**。
+專為台股（TWSE / TPEX）與美股（NASDAQ / NYSE）研究設計的 **機構＋學術 6 模型參考價（含世界公認黃金標準 2-Stage FCFF/WACC DCF）與外資分析師共識預估價 (Analyst Price Target) 即時查詢雷達**。
 
-使用者只需在左側輸入股票代碼，右側即刻並列展示**最新成交價、學術多模型參考價（含折溢價百分比與 5 套期刊子模型拆解）、會計品質評分、外資分析師 12 個月平均目標價、預估高低區間、買進／賣出評級分布與各大投行券商評級明細**。
+使用者只需在左側輸入股票代碼，右側即刻並列展示**最新成交價、6 模型 Football Field 參考價（首推機構黃金標準 FCFF/WACC DCF ＋ 5 套期刊子模型拆解與 WACC/rₑ 折現率）、會計品質評分、外資分析師 12 個月平均目標價、預估高低區間、買進／賣出評級分布與每日自動更新的各大投行券商評級明細**。
 
 ---
 
@@ -25,11 +25,11 @@
 +----------------------------------------------------------------------------------------------------+
 |  [輸入代碼 2330 / 2327 / NVDA]  |  [右側雙核心看板]                                                |
 |  - 批次輸入代碼                |  +------------------------------+  +-----------------------------+ |
-|  - 熱門標的一鍵快選            |  | 💎 學術多模型參考價          |  | 🎯 分析師 12M 預估目標價    | |
-|  - 已追蹤清單與 localStorage   |  | 5 套期刊模型拆解＋品質評分   |  | 外資共識目標價與評級分布    | |
+|  - 熱門標的一鍵快選            |  | 💎 機構＋學術 6 模型參考價   |  | 🎯 分析師 12M 預估目標價    | |
+|  - 已追蹤清單與 localStorage   |  | FCFF/WACC DCF + 5 期刊模型   |  | 外資共識目標價與評級分布    | |
 |                                |  +------------------------------+  +-----------------------------+ |
 |                                |  - 股價位階尺規 (現價 vs 模型參考價 vs 目標價)                    |
-|                                |  - 外資機構明細表 (JPMorgan、Morgan Stanley、Nomura、Citi 等)     |
+|                                |  - 外資機構明細表 (每日自動更新＋即時重算潛在空間 ⚡)              |
 +----------------------------------------------------------------------------------------------------+
 ```
 
@@ -39,12 +39,12 @@
 
 1. **左輸右顯即時聯動（Split-Pane Dashboard）**
    - **左側輸入與管理**：輸入單一或多筆代碼（支援逗號、空白或換行分隔），提供台股/美股代碼自動識別、熱門股晶片快選與本地查詢歷史清單。
-   - **右側重點估值看板**：並排呈現「學術 5 模型參考價（含 5 大子模型細項與 Piotroski/Sloan 品質評分）」與「外資分析師 12 個月共識預估價」，快速對比折溢價幅度。
+   - **右側重點估值看板**：並排呈現「機構＋學術 6 模型參考價（含 🏆 FCFF/WACC DCF、5 大期刊子模型細項與 Piotroski/Sloan 品質評分）」與「外資分析師 12 個月共識預估價」，快速對比折溢價幅度。
 
 2. **零後端依賴的雙引擎架構（免 API Key 即開即用）**
-   - **引擎 A：每日自動化公開財報管線 ＋ 即時連線解析**：
-     - 透過 GitHub Actions 每日抓取台灣證交所／櫃買中心官方本益比、股價淨值比與 Yahoo Finance 公開財報，執行 5 套同儕審查學術估值模型（Ohlson-DHS 剩餘收益、Ohlson-Juettner 再投資盈餘、Liu-Nissim-Thomas 細分產業調和本益比、Bhojraj-Lee 基本面迴歸、Lie-Lie 產業 EV/EBITDA），並附可重現的 2023–2026 樣本外回測腳本 `scripts/backtest_valuation.py`。
-     - 單股即時搜尋亦可解析公開個股網頁之最新成交價、52 週高低點、外資分析師平均目標價與各大外資評級明細表。
+   - **引擎 A：每日自動化公開財報管線 ＋ 外資明細自動同步 ＋ 即時連線解析**：
+     - 透過 GitHub Actions 每日抓取台灣證交所／櫃買中心官方本益比、股價淨值比與 Yahoo Finance 公開財報，執行 **6 套機構與同儕審查學術估值模型**（🏆 2-Stage FCFF/WACC Enterprise-Value DCF〔CFA Institute / McKinsey / Damodaran 黃金標準〕、Ohlson-DHS 剩餘收益、Ohlson-Juettner 再投資盈餘、Liu-Nissim-Thomas 細分產業調和本益比、Bhojraj-Lee 基本面迴歸、Lie-Lie 產業 EV/EBITDA），金融股自動切換為剩餘收益主導，並附可重現的 2023–2026 樣本外回測腳本 `scripts/backtest_valuation.py`。
+     - 透過 `scripts/update_analyst_ratings.py` 每日自動同步外資與券商最新目標價明細（`data/analyst_ratings.json`），介面依盤中即時股價動態重算 `潛在空間 ⚡`，並支援單股一鍵「🔄 更新外資明細」。
    - **引擎 B：選填 Gemini AI + Google Search Grounding**：
      - 使用者可選擇填入個人的 Gemini API Key（僅留存於瀏覽器 localStorage，絕不上傳）。
      - 透過 Google Search 檢索最新公開財報摘要與法人研究參考區間作為輔助補充。

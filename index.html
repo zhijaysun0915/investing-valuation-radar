@@ -162,7 +162,7 @@
         <button onclick="openReleaseNotesModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="查看版本更新日誌與歷程">
           <i class="fa-solid fa-code-commit text-purple-400"></i>
           <span class="hidden sm:inline">更新日誌</span>
-          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.14.0</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/20 text-purple-300 font-mono font-bold">v2.15.0</span>
         </button>
 
         <button onclick="openDisclaimerModal()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5" title="查看免責聲明與價格同步提醒">
@@ -833,7 +833,8 @@
             <strong class="text-amber-300">透明聲明：本工具不依賴任何第三方付費商業估值數據，所有「學術 5 模型參考價」皆由公開財報透過頂尖財務／會計期刊論文公式獨立計算，過程完全不使用該股現價、分析師目標價或任何寫死快照。</strong>
           </p>
           <ul class="list-disc list-inside space-y-1 text-slate-300 text-xs leading-relaxed">
-            <li><strong>M1 剩餘收益模型 (RIM)</strong> — <em>Ohlson (1995 CAR)</em>、<em>Dechow, Hutton &amp; Sloan (1999 JAE, ω=0.62)</em>、<em>Penman (2013)</em>：以帳面淨值 B₀ 與 FY1/FY2 預估 EPS 推演 10 年競爭收斂 ROE；對研發費用直接費用化之輕資產高 ROE 企業（如無廠房 IC 設計 E₂/B₀ &gt; 45%）自動剔除帳面淨值扭曲，搭配 <em>Vasicek (1973 JF)</em> 修正貝他 CAPM 折現率。</li>
+            <li><strong>🏆 M0 企業自由現金流折現 (FCFF / WACC DCF — 世界機構公認黃金標準)</strong> — <em>CFA Institute</em>、<em>McKinsey《Valuation》第 7 版</em>、<em>Aswath Damodaran (NYU Stern)</em>：採價值驅動公式 <code>FCFF = NOPAT × (1 - g/ROIC)</code> 與無股價循環參照之目標權重 WACC（含合成信用利差債權成本），為全球投行與企業併購最公認之內在價值基準（金融業自動改以剩餘收益 RIM 為主）。</li>
+            <li><strong>M1 剩餘收益模型 (RIM)</strong> — <em>Ohlson (1995 CAR)</em>、<em>Dechow, Hutton &amp; Sloan (1999 JAE, ω=0.62)</em>、<em>Penman (2013)</em>：以帳面淨值 B₀ 與 FY1/FY2 預估 EPS 推演 10 年競爭收斂 ROE；為銀行／金控業主力內在模型，對研發費用化之輕資產高 ROE 企業（E₂/B₀ &gt; 45%）自動排除帳面扭曲。</li>
             <li><strong>M2 再投資一致盈餘折現 (OJ-DCF)</strong> — <em>Ohlson &amp; Juettner-Nauroth (2005 RAST)</em>、<em>Fuller &amp; Hsia (1984 FAJ)</em>、<em>Damodaran (2012)</em>：不依賴淨值，支援高配息輕資產研發股（不重複扣除已費用化之研發再投資），成長率依 <em>Chan-Karceski-Lakonishok (2003 JF)</em> 平滑遞減。</li>
             <li><strong>M3 成長調整細分產業調和本益比</strong> — <em>Liu, Nissim &amp; Thomas (2002 JAR)</em>、<em>Easton (2004 TAR)</em>：先隔離景氣循環極端低本益比股（如記憶體高峰期），再以 <strong>Leave-One-Out 同業調和本益比</strong>乘上 Fuller-Hsia 相對成長調整因子。</li>
             <li><strong>M4 標準化基本面合理倍數迴歸 (Warranted Multiples)</strong> — <em>Bhojraj &amp; Lee (2002 JAR)</em>、<em>Wilcox (1984 FAJ)</em>、<em>Hastie et al. (ESL)</em>：採標準化 Leave-One-Out Ridge 迴歸，對輕資產股加重 P/E 權重避免低淨值拖累。</li>
@@ -897,7 +898,7 @@
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
               <span>版本更新日誌 (Release Notes)</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.14.0</span>
+              <span class="px-2 py-0.5 rounded text-xs font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.15.0</span>
             </h3>
             <p class="text-xs text-slate-400">專案演進歷史與版本功能里程碑</p>
           </div>
@@ -921,13 +922,28 @@
             </a>
           </div>
         </div>
-        <!-- v2.14.0 -->
+        <!-- v2.15.0 -->
         <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2">
           <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950"></div>
           <div class="flex items-center justify-between flex-wrap gap-1">
             <div class="font-bold text-white text-sm flex items-center gap-2">
-              <span>v2.14.0</span>
+              <span>v2.15.0</span>
               <span class="px-2 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">最新釋出</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-400">2026-11-24</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li><strong>🏦 外資與券商機構目標價明細全面自動化更新</strong>：新增 <code>scripts/update_analyst_ratings.py</code> 與每日排程輸出 <code>data/analyst_ratings.json</code>（美股串接 Yahoo Finance 華爾街投行評級紀錄；台／港／日股串接 Investing.com 公開分析師共識表），徹底取代舊版寫死明細！表格內「潛在空間 ⚡」改依即時成交價動態重算，並附一鍵「🔄 更新外資明細」即時檢索按鈕。</li>
+            <li><strong>🏆 導入世界公認機構黃金標準：2-Stage FCFF / WACC 企業自由現金流折現模型</strong>：依據 <em>CFA Institute</em>、<em>McKinsey《Valuation》第 7 版</em> 與 <em>Damodaran (NYU Stern)</em> 價值驅動公式升級為「機構／學術 6 模型足球場交叉驗證引擎」，於個股卡片置頂高亮展示 <code>🏆 FCFF/WACC</code> 估值與 WACC 折現率。</li>
+          </ul>
+        </div>
+
+        <!-- v2.14.0 -->
+        <div class="relative pl-6 border-l-2 border-purple-500 space-y-2">
+          <div class="absolute -left-2 top-0 w-3.5 h-3.5 rounded-full bg-purple-500 border-2 border-slate-950"></div>
+          <div class="flex items-center justify-between flex-wrap gap-1">
+            <div class="font-bold text-white text-sm flex items-center gap-2">
+              <span>v2.14.0</span>
             </div>
             <span class="font-mono text-[11px] text-slate-400">2026-11-24</span>
           </div>
@@ -4232,8 +4248,9 @@ const STOCK_PERF_PRESETS = {
       updateApiKeyBadge();
       renderApp();
 
-      // Launch daily fundamentals & browser-direct live quotes in parallel for instant intraday display
+      // Launch daily fundamentals, institutional analyst ratings & browser-direct live quotes in parallel
       syncFundamentals();
+      syncAnalystRatings();
       syncLiveQuotes(false);
       startAutoPoll();
     }
@@ -4421,6 +4438,7 @@ const STOCK_PERF_PRESETS = {
       if (f.peerGroup) target.peerGroup = f.peerGroup;
       if (f.peerPe) target.peerPe = f.peerPe;
       if (f.costOfEquity) target.costOfEquity = f.costOfEquity;
+      if (f.wacc) target.wacc = f.wacc;
       if (f.betaAdj) target.betaAdj = f.betaAdj;
       if (f.cyclicalNormalized !== undefined) target.cyclicalNormalized = f.cyclicalNormalized;
       if (f.analystTarget > 0) {
@@ -4473,7 +4491,7 @@ const STOCK_PERF_PRESETS = {
 
         const label = document.getElementById('fundamentalsUpdatedLabel');
         if (label && data.updatedAt) {
-          label.textContent = `目標價／學術五模型參考價／品質評分／官方本益比：每日自動更新，最後更新 ${data.updatedAt}`;
+          label.textContent = `目標價／機構與學術六模型參考價／外資明細／品質評分：每日自動更新，最後更新 ${data.updatedAt}`;
         }
         saveToStorage();
         renderApp();
@@ -4484,6 +4502,75 @@ const STOCK_PERF_PRESETS = {
         const label = document.getElementById('fundamentalsUpdatedLabel');
         if (label) label.textContent = '每日基本面資料暫時無法載入，目前顯示內建快照（可能過期）';
         return false;
+      }
+    }
+
+    /*************************************************************************
+     * 2.06 DAILY INSTITUTIONAL ANALYST RATINGS SYNC (data/analyst_ratings.json)
+     *      + On-demand live refresh from Investing.com public consensus table
+     *************************************************************************/
+    let analystRatingsMeta = null;
+
+    function applyAnalystRatingsEntry(target, entry) {
+      if (!target || !entry || !Array.isArray(entry.ratings) || entry.ratings.length === 0) return false;
+      target.analystRatings = entry.ratings;
+      target.analystRatingsSource = entry.source || 'Investing.com 公開分析師共識表';
+      target.analystRatingsUpdatedAt = entry.updatedAt || '';
+      return true;
+    }
+
+    async function syncAnalystRatings() {
+      try {
+        const resp = await fetch(`./data/analyst_ratings.json?_t=${Date.now()}`, { cache: 'no-cache' });
+        if (!resp.ok) return false;
+        const data = await resp.json();
+        const map = (data && data.stocks) || {};
+        analystRatingsMeta = { updatedAt: data.updatedAt, total: data.total };
+
+        stocks.forEach(s => applyAnalystRatingsEntry(s, map[s.code]));
+        TAIWAN_CORE_UNIVERSE.forEach(u => applyAnalystRatingsEntry(u, map[u.code]));
+        if (communityPool && Array.isArray(communityPool)) {
+          communityPool.forEach(c => applyAnalystRatingsEntry(c, map[c.code]));
+          saveCommunityPool();
+        }
+        saveToStorage();
+        renderApp();
+        return true;
+      } catch (err) {
+        console.warn('syncAnalystRatings warning:', err);
+        return false;
+      }
+    }
+
+    async function refreshAnalystRatingsForStock(code) {
+      const target = stocks.find(s => s.code === code) || TAIWAN_CORE_UNIVERSE.find(u => u.code === code);
+      if (!target) return;
+      showToast(`正在即時檢索 ${target.name || code} (${code}) 最新外資與券商目標價明細...`, 'info');
+      try {
+        const meta = await resolveInvestingSlug(code, target.market === 'NASDAQ' || target.market === 'NYSE' ? 'US' : 'TW', target.name || '');
+        const eqUrl = `https://r.jina.ai/https://hk.investing.com/equities/${meta.slug}`;
+        const resp = await fetch(eqUrl, { headers: { 'X-Wait-For-Selector': 'h1' } });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const md = await resp.text();
+        const parsed = parseInvestingMarkdown(md, code, meta);
+        if (parsed.analystRatings && parsed.analystRatings.length > 0) {
+          const nowStr = new Date().toLocaleString('zh-TW', { hour12: false });
+          const entry = {
+            ratings: parsed.analystRatings,
+            source: 'Investing.com 即時檢索',
+            updatedAt: nowStr
+          };
+          stocks.filter(s => s.code === code).forEach(s => applyAnalystRatingsEntry(s, entry));
+          TAIWAN_CORE_UNIVERSE.filter(u => u.code === code).forEach(u => applyAnalystRatingsEntry(u, entry));
+          saveToStorage();
+          renderApp();
+          showToast(`✅ 已更新 ${target.name} (${code}) 最新 ${parsed.analystRatings.length} 筆外資券商目標價明細！`, 'success');
+        } else {
+          showToast(`ℹ️ Investing.com 目前未公開 ${target.name} (${code}) 的個別券商目標價明細表。`, 'info');
+        }
+      } catch (err) {
+        console.warn('refreshAnalystRatingsForStock failed:', err);
+        showToast(`⚠️ 即時檢索外資明細暫時受阻（${err.message}），請稍後再試或點擊「開啟 Investing.com 個股頁」。`, 'warning');
       }
     }
 
@@ -6032,17 +6119,18 @@ const STOCK_PERF_PRESETS = {
 
               <div class="space-y-2 pt-2 border-t border-slate-800/80 text-xs">
                 ${stock.models ? `
-                  <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 pb-1">
+                  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1.5 pb-1">
                     ${[
-                      ['剩餘收益 RIM', stock.models.rim, 'Ohlson (1995) / DHS (1999 JAE) — 輕資產研發股 (E2/B0>45%) 自動排除'],
-                      ['再投資盈餘 OJ', stock.models.oj, 'Ohlson-Juettner (2005 RAST) + Damodaran 研發調整兩階段折現'],
-                      ['成長調和 P/E', stock.models.subIndPe, 'Liu-Nissim (2002 JAR) + Easton (2004 TAR) 成長調整同業調和 P/E'],
-                      ['基本面迴歸 BL', stock.models.blWarranted, 'Bhojraj & Lee (2002 JAR) 標準化 Leave-One-Out Ridge 合理倍數'],
-                      ['前瞻 EV/EBITDA', stock.models.evEbitda, 'Lie & Lie (2002 FAJ) 前瞻縮放 EBITDA 倍數（非金融業適用）']
-                    ].map(([lbl, val, tip]) => `
-                      <div class="bg-slate-950/75 border border-slate-800/90 rounded-lg px-2 py-1.5 text-center" title="${tip}">
-                        <div class="text-[10px] text-slate-400 truncate">${lbl}</div>
-                        <div class="font-mono font-bold text-[11px] ${val ? 'text-emerald-200' : 'text-slate-600'} mt-0.5">${val ? formatNumber(val) : '—'}</div>
+                      ['🏆 FCFF/WACC', stock.models.fcffDcf, `世界公認機構黃金標準：CFA / McKinsey / Damodaran 兩階段企業自由現金流折現${stock.wacc ? ` (WACC=${stock.wacc}%)` : ''}（金融業改用剩餘收益）`, true],
+                      ['剩餘收益 RIM', stock.models.rim, 'Ohlson (1995) / DHS (1999 JAE) — 金融業主力內在模型；輕資產研發股 (E2/B0>45%) 自動排除', false],
+                      ['再投資盈餘 OJ', stock.models.oj, 'Ohlson-Juettner (2005 RAST) + Damodaran 研發調整兩階段折現', false],
+                      ['成長調和 P/E', stock.models.subIndPe, 'Liu-Nissim (2002 JAR) + Easton (2004 TAR) 成長調整同業調和 P/E', false],
+                      ['基本面迴歸 BL', stock.models.blWarranted, 'Bhojraj & Lee (2002 JAR) 標準化 Leave-One-Out Ridge 合理倍數', false],
+                      ['前瞻 EV/EBITDA', stock.models.evEbitda, 'Lie & Lie (2002 FAJ) 前瞻縮放 EBITDA 倍數（非金融業適用）', false]
+                    ].map(([lbl, val, tip, isGold]) => `
+                      <div class="${isGold ? 'bg-amber-500/10 border-amber-500/40' : 'bg-slate-950/75 border-slate-800/90'} border rounded-lg px-2 py-1.5 text-center" title="${tip}">
+                        <div class="text-[10px] ${isGold ? 'text-amber-300 font-semibold' : 'text-slate-400'} truncate">${lbl}</div>
+                        <div class="font-mono font-bold text-[11px] ${val ? (isGold ? 'text-amber-200' : 'text-emerald-200') : 'text-slate-600'} mt-0.5">${val ? formatNumber(val) : '—'}</div>
                       </div>
                     `).join('')}
                   </div>
@@ -6058,9 +6146,9 @@ const STOCK_PERF_PRESETS = {
                   </span>
                 </div>
                 <div class="flex items-center justify-between text-slate-300">
-                  <span class="text-slate-400">CAPM 折現率 rₑ / 同業組別：</span>
+                  <span class="text-slate-400">WACC / 權益折現率 rₑ：</span>
                   <span class="font-mono font-semibold text-slate-200">
-                    ${stock.costOfEquity ? `${stock.costOfEquity}% (β=${stock.betaAdj})` : '—'} • ${stock.peerGroup || '—'}
+                    ${stock.wacc ? `WACC ${stock.wacc}% • ` : ''}${stock.costOfEquity ? `rₑ ${stock.costOfEquity}% (β=${stock.betaAdj})` : '—'} • ${stock.peerGroup || '—'}
                   </span>
                 </div>
                 <div class="flex items-center justify-between text-slate-300">
@@ -6288,16 +6376,28 @@ const STOCK_PERF_PRESETS = {
             </div>
           </div>
 
-          <!-- 5. INSTITUTIONAL ANALYST PRICE TARGET TABLE (IF AVAILABLE) -->
-          ${stock.analystRatings && stock.analystRatings.length > 0 ? `
-            <div class="bg-slate-900/70 border border-slate-800 rounded-xl overflow-hidden">
-              <div class="px-4 py-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                  <i class="fa-solid fa-building-columns text-cyan-400"></i>
-                  <span>Investing.com 外資與券商機構最新目標價明細</span>
+          <!-- 5. INSTITUTIONAL ANALYST PRICE TARGET TABLE (AUTO-UPDATED + ON-DEMAND LIVE REFRESH) -->
+          <div class="bg-slate-900/70 border border-slate-800 rounded-xl overflow-hidden">
+            <div class="px-4 py-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between gap-2 flex-wrap">
+              <span class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                <i class="fa-solid fa-building-columns text-cyan-400"></i>
+                <span>外資與券商機構最新目標價明細</span>
+              </span>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-[11px] text-slate-400">
+                  ${stock.analystRatingsSource || 'Investing.com / Yahoo 公開評級表'}${stock.analystRatingsUpdatedAt ? ` • 更新 ${stock.analystRatingsUpdatedAt}` : ''}
                 </span>
-                <span class="text-[11px] text-slate-400">直接擷取自個股分析師共識表</span>
+                <button
+                  onclick="refreshAnalystRatingsForStock('${stock.code}')"
+                  class="px-2 py-0.5 rounded-lg bg-cyan-500/15 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/35 text-[11px] font-semibold transition flex items-center gap-1 active:scale-95"
+                  title="立即線上重新檢索此股最新的外資與券商機構目標價明細"
+                >
+                  <i class="fa-solid fa-arrows-rotate text-[10px]"></i>
+                  <span>更新外資明細</span>
+                </button>
               </div>
+            </div>
+            ${stock.analystRatings && stock.analystRatings.length > 0 ? `
               <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs">
                   <thead>
@@ -6305,27 +6405,45 @@ const STOCK_PERF_PRESETS = {
                       <th class="py-2 px-3">券商 / 投行機構</th>
                       <th class="py-2 px-3">最新評級</th>
                       <th class="py-2 px-3 text-right">目標價</th>
-                      <th class="py-2 px-3 text-right">潛在空間</th>
+                      <th class="py-2 px-3 text-right" title="依目前最新即時股價動態重算">潛在空間 ⚡</th>
                       <th class="py-2 px-3 text-center">動作</th>
                       <th class="py-2 px-3 text-right">發布日期</th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-slate-800/60 font-mono">
-                    ${stock.analystRatings.map(r => `
-                      <tr class="hover:bg-slate-800/40">
-                        <td class="py-2 px-3 font-sans font-semibold text-white">${r.firm}</td>
-                        <td class="py-2 px-3"><span class="px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 text-[11px]">${r.rating}</span></td>
-                        <td class="py-2 px-3 text-right font-bold text-cyan-300">${cur}${r.target}</td>
-                        <td class="py-2 px-3 text-right text-emerald-400">${r.upside}</td>
-                        <td class="py-2 px-3 text-center font-sans text-slate-300">${r.action}</td>
-                        <td class="py-2 px-3 text-right text-slate-400">${r.date}</td>
-                      </tr>
-                    `).join('')}
+                    ${stock.analystRatings.map(r => {
+                      const tNum = Number(r.targetNum) || parseNum(r.target);
+                      const liveUp = (tNum > 0 && stock.price > 0) ? calcUpside(tNum, stock.price) : null;
+                      const upStr = liveUp !== null ? `${liveUp >= 0 ? '+' : ''}${liveUp.toFixed(2)}%` : (r.upside || '—');
+                      const upColor = liveUp !== null ? (liveUp >= 0 ? 'text-emerald-400' : 'text-rose-400') : 'text-emerald-400';
+                      const isSell = /賣|減|劣|Sell|Under/i.test(r.rating || '');
+                      const isHold = /持|中立|Hold|Neutral/i.test(r.rating || '');
+                      const rateCls = isSell
+                        ? 'bg-rose-500/15 text-rose-300'
+                        : (isHold ? 'bg-amber-500/15 text-amber-300' : 'bg-emerald-500/15 text-emerald-300');
+                      return `
+                        <tr class="hover:bg-slate-800/40">
+                          <td class="py-2 px-3 font-sans font-semibold text-white">${r.firm}</td>
+                          <td class="py-2 px-3"><span class="px-1.5 py-0.5 rounded ${rateCls} text-[11px]">${r.rating}</span></td>
+                          <td class="py-2 px-3 text-right font-bold text-cyan-300">${cur}${r.target}</td>
+                          <td class="py-2 px-3 text-right ${upColor}">${upStr}</td>
+                          <td class="py-2 px-3 text-center font-sans text-slate-300">${r.action || '—'}</td>
+                          <td class="py-2 px-3 text-right text-slate-400">${r.date || '—'}</td>
+                        </tr>
+                      `;
+                    }).join('')}
                   </tbody>
                 </table>
               </div>
-            </div>
-          ` : ''}
+            ` : `
+              <div class="px-4 py-3 text-xs text-slate-400 flex items-center justify-between gap-2 flex-wrap">
+                <span>目前尚未快取 ${stock.name} (${stock.code}) 的個別外資券商目標價明細（每日排程自動擴充覆蓋）。</span>
+                <button onclick="refreshAnalystRatingsForStock('${stock.code}')" class="text-cyan-300 hover:text-cyan-200 underline underline-offset-2 font-medium">
+                  立即線上檢索
+                </button>
+              </div>
+            `}
+          </div>
 
           <!-- 6. ACTION FOOTER: LIVE SYNC, INVESTING.COM DIRECT LINK, GOOGLE PRO SNAPSHOT, EDIT -->
           <div class="pt-3 border-t border-slate-800 flex items-center justify-between gap-2 flex-wrap">

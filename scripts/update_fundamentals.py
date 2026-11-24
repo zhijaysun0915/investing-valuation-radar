@@ -409,6 +409,82 @@ def model_oj_earnings(e1, e2, roe_curr, payout, re, gl, roe_peer, is_cyclical=Fa
     return pv if pv > 0 else None
 
 
+def model_fcff_wacc_dcf(
+    ebitda_ttm, operating_margins, total_rev,
+    e1, e2, teps, eff_sh, bvps, debt, cash,
+    re, gl, roe_est, g_est, sector_roic_peer,
+    is_fin=False, is_fx_mismatch=False, is_cyclical=False, tax_rate=0.20,
+):
+    """
+    M0 (World Gold Standard): Institutional 2-Stage FCFF / WACC Enterprise-Value DCF
+    (CFA Institute Equity Valuation Curriculum / McKinsey 'Valuation' 7th Ed. Value Driver Formula /
+     Prof. Aswath Damodaran NYU Stern).
+    - Non-financial operating firms only (banks/insurers use Excess Return RIM per Damodaran & CFA).
+    - Uses synthetic credit-spread cost of debt and zero-price-leakage target WACC weights.
+    - Reinvestment Rate = g / ROIC (McKinsey Value Driver Formula), fading ROIC toward WACC + moat spread.
+    """
+    if is_fin or is_fx_mismatch or not eff_sh or eff_sh <= 0:
+        return None, None
+    ebit_ttm = None
+    if total_rev and total_rev > 0 and operating_margins and operating_margins > 0:
+        ebit_ttm = total_rev * operating_margins
+    elif ebitda_ttm and ebitda_ttm > 0:
+        ebit_ttm = ebitda_ttm * 0.80
+    if not ebit_ttm or ebit_ttm <= 0:
+        return None, None
+
+    if teps and teps > 0 and e1 and e1 > 0 and e2 and e2 > 0:
+        s1 = clamp(e1 / teps, 0.65, 1.80)
+        s2 = clamp(e2 / teps, 0.60, 2.40)
+    else:
+        s1 = 1.0 + clamp(g_est, -0.10, 0.25)
+        s2 = s1 * (1.0 + clamp(g_est * 0.85, -0.10, 0.22))
+
+    nopat_1 = ebit_ttm * s1 * (1.0 - tax_rate)
+    nopat_2 = ebit_ttm * s2 * (1.0 - tax_rate)
+    if nopat_1 <= 0 or nopat_2 <= 0:
+        return None, None
+
+    ic_book = max((bvps or 0.0) * eff_sh + debt - cash, 0.0)
+    roic_raw = (nopat_2 / ic_book) if ic_book > nopat_2 * 1.2 else None
+    roic_fallback = clamp(roe_est if (roe_est and roe_est > 0.06) else sector_roic_peer, 0.09, 0.50)
+    roic_start = clamp(roic_raw if roic_raw is not None else roic_fallback, 0.09, 0.55)
+
+    # Damodaran synthetic credit-spread cost of debt + target-weight WACC (zero current-price leakage)
+    rf_approx = max(0.018, re - 0.058)
+    lev_ratio = (debt / max(ebitda_ttm or (ebit_ttm * 1.25), 1.0)) if debt > 0 else 0.0
+    spread = 0.012 if lev_ratio < 1.5 else (0.020 if lev_ratio < 3.0 else 0.032)
+    rd_after_tax = (rf_approx + spread) * (1.0 - tax_rate)
+
+    eq_anchor = max((bvps or 0.0) * eff_sh, nopat_2 * 12.0)
+    w_d = clamp(debt / (debt + eq_anchor), 0.0, 0.40) if debt > 0 else 0.0
+    wacc = max((1.0 - w_d) * re + w_d * rd_after_tax, gl + 0.050, 0.084)
+    roic_term = clamp(min(max(sector_roic_peer, wacc + 0.015), wacc + 0.04), wacc + 0.005, wacc + 0.04)
+
+    g_start = clamp(min(g_est, 0.06), -0.05, 0.06) if is_cyclical else clamp(g_est * 0.85, -0.05, 0.30)
+    g12 = max((nopat_2 / nopat_1) - 1.0, 0.0)
+    reinv_1 = clamp(g12 / max(roic_start, 0.12), 0.12, 0.72)
+    reinv_2 = clamp(max(g_start, 0.0) / max(roic_start, 0.12), 0.12, 0.72)
+    pv_ev = (nopat_1 * (1.0 - reinv_1)) / (1.0 + wacc) + (nopat_2 * (1.0 - reinv_2)) / ((1.0 + wacc) ** 2)
+
+    nopat_t = nopat_2
+    for t in range(3, 11):
+        frac = (t - 2) / 8.0
+        g_t = g_start + frac * (gl - g_start)
+        roic_t = roic_start + frac * (roic_term - roic_start)
+        nopat_t = nopat_t * (1.0 + g_t)
+        reinv_t = clamp(max(g_t, 0.0) / max(roic_t, 0.10), 0.10, 0.72)
+        pv_ev += (nopat_t * (1.0 - reinv_t)) / ((1.0 + wacc) ** t)
+
+    reinv_term = clamp(gl / max(roic_term, 0.09), 0.15, 0.55)
+    fcff_term = nopat_t * (1.0 + gl) * (1.0 - reinv_term)
+    ev_total = pv_ev + (fcff_term / (wacc - gl)) / ((1.0 + wacc) ** 10)
+    eq_val = ev_total - debt + cash
+    if eq_val <= 0:
+        return None, round(wacc * 100, 2)
+    return eq_val / eff_sh, round(wacc * 100, 2)
+
+
 def resolve_eps(qs):
     """Extract FY1/FY2 consensus EPS with currency-unit sanity guard against Yahoo earningsTrend mismatches."""
     ks = qs.get('defaultKeyStatistics') or {}
@@ -668,7 +744,22 @@ def run_cross_sectional_valuation(pit_dict):
                 if eq > 0:
                     v_ev = eq / d['eff_sh']
 
+        # M0 (World Gold Standard): Institutional 2-Stage FCFF / WACC DCF (McKinsey / Damodaran / CFA)
+        v_fcff, wacc_pct = model_fcff_wacc_dcf(
+            ebitda_ttm=d.get('ebitda_ttm') or d.get('ebitda'),
+            operating_margins=d.get('op_margin'),
+            total_rev=d.get('total_rev'),
+            e1=d['e1'], e2=d['e2'], teps=d.get('teps'),
+            eff_sh=d['eff_sh'], bvps=d['bvps'],
+            debt=d['debt'], cash=d['cash'],
+            re=d['re'], gl=d['gl'], roe_est=d['roe_est'], g_est=d['g_est'],
+            sector_roic_peer=roe_peer,
+            is_fin=d['is_fin'], is_fx_mismatch=d['is_fx_mismatch'],
+            is_cyclical=d.get('is_cyclical', False),
+        )
+
         model_map = {
+            'fcffDcf': round(v_fcff, 2) if (v_fcff and v_fcff > 0) else None,
             'rim': round(v_rim, 2) if (v_rim and v_rim > 0) else None,
             'oj': round(v_oj, 2) if (v_oj and v_oj > 0) else None,
             'subIndPe': round(v_hpe, 2) if (v_hpe and v_hpe > 0) else None,
@@ -678,11 +769,11 @@ def run_cross_sectional_valuation(pit_dict):
         valid_vals = [v for v in model_map.values() if v is not None]
         v_med = statistics.median(valid_vals) if valid_vals else None
 
-        # Sector-aware academic ensemble weights (40% Absolute Intrinsic + 60% Growth-Adjusted Fundamental/Peer)
+        # Institutional 6-Model Football Field Triangulation (50% Intrinsic DCF/RIM + 50% Peer/Warranted Multiples)
         w_map = (
-            {'rim': 0.25, 'oj': 0.15, 'subIndPe': 0.20, 'blWarranted': 0.40}
+            {'rim': 0.30, 'oj': 0.15, 'subIndPe': 0.20, 'blWarranted': 0.35}
             if d['is_fin'] else
-            {'rim': 0.18, 'oj': 0.22, 'subIndPe': 0.22, 'blWarranted': 0.28, 'evEbitda': 0.10}
+            {'fcffDcf': 0.20, 'rim': 0.12, 'oj': 0.18, 'subIndPe': 0.18, 'blWarranted': 0.24, 'evEbitda': 0.08}
         )
         wn, wd = 0.0, 0.0
         used_vals = []
@@ -712,6 +803,7 @@ def run_cross_sectional_valuation(pit_dict):
             'peerGroup': peer_grp,
             'peerFwdPe': f'{peer_fwd_pe}x' if peer_fwd_pe else None,
             'costOfEquity': round(d['re'] * 100, 2),
+            'wacc': wacc_pct,
             'betaAdj': round(d['beta_adj'], 2),
             'cyclicalNormalized': d.get('is_cyclical', False),
         }
@@ -817,9 +909,10 @@ def main():
                 'sector': sec, 'industry': ind, 'is_fin': (sec == 'Financial Services'),
                 'is_fx_mismatch': is_fx_mismatch, 'is_cyclical': is_cyc,
                 'price': price, 'eff_sh': sh, 'bvps': bvps,
-                'e1': e1_n, 'e2': e2_n, 'e_mult': e2_n,
+                'e1': e1_n, 'e2': e2_n, 'e_mult': e2_n, 'teps': teps,
                 'roe_est': roe_est, 'g_est': g_est, 'gm': gm,
-                'ebitda': ebitda, 'debt': debt, 'cash': cash,
+                'op_margin': raw(fd, 'operatingMargins'), 'total_rev': raw(fd, 'totalRevenue'),
+                'ebitda': ebitda, 'ebitda_ttm': ebitda_ttm, 'debt': debt, 'cash': cash,
                 'ev': (price * sh + debt - cash) if sh else None,
                 'payout': raw(sd, 'payoutRatio'), 're': re, 'gl': gl, 'beta_adj': beta_adj,
             }
@@ -888,17 +981,18 @@ def main():
             rec.update({
                 'fairValue': v['fairValue'],
                 'fairRange': v['fairRange'],
-                'fairSource': f"學術 {v['modelCount']} 模型（公開財報估算{cyc_tag}）",
+                'fairSource': f"機構／學術 {v['modelCount']} 模型（公開財報估算{cyc_tag}）",
                 'models': v['models'],
                 'peerGroup': v['peerGroup'],
                 'peerPe': v['peerFwdPe'],
                 'costOfEquity': v['costOfEquity'],
+                'wacc': v.get('wacc'),
                 'betaAdj': v['betaAdj'],
                 'cyclicalNormalized': v['cyclicalNormalized'],
             })
             ok_val += 1
         elif prev.get('fairValue'):
-            for k in ('fairValue', 'fairRange', 'fairSource', 'models', 'peerGroup', 'peerPe', 'costOfEquity', 'betaAdj'):
+            for k in ('fairValue', 'fairRange', 'fairSource', 'models', 'peerGroup', 'peerPe', 'costOfEquity', 'wacc', 'betaAdj'):
                 if k in prev:
                     rec[k] = prev[k]
         rec['updatedAt'] = now.strftime('%Y-%m-%d %H:%M')
@@ -907,15 +1001,16 @@ def main():
               f"tgt={rec.get('analystTarget')} models={rec.get('models')} q={(rec.get('quality') or {}).get('score')}")
 
     data = {
-        'version': '2.14.0',
+        'version': '2.15.0',
         'updatedAt': now.strftime('%Y-%m-%d %H:%M:%S'),
         'timestamp': int(now.timestamp()),
         'total': len(out),
         'coverage': {'perf': ok_perf, 'analyst': ok_tgt, 'academicModel': ok_val},
         'methodology': {
-            'name': 'Peer-Reviewed 5-Model Academic Intrinsic Valuation v2.14 (Public Financial Data)',
+            'name': 'Institutional 6-Model Intrinsic Valuation Engine: FCFF/WACC DCF + 5 Peer-Reviewed Models (Public Financial Data)',
             'papers': [
-                'Ohlson (1995 CAR) & Dechow, Hutton & Sloan (1999 JAE, ω=0.62) & Penman (2013) — Residual Income Model (RIM, auto-excluded on asset-light R&D firms)',
+                'CFA Institute / McKinsey Valuation (7th Ed.) / Damodaran (NYU Stern) — 2-Stage FCFF / WACC Enterprise-Value DCF (Value Driver Formula: FCFF = NOPAT × (1 - g/ROIC))',
+                'Ohlson (1995 CAR) & Dechow, Hutton & Sloan (1999 JAE, ω=0.62) & Penman (2013) — Residual Income Model (RIM, primary intrinsic model for Financials)',
                 'Ohlson & Juettner-Nauroth (2005 RAST) & Fuller & Hsia (1984 FAJ) & Damodaran (2012) — R&D-Aware 2-Stage Earnings DCF + Vasicek (1973 JF) Beta Shrinkage',
                 'Liu, Nissim & Thomas (2002 JAR) & Easton (2004 TAR) — Leave-One-Out Growth-Adjusted Sub-Industry Harmonic Forward P/E (Cyclical-Isolated)',
                 'Bhojraj & Lee (2002 JAR) & Wilcox (1984 FAJ) & Hastie et al. (ESL) — Leave-One-Out Standardized Ridge Warranted Multiples',
