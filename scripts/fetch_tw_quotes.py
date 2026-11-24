@@ -132,6 +132,24 @@ def fetch_quotes_batch(symbol_list):
     with urllib.request.urlopen(req, timeout=15) as resp:
         return json.loads(resp.read().decode('utf-8'))
 
+def _extract_positive_book(raw):
+    """Extract positive prices from TWSE MIS '_' separated 5-level bid/ask string, skipping '0.0000' market orders."""
+    out = []
+    if not raw or raw == '-':
+        return out
+    for part in str(raw).split('_'):
+        part = part.strip()
+        if not part or part == '-':
+            continue
+        try:
+            v = float(part)
+            if v > 0:
+                out.append(v)
+        except (ValueError, TypeError):
+            pass
+    return out
+
+
 def parse_price_item(item):
     code = item.get('c', '').strip()
     if not code:
@@ -144,21 +162,48 @@ def parse_price_item(item):
     except (ValueError, TypeError):
         prev_close = 0.0
 
+    def parse_float(val, fallback=0.0):
+        if val and val != '-':
+            try:
+                v = float(val)
+                if v > 0:
+                    return v
+            except (ValueError, TypeError):
+                pass
+        return fallback
+
+    limit_up = parse_float(item.get('u'), 0.0)
+    limit_down = parse_float(item.get('w'), 0.0)
+
     price = None
     z = item.get('z')
     trade_z = item.get('trade', {}).get('z') if isinstance(item.get('trade'), dict) else None
-    a_first = item.get('a', '').split('_')[0] if item.get('a') else None
-    b_first = item.get('b', '').split('_')[0] if item.get('b') else None
+    a_prices = _extract_positive_book(item.get('a'))
+    b_prices = _extract_positive_book(item.get('b'))
 
-    for cand in [z, trade_z, a_first, b_first, item.get('h'), item.get('o')]:
-        if cand and cand != '-' and cand != '0.0000':
-            try:
-                val = float(cand)
-                if val > 0:
-                    price = val
-                    break
-            except (ValueError, TypeError):
-                pass
+    # Priority 1: Last matched trade price z / trade.z
+    for cand in [z, trade_z]:
+        v = parse_float(cand, 0.0)
+        if v > 0:
+            price = v
+            break
+
+    # Priority 2: Locked limit-up (no sellers, only bids) or locked limit-down (no buyers, only asks)
+    if not price:
+        if not a_prices and b_prices:
+            price = b_prices[0]
+        elif not b_prices and a_prices:
+            price = a_prices[0]
+        elif b_prices and a_prices:
+            price = b_prices[0]
+
+    # Priority 3: Open / High / Prev close fallback
+    if not price:
+        for cand in [item.get('o'), item.get('h'), item.get('l')]:
+            v = parse_float(cand, 0.0)
+            if v > 0:
+                price = v
+                break
 
     if not price and prev_close > 0:
         price = prev_close
@@ -168,19 +213,13 @@ def parse_price_item(item):
 
     change = round(price - prev_close, 2) if prev_close > 0 else 0.0
     change_pct = round((change / prev_close) * 100, 2) if prev_close > 0 else 0.0
-
-    def parse_float(val, fallback=price):
-        if val and val != '-':
-            try:
-                return float(val)
-            except (ValueError, TypeError):
-                pass
-        return fallback
+    is_limit_up = bool(limit_up > 0 and price >= limit_up - 1e-4)
+    is_limit_down = bool(limit_down > 0 and price <= limit_down + 1e-4)
 
     def parse_int(val, fallback=0):
         if val and val != '-':
             try:
-                return int(val)
+                return int(float(val))
             except (ValueError, TypeError):
                 pass
         return fallback
@@ -192,14 +231,67 @@ def parse_price_item(item):
         'prevClose': round(prev_close, 2),
         'change': change,
         'changePct': change_pct,
-        'open': parse_float(item.get('o')),
-        'high': parse_float(item.get('h')),
-        'low': parse_float(item.get('l')),
+        'open': parse_float(item.get('o'), price),
+        'high': parse_float(item.get('h'), price),
+        'low': parse_float(item.get('l'), price),
+        'limitUp': round(limit_up, 2) if limit_up > 0 else None,
+        'limitDown': round(limit_down, 2) if limit_down > 0 else None,
+        'isLimitUp': is_limit_up,
+        'isLimitDown': is_limit_down,
         'volume': parse_int(item.get('v')),
         'time': item.get('t', ''),
+        'date': item.get('d', ''),
         'market': 'TWSE' if item.get('ex') == 'tse' else 'TPEX',
         'currency': 'NT$'
     }
+
+
+def fetch_cnyes_batch(codes, market_prefix='TWS'):
+    """Fallback batch quote fetcher via CNYES public quote API (handles TWSE/TPEX/US/HK)."""
+    results = {}
+    chunk_size = 50
+    for i in range(0, len(codes), chunk_size):
+        chunk = codes[i:i + chunk_size]
+        syms = ','.join(f'{market_prefix}:{c}:STOCK' for c in chunk)
+        url = f'https://ws.api.cnyes.com/ws/api/v1/quote/quotes/{syms}'
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                data = json.loads(resp.read().decode('utf-8'))
+                for it in (data.get('data') or []):
+                    if not isinstance(it, dict) or not it.get('6'):
+                        continue
+                    code = str(it.get('200010') or str(it.get('0', '')).split(':')[1]).strip()
+                    price = round(float(it['6']), 2)
+                    prev_close = round(float(it.get('21') or price), 2)
+                    change = round(price - prev_close, 2)
+                    change_pct = round((change / prev_close) * 100, 2) if prev_close > 0 else 0.0
+                    limit_up = round(float(it['75']), 2) if it.get('75') else None
+                    limit_down = round(float(it['76']), 2) if it.get('76') else None
+                    ts = it.get('200007')
+                    t_str = datetime.fromtimestamp(ts, TW_TZ).strftime('%H:%M:%S') if ts else ''
+                    d_str = datetime.fromtimestamp(ts, TW_TZ).strftime('%Y%m%d') if ts else ''
+                    results[code] = {
+                        'code': code,
+                        'name': it.get('200009', ''),
+                        'price': price,
+                        'prevClose': prev_close,
+                        'change': change,
+                        'changePct': change_pct,
+                        'open': round(float(it.get('19') or price), 2),
+                        'high': round(float(it.get('12') or price), 2),
+                        'low': round(float(it.get('13') or price), 2),
+                        'limitUp': limit_up,
+                        'limitDown': limit_down,
+                        'isLimitUp': bool(limit_up and price >= limit_up - 1e-4),
+                        'isLimitDown': bool(limit_down and price <= limit_down + 1e-4),
+                        'volume': int(float(it.get('800001') or it.get('200013') or 0)),
+                        'time': t_str,
+                        'date': d_str,
+                    }
+        except Exception as e:
+            print(f"Warning CNYES fallback chunk: {e}", file=sys.stderr)
+    return results
 
 def fetch_global_quote(symbol, market, name, currency):
     """Fetch global stock quote (US, HK, JP) via Yahoo Finance API."""
@@ -346,44 +438,67 @@ def main():
     chunk_size = 25
     chunks = [tw_symbols[i:i + chunk_size] for i in range(0, len(tw_symbols), chunk_size)]
 
+    refreshed_tw = set()
+    tw_code_list = []
+    for code, info in symbols_dict.items():
+        mkt = info.get('market', 'TWSE')
+        if mkt in ('TWSE', 'TPEX', 'OTC'):
+            tw_code_list.append(code)
+
+    def _enrich_and_store_tw(parsed):
+        code = parsed['code']
+        if code in symbols_dict and symbols_dict[code].get('name'):
+            parsed['name'] = symbols_dict[code]['name']
+        if 'market' not in parsed:
+            mkt = symbols_dict.get(code, {}).get('market', 'TWSE')
+            parsed['market'] = 'TPEX' if mkt in ('TPEX', 'OTC') else 'TWSE'
+        parsed.setdefault('currency', 'NT$')
+
+        sh = shares_map.get(code, 0)
+        price = parsed['price']
+        market_cap_ntd = round(price * sh) if (sh > 0 and price > 0) else 0
+        market_cap_yi = round(market_cap_ntd / 100_000_000, 1)
+        market_cap_zhao = round(market_cap_ntd / 1_000_000_000_000, 2)
+
+        if market_cap_zhao >= 1.0:
+            cap_str = f"{market_cap_zhao} 兆"
+        elif market_cap_yi >= 1.0:
+            cap_str = f"{market_cap_yi:,.1f} 億"
+        else:
+            cap_str = "—"
+
+        parsed['shares'] = sh
+        parsed['marketCapVal'] = market_cap_ntd
+        parsed['marketCap'] = cap_str
+
+        stat, desc, hrs, is_live = market_sessions.get(parsed['market'], ('CLOSED', '已收盤', '', False))
+        parsed['sessionStatus'] = stat
+        parsed['sessionDesc'] = desc
+        parsed['sessionHours'] = hrs
+        parsed['isSessionLive'] = is_live
+
+        quotes[code] = parsed
+        refreshed_tw.add(code)
+
     for chunk in chunks:
         try:
             resp_data = fetch_quotes_batch(chunk)
             for item in resp_data.get('msgArray', []):
                 parsed = parse_price_item(item)
                 if parsed and parsed.get('code'):
-                    code = parsed['code']
-                    if code in symbols_dict and symbols_dict[code].get('name'):
-                        parsed['name'] = symbols_dict[code]['name']
-                    
-                    sh = shares_map.get(code, 0)
-                    price = parsed['price']
-                    market_cap_ntd = round(price * sh) if (sh > 0 and price > 0) else 0
-                    market_cap_yi = round(market_cap_ntd / 100_000_000, 1)
-                    market_cap_zhao = round(market_cap_ntd / 1_000_000_000_000, 2)
-                    
-                    if market_cap_zhao >= 1.0:
-                        cap_str = f"{market_cap_zhao} 兆"
-                    elif market_cap_yi >= 1.0:
-                        cap_str = f"{market_cap_yi:,.1f} 億"
-                    else:
-                        cap_str = "—"
-
-                    parsed['shares'] = sh
-                    parsed['marketCapVal'] = market_cap_ntd
-                    parsed['marketCap'] = cap_str
-
-                    # Market session info
-                    stat, desc, hrs, is_live = market_sessions.get(parsed['market'], ('CLOSED', '已收盤', '', False))
-                    parsed['sessionStatus'] = stat
-                    parsed['sessionDesc'] = desc
-                    parsed['sessionHours'] = hrs
-                    parsed['isSessionLive'] = is_live
-
-                    quotes[code] = parsed
+                    _enrich_and_store_tw(parsed)
             time.sleep(0.12)
         except Exception as e:
             print(f"Error chunk: {e}", file=sys.stderr)
+
+    # Automatic CNYES fallback for any Taiwan stocks missed by TWSE MIS (e.g. SSL timeout)
+    missing_tw = [c for c in tw_code_list if c not in refreshed_tw]
+    if missing_tw:
+        print(f"TWSE MIS missed {len(missing_tw)} Taiwan stocks; fetching fallback via CNYES...")
+        fb = fetch_cnyes_batch(missing_tw, 'TWS')
+        for code, parsed in fb.items():
+            _enrich_and_store_tw(parsed)
+        print(f"CNYES fallback recovered {len(fb)}/{len(missing_tw)} Taiwan stocks.")
 
     # Rank Taiwan stocks by marketCap
     tw_stocks_sorted = sorted(

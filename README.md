@@ -1,7 +1,7 @@
 # 📊 股票模型參考價 & 分析師預估價即時雷達 (Stock Valuation Radar)
 
 [![GitHub Pages Deployment](https://img.shields.io/badge/線上_Live_Demo-GitHub_Pages-10b981?style=for-the-badge&logo=github)](https://zhijaysun0915.github.io/investing-valuation-radar/)
-[![Version](https://img.shields.io/badge/版本-v2.12.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
+[![Version](https://img.shields.io/badge/版本-v2.13.0-8b5cf6?style=for-the-badge&logo=git)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![Issues](https://img.shields.io/badge/Issue_反饋-GitHub_Issues-f59e0b?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/issues)
 [![Releases](https://img.shields.io/badge/Releases-GitHub_Releases-8b5cf6?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar/releases)
 [![GitHub Repository](https://img.shields.io/badge/GitHub_Repo-zhijaysun0915%2Finvesting--valuation--radar-181717?style=for-the-badge&logo=github)](https://github.com/zhijaysun0915/investing-valuation-radar)
@@ -49,14 +49,12 @@
      - 使用者可選擇填入個人的 Gemini API Key（僅留存於瀏覽器 localStorage，絕不上傳）。
      - 透過 Google Search 檢索最新公開財報摘要與法人研究參考區間作為輔助補充。
 
-3. **⚡ 台股盤中全自動動態更新機制 (方案 A + 方案 B 完整整合)**
-   - **方案 B：GitHub Actions 自動排程爬蟲 (`.github/workflows/update-quotes.yml`)**：
-     - 在台股交易日（週一至週五 09:00～13:30）每 15 分鐘全自動批次查詢證交所 (TWSE) 與櫃買中心 (TPEX) 官方真實盤中行情。
-     - 產出零跨域 (CORS-free)、零延遲的開源資料庫 `data/quotes.json`，並支援在 GitHub 網頁端一鍵手動觸發立即抓取。
-   - **方案 A：前端一鍵「🔄 同步最新盤中價」與「⏱️ 每 60 秒自動背景輪詢」**：
-     - 頂部導航列配置即時連線燈號與手動同步按鈕，進入網頁自動拉取最新盤中成交價，徹底擺脫本機舊快取的限制。
-     - 支援開著網頁每 60 秒自動背景更新，所有股票的「即時當天 %、近1週、近1月、近1季、近1年」表現、公允價折價空間、外資目標價空間全部即時動態重算！
-     - 右側檢視台與排行榜皆配置即時刷新按鈕，支援單一標的個別更新。
+3. **⚡ 瀏覽器直連盤中即時報價引擎 ＋ 漲跌停支援 ＋ 離線備援**
+   - **主引擎（瀏覽器直連，免 API Key）**：
+     - 開啟網頁、點擊「🔄 同步最新盤中價」、切回分頁或開啟「⏱️ 自動輪詢（每 30 秒）」時，瀏覽器直接批次連線公開即時行情介面（支援 CORS，約 0.4 秒同步 125+ 檔台股／美股／港股），不再受限於 GitHub Actions 排程延遲。
+     - 完整支援台股**漲停 (`▲ 漲停`)／跌停 (`▼ 跌停`)**鎖死狀態與即時動態重算五大區間報酬、模型折價空間、外資目標空間與總市值。
+   - **備援與市值基準（GitHub Actions `data/quotes.json`）**：
+     - 透過 `.github/workflows/update-quotes.yml` 與 `scripts/fetch_tw_quotes.py`（已修復 TWSE MIS 漲跌停市價單 `0.0000` 解析漏洞並內建自動備援）維護發行股數、市值百大排名與日股報價；若直連暫時受阻則自動降級並以琥珀色誠實標示備援時間。
 
 4. **📊 個股擴充欄位：即時股價與 5 大區間表現 (近1日、近1週、近1月、近1季、近1年)**
    - **橫向比較表一鍵擴充**：點擊「📊 擴充表現欄位」即可於總覽表展開 1D / 1W / 1M / 1Q / 1Y 報酬率欄位，支援點擊表頭排序。
