@@ -1,18 +1,18 @@
 {
   "version": "2.15.0",
-  "updatedAt": "2026-11-25 02:52:06",
-  "timestamp": 1795546326,
+  "updatedAt": "2026-11-25 13:00:32",
+  "timestamp": 1795582832,
   "total": 26,
   "freshFetched": {
     "us": 7,
-    "investing": 9
+    "investing": 0
   },
   "stocks": {
     "NVDA": {
       "code": "NVDA",
       "name": "英偉達 (NVIDIA)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-25 02:52",
+      "updatedAt": "2026-11-25 13:00",
       "ratings": [
         {
           "firm": "Melius Research",
@@ -92,7 +92,7 @@
       "code": "AAPL",
       "name": "蘋果 (Apple)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-25 02:52",
+      "updatedAt": "2026-11-25 13:00",
       "ratings": [
         {
           "firm": "China Renaissance",
@@ -172,7 +172,7 @@
       "code": "TSLA",
       "name": "特斯拉 (Tesla)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-25 02:52",
+      "updatedAt": "2026-11-25 13:00",
       "ratings": [
         {
           "firm": "GLJ Research",
@@ -252,7 +252,7 @@
       "code": "MSFT",
       "name": "微軟 (Microsoft)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-25 02:52",
+      "updatedAt": "2026-11-25 13:00",
       "ratings": [
         {
           "firm": "Bernstein",
@@ -332,7 +332,7 @@
       "code": "AMD",
       "name": "超微 (AMD)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-25 02:52",
+      "updatedAt": "2026-11-25 13:00",
       "ratings": [
         {
           "firm": "B of A Securities",
@@ -412,7 +412,7 @@
       "code": "AVGO",
       "name": "博通 (Broadcom)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-25 02:52",
+      "updatedAt": "2026-11-25 13:00",
       "ratings": [
         {
           "firm": "Rosenblatt",
@@ -492,7 +492,7 @@
       "code": "TSM",
       "name": "台積電 ADR (TSM)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-25 02:52",
+      "updatedAt": "2026-11-25 13:00",
       "ratings": [
         {
           "firm": "Bernstein",
