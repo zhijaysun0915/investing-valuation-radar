@@ -1,7 +1,7 @@
 {
  "version": "2.15.0",
- "updatedAt": "2026-11-25 12:58:41",
- "timestamp": 1795582721,
+ "updatedAt": "2026-11-26 01:55:36",
+ "timestamp": 1795629336,
  "total": 127,
  "coverage": {
   "perf": 127,
@@ -39,12 +39,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 2135.0,
-    "baseDate": "2026-11-25",
-    "w1": -1.84,
-    "m1": -10.48,
-    "q1": -11.59,
-    "y1": 50.88
+    "basePrice": 2230.0,
+    "baseDate": "2026-11-24",
+    "w1": 2.76,
+    "m1": -6.5,
+    "q1": -7.08,
+    "y1": 57.6
    },
    "analystTarget": 3402.51,
    "analystHigh": 5000.0,
@@ -69,24 +69,24 @@
    "pe": "22.7x",
    "pb": "8.26x",
    "divYield": 0.99,
-   "fairValue": 2915.77,
-   "fairRange": "2,510.80 - 3,447.19",
+   "fairValue": 2921.75,
+   "fairRange": "2,500.17 - 3,447.19",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 3091.69,
     "rim": null,
     "oj": 3447.19,
-    "subIndPe": 2723.44,
-    "blWarranted": 2510.8,
-    "evEbitda": 2927.92
+    "subIndPe": 2758.97,
+    "blWarranted": 2500.17,
+    "evEbitda": 2945.7
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.7x",
    "costOfEquity": 8.61,
    "wacc": 8.47,
    "betaAdj": 1.1,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2454": {
    "code": "2454",
@@ -96,12 +96,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 3645.0,
-    "baseDate": "2026-11-25",
-    "w1": -7.49,
-    "m1": -9.1,
-    "q1": -7.6,
-    "y1": 207.59
+    "basePrice": 4050.0,
+    "baseDate": "2026-11-24",
+    "w1": 5.47,
+    "m1": 1.0,
+    "q1": 8.43,
+    "y1": 241.77
    },
    "analystTarget": 6163.42,
    "analystHigh": 10400.0,
@@ -125,24 +125,24 @@
    "pe": "65.1x",
    "pb": "13.90x",
    "divYield": 1.32,
-   "fairValue": 2944.02,
+   "fairValue": 2945.82,
    "fairRange": "2,405.49 - 3,771.84",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 2405.49,
     "rim": null,
     "oj": 3771.84,
-    "subIndPe": 3530.24,
-    "blWarranted": 2432.16,
-    "evEbitda": 2644.37
+    "subIndPe": 3556.33,
+    "blWarranted": 2443.2,
+    "evEbitda": 2572.26
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 9.74,
    "wacc": 9.35,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2303": {
    "code": "2303",
@@ -152,12 +152,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 87.4,
-    "baseDate": "2026-11-25",
-    "w1": -6.02,
-    "m1": -30.36,
-    "q1": -29.23,
-    "y1": 93.79
+    "basePrice": 97.1,
+    "baseDate": "2026-11-24",
+    "w1": 5.09,
+    "m1": -22.63,
+    "q1": -22.32,
+    "y1": 115.3
    },
    "analystTarget": 147.42,
    "analystHigh": 258.0,
@@ -165,7 +165,7 @@
    "analystCount": 25,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 7.158,
+   "forwardEps": 7.302,
    "trailingEps": 6.7,
    "quality": {
     "score": 4,
@@ -181,24 +181,24 @@
    "pe": "14.3x",
    "pb": "2.59x",
    "divYield": 2.69,
-   "fairValue": 80.68,
-   "fairRange": "51.40 - 111.21",
+   "fairValue": 81.11,
+   "fairRange": "51.40 - 111.87",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 51.4,
     "rim": 62.25,
     "oj": 79.96,
-    "subIndPe": 79.13,
-    "blWarranted": 105.84,
-    "evEbitda": 111.21
+    "subIndPe": 80.16,
+    "blWarranted": 106.6,
+    "evEbitda": 111.87
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.7x",
    "costOfEquity": 9.74,
    "wacc": 9.08,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3711": {
    "code": "3711",
@@ -208,12 +208,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 496.0,
-    "baseDate": "2026-11-25",
-    "w1": -9.49,
-    "m1": -24.16,
-    "q1": -16.22,
-    "y1": 133.96
+    "basePrice": 530.0,
+    "baseDate": "2026-11-24",
+    "w1": 1.92,
+    "m1": -18.96,
+    "q1": -10.32,
+    "y1": 150.0
    },
    "analystTarget": 852.78,
    "analystHigh": 950.0,
@@ -238,24 +238,24 @@
    "pe": "30.4x",
    "pb": "5.53x",
    "divYield": 1.24,
-   "fairValue": 631.83,
-   "fairRange": "242.52 - 1,030.08",
+   "fairValue": 634.23,
+   "fairRange": "242.52 - 1,037.00",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 676.6,
     "rim": 242.52,
     "oj": 779.79,
-    "subIndPe": 717.59,
-    "blWarranted": 445.56,
-    "evEbitda": 1030.08
+    "subIndPe": 726.95,
+    "blWarranted": 445.18,
+    "evEbitda": 1037.0
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.7x",
    "costOfEquity": 9.36,
    "wacc": 8.46,
    "betaAdj": 1.23,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2379": {
    "code": "2379",
@@ -266,10 +266,10 @@
    "industry": "Semiconductors",
    "perf": {
     "basePrice": 694.0,
-    "baseDate": "2026-11-25",
-    "w1": -5.45,
+    "baseDate": "2026-11-24",
+    "w1": -3.21,
     "m1": -10.1,
-    "q1": -5.45,
+    "q1": -4.93,
     "y1": 35.81
    },
    "analystTarget": 799.88,
@@ -295,24 +295,24 @@
    "pe": "24.0x",
    "pb": "6.54x",
    "divYield": 3.6,
-   "fairValue": 588.96,
+   "fairValue": 587.44,
    "fairRange": "260.08 - 770.86",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 695.57,
     "rim": 260.08,
     "oj": 770.86,
-    "subIndPe": 526.45,
-    "blWarranted": 568.76,
-    "evEbitda": 602.5
+    "subIndPe": 530.34,
+    "blWarranted": 565.8,
+    "evEbitda": 588.83
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.89,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3034": {
    "code": "3034",
@@ -322,12 +322,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 422.0,
-    "baseDate": "2026-11-25",
-    "w1": -7.86,
-    "m1": -27.62,
-    "q1": -24.24,
-    "y1": 7.38
+    "basePrice": 435.5,
+    "baseDate": "2026-11-24",
+    "w1": -4.5,
+    "m1": -25.3,
+    "q1": -21.53,
+    "y1": 10.81
    },
    "analystTarget": 514.17,
    "analystHigh": 640.0,
@@ -336,7 +336,7 @@
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 34.516,
-   "trailingEps": 32.94,
+   "trailingEps": 32.6,
    "quality": {
     "score": 4,
     "max": 5,
@@ -351,24 +351,24 @@
    "pe": "13.4x",
    "pb": "3.54x",
    "divYield": 5.28,
-   "fairValue": 409.56,
+   "fairValue": 411.2,
    "fairRange": "255.78 - 478.87",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 438.99,
+    "fcffDcf": 442.89,
     "rim": 255.78,
     "oj": 478.87,
-    "subIndPe": 374.04,
-    "blWarranted": 419.12,
-    "evEbitda": 461.89
+    "subIndPe": 378.92,
+    "blWarranted": 416.82,
+    "evEbitda": 468.56
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.7x",
    "costOfEquity": 8.6,
    "wacc": 8.59,
    "betaAdj": 0.88,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3443": {
    "code": "3443",
@@ -378,12 +378,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 5070.0,
-    "baseDate": "2026-11-25",
-    "w1": -23.93,
-    "m1": -33.16,
-    "q1": -17.22,
-    "y1": 133.1
+    "basePrice": 5630.0,
+    "baseDate": "2026-11-24",
+    "w1": -19.28,
+    "m1": -25.77,
+    "q1": 1.08,
+    "y1": 158.85
    },
    "analystTarget": 8373.9,
    "analystHigh": 12000.0,
@@ -392,7 +392,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 143.809,
-   "trailingEps": 54.34,
+   "trailingEps": 49.42,
    "quality": {
     "score": 5,
     "max": 5,
@@ -408,24 +408,24 @@
    "pe": "113.7x",
    "pb": "47.96x",
    "divYield": 0.36,
-   "fairValue": 2530.25,
-   "fairRange": "1,858.36 - 3,428.12",
+   "fairValue": 2531.77,
+   "fairRange": "1,863.10 - 3,428.12",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 2066.91,
+    "fcffDcf": 2068.08,
     "rim": null,
     "oj": 3428.12,
-    "subIndPe": 3268.76,
-    "blWarranted": 1858.36,
-    "evEbitda": 2022.42
+    "subIndPe": 3292.92,
+    "blWarranted": 1863.1,
+    "evEbitda": 1967.62
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 9.74,
    "wacc": 9.73,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3661": {
    "code": "3661",
@@ -435,12 +435,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 3605.0,
-    "baseDate": "2026-11-25",
-    "w1": -8.73,
-    "m1": 3.15,
-    "q1": -8.96,
-    "y1": 22.2
+    "basePrice": 3915.0,
+    "baseDate": "2026-11-24",
+    "w1": 8.9,
+    "m1": 12.02,
+    "q1": 1.29,
+    "y1": 32.71
    },
    "analystTarget": 5494.5,
    "analystHigh": 7699.0,
@@ -463,24 +463,24 @@
    "pe": "43.3x",
    "pb": "5.30x",
    "divYield": 0.83,
-   "fairValue": 3861.36,
+   "fairValue": 3866.41,
    "fairRange": "1,599.78 - 5,200.19",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 4158.11,
     "rim": 1599.78,
     "oj": 5200.19,
-    "subIndPe": 4703.25,
-    "blWarranted": 2657.04,
-    "evEbitda": 4646.4
+    "subIndPe": 4738.02,
+    "blWarranted": 2640.12,
+    "evEbitda": 4673.05
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.97,
    "wacc": 8.96,
    "betaAdj": 1.17,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3529": {
    "code": "3529",
@@ -490,12 +490,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 1860.0,
-    "baseDate": "2026-11-25",
-    "w1": -16.03,
-    "m1": -25.15,
-    "q1": -22.82,
-    "y1": -6.53
+    "basePrice": 2025.0,
+    "baseDate": "2026-11-24",
+    "w1": -7.11,
+    "m1": -18.51,
+    "q1": -7.74,
+    "y1": 1.76
    },
    "analystTarget": 3630.71,
    "analystHigh": 5100.0,
@@ -504,7 +504,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 45.922,
-   "trailingEps": 33.94,
+   "trailingEps": 31.76,
    "quality": {
     "score": 5,
     "max": 5,
@@ -517,27 +517,27 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "63.6x",
-   "pb": "36.64x",
-   "divYield": 1.01,
-   "fairValue": 877.88,
-   "fairRange": "674.66 - 1,127.54",
-   "fairSource": "機構／學術 5 模型（公開財報估算）",
+   "pe": "57.8x",
+   "pb": "33.29x",
+   "divYield": 1.11,
+   "fairValue": 902.57,
+   "fairRange": "783.44 - 1,127.54",
+   "fairSource": "機構／學術 3 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 890.28,
+    "fcffDcf": null,
     "rim": null,
     "oj": 1127.54,
-    "subIndPe": 830.29,
-    "blWarranted": 783.73,
-    "evEbitda": 674.66
+    "subIndPe": 836.43,
+    "blWarranted": 783.44,
+    "evEbitda": null
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.64,
-   "wacc": 8.64,
+   "wacc": null,
    "betaAdj": 1.11,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6488": {
    "code": "6488",
@@ -547,12 +547,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 473.5,
-    "baseDate": "2026-11-25",
-    "w1": -12.96,
-    "m1": -42.68,
-    "q1": -50.11,
-    "y1": 18.38
+    "basePrice": 506.0,
+    "baseDate": "2026-11-24",
+    "w1": -7.33,
+    "m1": -38.74,
+    "q1": -48.37,
+    "y1": 26.5
    },
    "analystTarget": 945.71,
    "analystHigh": 1800.0,
@@ -573,27 +573,27 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "28.5x",
-   "pb": "1.83x",
-   "divYield": 1.52,
-   "fairValue": 479.14,
-   "fairRange": "277.20 - 652.77",
+   "pe": "26.9x",
+   "pb": "1.73x",
+   "divYield": 1.61,
+   "fairValue": 479.44,
+   "fairRange": "277.20 - 661.29",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 277.2,
     "rim": 332.61,
     "oj": 469.36,
-    "subIndPe": 652.77,
-    "blWarranted": 581.34,
-    "evEbitda": 528.5
+    "subIndPe": 661.29,
+    "blWarranted": 581.91,
+    "evEbitda": 511.42
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.7x",
    "costOfEquity": 9.74,
    "wacc": 8.4,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "5347": {
    "code": "5347",
@@ -603,12 +603,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 115.0,
-    "baseDate": "2026-11-25",
-    "w1": -7.26,
-    "m1": -28.57,
-    "q1": -24.34,
-    "y1": 27.64
+    "basePrice": 121.0,
+    "baseDate": "2026-11-24",
+    "w1": -3.59,
+    "m1": -24.84,
+    "q1": -19.6,
+    "y1": 34.3
    },
    "analystTarget": 168.72,
    "analystHigh": 250.0,
@@ -630,27 +630,27 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "22.6x",
-   "pb": "3.42x",
-   "divYield": 3.7,
-   "fairValue": 96.73,
-   "fairRange": "56.62 - 151.37",
+   "pe": "21.7x",
+   "pb": "3.29x",
+   "divYield": 3.84,
+   "fairValue": 97.05,
+   "fairRange": "56.62 - 152.34",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 93.65,
     "rim": 56.62,
     "oj": 96.6,
-    "subIndPe": 93.77,
-    "blWarranted": 103.47,
-    "evEbitda": 151.37
+    "subIndPe": 94.46,
+    "blWarranted": 103.95,
+    "evEbitda": 152.34
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 9.68,
    "wacc": 8.48,
    "betaAdj": 1.29,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3374": {
    "code": "3374",
@@ -660,12 +660,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 336.0,
-    "baseDate": "2026-11-25",
-    "w1": -14.72,
-    "m1": -27.51,
-    "q1": 0.75,
-    "y1": 154.55
+    "basePrice": 373.0,
+    "baseDate": "2026-11-24",
+    "w1": -11.4,
+    "m1": -19.53,
+    "q1": 19.94,
+    "y1": 182.58
    },
    "analystTarget": 278.5,
    "analystHigh": 357.0,
@@ -687,27 +687,27 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "53.1x",
-   "pb": "9.67x",
-   "divYield": 0.67,
-   "fairValue": 127.29,
-   "fairRange": "78.32 - 176.59",
+   "pe": "47.9x",
+   "pb": "8.71x",
+   "divYield": 0.74,
+   "fairValue": 126.95,
+   "fairRange": "78.28 - 171.75",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 151.26,
-    "rim": 78.32,
-    "oj": 142.16,
-    "subIndPe": 110.84,
-    "blWarranted": 116.57,
-    "evEbitda": 176.59
+    "fcffDcf": 151.32,
+    "rim": 78.28,
+    "oj": 142.2,
+    "subIndPe": 111.66,
+    "blWarranted": 116.09,
+    "evEbitda": 171.75
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.92,
    "wacc": 8.4,
    "betaAdj": 1.16,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2408": {
    "code": "2408",
@@ -717,12 +717,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 279.0,
-    "baseDate": "2026-11-25",
-    "w1": -14.15,
-    "m1": -32.61,
-    "q1": -46.03,
-    "y1": 94.43
+    "basePrice": 309.0,
+    "baseDate": "2026-11-24",
+    "w1": -6.08,
+    "m1": -25.36,
+    "q1": -39.41,
+    "y1": 115.33
    },
    "analystTarget": 654.88,
    "analystHigh": 850.0,
@@ -747,24 +747,24 @@
    "pe": "6.1x",
    "pb": "2.60x",
    "divYield": 0.44,
-   "fairValue": 604.66,
-   "fairRange": "357.23 - 870.16",
+   "fairValue": 605.21,
+   "fairRange": "357.23 - 882.70",
    "fairSource": "機構／學術 6 模型（公開財報估算・景氣循環常態化）",
    "models": {
     "fcffDcf": 602.74,
     "rim": 357.23,
     "oj": 538.5,
-    "subIndPe": 472.64,
-    "blWarranted": 870.16,
-    "evEbitda": 630.01
+    "subIndPe": 465.02,
+    "blWarranted": 882.7,
+    "evEbitda": 616.45
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "14.7x",
+   "peerPe": "14.5x",
    "costOfEquity": 9.74,
    "wacc": 9.67,
    "betaAdj": 1.3,
    "cyclicalNormalized": true,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2344": {
    "code": "2344",
@@ -774,12 +774,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 94.8,
-    "baseDate": "2026-11-25",
-    "w1": -12.22,
-    "m1": -38.64,
-    "q1": -47.77,
-    "y1": 64.87
+    "basePrice": 105.0,
+    "baseDate": "2026-11-24",
+    "w1": -4.98,
+    "m1": -32.04,
+    "q1": -41.34,
+    "y1": 82.61
    },
    "analystTarget": 219.62,
    "analystHigh": 360.0,
@@ -804,24 +804,24 @@
    "pe": "6.8x",
    "pb": "2.28x",
    "divYield": 0.48,
-   "fairValue": 227.81,
-   "fairRange": "141.98 - 297.18",
+   "fairValue": 227.63,
+   "fairRange": "141.98 - 300.79",
    "fairSource": "機構／學術 6 模型（公開財報估算・景氣循環常態化）",
    "models": {
     "fcffDcf": 231.48,
     "rim": 141.98,
     "oj": 211.63,
-    "subIndPe": 187.76,
-    "blWarranted": 297.18,
-    "evEbitda": 265.83
+    "subIndPe": 184.73,
+    "blWarranted": 300.79,
+    "evEbitda": 259.56
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "14.7x",
+   "peerPe": "14.5x",
    "costOfEquity": 9.74,
    "wacc": 9.51,
    "betaAdj": 1.3,
    "cyclicalNormalized": true,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3006": {
    "code": "3006",
@@ -831,12 +831,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 171.5,
-    "baseDate": "2026-11-25",
-    "w1": -19.1,
-    "m1": -26.71,
-    "q1": -37.29,
-    "y1": 110.17
+    "basePrice": 183.5,
+    "baseDate": "2026-11-24",
+    "w1": -13.85,
+    "m1": -21.58,
+    "q1": -32.04,
+    "y1": 124.88
    },
    "analystTarget": 294.0,
    "analystHigh": 294.0,
@@ -845,7 +845,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 117.565,
-   "trailingEps": 29.68,
+   "trailingEps": 30.97,
    "quality": {
     "score": 5,
     "max": 5,
@@ -861,24 +861,24 @@
    "pe": "2.6x",
    "pb": "1.71x",
    "divYield": 0.54,
-   "fairValue": 762.68,
-   "fairRange": "332.96 - 1,290.12",
+   "fairValue": 747.88,
+   "fairRange": "332.96 - 1,240.29",
    "fairSource": "機構／學術 6 模型（公開財報估算・景氣循環常態化）",
    "models": {
-    "fcffDcf": 1290.12,
+    "fcffDcf": 1240.29,
     "rim": 332.96,
     "oj": 504.55,
-    "subIndPe": 439.03,
-    "blWarranted": 805.18,
-    "evEbitda": 1270.13
+    "subIndPe": 431.95,
+    "blWarranted": 816.04,
+    "evEbitda": 1193.12
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "14.7x",
+   "peerPe": "14.5x",
    "costOfEquity": 9.74,
-   "wacc": 9.71,
+   "wacc": 9.7,
    "betaAdj": 1.3,
    "cyclicalNormalized": true,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "8299": {
    "code": "8299",
@@ -888,12 +888,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 1510.0,
-    "baseDate": "2026-11-25",
-    "w1": -0.66,
-    "m1": -19.68,
-    "q1": -28.94,
-    "y1": 37.27
+    "basePrice": 1595.0,
+    "baseDate": "2026-11-24",
+    "w1": 3.91,
+    "m1": -15.16,
+    "q1": -23.5,
+    "y1": 45.0
    },
    "analystTarget": 2252.85,
    "analystHigh": 3300.0,
@@ -912,27 +912,27 @@
      "獲利品質/ROE佳"
     ]
    },
-   "pe": "4.6x",
-   "pb": "2.96x",
-   "divYield": 1.45,
-   "fairValue": 3348.15,
-   "fairRange": "2,664.59 - 4,418.73",
+   "pe": "4.3x",
+   "pb": "2.75x",
+   "divYield": 1.56,
+   "fairValue": 3357.24,
+   "fairRange": "2,664.59 - 4,476.77",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 2664.59,
     "rim": null,
     "oj": 2818.83,
-    "subIndPe": 3196.02,
-    "blWarranted": 4418.73,
-    "evEbitda": 3378.62
+    "subIndPe": 3228.64,
+    "blWarranted": 4476.77,
+    "evEbitda": 3231.05
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 9.74,
    "wacc": 9.54,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6770": {
    "code": "6770",
@@ -942,12 +942,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 48.05,
-    "baseDate": "2026-11-25",
-    "w1": -7.42,
-    "m1": -27.64,
-    "q1": -31.55,
-    "y1": 44.29
+    "basePrice": 53.3,
+    "baseDate": "2026-11-24",
+    "w1": 3.5,
+    "m1": -19.73,
+    "q1": -22.75,
+    "y1": 60.06
    },
    "analystTarget": 91.32,
    "analystHigh": 125.0,
@@ -956,7 +956,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 9.424,
-   "trailingEps": 5.67,
+   "trailingEps": 5.16,
    "quality": {
     "score": 5,
     "max": 5,
@@ -971,24 +971,24 @@
    },
    "pe": "10.8x",
    "pb": "1.87x",
-   "fairValue": 48.09,
-   "fairRange": "23.37 - 70.29",
+   "fairValue": 48.44,
+   "fairRange": "24.99 - 70.75",
    "fairSource": "機構／學術 6 模型（公開財報估算・景氣循環常態化）",
    "models": {
-    "fcffDcf": 23.37,
+    "fcffDcf": 24.99,
     "rim": 44.4,
     "oj": 52.49,
-    "subIndPe": 49.2,
-    "blWarranted": 70.29,
-    "evEbitda": 36.42
+    "subIndPe": 48.4,
+    "blWarranted": 70.75,
+    "evEbitda": 37.21
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "14.7x",
+   "peerPe": "14.5x",
    "costOfEquity": 9.74,
    "wacc": 8.84,
    "betaAdj": 1.3,
    "cyclicalNormalized": true,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6239": {
    "code": "6239",
@@ -998,12 +998,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 194.0,
-    "baseDate": "2026-11-25",
-    "w1": -11.42,
-    "m1": -21.77,
-    "q1": -32.17,
-    "y1": 27.63
+    "basePrice": 210.0,
+    "baseDate": "2026-11-24",
+    "w1": -2.1,
+    "m1": -15.32,
+    "q1": -23.22,
+    "y1": 38.16
    },
    "analystTarget": 329.11,
    "analystHigh": 500.0,
@@ -1028,24 +1028,24 @@
    "pe": "17.9x",
    "pb": "2.69x",
    "divYield": 2.14,
-   "fairValue": 339.96,
-   "fairRange": "143.35 - 750.95",
+   "fairValue": 341.47,
+   "fairRange": "143.35 - 741.84",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 456.72,
     "rim": 143.35,
     "oj": 286.73,
-    "subIndPe": 360.52,
-    "blWarranted": 261.91,
-    "evEbitda": 750.95
+    "subIndPe": 365.22,
+    "blWarranted": 262.57,
+    "evEbitda": 741.84
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.7x",
    "costOfEquity": 9.74,
    "wacc": 8.86,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3260": {
    "code": "3260",
@@ -1055,12 +1055,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 244.0,
-    "baseDate": "2026-11-25",
-    "w1": -11.27,
-    "m1": -25.61,
-    "q1": -41.35,
-    "y1": 36.69
+    "basePrice": 271.0,
+    "baseDate": "2026-11-24",
+    "w1": -1.45,
+    "m1": -17.38,
+    "q1": -35.24,
+    "y1": 51.82
    },
    "analystTarget": 455.0,
    "analystHigh": 455.0,
@@ -1069,7 +1069,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 44.33,
-   "trailingEps": 121.2,
+   "trailingEps": 111.59,
    "quality": {
     "score": 2,
     "max": 5,
@@ -1079,27 +1079,27 @@
      "獲利品質/ROE佳"
     ]
    },
-   "pe": "2.5x",
-   "pb": "1.84x",
-   "divYield": 6.27,
-   "fairValue": 575.53,
-   "fairRange": "479.93 - 661.95",
+   "pe": "2.2x",
+   "pb": "1.66x",
+   "divYield": 6.97,
+   "fairValue": 579.02,
+   "fairRange": "484.82 - 668.48",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 655.03,
+    "fcffDcf": 663.31,
     "rim": null,
     "oj": 530.93,
-    "subIndPe": 479.93,
-    "blWarranted": 585.61,
-    "evEbitda": 661.95
+    "subIndPe": 484.82,
+    "blWarranted": 585.66,
+    "evEbitda": 668.48
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2458": {
    "code": "2458",
@@ -1109,12 +1109,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 103.5,
-    "baseDate": "2026-11-25",
-    "w1": -12.29,
-    "m1": -20.38,
-    "q1": -25.81,
-    "y1": -19.14
+    "basePrice": 112.0,
+    "baseDate": "2026-11-24",
+    "w1": -3.45,
+    "m1": -13.85,
+    "q1": -18.55,
+    "y1": -12.5
    },
    "analystTarget": 143.0,
    "analystHigh": 180.0,
@@ -1138,24 +1138,24 @@
    "pe": "13.1x",
    "pb": "3.15x",
    "divYield": 6.31,
-   "fairValue": 83.32,
+   "fairValue": 83.25,
    "fairRange": "59.97 - 97.17",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 75.2,
     "rim": 59.97,
     "oj": 97.17,
-    "subIndPe": 78.6,
-    "blWarranted": 97.02,
-    "evEbitda": 77.03
+    "subIndPe": 79.62,
+    "blWarranted": 96.62,
+    "evEbitda": 75.0
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.7x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.8,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2317": {
    "code": "2317",
@@ -1165,12 +1165,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 207.5,
-    "baseDate": "2026-11-25",
-    "w1": -6.11,
-    "m1": -15.31,
-    "q1": -15.82,
-    "y1": -5.25
+    "basePrice": 226.5,
+    "baseDate": "2026-11-24",
+    "w1": 3.42,
+    "m1": -7.55,
+    "q1": -6.79,
+    "y1": 3.42
    },
    "analystTarget": 338.21,
    "analystHigh": 435.0,
@@ -1193,24 +1193,24 @@
    "pe": "13.7x",
    "pb": "1.61x",
    "divYield": 3.17,
-   "fairValue": 343.2,
+   "fairValue": 341.42,
    "fairRange": "223.96 - 548.49",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 548.49,
     "rim": 223.96,
     "oj": 383.96,
-    "subIndPe": 228.06,
-    "blWarranted": 268.54,
-    "evEbitda": 400.2
+    "subIndPe": 226.36,
+    "blWarranted": 265.11,
+    "evEbitda": 392.05
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.93,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2382": {
    "code": "2382",
@@ -1220,12 +1220,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 260.5,
-    "baseDate": "2026-11-25",
-    "w1": -1.7,
-    "m1": -19.1,
-    "q1": -21.65,
-    "y1": -5.27
+    "basePrice": 282.5,
+    "baseDate": "2026-11-24",
+    "w1": 7.62,
+    "m1": -12.27,
+    "q1": -14.0,
+    "y1": 2.73
    },
    "analystTarget": 391.85,
    "analystHigh": 626.0,
@@ -1234,7 +1234,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 31.703,
-   "trailingEps": 24.25,
+   "trailingEps": 22.06,
    "quality": {
     "score": 3,
     "max": 5,
@@ -1248,24 +1248,24 @@
    "pe": "11.5x",
    "pb": "3.37x",
    "divYield": 5.52,
-   "fairValue": 405.96,
+   "fairValue": 419.35,
    "fairRange": "263.19 - 597.92",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 474.89,
+    "fcffDcf": 533.46,
     "rim": 263.19,
     "oj": 597.92,
-    "subIndPe": 330.63,
-    "blWarranted": 358.2,
-    "evEbitda": 328.7
+    "subIndPe": 328.95,
+    "blWarranted": 355.0,
+    "evEbitda": 363.04
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.88,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3231": {
    "code": "3231",
@@ -1275,12 +1275,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 153.0,
-    "baseDate": "2026-11-25",
-    "w1": -5.56,
-    "m1": -19.47,
-    "q1": -15.93,
-    "y1": 9.68
+    "basePrice": 163.0,
+    "baseDate": "2026-11-24",
+    "w1": 3.82,
+    "m1": -14.21,
+    "q1": -8.68,
+    "y1": 16.85
    },
    "analystTarget": 295.94,
    "analystHigh": 400.0,
@@ -1303,24 +1303,24 @@
    "pe": "10.9x",
    "pb": "2.10x",
    "divYield": 3.37,
-   "fairValue": 572.31,
+   "fairValue": 576.54,
    "fairRange": "214.30 - 1,320.12",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 1320.12,
     "rim": 214.3,
     "oj": 712.35,
-    "subIndPe": 388.93,
-    "blWarranted": 332.36,
-    "evEbitda": 671.09
+    "subIndPe": 387.22,
+    "blWarranted": 328.72,
+    "evEbitda": 689.99
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.89,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6669": {
    "code": "6669",
@@ -1330,12 +1330,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 1440.0,
-    "baseDate": "2026-11-25",
-    "w1": -2.37,
-    "m1": -21.74,
-    "q1": -36.7,
-    "y1": 3.0
+    "basePrice": 1510.0,
+    "baseDate": "2026-11-24",
+    "w1": 4.14,
+    "m1": -17.93,
+    "q1": -30.06,
+    "y1": 8.01
    },
    "analystTarget": 2679.92,
    "analystHigh": 4000.0,
@@ -1358,24 +1358,24 @@
    "pe": "13.3x",
    "pb": "4.69x",
    "divYield": 10.88,
-   "fairValue": 3551.96,
-   "fairRange": "2,393.57 - 5,022.01",
+   "fairValue": 3542.28,
+   "fairRange": "2,369.20 - 5,022.01",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 4787.35,
     "rim": null,
     "oj": 5022.01,
-    "subIndPe": 2724.74,
-    "blWarranted": 2393.57,
-    "evEbitda": 2492.24
+    "subIndPe": 2710.9,
+    "blWarranted": 2369.2,
+    "evEbitda": 2490.09
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 1.04,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2356": {
    "code": "2356",
@@ -1385,12 +1385,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 39.35,
-    "baseDate": "2026-11-25",
-    "w1": -6.97,
-    "m1": -34.96,
-    "q1": -41.09,
-    "y1": -4.14
+    "basePrice": 42.2,
+    "baseDate": "2026-11-24",
+    "w1": -1.29,
+    "m1": -30.25,
+    "q1": -35.47,
+    "y1": 2.8
    },
    "analystTarget": 58.85,
    "analystHigh": 65.0,
@@ -1412,24 +1412,24 @@
    "pe": "13.8x",
    "pb": "1.87x",
    "divYield": 4.74,
-   "fairValue": 50.41,
+   "fairValue": 50.46,
    "fairRange": "35.50 - 66.10",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 60.69,
     "rim": 35.5,
     "oj": 66.1,
-    "subIndPe": 47.53,
-    "blWarranted": 44.37,
-    "evEbitda": 36.42
+    "subIndPe": 47.36,
+    "blWarranted": 43.77,
+    "evEbitda": 39.17
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.97,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2376": {
    "code": "2376",
@@ -1439,12 +1439,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 259.5,
-    "baseDate": "2026-11-25",
-    "w1": -6.15,
-    "m1": -25.64,
-    "q1": -26.17,
-    "y1": 7.01
+    "basePrice": 278.0,
+    "baseDate": "2026-11-24",
+    "w1": 1.28,
+    "m1": -20.34,
+    "q1": -20.0,
+    "y1": 14.64
    },
    "analystTarget": 425.83,
    "analystHigh": 492.0,
@@ -1466,24 +1466,24 @@
    "pe": "8.0x",
    "pb": "2.53x",
    "divYield": 4.32,
-   "fairValue": 392.39,
-   "fairRange": "265.39 - 552.46",
+   "fairValue": 391.59,
+   "fairRange": "264.05 - 552.46",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 401.97,
     "rim": 307.47,
     "oj": 552.46,
-    "subIndPe": 265.39,
-    "blWarranted": 441.15,
-    "evEbitda": 275.17
+    "subIndPe": 264.05,
+    "blWarranted": 438.92,
+    "evEbitda": 274.83
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 1.02,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2357": {
    "code": "2357",
@@ -1493,12 +1493,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 766.0,
-    "baseDate": "2026-11-25",
-    "w1": -8.92,
-    "m1": -19.03,
-    "q1": -21.11,
-    "y1": 29.83
+    "basePrice": 821.0,
+    "baseDate": "2026-11-24",
+    "w1": -0.61,
+    "m1": -13.21,
+    "q1": -11.24,
+    "y1": 39.15
    },
    "analystTarget": 1021.54,
    "analystHigh": 1200.0,
@@ -1520,24 +1520,24 @@
    "pe": "9.8x",
    "pb": "1.74x",
    "divYield": 5.12,
-   "fairValue": 727.32,
-   "fairRange": "395.90 - 929.52",
+   "fairValue": 726.91,
+   "fairRange": "420.80 - 929.52",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 657.87,
     "rim": 758.52,
     "oj": 929.52,
-    "subIndPe": 541.05,
-    "blWarranted": 868.13,
-    "evEbitda": 395.9
+    "subIndPe": 537.67,
+    "blWarranted": 860.65,
+    "evEbitda": 420.8
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.85,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2301": {
    "code": "2301",
@@ -1547,12 +1547,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 190.0,
-    "baseDate": "2026-11-25",
-    "w1": -8.65,
-    "m1": -25.64,
-    "q1": -38.11,
-    "y1": 22.98
+    "basePrice": 204.0,
+    "baseDate": "2026-11-24",
+    "w1": -1.45,
+    "m1": -20.16,
+    "q1": -31.08,
+    "y1": 32.04
    },
    "analystTarget": 313.08,
    "analystHigh": 400.0,
@@ -1561,7 +1561,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 15.368,
-   "trailingEps": 9.72,
+   "trailingEps": 10.27,
    "quality": {
     "score": 4,
     "max": 5,
@@ -1576,24 +1576,24 @@
    "pe": "20.9x",
    "pb": "4.75x",
    "divYield": 2.45,
-   "fairValue": 240.32,
+   "fairValue": 235.82,
    "fairRange": "108.29 - 353.55",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 329.77,
+    "fcffDcf": 310.14,
     "rim": 108.29,
     "oj": 353.55,
-    "subIndPe": 199.57,
-    "blWarranted": 197.65,
-    "evEbitda": 179.69
+    "subIndPe": 198.83,
+    "blWarranted": 196.31,
+    "evEbitda": 178.23
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.73,
    "wacc": 8.4,
    "betaAdj": 1.13,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2308": {
    "code": "2308",
@@ -1603,12 +1603,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 1055.0,
-    "baseDate": "2026-11-25",
-    "w1": -0.47,
-    "m1": -32.37,
-    "q1": -39.71,
-    "y1": 15.93
+    "basePrice": 1085.0,
+    "baseDate": "2026-11-24",
+    "w1": 2.84,
+    "m1": -30.45,
+    "q1": -36.55,
+    "y1": 19.23
    },
    "analystTarget": 2244.95,
    "analystHigh": 4120.0,
@@ -1633,16 +1633,16 @@
    "pe": "32.6x",
    "pb": "8.86x",
    "divYield": 1.07,
-   "fairValue": 1090.07,
-   "fairRange": "742.54 - 1,420.58",
+   "fairValue": 1089.38,
+   "fairRange": "743.65 - 1,420.58",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 1420.58,
     "rim": null,
     "oj": 1362.64,
-    "subIndPe": 742.54,
-    "blWarranted": 884.33,
-    "evEbitda": 1049.67
+    "subIndPe": 743.65,
+    "blWarranted": 887.07,
+    "evEbitda": 1031.36
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
@@ -1650,7 +1650,7 @@
    "wacc": 9.32,
    "betaAdj": 1.28,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2395": {
    "code": "2395",
@@ -1660,12 +1660,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 554.0,
-    "baseDate": "2026-11-25",
-    "w1": -5.94,
-    "m1": -17.31,
-    "q1": -19.48,
-    "y1": 94.39
+    "basePrice": 589.0,
+    "baseDate": "2026-11-24",
+    "w1": 4.43,
+    "m1": -12.09,
+    "q1": -12.09,
+    "y1": 106.67
    },
    "analystTarget": 736.12,
    "analystHigh": 830.0,
@@ -1674,7 +1674,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 25.675,
-   "trailingEps": 21.59,
+   "trailingEps": 19.65,
    "quality": {
     "score": 5,
     "max": 5,
@@ -1690,24 +1690,24 @@
    "pe": "29.8x",
    "pb": "8.17x",
    "divYield": 1.89,
-   "fairValue": 306.51,
+   "fairValue": 315.43,
    "fairRange": "183.83 - 430.90",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 348.73,
+    "fcffDcf": 385.54,
     "rim": 183.83,
     "oj": 430.9,
-    "subIndPe": 225.65,
-    "blWarranted": 338.31,
-    "evEbitda": 191.67
+    "subIndPe": 224.81,
+    "blWarranted": 336.45,
+    "evEbitda": 218.63
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
-   "wacc": 8.42,
+   "wacc": 8.44,
    "betaAdj": 0.9,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2324": {
    "code": "2324",
@@ -1717,12 +1717,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 25.1,
-    "baseDate": "2026-11-25",
-    "w1": -11.46,
-    "m1": -32.71,
-    "q1": -38.71,
-    "y1": -15.06
+    "basePrice": 27.6,
+    "baseDate": "2026-11-24",
+    "w1": -2.82,
+    "m1": -26.01,
+    "q1": -32.35,
+    "y1": -6.6
    },
    "analystTarget": 37.25,
    "analystHigh": 55.0,
@@ -1744,24 +1744,24 @@
    "pe": "13.2x",
    "pb": "0.86x",
    "divYield": 3.99,
-   "fairValue": 25.69,
-   "fairRange": "5.31 - 37.45",
+   "fairValue": 25.56,
+   "fairRange": "6.70 - 37.45",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 9.3,
     "rim": 37.45,
     "oj": 34.43,
-    "subIndPe": 18.33,
-    "blWarranted": 34.88,
-    "evEbitda": 5.31
+    "subIndPe": 18.23,
+    "blWarranted": 34.44,
+    "evEbitda": 6.7
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.86,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2353": {
    "code": "2353",
@@ -1771,12 +1771,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 27.2,
-    "baseDate": "2026-11-25",
-    "w1": -5.88,
-    "m1": -16.18,
-    "q1": -13.38,
-    "y1": 0.18
+    "basePrice": 28.65,
+    "baseDate": "2026-11-24",
+    "w1": -1.72,
+    "m1": -11.71,
+    "q1": -7.73,
+    "y1": 5.52
    },
    "analystTarget": 29.62,
    "analystHigh": 39.0,
@@ -1785,7 +1785,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 1.96,
-   "trailingEps": 2.14,
+   "trailingEps": 2.01,
    "quality": {
     "score": 1,
     "max": 5,
@@ -1797,24 +1797,24 @@
    "pe": "14.2x",
    "pb": "1.08x",
    "divYield": 4.54,
-   "fairValue": 19.91,
-   "fairRange": "10.28 - 29.60",
+   "fairValue": 20.25,
+   "fairRange": "12.27 - 29.60",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 13.73,
+    "fcffDcf": 15.08,
     "rim": 29.6,
     "oj": 22.19,
-    "subIndPe": 13.12,
-    "blWarranted": 26.79,
-    "evEbitda": 10.28
+    "subIndPe": 13.07,
+    "blWarranted": 26.47,
+    "evEbitda": 12.27
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.84,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "4938": {
    "code": "4938",
@@ -1824,12 +1824,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 80.1,
-    "baseDate": "2026-11-25",
-    "w1": -6.21,
-    "m1": -22.61,
-    "q1": -10.3,
-    "y1": 14.27
+    "basePrice": 84.8,
+    "baseDate": "2026-11-24",
+    "w1": 1.19,
+    "m1": -18.07,
+    "q1": -4.5,
+    "y1": 20.97
    },
    "analystTarget": 98.0,
    "analystHigh": 120.0,
@@ -1851,24 +1851,24 @@
    "pe": "14.8x",
    "pb": "1.03x",
    "divYield": 4.73,
-   "fairValue": 137.39,
-   "fairRange": "98.63 - 166.94",
+   "fairValue": 136.87,
+   "fairRange": "98.63 - 166.78",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 166.56,
     "rim": 98.63,
     "oj": 155.74,
-    "subIndPe": 122.96,
-    "blWarranted": 119.68,
-    "evEbitda": 166.94
+    "subIndPe": 122.65,
+    "blWarranted": 117.8,
+    "evEbitda": 166.78
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2345": {
    "code": "2345",
@@ -1878,12 +1878,12 @@
    "sector": "Technology",
    "industry": "Communication Equipment",
    "perf": {
-    "basePrice": 1490.0,
-    "baseDate": "2026-11-25",
-    "w1": 4.93,
-    "m1": -16.06,
-    "q1": -27.49,
-    "y1": 54.4
+    "basePrice": 1485.0,
+    "baseDate": "2026-11-24",
+    "w1": 11.65,
+    "m1": -16.34,
+    "q1": -26.85,
+    "y1": 53.89
    },
    "analystTarget": 3032.92,
    "analystHigh": 3700.0,
@@ -1906,24 +1906,24 @@
    "pe": "20.3x",
    "pb": "10.12x",
    "divYield": 1.01,
-   "fairValue": 2064.15,
-   "fairRange": "1,457.78 - 2,863.68",
+   "fairValue": 2054.55,
+   "fairRange": "1,445.31 - 2,863.68",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 2600.5,
     "rim": null,
     "oj": 2863.68,
-    "subIndPe": 1714.19,
-    "blWarranted": 1457.78,
-    "evEbitda": 1530.81
+    "subIndPe": 1690.63,
+    "blWarranted": 1445.31,
+    "evEbitda": 1515.71
    },
    "peerGroup": "Technology",
-   "peerPe": "13.1x",
+   "peerPe": "12.9x",
    "costOfEquity": 8.6,
    "wacc": 8.46,
    "betaAdj": 0.83,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "5388": {
    "code": "5388",
@@ -1933,12 +1933,12 @@
    "sector": "Technology",
    "industry": "Communication Equipment",
    "perf": {
-    "basePrice": 66.2,
-    "baseDate": "2026-11-25",
-    "w1": -7.93,
-    "m1": -10.54,
-    "q1": -14.47,
-    "y1": -18.47
+    "basePrice": 71.4,
+    "baseDate": "2026-11-24",
+    "w1": 1.42,
+    "m1": -3.51,
+    "q1": -7.39,
+    "y1": -12.07
    },
    "analystTarget": 105.0,
    "analystHigh": 107.0,
@@ -1960,24 +1960,24 @@
    "pe": "13.7x",
    "pb": "1.28x",
    "divYield": 3.5,
-   "fairValue": 115.32,
+   "fairValue": 114.72,
    "fairRange": "80.55 - 158.48",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 158.48,
     "rim": 80.55,
     "oj": 124.53,
-    "subIndPe": 94.48,
-    "blWarranted": 98.26,
-    "evEbitda": 136.88
+    "subIndPe": 93.19,
+    "blWarranted": 97.09,
+    "evEbitda": 135.84
    },
    "peerGroup": "Technology",
-   "peerPe": "13.1x",
+   "peerPe": "12.9x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.81,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6285": {
    "code": "6285",
@@ -1987,12 +1987,12 @@
    "sector": "Technology",
    "industry": "Communication Equipment",
    "perf": {
-    "basePrice": 175.5,
-    "baseDate": "2026-11-25",
-    "w1": -13.12,
-    "m1": -23.7,
-    "q1": -27.48,
-    "y1": 76.38
+    "basePrice": 194.5,
+    "baseDate": "2026-11-24",
+    "w1": 5.71,
+    "m1": -15.43,
+    "q1": -16.7,
+    "y1": 95.48
    },
    "analystTarget": 256.83,
    "analystHigh": 380.0,
@@ -2015,24 +2015,24 @@
    "pe": "16.1x",
    "pb": "2.43x",
    "divYield": 2.21,
-   "fairValue": 167.3,
-   "fairRange": "138.64 - 207.92",
+   "fairValue": 166.45,
+   "fairRange": "137.98 - 207.92",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 172.36,
     "rim": 138.64,
     "oj": 207.92,
-    "subIndPe": 139.9,
-    "blWarranted": 160.73,
-    "evEbitda": 187.58
+    "subIndPe": 137.98,
+    "blWarranted": 159.12,
+    "evEbitda": 186.12
    },
    "peerGroup": "Technology",
-   "peerPe": "13.1x",
+   "peerPe": "12.9x",
    "costOfEquity": 8.62,
    "wacc": 8.4,
    "betaAdj": 1.11,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2412": {
    "code": "2412",
@@ -2042,12 +2042,12 @@
    "sector": "Communication Services",
    "industry": "Telecom Services",
    "perf": {
-    "basePrice": 163.0,
-    "baseDate": "2026-11-25",
-    "w1": -0.91,
-    "m1": 3.16,
-    "q1": 19.85,
-    "y1": 24.43
+    "basePrice": 164.5,
+    "baseDate": "2026-11-24",
+    "w1": 0.0,
+    "m1": 4.11,
+    "q1": 20.51,
+    "y1": 25.57
    },
    "analystTarget": 136.5,
    "analystHigh": 150.0,
@@ -2072,16 +2072,16 @@
    "pe": "30.2x",
    "pb": "3.37x",
    "divYield": 3.16,
-   "fairValue": 79.87,
-   "fairRange": "61.24 - 113.20",
+   "fairValue": 80.05,
+   "fairRange": "61.24 - 114.84",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 72.94,
     "rim": 61.24,
     "oj": 71.34,
     "subIndPe": 99.59,
-    "blWarranted": 75.47,
-    "evEbitda": 113.2
+    "blWarranted": 75.66,
+    "evEbitda": 114.84
    },
    "peerGroup": "Telecom Services",
    "peerPe": "22.5x",
@@ -2089,7 +2089,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "4904": {
    "code": "4904",
@@ -2099,12 +2099,12 @@
    "sector": "Communication Services",
    "industry": "Telecom Services",
    "perf": {
-    "basePrice": 103.5,
-    "baseDate": "2026-11-25",
-    "w1": -5.05,
-    "m1": -10.0,
-    "q1": 2.48,
-    "y1": 16.29
+    "basePrice": 107.0,
+    "baseDate": "2026-11-24",
+    "w1": -1.38,
+    "m1": -6.96,
+    "q1": 4.39,
+    "y1": 20.22
    },
    "analystTarget": 107.0,
    "analystHigh": 120.0,
@@ -2113,7 +2113,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 4.596,
-   "trailingEps": 4.11,
+   "trailingEps": 4.17,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2129,24 +2129,24 @@
    "pe": "25.6x",
    "pb": "4.30x",
    "divYield": 3.56,
-   "fairValue": 71.81,
-   "fairRange": "39.26 - 169.40",
+   "fairValue": 71.63,
+   "fairRange": "39.26 - 169.92",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 52.28,
+    "fcffDcf": 51.24,
     "rim": 39.26,
     "oj": 66.34,
-    "subIndPe": 169.4,
-    "blWarranted": 54.91,
-    "evEbitda": 154.56
+    "subIndPe": 169.92,
+    "blWarranted": 54.97,
+    "evEbitda": 152.68
    },
    "peerGroup": "Telecom Services",
-   "peerPe": "30.2x",
+   "peerPe": "30.3x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2327": {
    "code": "2327",
@@ -2156,12 +2156,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 313.5,
-    "baseDate": "2026-11-25",
-    "w1": -10.94,
-    "m1": -38.17,
-    "q1": -41.62,
-    "y1": 37.2
+    "basePrice": 341.0,
+    "baseDate": "2026-11-24",
+    "w1": -5.54,
+    "m1": -32.74,
+    "q1": -37.32,
+    "y1": 49.23
    },
    "analystTarget": 893.47,
    "analystHigh": 1310.0,
@@ -2170,7 +2170,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 32.548,
-   "trailingEps": 19.31,
+   "trailingEps": 17.55,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2186,24 +2186,24 @@
    "pe": "19.4x",
    "pb": "3.70x",
    "divYield": 1.76,
-   "fairValue": 500.21,
+   "fairValue": 513.89,
    "fairRange": "235.20 - 706.01",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 570.84,
+    "fcffDcf": 625.72,
     "rim": 235.2,
     "oj": 706.01,
-    "subIndPe": 419.6,
-    "blWarranted": 507.63,
-    "evEbitda": 417.24
+    "subIndPe": 416.46,
+    "blWarranted": 510.09,
+    "evEbitda": 450.72
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 9.74,
-   "wacc": 8.96,
+   "wacc": 9.02,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2492": {
    "code": "2492",
@@ -2213,12 +2213,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 191.5,
-    "baseDate": "2026-11-25",
-    "w1": -17.1,
-    "m1": -47.96,
-    "q1": -28.94,
-    "y1": 63.68
+    "basePrice": 212.0,
+    "baseDate": "2026-11-24",
+    "w1": -8.62,
+    "m1": -42.39,
+    "q1": -20.9,
+    "y1": 81.2
    },
    "analystTarget": 480.0,
    "analystHigh": 480.0,
@@ -2227,7 +2227,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 17.38,
-   "trailingEps": 12.57,
+   "trailingEps": 11.44,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2243,24 +2243,24 @@
    "pe": "18.5x",
    "pb": "1.56x",
    "divYield": 1.18,
-   "fairValue": 249.1,
-   "fairRange": "182.29 - 318.88",
+   "fairValue": 254.59,
+   "fairRange": "182.29 - 319.32",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 232.97,
+    "fcffDcf": 254.37,
     "rim": 182.29,
     "oj": 271.55,
-    "subIndPe": 214.76,
-    "blWarranted": 318.88,
-    "evEbitda": 207.01
+    "subIndPe": 213.15,
+    "blWarranted": 319.32,
+    "evEbitda": 224.45
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 9.74,
-   "wacc": 8.59,
+   "wacc": 8.66,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3017": {
    "code": "3017",
@@ -2270,12 +2270,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 2590.0,
-    "baseDate": "2026-11-25",
-    "w1": -4.6,
-    "m1": -17.65,
-    "q1": -17.91,
-    "y1": 96.96
+    "basePrice": 2600.0,
+    "baseDate": "2026-11-24",
+    "w1": 5.26,
+    "m1": -17.33,
+    "q1": -11.86,
+    "y1": 97.72
    },
    "analystTarget": 4181.11,
    "analystHigh": 5200.0,
@@ -2300,16 +2300,16 @@
    "pe": "28.7x",
    "pb": "15.25x",
    "divYield": 0.8,
-   "fairValue": 3271.7,
-   "fairRange": "1,901.15 - 4,841.56",
+   "fairValue": 3262.65,
+   "fairRange": "1,903.99 - 4,841.56",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 4841.56,
     "rim": null,
     "oj": 4644.52,
-    "subIndPe": 1901.15,
-    "blWarranted": 2191.29,
-    "evEbitda": 2583.22
+    "subIndPe": 1903.99,
+    "blWarranted": 2174.27,
+    "evEbitda": 2528.24
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
@@ -2317,7 +2317,7 @@
    "wacc": 8.4,
    "betaAdj": 0.92,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3324": {
    "code": "3324",
@@ -2327,12 +2327,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 804.0,
-    "baseDate": "2026-11-25",
-    "w1": -17.88,
-    "m1": -40.88,
-    "q1": -25.21,
-    "y1": -8.22
+    "basePrice": 854.0,
+    "baseDate": "2026-11-24",
+    "w1": -7.87,
+    "m1": -37.21,
+    "q1": -19.81,
+    "y1": -2.51
    },
    "analystTarget": 1531.75,
    "analystHigh": 2180.0,
@@ -2340,8 +2340,8 @@
    "analystCount": 16,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 85.935,
-   "trailingEps": 42.93,
+   "forwardEps": 84.085,
+   "trailingEps": 47.18,
    "quality": {
     "score": 4,
     "max": 5,
@@ -2353,27 +2353,27 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "19.2x",
-   "pb": "5.35x",
-   "divYield": 1.39,
-   "fairValue": 1511.88,
-   "fairRange": "1,200.99 - 1,954.78",
+   "pe": "17.9x",
+   "pb": "5.00x",
+   "divYield": 1.49,
+   "fairValue": 1459.93,
+   "fairRange": "1,127.20 - 1,954.65",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 1812.95,
+    "fcffDcf": 1636.98,
     "rim": null,
-    "oj": 1954.78,
-    "subIndPe": 1267.22,
-    "blWarranted": 1200.99,
-    "evEbitda": 1245.81
+    "oj": 1954.65,
+    "subIndPe": 1260.79,
+    "blWarranted": 1201.63,
+    "evEbitda": 1127.2
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 9.46,
-   "wacc": 8.97,
+   "wacc": 8.93,
    "betaAdj": 1.25,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3653": {
    "code": "3653",
@@ -2383,12 +2383,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 4140.0,
-    "baseDate": "2026-11-25",
-    "w1": -9.41,
-    "m1": -31.8,
-    "q1": -27.69,
-    "y1": 59.54
+    "basePrice": 4050.0,
+    "baseDate": "2026-11-24",
+    "w1": -6.57,
+    "m1": -33.28,
+    "q1": -22.19,
+    "y1": 56.07
    },
    "analystTarget": 7996.15,
    "analystHigh": 10120.0,
@@ -2397,7 +2397,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 188.425,
-   "trailingEps": 60.14,
+   "trailingEps": 54.72,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2413,16 +2413,16 @@
    "pe": "74.2x",
    "pb": "22.12x",
    "divYield": 0.54,
-   "fairValue": 3207.89,
-   "fairRange": "1,804.75 - 5,424.35",
+   "fairValue": 3199.68,
+   "fairRange": "1,773.20 - 5,424.35",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 2990.1,
+    "fcffDcf": 2991.54,
     "rim": null,
     "oj": 5424.35,
-    "subIndPe": 2456.03,
-    "blWarranted": 2758.65,
-    "evEbitda": 1804.75
+    "subIndPe": 2459.7,
+    "blWarranted": 2735.09,
+    "evEbitda": 1773.2
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
@@ -2430,7 +2430,7 @@
    "wacc": 8.6,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2421": {
    "code": "2421",
@@ -2440,12 +2440,12 @@
    "sector": "Industrials",
    "industry": "Specialty Industrial Machinery",
    "perf": {
-    "basePrice": 117.5,
-    "baseDate": "2026-11-25",
-    "w1": -9.62,
-    "m1": -24.19,
-    "q1": -22.44,
-    "y1": -31.09
+    "basePrice": 128.0,
+    "baseDate": "2026-11-24",
+    "w1": 0.79,
+    "m1": -17.42,
+    "q1": -11.11,
+    "y1": -24.93
    },
    "analystTarget": 213.33,
    "analystHigh": 265.0,
@@ -2454,7 +2454,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 13.761,
-   "trailingEps": 11.19,
+   "trailingEps": 10.19,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2470,24 +2470,24 @@
    "pe": "12.8x",
    "pb": "3.20x",
    "divYield": 4.09,
-   "fairValue": 212.78,
-   "fairRange": "100.41 - 261.96",
+   "fairValue": 220.03,
+   "fairRange": "100.41 - 284.56",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 258.94,
+    "fcffDcf": 284.56,
     "rim": 100.41,
     "oj": 261.96,
     "subIndPe": 248.73,
-    "blWarranted": 168.98,
-    "evEbitda": 203.67
+    "blWarranted": 169.02,
+    "evEbitda": 223.47
    },
    "peerGroup": "Industrials",
    "peerPe": "12.7x",
    "costOfEquity": 8.6,
-   "wacc": 8.44,
+   "wacc": 8.46,
    "betaAdj": 1.01,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2059": {
    "code": "2059",
@@ -2497,12 +2497,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Furnishings, Fixtures & Appliances",
    "perf": {
-    "basePrice": 6490.0,
-    "baseDate": "2026-11-25",
-    "w1": -0.46,
-    "m1": -33.47,
-    "q1": -55.27,
-    "y1": 87.57
+    "basePrice": 6200.0,
+    "baseDate": "2026-11-24",
+    "w1": -5.56,
+    "m1": -36.44,
+    "q1": -56.6,
+    "y1": 79.19
    },
    "analystTarget": 13531.77,
    "analystHigh": 18360.0,
@@ -2511,7 +2511,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 478.288,
-   "trailingEps": 286.98,
+   "trailingEps": 261.06,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2527,24 +2527,24 @@
    "pe": "22.9x",
    "pb": "13.00x",
    "divYield": 0.82,
-   "fairValue": 10121.51,
-   "fairRange": "6,623.62 - 11,785.00",
+   "fairValue": 10406.19,
+   "fairRange": "7,237.66 - 11,785.00",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 9556.0,
+    "fcffDcf": 10467.7,
     "rim": null,
     "oj": 11785.0,
-    "subIndPe": 10282.03,
-    "blWarranted": 10390.71,
-    "evEbitda": 6623.62
+    "subIndPe": 10358.24,
+    "blWarranted": 10412.97,
+    "evEbitda": 7237.66
    },
    "peerGroup": "Consumer Cyclical",
-   "peerPe": "12.6x",
+   "peerPe": "12.7x",
    "costOfEquity": 8.6,
-   "wacc": 8.58,
+   "wacc": 8.59,
    "betaAdj": 1.02,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3533": {
    "code": "3533",
@@ -2554,12 +2554,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 1455.0,
-    "baseDate": "2026-11-25",
-    "w1": -14.16,
-    "m1": -18.94,
-    "q1": -10.46,
-    "y1": 21.25
+    "basePrice": 1565.0,
+    "baseDate": "2026-11-24",
+    "w1": -6.85,
+    "m1": -12.81,
+    "q1": -2.49,
+    "y1": 30.42
    },
    "analystTarget": 2361.56,
    "analystHigh": 3200.0,
@@ -2567,7 +2567,7 @@
    "analystCount": 16,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 111.224,
+   "forwardEps": 109.494,
    "trailingEps": 78.53,
    "quality": {
     "score": 5,
@@ -2584,16 +2584,16 @@
    "pe": "19.9x",
    "pb": "4.06x",
    "divYield": 2.23,
-   "fairValue": 1797.65,
+   "fairValue": 1792.8,
    "fairRange": "851.90 - 2,685.53",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 2404.75,
     "rim": 851.9,
     "oj": 2685.53,
-    "subIndPe": 1227.95,
-    "blWarranted": 1582.49,
-    "evEbitda": 1628.13
+    "subIndPe": 1229.78,
+    "blWarranted": 1572.01,
+    "evEbitda": 1594.81
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
@@ -2601,7 +2601,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3037": {
    "code": "3037",
@@ -2611,12 +2611,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 578.0,
-    "baseDate": "2026-11-25",
-    "w1": -12.69,
-    "m1": -46.73,
-    "q1": -50.17,
-    "y1": 228.41
+    "basePrice": 613.0,
+    "baseDate": "2026-11-24",
+    "w1": -3.77,
+    "m1": -43.5,
+    "q1": -44.02,
+    "y1": 248.3
    },
    "analystTarget": 1440.0,
    "analystHigh": 1820.0,
@@ -2641,16 +2641,16 @@
    "pe": "31.7x",
    "pb": "5.66x",
    "divYield": 0.32,
-   "fairValue": 620.55,
+   "fairValue": 619.56,
    "fairRange": "339.31 - 936.99",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 567.9,
     "rim": 339.31,
     "oj": 936.99,
-    "subIndPe": 566.53,
-    "blWarranted": 607.84,
-    "evEbitda": 621.7
+    "subIndPe": 567.38,
+    "blWarranted": 608.66,
+    "evEbitda": 604.99
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
@@ -2658,7 +2658,7 @@
    "wacc": 9.19,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "8046": {
    "code": "8046",
@@ -2668,12 +2668,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 670.0,
-    "baseDate": "2026-11-25",
-    "w1": -13.55,
-    "m1": -47.04,
-    "q1": -43.22,
-    "y1": 168.0
+    "basePrice": 737.0,
+    "baseDate": "2026-11-24",
+    "w1": -6.94,
+    "m1": -41.74,
+    "q1": -36.47,
+    "y1": 194.8
    },
    "analystTarget": 1756.07,
    "analystHigh": 2700.0,
@@ -2682,7 +2682,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 53.558,
-   "trailingEps": 13.74,
+   "trailingEps": 12.49,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2698,16 +2698,16 @@
    "pe": "59.0x",
    "pb": "9.01x",
    "divYield": 0.27,
-   "fairValue": 764.53,
-   "fairRange": "541.22 - 1,170.93",
+   "fairValue": 764.17,
+   "fairRange": "541.62 - 1,170.93",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 541.22,
+    "fcffDcf": 541.62,
     "rim": null,
     "oj": 1170.93,
-    "subIndPe": 698.11,
-    "blWarranted": 735.43,
-    "evEbitda": 645.14
+    "subIndPe": 699.15,
+    "blWarranted": 736.82,
+    "evEbitda": 633.73
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
@@ -2715,7 +2715,7 @@
    "wacc": 9.69,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3189": {
    "code": "3189",
@@ -2725,12 +2725,12 @@
    "sector": "Technology",
    "industry": "Semiconductor Equipment & Materials",
    "perf": {
-    "basePrice": 499.5,
-    "baseDate": "2026-11-25",
-    "w1": -13.73,
-    "m1": -49.34,
-    "q1": -43.3,
-    "y1": 263.27
+    "basePrice": 514.0,
+    "baseDate": "2026-11-24",
+    "w1": -5.17,
+    "m1": -47.87,
+    "q1": -38.44,
+    "y1": 273.82
    },
    "analystTarget": 1190.23,
    "analystHigh": 1580.0,
@@ -2755,24 +2755,24 @@
    "pe": "55.4x",
    "pb": "5.77x",
    "divYield": 0.3,
-   "fairValue": 544.16,
-   "fairRange": "262.03 - 793.81",
+   "fairValue": 542.95,
+   "fairRange": "262.03 - 788.53",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 487.7,
     "rim": 262.03,
     "oj": 723.85,
-    "subIndPe": 592.91,
-    "blWarranted": 477.73,
-    "evEbitda": 793.81
+    "subIndPe": 586.94,
+    "blWarranted": 478.92,
+    "evEbitda": 788.53
    },
    "peerGroup": "Technology",
-   "peerPe": "12.7x",
+   "peerPe": "12.6x",
    "costOfEquity": 9.74,
    "wacc": 9.22,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2368": {
    "code": "2368",
@@ -2782,12 +2782,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 902.0,
-    "baseDate": "2026-11-25",
-    "w1": 2.85,
-    "m1": -19.1,
-    "q1": -13.27,
-    "y1": 51.85
+    "basePrice": 860.0,
+    "baseDate": "2026-11-24",
+    "w1": 2.99,
+    "m1": -22.87,
+    "q1": -11.43,
+    "y1": 44.78
    },
    "analystTarget": 1513.33,
    "analystHigh": 2000.0,
@@ -2796,7 +2796,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 67.698,
-   "trailingEps": 37.15,
+   "trailingEps": 33.78,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2812,24 +2812,24 @@
    "pe": "25.8x",
    "pb": "8.49x",
    "divYield": 1.14,
-   "fairValue": 1296.41,
-   "fairRange": "842.68 - 1,919.91",
+   "fairValue": 1332.22,
+   "fairRange": "843.93 - 1,919.91",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 1686.8,
+    "fcffDcf": 1821.61,
     "rim": null,
     "oj": 1919.91,
-    "subIndPe": 842.68,
-    "blWarranted": 972.08,
-    "evEbitda": 911.46
+    "subIndPe": 843.93,
+    "blWarranted": 963.67,
+    "evEbitda": 990.72
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
    "costOfEquity": 8.6,
-   "wacc": 8.43,
+   "wacc": 8.45,
    "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3044": {
    "code": "3044",
@@ -2839,12 +2839,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 457.0,
-    "baseDate": "2026-11-25",
-    "w1": -5.09,
-    "m1": -17.81,
-    "q1": -4.99,
-    "y1": 48.86
+    "basePrice": 486.5,
+    "baseDate": "2026-11-24",
+    "w1": 11.07,
+    "m1": -12.5,
+    "q1": 5.08,
+    "y1": 58.47
    },
    "analystTarget": 691.43,
    "analystHigh": 760.0,
@@ -2869,24 +2869,24 @@
    "pe": "16.4x",
    "pb": "4.10x",
    "divYield": 2.61,
-   "fairValue": 631.21,
+   "fairValue": 628.78,
    "fairRange": "332.17 - 941.76",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 941.76,
     "rim": 332.17,
     "oj": 804.98,
-    "subIndPe": 390.32,
-    "blWarranted": 573.66,
-    "evEbitda": 627.03
+    "subIndPe": 387.41,
+    "blWarranted": 570.17,
+    "evEbitda": 613.73
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 8.6,
    "wacc": 8.43,
    "betaAdj": 1.08,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6274": {
    "code": "6274",
@@ -2896,12 +2896,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 739.0,
-    "baseDate": "2026-11-25",
-    "w1": -3.78,
-    "m1": -47.96,
-    "q1": -51.7,
-    "y1": 76.37
+    "basePrice": 753.0,
+    "baseDate": "2026-11-24",
+    "w1": -4.68,
+    "m1": -46.97,
+    "q1": -49.29,
+    "y1": 79.71
    },
    "analystTarget": 2233.75,
    "analystHigh": 3515.0,
@@ -2921,27 +2921,27 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "26.4x",
-   "pb": "8.02x",
-   "divYield": 1.0,
-   "fairValue": 1512.65,
-   "fairRange": "1,058.77 - 2,117.59",
+   "pe": "25.9x",
+   "pb": "7.87x",
+   "divYield": 1.02,
+   "fairValue": 1509.59,
+   "fairRange": "1,035.27 - 2,117.59",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 1560.16,
     "rim": null,
     "oj": 2117.59,
-    "subIndPe": 1232.66,
-    "blWarranted": 1380.63,
-    "evEbitda": 1058.77
+    "subIndPe": 1223.46,
+    "blWarranted": 1384.15,
+    "evEbitda": 1035.27
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 9.74,
    "wacc": 9.53,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2383": {
    "code": "2383",
@@ -2951,12 +2951,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 3350.0,
-    "baseDate": "2026-11-25",
-    "w1": -3.32,
-    "m1": -33.93,
-    "q1": -43.17,
-    "y1": 131.03
+    "basePrice": 3395.0,
+    "baseDate": "2026-11-24",
+    "w1": -4.1,
+    "m1": -33.04,
+    "q1": -39.32,
+    "y1": 134.14
    },
    "analystTarget": 8461.84,
    "analystHigh": 11700.0,
@@ -2965,7 +2965,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 281.771,
-   "trailingEps": 102.5,
+   "trailingEps": 93.29,
    "quality": {
     "score": 5,
     "max": 5,
@@ -2981,24 +2981,24 @@
    "pe": "36.4x",
    "pb": "16.56x",
    "divYield": 0.74,
-   "fairValue": 4630.36,
-   "fairRange": "3,137.55 - 6,788.89",
+   "fairValue": 4622.52,
+   "fairRange": "3,080.02 - 6,788.89",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 4620.64,
+    "fcffDcf": 4623.85,
     "rim": null,
     "oj": 6788.89,
-    "subIndPe": 3864.47,
-    "blWarranted": 4091.6,
-    "evEbitda": 3137.55
+    "subIndPe": 3835.63,
+    "blWarranted": 4100.98,
+    "evEbitda": 3080.02
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 9.69,
    "wacc": 9.45,
    "betaAdj": 1.29,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "8069": {
    "code": "8069",
@@ -3008,12 +3008,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 120.0,
-    "baseDate": "2026-11-25",
-    "w1": -14.59,
-    "m1": -21.82,
-    "q1": -25.0,
-    "y1": -37.98
+    "basePrice": 129.0,
+    "baseDate": "2026-11-24",
+    "w1": -7.19,
+    "m1": -15.96,
+    "q1": -18.61,
+    "y1": -33.33
    },
    "analystTarget": 185.58,
    "analystHigh": 240.0,
@@ -3034,27 +3034,27 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "14.5x",
-   "pb": "1.81x",
-   "divYield": 4.56,
-   "fairValue": 150.02,
-   "fairRange": "108.70 - 194.63",
+   "pe": "13.5x",
+   "pb": "1.69x",
+   "divYield": 4.89,
+   "fairValue": 149.45,
+   "fairRange": "107.89 - 193.69",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 142.0,
     "rim": 110.27,
     "oj": 184.11,
-    "subIndPe": 108.7,
-    "blWarranted": 194.63,
-    "evEbitda": 112.16
+    "subIndPe": 107.89,
+    "blWarranted": 193.69,
+    "evEbitda": 109.64
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.84,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6176": {
    "code": "6176",
@@ -3064,12 +3064,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 73.9,
-    "baseDate": "2026-11-25",
-    "w1": -8.43,
-    "m1": -18.25,
-    "q1": -24.75,
-    "y1": -52.83
+    "basePrice": 78.5,
+    "baseDate": "2026-11-24",
+    "w1": -0.63,
+    "m1": -13.16,
+    "q1": -21.42,
+    "y1": -49.89
    },
    "analystTarget": 135.66,
    "analystHigh": 220.0,
@@ -3078,7 +3078,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 7.96,
-   "trailingEps": 7.51,
+   "trailingEps": 7.13,
    "quality": {
     "score": 3,
     "max": 5,
@@ -3092,24 +3092,24 @@
    "pe": "8.8x",
    "pb": "0.75x",
    "divYield": 4.46,
-   "fairValue": 132.2,
-   "fairRange": "69.70 - 207.90",
+   "fairValue": 134.0,
+   "fairRange": "69.18 - 217.00",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 207.9,
+    "fcffDcf": 217.0,
     "rim": 116.15,
     "oj": 102.84,
-    "subIndPe": 69.7,
-    "blWarranted": 125.22,
-    "evEbitda": 194.6
+    "subIndPe": 69.18,
+    "blWarranted": 123.97,
+    "evEbitda": 199.34
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2478": {
    "code": "2478",
@@ -3119,12 +3119,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 76.7,
-    "baseDate": "2026-11-25",
-    "w1": -13.33,
-    "m1": -35.27,
-    "q1": -37.13,
-    "y1": 26.15
+    "basePrice": 84.1,
+    "baseDate": "2026-11-24",
+    "w1": -5.29,
+    "m1": -29.03,
+    "q1": -30.21,
+    "y1": 38.32
    },
    "forwardEps": 7.25,
    "trailingEps": 6.13,
@@ -3143,24 +3143,24 @@
    "pe": "13.6x",
    "pb": "1.57x",
    "divYield": 2.38,
-   "fairValue": 86.21,
-   "fairRange": "63.49 - 104.92",
+   "fairValue": 85.97,
+   "fairRange": "63.01 - 103.23",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 90.83,
     "rim": 74.76,
     "oj": 80.53,
-    "subIndPe": 63.49,
-    "blWarranted": 103.15,
-    "evEbitda": 104.92
+    "subIndPe": 63.01,
+    "blWarranted": 103.23,
+    "evEbitda": 102.72
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 9.3,
    "wacc": 8.81,
    "betaAdj": 1.22,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2881": {
    "code": "2881",
@@ -3170,12 +3170,12 @@
    "sector": "Financial Services",
    "industry": "Insurance - Life",
    "perf": {
-    "basePrice": 131.5,
-    "baseDate": "2026-11-25",
-    "w1": -11.74,
-    "m1": -17.03,
-    "q1": -5.05,
-    "y1": 41.55
+    "basePrice": 143.5,
+    "baseDate": "2026-11-24",
+    "w1": -4.65,
+    "m1": -9.46,
+    "q1": 1.41,
+    "y1": 54.47
    },
    "analystTarget": 139.89,
    "analystHigh": 175.0,
@@ -3199,24 +3199,24 @@
    "pe": "13.4x",
    "pb": "1.77x",
    "divYield": 2.96,
-   "fairValue": 133.41,
-   "fairRange": "116.41 - 158.31",
+   "fairValue": 133.83,
+   "fairRange": "117.21 - 159.05",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 117.98,
     "oj": 128.86,
-    "subIndPe": 116.41,
-    "blWarranted": 158.31,
+    "subIndPe": 117.21,
+    "blWarranted": 159.05,
     "evEbitda": null
    },
    "peerGroup": "Financial Services",
-   "peerPe": "14.1x",
+   "peerPe": "14.2x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.83,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2882": {
    "code": "2882",
@@ -3226,12 +3226,12 @@
    "sector": "Financial Services",
    "industry": "Insurance - Life",
    "perf": {
-    "basePrice": 99.7,
-    "baseDate": "2026-11-25",
-    "w1": -9.36,
-    "m1": -12.16,
-    "q1": -2.73,
-    "y1": 53.15
+    "basePrice": 104.5,
+    "baseDate": "2026-11-24",
+    "w1": -5.86,
+    "m1": -7.93,
+    "q1": 1.46,
+    "y1": 60.52
    },
    "analystTarget": 119.98,
    "analystHigh": 130.0,
@@ -3239,7 +3239,7 @@
    "analystCount": 10,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 8.78,
+   "forwardEps": 8.814,
    "trailingEps": 6.73,
    "quality": {
     "score": 4,
@@ -3255,24 +3255,24 @@
    "pe": "12.3x",
    "pb": "1.51x",
    "divYield": 3.35,
-   "fairValue": 115.06,
-   "fairRange": "99.63 - 124.94",
+   "fairValue": 115.31,
+   "fairRange": "99.63 - 125.16",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 99.63,
     "oj": 114.99,
-    "subIndPe": 120.98,
-    "blWarranted": 124.94,
+    "subIndPe": 121.81,
+    "blWarranted": 125.16,
     "evEbitda": null
    },
    "peerGroup": "Financial Services",
-   "peerPe": "14.1x",
+   "peerPe": "14.2x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.84,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2891": {
    "code": "2891",
@@ -3282,12 +3282,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 65.1,
-    "baseDate": "2026-11-25",
-    "w1": -11.31,
-    "m1": -13.08,
-    "q1": 0.77,
-    "y1": 50.35
+    "basePrice": 69.9,
+    "baseDate": "2026-11-24",
+    "w1": -9.81,
+    "m1": -6.68,
+    "q1": 8.37,
+    "y1": 61.43
    },
    "analystTarget": 73.48,
    "analystHigh": 84.0,
@@ -3312,24 +3312,24 @@
    "pe": "17.0x",
    "pb": "1.93x",
    "divYield": 3.58,
-   "fairValue": 66.69,
-   "fairRange": "42.89 - 83.06",
+   "fairValue": 66.62,
+   "fairRange": "44.83 - 81.69",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
-    "rim": 42.89,
-    "oj": 57.47,
-    "subIndPe": 80.68,
-    "blWarranted": 83.06,
+    "rim": 44.83,
+    "oj": 57.01,
+    "subIndPe": 80.13,
+    "blWarranted": 81.69,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "15.7x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.6,
    "wacc": null,
-   "betaAdj": 1.0,
+   "betaAdj": 0.8,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2886": {
    "code": "2886",
@@ -3339,12 +3339,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 49.95,
-    "baseDate": "2026-11-25",
-    "w1": -5.04,
-    "m1": -9.51,
-    "q1": 7.19,
-    "y1": 26.3
+    "basePrice": 55.0,
+    "baseDate": "2026-11-24",
+    "w1": 0.55,
+    "m1": -0.36,
+    "q1": 17.02,
+    "y1": 39.06
    },
    "analystTarget": 48.21,
    "analystHigh": 62.0,
@@ -3368,24 +3368,24 @@
    "pe": "20.6x",
    "pb": "2.00x",
    "divYield": 3.18,
-   "fairValue": 36.46,
-   "fairRange": "32.24 - 43.50",
+   "fairValue": 36.59,
+   "fairRange": "32.24 - 44.03",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 32.24,
     "oj": 36.36,
-    "subIndPe": 43.5,
-    "blWarranted": 36.11,
+    "subIndPe": 44.03,
+    "blWarranted": 36.16,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "14.5x",
+   "peerPe": "14.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2884": {
    "code": "2884",
@@ -3395,12 +3395,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 38.8,
-    "baseDate": "2026-11-25",
-    "w1": -7.95,
-    "m1": -22.01,
-    "q1": 0.26,
-    "y1": 28.9
+    "basePrice": 41.2,
+    "baseDate": "2026-11-24",
+    "w1": -11.68,
+    "m1": -17.19,
+    "q1": 5.64,
+    "y1": 36.88
    },
    "analystTarget": 44.26,
    "analystHigh": 52.0,
@@ -3424,24 +3424,24 @@
    "pe": "17.1x",
    "pb": "2.37x",
    "divYield": 3.4,
-   "fairValue": 38.9,
-   "fairRange": "26.82 - 64.04",
+   "fairValue": 38.81,
+   "fairRange": "26.82 - 63.61",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 26.82,
     "oj": 37.45,
-    "subIndPe": 64.04,
+    "subIndPe": 63.61,
     "blWarranted": 35.5,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "15.7x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2892": {
    "code": "2892",
@@ -3451,12 +3451,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 37.2,
-    "baseDate": "2026-11-25",
-    "w1": -9.27,
-    "m1": -12.16,
-    "q1": 11.38,
-    "y1": 31.91
+    "basePrice": 39.8,
+    "baseDate": "2026-11-24",
+    "w1": -5.46,
+    "m1": -6.02,
+    "q1": 17.75,
+    "y1": 41.13
    },
    "analystTarget": 37.94,
    "analystHigh": 42.0,
@@ -3478,24 +3478,24 @@
    "pe": "18.6x",
    "pb": "1.90x",
    "divYield": 3.27,
-   "fairValue": 29.19,
-   "fairRange": "24.55 - 36.26",
+   "fairValue": 29.3,
+   "fairRange": "24.55 - 36.70",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 24.55,
     "oj": 29.0,
-    "subIndPe": 36.26,
-    "blWarranted": 29.21,
+    "subIndPe": 36.7,
+    "blWarranted": 29.26,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "14.5x",
+   "peerPe": "14.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2880": {
    "code": "2880",
@@ -3505,12 +3505,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 42.75,
-    "baseDate": "2026-11-25",
-    "w1": -11.31,
-    "m1": -15.01,
-    "q1": 7.95,
-    "y1": 48.89
+    "basePrice": 47.5,
+    "baseDate": "2026-11-24",
+    "w1": -6.5,
+    "m1": -5.57,
+    "q1": 19.35,
+    "y1": 65.43
    },
    "analystTarget": 37.4,
    "analystHigh": 42.0,
@@ -3519,7 +3519,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 2.475,
-   "trailingEps": 1.99,
+   "trailingEps": 1.88,
    "quality": {
     "score": 5,
     "max": 5,
@@ -3535,24 +3535,24 @@
    "pe": "20.6x",
    "pb": "2.73x",
    "divYield": 3.05,
-   "fairValue": 28.09,
-   "fairRange": "22.45 - 34.39",
+   "fairValue": 28.19,
+   "fairRange": "22.45 - 34.81",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 22.45,
     "oj": 30.93,
-    "subIndPe": 34.39,
-    "blWarranted": 28.1,
+    "subIndPe": 34.81,
+    "blWarranted": 28.15,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "14.5x",
+   "peerPe": "14.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2885": {
    "code": "2885",
@@ -3562,12 +3562,12 @@
    "sector": "Financial Services",
    "industry": "Financial Conglomerates",
    "perf": {
-    "basePrice": 60.9,
-    "baseDate": "2026-11-25",
-    "w1": -6.16,
-    "m1": -15.88,
-    "q1": -3.03,
-    "y1": 79.68
+    "basePrice": 64.2,
+    "baseDate": "2026-11-24",
+    "w1": -5.59,
+    "m1": -11.33,
+    "q1": 2.88,
+    "y1": 89.41
    },
    "analystTarget": 66.45,
    "analystHigh": 82.0,
@@ -3591,24 +3591,24 @@
    "pe": "13.8x",
    "pb": "2.18x",
    "divYield": 3.43,
-   "fairValue": 56.55,
-   "fairRange": "42.91 - 77.36",
+   "fairValue": 56.96,
+   "fairRange": "42.91 - 78.38",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 42.91,
     "oj": 48.91,
-    "subIndPe": 46.32,
-    "blWarranted": 77.36,
+    "subIndPe": 46.58,
+    "blWarranted": 78.38,
     "evEbitda": null
    },
    "peerGroup": "Financial Services",
-   "peerPe": "14.1x",
+   "peerPe": "14.2x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.85,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2887": {
    "code": "2887",
@@ -3618,12 +3618,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 33.9,
-    "baseDate": "2026-11-25",
-    "w1": -8.63,
-    "m1": -19.48,
-    "q1": -9.6,
-    "y1": 84.08
+    "basePrice": 36.3,
+    "baseDate": "2026-11-24",
+    "w1": -7.63,
+    "m1": -13.78,
+    "q1": -2.29,
+    "y1": 97.11
    },
    "analystTarget": 36.58,
    "analystHigh": 48.0,
@@ -3648,24 +3648,24 @@
    "pe": "13.4x",
    "pb": "1.34x",
    "divYield": 3.03,
-   "fairValue": 40.03,
-   "fairRange": "33.23 - 47.05",
+   "fairValue": 39.99,
+   "fairRange": "33.23 - 46.73",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 33.23,
     "oj": 39.76,
-    "subIndPe": 47.05,
-    "blWarranted": 41.97,
+    "subIndPe": 46.73,
+    "blWarranted": 42.02,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "15.7x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2890": {
    "code": "2890",
@@ -3675,12 +3675,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 36.45,
-    "baseDate": "2026-11-25",
-    "w1": -9.78,
-    "m1": -21.36,
-    "q1": -6.9,
-    "y1": 37.96
+    "basePrice": 40.35,
+    "baseDate": "2026-11-24",
+    "w1": -3.35,
+    "m1": -12.94,
+    "q1": 2.67,
+    "y1": 52.72
    },
    "analystTarget": 42.27,
    "analystHigh": 43.0,
@@ -3688,7 +3688,7 @@
    "analystCount": 3,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 2.969,
+   "forwardEps": 2.881,
    "trailingEps": 1.92,
    "quality": {
     "score": 5,
@@ -3705,24 +3705,24 @@
    "pe": "13.9x",
    "pb": "2.13x",
    "divYield": 3.22,
-   "fairValue": 34.01,
-   "fairRange": "25.04 - 47.56",
+   "fairValue": 34.36,
+   "fairRange": "25.68 - 47.24",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
-    "rim": 25.04,
-    "oj": 36.36,
-    "subIndPe": 47.56,
-    "blWarranted": 32.96,
+    "rim": 25.68,
+    "oj": 36.24,
+    "subIndPe": 47.24,
+    "blWarranted": 33.64,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "15.7x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "5880": {
    "code": "5880",
@@ -3732,12 +3732,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 26.25,
-    "baseDate": "2026-11-25",
-    "w1": -4.55,
-    "m1": -6.91,
-    "q1": 5.0,
-    "y1": 12.81
+    "basePrice": 27.65,
+    "baseDate": "2026-11-24",
+    "w1": -1.6,
+    "m1": -1.95,
+    "q1": 10.38,
+    "y1": 18.83
    },
    "forwardEps": 1.86,
    "trailingEps": 1.42,
@@ -3753,24 +3753,24 @@
    "pe": "17.9x",
    "pb": "1.51x",
    "divYield": 3.8,
-   "fairValue": 22.7,
-   "fairRange": "20.72 - 25.70",
+   "fairValue": 22.67,
+   "fairRange": "20.72 - 25.53",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 20.72,
     "oj": 22.47,
-    "subIndPe": 25.7,
-    "blWarranted": 22.78,
+    "subIndPe": 25.53,
+    "blWarranted": 22.8,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "15.7x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.6,
    "wacc": null,
-   "betaAdj": 0.78,
+   "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2883": {
    "code": "2883",
@@ -3780,12 +3780,12 @@
    "sector": "Financial Services",
    "industry": "Insurance - Life",
    "perf": {
-    "basePrice": 30.05,
-    "baseDate": "2026-11-25",
-    "w1": -10.96,
-    "m1": -20.4,
-    "q1": -6.82,
-    "y1": 93.25
+    "basePrice": 32.25,
+    "baseDate": "2026-11-24",
+    "w1": -5.56,
+    "m1": -14.57,
+    "q1": 1.74,
+    "y1": 107.4
    },
    "analystTarget": 40.67,
    "analystHigh": 41.0,
@@ -3809,24 +3809,24 @@
    "pe": "12.0x",
    "pb": "1.19x",
    "divYield": 3.1,
-   "fairValue": 37.58,
-   "fairRange": "33.20 - 44.03",
+   "fairValue": 37.69,
+   "fairRange": "33.43 - 44.22",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 34.05,
     "oj": 35.4,
-    "subIndPe": 33.2,
-    "blWarranted": 44.03,
+    "subIndPe": 33.43,
+    "blWarranted": 44.22,
     "evEbitda": null
    },
    "peerGroup": "Financial Services",
-   "peerPe": "14.1x",
+   "peerPe": "14.2x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.85,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2834": {
    "code": "2834",
@@ -3836,12 +3836,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 16.35,
-    "baseDate": "2026-11-25",
-    "w1": -4.39,
-    "m1": -8.66,
-    "q1": -0.61,
-    "y1": 11.79
+    "basePrice": 16.8,
+    "baseDate": "2026-11-24",
+    "w1": -2.33,
+    "m1": -6.15,
+    "q1": 2.75,
+    "y1": 14.86
    },
    "forwardEps": 0.85,
    "trailingEps": 1.21,
@@ -3857,24 +3857,24 @@
    "pe": "12.5x",
    "pb": "1.10x",
    "divYield": 5.95,
-   "fairValue": 13.07,
+   "fairValue": 13.1,
    "fairRange": "9.87 - 14.85",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 14.85,
     "oj": 9.87,
-    "subIndPe": 10.8,
-    "blWarranted": 14.21,
+    "subIndPe": 10.93,
+    "blWarranted": 14.22,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "14.5x",
+   "peerPe": "14.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "5876": {
    "code": "5876",
@@ -3884,12 +3884,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 50.0,
-    "baseDate": "2026-11-25",
-    "w1": -5.48,
-    "m1": -8.42,
-    "q1": 15.47,
-    "y1": 27.85
+    "basePrice": 52.7,
+    "baseDate": "2026-11-24",
+    "w1": -1.13,
+    "m1": -3.48,
+    "q1": 20.46,
+    "y1": 34.75
    },
    "analystTarget": 55.0,
    "analystHigh": 55.0,
@@ -3912,24 +3912,24 @@
    "pe": "14.6x",
    "pb": "1.20x",
    "divYield": 3.42,
-   "fairValue": 61.92,
-   "fairRange": "50.41 - 89.38",
+   "fairValue": 61.8,
+   "fairRange": "50.41 - 88.78",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 50.41,
     "oj": 56.44,
-    "subIndPe": 89.38,
-    "blWarranted": 58.44,
+    "subIndPe": 88.78,
+    "blWarranted": 58.43,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "15.7x",
+   "peerPe": "15.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2897": {
    "code": "2897",
@@ -3939,12 +3939,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 10.2,
-    "baseDate": "2026-11-25",
-    "w1": -1.45,
-    "m1": -6.42,
-    "q1": -0.97,
-    "y1": 12.46
+    "basePrice": 10.35,
+    "baseDate": "2026-11-24",
+    "w1": 0.49,
+    "m1": -5.05,
+    "q1": 1.47,
+    "y1": 14.11
    },
    "trailingEps": 0.64,
    "quality": {
@@ -3959,24 +3959,24 @@
    "pe": "12.0x",
    "pb": "0.71x",
    "divYield": 5.02,
-   "fairValue": 11.49,
+   "fairValue": 11.51,
    "fairRange": "7.99 - 13.97",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 13.97,
     "oj": 7.99,
-    "subIndPe": 8.13,
+    "subIndPe": 8.23,
     "blWarranted": 12.78,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "14.5x",
+   "peerPe": "14.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2801": {
    "code": "2801",
@@ -3986,12 +3986,12 @@
    "sector": "Financial Services",
    "industry": "Banks - Regional",
    "perf": {
-    "basePrice": 25.3,
-    "baseDate": "2026-11-25",
-    "w1": -8.17,
-    "m1": -15.38,
-    "q1": 5.86,
-    "y1": 28.7
+    "basePrice": 26.8,
+    "baseDate": "2026-11-24",
+    "w1": -4.8,
+    "m1": -10.37,
+    "q1": 12.84,
+    "y1": 36.33
    },
    "trailingEps": 1.52,
    "quality": {
@@ -4006,24 +4006,24 @@
    "pe": "15.4x",
    "pb": "1.40x",
    "divYield": 3.92,
-   "fairValue": 20.15,
-   "fairRange": "17.96 - 21.18",
+   "fairValue": 20.2,
+   "fairRange": "17.96 - 21.20",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 20.59,
     "oj": 17.96,
-    "subIndPe": 19.31,
-    "blWarranted": 21.18,
+    "subIndPe": 19.55,
+    "blWarranted": 21.2,
     "evEbitda": null
    },
    "peerGroup": "Banks - Regional",
-   "peerPe": "14.5x",
+   "peerPe": "14.6x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1301": {
    "code": "1301",
@@ -4033,12 +4033,12 @@
    "sector": "Basic Materials",
    "industry": "Specialty Chemicals",
    "perf": {
-    "basePrice": 56.6,
-    "baseDate": "2026-11-25",
-    "w1": -12.11,
-    "m1": -23.31,
-    "q1": -5.82,
-    "y1": 45.5
+    "basePrice": 60.9,
+    "baseDate": "2026-11-24",
+    "w1": -9.78,
+    "m1": -17.48,
+    "q1": 5.36,
+    "y1": 56.56
    },
    "analystTarget": 74.17,
    "analystHigh": 91.0,
@@ -4061,16 +4061,16 @@
    "pe": "23.1x",
    "pb": "0.57x",
    "divYield": 0.82,
-   "fairValue": 60.44,
+   "fairValue": 60.36,
    "fairRange": "42.74 - 88.94",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 45.75,
     "rim": 88.94,
     "oj": 42.74,
-    "subIndPe": 67.31,
-    "blWarranted": 69.93,
-    "evEbitda": 50.31
+    "subIndPe": 67.54,
+    "blWarranted": 69.68,
+    "evEbitda": 49.51
    },
    "peerGroup": "Basic Materials",
    "peerPe": "18.0x",
@@ -4078,7 +4078,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1303": {
    "code": "1303",
@@ -4088,12 +4088,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 228.5,
-    "baseDate": "2026-11-25",
-    "w1": -9.86,
-    "m1": -24.09,
-    "q1": 10.39,
-    "y1": 336.07
+    "basePrice": 249.0,
+    "baseDate": "2026-11-24",
+    "w1": -4.78,
+    "m1": -17.28,
+    "q1": 32.1,
+    "y1": 375.19
    },
    "analystTarget": 396.83,
    "analystHigh": 506.0,
@@ -4118,24 +4118,24 @@
    "pe": "23.3x",
    "pb": "3.70x",
    "divYield": 0.32,
-   "fairValue": 320.41,
-   "fairRange": "170.40 - 707.80",
+   "fairValue": 318.18,
+   "fairRange": "167.17 - 707.80",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 180.07,
     "rim": 219.03,
     "oj": 707.8,
-    "subIndPe": 355.92,
-    "blWarranted": 335.69,
-    "evEbitda": 170.4
+    "subIndPe": 353.26,
+    "blWarranted": 332.14,
+    "evEbitda": 167.17
    },
    "peerGroup": "Electronic Components",
-   "peerPe": "12.5x",
+   "peerPe": "12.4x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.87,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1326": {
    "code": "1326",
@@ -4145,12 +4145,12 @@
    "sector": "Basic Materials",
    "industry": "Chemicals",
    "perf": {
-    "basePrice": 58.9,
-    "baseDate": "2026-11-25",
-    "w1": -13.25,
-    "m1": -19.32,
-    "q1": -2.32,
-    "y1": 90.92
+    "basePrice": 64.3,
+    "baseDate": "2026-11-24",
+    "w1": -8.79,
+    "m1": -11.92,
+    "q1": 10.86,
+    "y1": 108.43
    },
    "analystTarget": 79.0,
    "analystHigh": 90.0,
@@ -4159,7 +4159,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 3.278,
-   "trailingEps": 3.28,
+   "trailingEps": 2.98,
    "quality": {
     "score": 4,
     "max": 5,
@@ -4174,24 +4174,24 @@
    "pe": "21.6x",
    "pb": "0.63x",
    "divYield": 0.93,
-   "fairValue": 52.14,
-   "fairRange": "31.64 - 84.46",
+   "fairValue": 52.63,
+   "fairRange": "31.64 - 84.47",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 37.29,
+    "fcffDcf": 37.78,
     "rim": 84.46,
     "oj": 31.64,
-    "subIndPe": 42.97,
-    "blWarranted": 61.51,
-    "evEbitda": 79.44
+    "subIndPe": 43.12,
+    "blWarranted": 61.34,
+    "evEbitda": 84.47
    },
    "peerGroup": "Basic Materials",
-   "peerPe": "15.0x",
+   "peerPe": "15.1x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.83,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6505": {
    "code": "6505",
@@ -4201,12 +4201,12 @@
    "sector": "Energy",
    "industry": "Oil & Gas Refining & Marketing",
    "perf": {
-    "basePrice": 80.5,
-    "baseDate": "2026-11-25",
-    "w1": -10.36,
-    "m1": -24.41,
-    "q1": 14.35,
-    "y1": 54.51
+    "basePrice": 80.3,
+    "baseDate": "2026-11-24",
+    "w1": -10.38,
+    "m1": -24.6,
+    "q1": 13.1,
+    "y1": 54.13
    },
    "analystTarget": 110.29,
    "analystHigh": 160.0,
@@ -4230,16 +4230,16 @@
    "pe": "10.5x",
    "pb": "1.39x",
    "divYield": 1.49,
-   "fairValue": 73.41,
-   "fairRange": "57.72 - 93.88",
+   "fairValue": 73.43,
+   "fairRange": "57.94 - 93.88",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 93.88,
     "rim": 78.53,
     "oj": 58.72,
-    "subIndPe": 57.72,
-    "blWarranted": 70.65,
-    "evEbitda": 91.22
+    "subIndPe": 57.94,
+    "blWarranted": 70.69,
+    "evEbitda": 90.79
    },
    "peerGroup": "Market",
    "peerPe": "13.7x",
@@ -4247,7 +4247,7 @@
    "wacc": 8.48,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2002": {
    "code": "2002",
@@ -4257,12 +4257,12 @@
    "sector": "Basic Materials",
    "industry": "Steel",
    "perf": {
-    "basePrice": 17.0,
-    "baseDate": "2026-11-25",
-    "w1": -5.29,
-    "m1": -13.04,
-    "q1": -12.14,
-    "y1": -4.49
+    "basePrice": 17.55,
+    "baseDate": "2026-11-24",
+    "w1": -2.23,
+    "m1": -10.23,
+    "q1": -7.87,
+    "y1": -1.4
    },
    "analystTarget": 20.6,
    "analystHigh": 23.0,
@@ -4286,24 +4286,24 @@
    "pe": "438.8x",
    "pb": "0.89x",
    "divYield": 0.85,
-   "fairValue": 14.18,
-   "fairRange": "8.53 - 109.60",
+   "fairValue": 14.13,
+   "fairRange": "8.53 - 110.28",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 15.11,
     "oj": 8.53,
-    "subIndPe": 11.44,
-    "blWarranted": 14.84,
-    "evEbitda": 109.6
+    "subIndPe": 11.48,
+    "blWarranted": 14.72,
+    "evEbitda": 110.28
    },
    "peerGroup": "Basic Materials",
-   "peerPe": "15.0x",
+   "peerPe": "15.1x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1519": {
    "code": "1519",
@@ -4313,12 +4313,12 @@
    "sector": "Industrials",
    "industry": "Electrical Equipment & Parts",
    "perf": {
-    "basePrice": 435.5,
-    "baseDate": "2026-11-25",
-    "w1": -8.89,
-    "m1": -29.19,
-    "q1": -39.26,
-    "y1": -29.65
+    "basePrice": 467.5,
+    "baseDate": "2026-11-24",
+    "w1": 0.0,
+    "m1": -23.98,
+    "q1": -34.8,
+    "y1": -24.49
    },
    "analystTarget": 876.79,
    "analystHigh": 1000.0,
@@ -4327,7 +4327,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 23.468,
-   "trailingEps": 16.81,
+   "trailingEps": 15.28,
    "quality": {
     "score": 5,
     "max": 5,
@@ -4343,16 +4343,16 @@
    "pe": "30.5x",
    "pb": "15.36x",
    "divYield": 2.57,
-   "fairValue": 416.61,
-   "fairRange": "265.96 - 550.00",
+   "fairValue": 426.13,
+   "fairRange": "286.35 - 550.00",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 400.22,
+    "fcffDcf": 433.71,
     "rim": null,
     "oj": 550.0,
     "subIndPe": 451.02,
-    "blWarranted": 354.64,
-    "evEbitda": 265.96
+    "blWarranted": 354.82,
+    "evEbitda": 286.35
    },
    "peerGroup": "Industrials",
    "peerPe": "12.5x",
@@ -4360,7 +4360,7 @@
    "wacc": 8.4,
    "betaAdj": 1.06,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1513": {
    "code": "1513",
@@ -4370,12 +4370,12 @@
    "sector": "Industrials",
    "industry": "Specialty Industrial Machinery",
    "perf": {
-    "basePrice": 133.0,
-    "baseDate": "2026-11-25",
-    "w1": -7.32,
-    "m1": -16.87,
-    "q1": -19.88,
-    "y1": -10.74
+    "basePrice": 140.5,
+    "baseDate": "2026-11-24",
+    "w1": -0.71,
+    "m1": -12.19,
+    "q1": -15.11,
+    "y1": -5.7
    },
    "analystTarget": 183.88,
    "analystHigh": 214.0,
@@ -4400,7 +4400,7 @@
    "pe": "15.3x",
    "pb": "3.18x",
    "divYield": 4.27,
-   "fairValue": 135.51,
+   "fairValue": 135.37,
    "fairRange": "82.07 - 162.42",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
@@ -4408,8 +4408,8 @@
     "rim": 82.07,
     "oj": 162.42,
     "subIndPe": 155.93,
-    "blWarranted": 122.94,
-    "evEbitda": 151.25
+    "blWarranted": 122.97,
+    "evEbitda": 149.4
    },
    "peerGroup": "Industrials",
    "peerPe": "12.5x",
@@ -4417,7 +4417,7 @@
    "wacc": 8.4,
    "betaAdj": 0.96,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1504": {
    "code": "1504",
@@ -4427,12 +4427,12 @@
    "sector": "Industrials",
    "industry": "Specialty Industrial Machinery",
    "perf": {
-    "basePrice": 54.2,
-    "baseDate": "2026-11-25",
-    "w1": -8.91,
-    "m1": -22.24,
-    "q1": -24.09,
-    "y1": -38.76
+    "basePrice": 58.7,
+    "baseDate": "2026-11-24",
+    "w1": -2.33,
+    "m1": -15.78,
+    "q1": -17.09,
+    "y1": -33.67
    },
    "analystTarget": 92.5,
    "analystHigh": 165.0,
@@ -4457,16 +4457,16 @@
    "pe": "20.7x",
    "pb": "1.42x",
    "divYield": 3.41,
-   "fairValue": 40.41,
-   "fairRange": "29.97 - 48.96",
+   "fairValue": 40.36,
+   "fairRange": "29.97 - 48.95",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 29.97,
     "rim": 46.43,
     "oj": 44.08,
     "subIndPe": 37.15,
-    "blWarranted": 48.96,
-    "evEbitda": 30.92
+    "blWarranted": 48.95,
+    "evEbitda": 30.35
    },
    "peerGroup": "Industrials",
    "peerPe": "12.5x",
@@ -4474,7 +4474,7 @@
    "wacc": 8.4,
    "betaAdj": 0.9,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1503": {
    "code": "1503",
@@ -4484,12 +4484,12 @@
    "sector": "Industrials",
    "industry": "Electrical Equipment & Parts",
    "perf": {
-    "basePrice": 153.0,
-    "baseDate": "2026-11-25",
-    "w1": -7.55,
-    "m1": -20.31,
-    "q1": -24.26,
-    "y1": -5.85
+    "basePrice": 161.5,
+    "baseDate": "2026-11-24",
+    "w1": -0.92,
+    "m1": -15.89,
+    "q1": -19.05,
+    "y1": -0.62
    },
    "analystTarget": 243.5,
    "analystHigh": 277.0,
@@ -4498,7 +4498,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 12.23,
-   "trailingEps": 7.54,
+   "trailingEps": 7.25,
    "quality": {
     "score": 4,
     "max": 5,
@@ -4513,24 +4513,24 @@
    "pe": "21.4x",
    "pb": "2.18x",
    "divYield": 3.1,
-   "fairValue": 206.6,
-   "fairRange": "110.13 - 264.47",
+   "fairValue": 209.37,
+   "fairRange": "110.13 - 274.83",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 264.47,
+    "fcffDcf": 274.83,
     "rim": 110.13,
     "oj": 219.29,
     "subIndPe": 263.89,
-    "blWarranted": 155.07,
-    "evEbitda": 203.8
+    "blWarranted": 154.63,
+    "evEbitda": 213.81
    },
    "peerGroup": "Industrials",
    "peerPe": "12.7x",
    "costOfEquity": 8.6,
-   "wacc": 8.43,
+   "wacc": 8.44,
    "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1101": {
    "code": "1101",
@@ -4540,12 +4540,12 @@
    "sector": "Basic Materials",
    "industry": "Building Materials",
    "perf": {
-    "basePrice": 24.3,
-    "baseDate": "2026-11-25",
-    "w1": -7.43,
-    "m1": -13.06,
-    "q1": 0.0,
-    "y1": 14.62
+    "basePrice": 25.2,
+    "baseDate": "2026-11-24",
+    "w1": -5.08,
+    "m1": -9.84,
+    "q1": 2.44,
+    "y1": 18.87
    },
    "analystTarget": 28.83,
    "analystHigh": 30.0,
@@ -4570,24 +4570,24 @@
    "pe": "72.0x",
    "pb": "0.81x",
    "divYield": 3.17,
-   "fairValue": 36.74,
-   "fairRange": "24.31 - 195.79",
+   "fairValue": 37.01,
+   "fairRange": "24.31 - 202.41",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 53.09,
+    "fcffDcf": 54.5,
     "rim": 26.59,
     "oj": 24.31,
-    "subIndPe": 32.62,
-    "blWarranted": 31.49,
-    "evEbitda": 195.79
+    "subIndPe": 32.74,
+    "blWarranted": 31.35,
+    "evEbitda": 202.41
    },
    "peerGroup": "Basic Materials",
-   "peerPe": "15.0x",
+   "peerPe": "15.1x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1102": {
    "code": "1102",
@@ -4597,12 +4597,12 @@
    "sector": "Basic Materials",
    "industry": "Building Materials",
    "perf": {
-    "basePrice": 32.95,
-    "baseDate": "2026-11-25",
-    "w1": -4.63,
-    "m1": -14.53,
-    "q1": -6.39,
-    "y1": -12.95
+    "basePrice": 33.65,
+    "baseDate": "2026-11-24",
+    "w1": -1.75,
+    "m1": -12.71,
+    "q1": -3.58,
+    "y1": -11.1
    },
    "analystTarget": 40.78,
    "analystHigh": 52.0,
@@ -4625,16 +4625,16 @@
    "pe": "10.4x",
    "pb": "0.64x",
    "divYield": 6.84,
-   "fairValue": 38.69,
-   "fairRange": "6.69 - 53.18",
+   "fairValue": 38.64,
+   "fairRange": "6.69 - 53.36",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 6.69,
     "rim": 49.67,
     "oj": 36.6,
-    "subIndPe": 53.18,
-    "blWarranted": 46.86,
-    "evEbitda": 19.56
+    "subIndPe": 53.36,
+    "blWarranted": 46.8,
+    "evEbitda": 18.13
    },
    "peerGroup": "Basic Materials",
    "peerPe": "18.0x",
@@ -4642,7 +4642,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1216": {
    "code": "1216",
@@ -4652,12 +4652,12 @@
    "sector": "Consumer Defensive",
    "industry": "Packaged Foods",
    "perf": {
-    "basePrice": 78.8,
-    "baseDate": "2026-11-25",
-    "w1": 0.0,
-    "m1": -1.01,
-    "q1": 1.42,
-    "y1": 5.21
+    "basePrice": 77.4,
+    "baseDate": "2026-11-24",
+    "w1": -2.27,
+    "m1": -2.76,
+    "q1": -0.64,
+    "y1": 3.34
    },
    "analystTarget": 82.68,
    "analystHigh": 95.0,
@@ -4682,16 +4682,16 @@
    "pe": "18.3x",
    "pb": "3.04x",
    "divYield": 3.88,
-   "fairValue": 54.51,
-   "fairRange": "40.36 - 74.69",
+   "fairValue": 54.5,
+   "fairRange": "40.36 - 73.98",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 41.41,
     "rim": 40.36,
     "oj": 65.81,
-    "subIndPe": 54.41,
-    "blWarranted": 57.38,
-    "evEbitda": 74.69
+    "subIndPe": 54.53,
+    "blWarranted": 57.48,
+    "evEbitda": 73.98
    },
    "peerGroup": "Market",
    "peerPe": "13.6x",
@@ -4699,7 +4699,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1402": {
    "code": "1402",
@@ -4709,12 +4709,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Textile Manufacturing",
    "perf": {
-    "basePrice": 26.05,
-    "baseDate": "2026-11-25",
-    "w1": -3.87,
-    "m1": -9.86,
-    "q1": -8.76,
-    "y1": -6.8
+    "basePrice": 27.1,
+    "baseDate": "2026-11-24",
+    "w1": 0.37,
+    "m1": -6.23,
+    "q1": -6.55,
+    "y1": -3.04
    },
    "forwardEps": 2.06,
    "trailingEps": 2.26,
@@ -4733,16 +4733,16 @@
    "pe": "12.7x",
    "pb": "0.61x",
    "divYield": 4.61,
-   "fairValue": 31.16,
-   "fairRange": "19.60 - 41.46",
+   "fairValue": 30.95,
+   "fairRange": "19.64 - 41.46",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 41.46,
     "oj": 24.66,
-    "subIndPe": 19.6,
-    "blWarranted": 40.19,
-    "evEbitda": 29.3
+    "subIndPe": 19.64,
+    "blWarranted": 40.18,
+    "evEbitda": 27.1
    },
    "peerGroup": "Consumer Cyclical",
    "peerPe": "13.6x",
@@ -4750,7 +4750,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "9904": {
    "code": "9904",
@@ -4760,12 +4760,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Footwear & Accessories",
    "perf": {
-    "basePrice": 25.0,
-    "baseDate": "2026-11-25",
-    "w1": -2.91,
-    "m1": -5.12,
-    "q1": -0.2,
-    "y1": -16.25
+    "basePrice": 25.5,
+    "baseDate": "2026-11-24",
+    "w1": -3.04,
+    "m1": -3.23,
+    "q1": 1.59,
+    "y1": -14.57
    },
    "analystTarget": 30.73,
    "analystHigh": 32.0,
@@ -4773,8 +4773,8 @@
    "analystCount": 4,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 4.2,
-   "trailingEps": 5.01,
+   "forwardEps": 4.058,
+   "trailingEps": 4.71,
    "quality": {
     "score": 1,
     "max": 5,
@@ -4786,24 +4786,24 @@
    "pe": "5.4x",
    "pb": "0.36x",
    "divYield": 5.1,
-   "fairValue": 46.35,
-   "fairRange": "4.93 - 70.66",
+   "fairValue": 46.5,
+   "fairRange": "6.11 - 70.70",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 4.93,
+    "fcffDcf": 6.11,
     "rim": 65.74,
     "oj": 45.28,
-    "subIndPe": 38.49,
-    "blWarranted": 70.66,
-    "evEbitda": 33.15
+    "subIndPe": 38.68,
+    "blWarranted": 70.7,
+    "evEbitda": 34.45
    },
    "peerGroup": "Consumer Cyclical",
-   "peerPe": "13.1x",
+   "peerPe": "13.2x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "9910": {
    "code": "9910",
@@ -4813,12 +4813,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Footwear & Accessories",
    "perf": {
-    "basePrice": 56.2,
-    "baseDate": "2026-11-25",
-    "w1": -13.41,
-    "m1": -16.99,
-    "q1": -17.23,
-    "y1": -55.4
+    "basePrice": 57.8,
+    "baseDate": "2026-11-24",
+    "w1": -11.49,
+    "m1": -14.62,
+    "q1": -17.43,
+    "y1": -54.13
    },
    "analystTarget": 71.17,
    "analystHigh": 100.0,
@@ -4843,16 +4843,16 @@
    "pe": "13.9x",
    "pb": "2.32x",
    "divYield": 7.09,
-   "fairValue": 63.0,
-   "fairRange": "36.94 - 101.63",
+   "fairValue": 62.75,
+   "fairRange": "36.94 - 98.07",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 58.37,
     "rim": 36.94,
     "oj": 66.06,
-    "subIndPe": 78.4,
-    "blWarranted": 53.18,
-    "evEbitda": 101.63
+    "subIndPe": 78.58,
+    "blWarranted": 53.16,
+    "evEbitda": 98.07
    },
    "peerGroup": "Consumer Cyclical",
    "peerPe": "13.6x",
@@ -4860,7 +4860,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2105": {
    "code": "2105",
@@ -4870,12 +4870,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Auto Parts",
    "perf": {
-    "basePrice": 28.3,
-    "baseDate": "2026-11-25",
-    "w1": -2.08,
-    "m1": -11.56,
-    "q1": -9.87,
-    "y1": -11.29
+    "basePrice": 28.95,
+    "baseDate": "2026-11-24",
+    "w1": 0.52,
+    "m1": -9.53,
+    "q1": -7.66,
+    "y1": -9.25
    },
    "analystTarget": 31.5,
    "analystHigh": 35.0,
@@ -4900,24 +4900,24 @@
    "pe": "17.3x",
    "pb": "1.05x",
    "divYield": 6.22,
-   "fairValue": 23.18,
-   "fairRange": "14.85 - 42.47",
+   "fairValue": 23.1,
+   "fairRange": "14.96 - 41.11",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 23.18,
     "rim": 24.86,
     "oj": 18.51,
-    "subIndPe": 14.85,
-    "blWarranted": 25.67,
-    "evEbitda": 42.47
+    "subIndPe": 14.96,
+    "blWarranted": 25.68,
+    "evEbitda": 41.11
    },
    "peerGroup": "Consumer Cyclical",
-   "peerPe": "12.6x",
+   "peerPe": "12.7x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2912": {
    "code": "2912",
@@ -4927,12 +4927,12 @@
    "sector": "Consumer Defensive",
    "industry": "Grocery Stores",
    "perf": {
-    "basePrice": 203.0,
-    "baseDate": "2026-11-25",
-    "w1": -5.14,
-    "m1": -10.18,
-    "q1": -8.97,
-    "y1": -13.43
+    "basePrice": 207.0,
+    "baseDate": "2026-11-24",
+    "w1": -2.82,
+    "m1": -8.41,
+    "q1": -7.59,
+    "y1": -11.73
    },
    "analystTarget": 260.91,
    "analystHigh": 320.0,
@@ -4941,7 +4941,7 @@
    "consensusLabel": "持有",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 12.34,
-   "trailingEps": 11.54,
+   "trailingEps": 11.12,
    "quality": {
     "score": 5,
     "max": 5,
@@ -4957,16 +4957,16 @@
    "pe": "18.6x",
    "pb": "4.86x",
    "divYield": 4.35,
-   "fairValue": 123.3,
-   "fairRange": "55.48 - 184.44",
+   "fairValue": 124.66,
+   "fairRange": "61.10 - 184.44",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 55.48,
+    "fcffDcf": 61.1,
     "rim": 88.16,
     "oj": 184.44,
-    "subIndPe": 134.88,
-    "blWarranted": 142.69,
-    "evEbitda": 119.45
+    "subIndPe": 135.19,
+    "blWarranted": 142.93,
+    "evEbitda": 125.31
    },
    "peerGroup": "Market",
    "peerPe": "13.6x",
@@ -4974,7 +4974,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2207": {
    "code": "2207",
@@ -4984,12 +4984,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Auto & Truck Dealerships",
    "perf": {
-    "basePrice": 521.0,
-    "baseDate": "2026-11-25",
-    "w1": -3.16,
-    "m1": -1.7,
-    "q1": -0.38,
-    "y1": -13.46
+    "basePrice": 533.0,
+    "baseDate": "2026-11-24",
+    "w1": 0.38,
+    "m1": 0.57,
+    "q1": 2.7,
+    "y1": -11.46
    },
    "analystTarget": 600.0,
    "analystHigh": 600.0,
@@ -5014,24 +5014,24 @@
    "pe": "13.0x",
    "pb": "3.20x",
    "divYield": 3.75,
-   "fairValue": 364.68,
+   "fairValue": 363.05,
    "fairRange": "248.93 - 482.58",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 248.93,
     "rim": 276.59,
     "oj": 482.58,
-    "subIndPe": 381.44,
-    "blWarranted": 400.67,
-    "evEbitda": 375.19
+    "subIndPe": 384.27,
+    "blWarranted": 400.92,
+    "evEbitda": 347.73
    },
    "peerGroup": "Consumer Cyclical",
-   "peerPe": "12.6x",
+   "peerPe": "12.7x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2201": {
    "code": "2201",
@@ -5041,12 +5041,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Auto Manufacturers",
    "perf": {
-    "basePrice": 23.75,
-    "baseDate": "2026-11-25",
-    "w1": -8.48,
-    "m1": -18.52,
-    "q1": -17.53,
-    "y1": -32.62
+    "basePrice": 24.7,
+    "baseDate": "2026-11-24",
+    "w1": -3.52,
+    "m1": -15.27,
+    "q1": -13.94,
+    "y1": -29.93
    },
    "analystTarget": 35.05,
    "analystHigh": 36.0,
@@ -5055,7 +5055,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 1.88,
-   "trailingEps": 0.88,
+   "trailingEps": 0.82,
    "quality": {
     "score": 5,
     "max": 5,
@@ -5071,16 +5071,16 @@
    "pe": "28.4x",
    "pb": "0.40x",
    "divYield": 2.27,
-   "fairValue": 40.17,
-   "fairRange": "1.47 - 59.11",
+   "fairValue": 41.53,
+   "fairRange": "15.76 - 58.09",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 1.47,
-    "rim": 49.6,
+    "fcffDcf": 15.76,
+    "rim": 48.66,
     "oj": 28.56,
-    "subIndPe": 43.37,
-    "blWarranted": 59.11,
-    "evEbitda": 41.09
+    "subIndPe": 43.47,
+    "blWarranted": 58.09,
+    "evEbitda": 57.94
    },
    "peerGroup": "Consumer Cyclical",
    "peerPe": "13.6x",
@@ -5088,7 +5088,7 @@
    "wacc": 8.4,
    "betaAdj": 0.8,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1605": {
    "code": "1605",
@@ -5098,12 +5098,12 @@
    "sector": "Basic Materials",
    "industry": "Steel",
    "perf": {
-    "basePrice": 28.2,
-    "baseDate": "2026-11-25",
-    "w1": -8.29,
-    "m1": -23.78,
-    "q1": -28.43,
-    "y1": -3.42
+    "basePrice": 30.9,
+    "baseDate": "2026-11-24",
+    "w1": -0.16,
+    "m1": -16.49,
+    "q1": -19.64,
+    "y1": 5.82
    },
    "analystTarget": 41.0,
    "analystHigh": 42.0,
@@ -5124,16 +5124,16 @@
    "pe": "6.4x",
    "pb": "0.66x",
    "divYield": 1.62,
-   "fairValue": 55.57,
-   "fairRange": "0.75 - 78.06",
-   "fairSource": "機構／學術 5 模型（公開財報估算）",
+   "fairValue": 59.21,
+   "fairRange": "51.97 - 78.33",
+   "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
-    "rim": 51.98,
-    "oj": 51.98,
-    "subIndPe": 78.06,
-    "blWarranted": 53.9,
-    "evEbitda": 0.75
+    "rim": 52.06,
+    "oj": 51.97,
+    "subIndPe": 78.33,
+    "blWarranted": 53.88,
+    "evEbitda": null
    },
    "peerGroup": "Basic Materials",
    "peerPe": "18.0x",
@@ -5141,7 +5141,7 @@
    "wacc": 8.4,
    "betaAdj": 1.01,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2603": {
    "code": "2603",
@@ -5151,12 +5151,12 @@
    "sector": "Industrials",
    "industry": "Marine Shipping",
    "perf": {
-    "basePrice": 253.5,
-    "baseDate": "2026-11-25",
-    "w1": -1.55,
-    "m1": -2.5,
-    "q1": 9.74,
-    "y1": 40.44
+    "basePrice": 257.0,
+    "baseDate": "2026-11-24",
+    "w1": 0.19,
+    "m1": -1.15,
+    "q1": 4.47,
+    "y1": 42.38
    },
    "analystTarget": 277.9,
    "analystHigh": 380.0,
@@ -5180,16 +5180,16 @@
    "pe": "7.0x",
    "pb": "0.91x",
    "divYield": 6.23,
-   "fairValue": 347.28,
-   "fairRange": "282.37 - 397.85",
+   "fairValue": 347.72,
+   "fairRange": "282.37 - 398.88",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 334.89,
     "rim": 381.12,
     "oj": 327.98,
     "subIndPe": 282.37,
-    "blWarranted": 397.85,
-    "evEbitda": 365.27
+    "blWarranted": 398.88,
+    "evEbitda": 367.68
    },
    "peerGroup": "Industrials",
    "peerPe": "12.7x",
@@ -5197,7 +5197,7 @@
    "wacc": 8.4,
    "betaAdj": 0.79,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2609": {
    "code": "2609",
@@ -5207,12 +5207,12 @@
    "sector": "Industrials",
    "industry": "Marine Shipping",
    "perf": {
-    "basePrice": 55.6,
-    "baseDate": "2026-11-25",
-    "w1": -8.1,
-    "m1": -10.18,
-    "q1": -3.47,
-    "y1": 8.38
+    "basePrice": 56.3,
+    "baseDate": "2026-11-24",
+    "w1": -6.01,
+    "m1": -9.05,
+    "q1": -11.48,
+    "y1": 9.75
    },
    "analystTarget": 68.6,
    "analystHigh": 73.0,
@@ -5221,7 +5221,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 3.726,
-   "trailingEps": 8.02,
+   "trailingEps": 8.28,
    "quality": {
     "score": 3,
     "max": 5,
@@ -5235,16 +5235,16 @@
    "pe": "7.0x",
    "pb": "0.57x",
    "divYield": 3.55,
-   "fairValue": 66.21,
+   "fairValue": 66.02,
    "fairRange": "32.63 - 102.87",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 83.31,
+    "fcffDcf": 82.27,
     "rim": 102.87,
     "oj": 38.44,
     "subIndPe": 32.63,
-    "blWarranted": 74.5,
-    "evEbitda": 77.92
+    "blWarranted": 74.52,
+    "evEbitda": 78.02
    },
    "peerGroup": "Industrials",
    "peerPe": "12.5x",
@@ -5252,7 +5252,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2615": {
    "code": "2615",
@@ -5262,12 +5262,12 @@
    "sector": "Industrials",
    "industry": "Marine Shipping",
    "perf": {
-    "basePrice": 101.0,
-    "baseDate": "2026-11-25",
-    "w1": -9.01,
-    "m1": -15.48,
-    "q1": -12.17,
-    "y1": 28.66
+    "basePrice": 97.1,
+    "baseDate": "2026-11-24",
+    "w1": -8.83,
+    "m1": -18.74,
+    "q1": -23.24,
+    "y1": 23.69
    },
    "analystTarget": 136.8,
    "analystHigh": 145.0,
@@ -5291,16 +5291,16 @@
    "pe": "5.3x",
    "pb": "0.88x",
    "divYield": 3.09,
-   "fairValue": 143.56,
-   "fairRange": "113.46 - 174.38",
+   "fairValue": 143.79,
+   "fairRange": "113.46 - 175.09",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 143.64,
     "rim": 154.43,
     "oj": 124.01,
     "subIndPe": 113.46,
-    "blWarranted": 174.38,
-    "evEbitda": 146.27
+    "blWarranted": 175.09,
+    "evEbitda": 147.06
    },
    "peerGroup": "Industrials",
    "peerPe": "12.7x",
@@ -5308,7 +5308,7 @@
    "wacc": 8.4,
    "betaAdj": 0.81,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2618": {
    "code": "2618",
@@ -5318,12 +5318,12 @@
    "sector": "Industrials",
    "industry": "Airlines",
    "perf": {
-    "basePrice": 45.3,
-    "baseDate": "2026-11-25",
-    "w1": -3.21,
-    "m1": 7.35,
-    "q1": 5.35,
-    "y1": 35.02
+    "basePrice": 48.6,
+    "baseDate": "2026-11-24",
+    "w1": 1.04,
+    "m1": 15.17,
+    "q1": 15.17,
+    "y1": 44.86
    },
    "analystTarget": 49.05,
    "analystHigh": 54.5,
@@ -5348,16 +5348,16 @@
    "pe": "9.9x",
    "pb": "1.78x",
    "divYield": 4.12,
-   "fairValue": 74.06,
-   "fairRange": "44.79 - 96.30",
+   "fairValue": 74.09,
+   "fairRange": "44.79 - 96.97",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 85.69,
     "rim": 44.79,
     "oj": 77.87,
     "subIndPe": 84.76,
-    "blWarranted": 60.71,
-    "evEbitda": 96.3
+    "blWarranted": 60.61,
+    "evEbitda": 96.97
    },
    "peerGroup": "Industrials",
    "peerPe": "12.7x",
@@ -5365,7 +5365,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2610": {
    "code": "2610",
@@ -5375,12 +5375,12 @@
    "sector": "Industrials",
    "industry": "Airlines",
    "perf": {
-    "basePrice": 22.0,
-    "baseDate": "2026-11-25",
-    "w1": -3.93,
-    "m1": 7.32,
-    "q1": 5.77,
-    "y1": 14.58
+    "basePrice": 22.5,
+    "baseDate": "2026-11-24",
+    "w1": -2.6,
+    "m1": 9.76,
+    "q1": 10.29,
+    "y1": 17.19
    },
    "analystTarget": 25.47,
    "analystHigh": 28.0,
@@ -5389,7 +5389,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 2.26,
-   "trailingEps": 2.54,
+   "trailingEps": 2.38,
    "quality": {
     "score": 5,
     "max": 5,
@@ -5405,7 +5405,7 @@
    "pe": "9.4x",
    "pb": "1.32x",
    "divYield": 3.6,
-   "fairValue": 27.27,
+   "fairValue": 27.26,
    "fairRange": "24.17 - 30.43",
    "fairSource": "機構／學術 4 模型（公開財報估算）",
    "models": {
@@ -5413,7 +5413,7 @@
     "rim": 24.17,
     "oj": 30.43,
     "subIndPe": 25.59,
-    "blWarranted": 27.71,
+    "blWarranted": 27.68,
     "evEbitda": null
    },
    "peerGroup": "Industrials",
@@ -5422,7 +5422,7 @@
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2605": {
    "code": "2605",
@@ -5432,12 +5432,12 @@
    "sector": "Industrials",
    "industry": "Marine Shipping",
    "perf": {
-    "basePrice": 30.55,
-    "baseDate": "2026-11-25",
-    "w1": -5.86,
-    "m1": -13.46,
-    "q1": -12.34,
-    "y1": 23.94
+    "basePrice": 31.55,
+    "baseDate": "2026-11-24",
+    "w1": -2.17,
+    "m1": -10.62,
+    "q1": -14.03,
+    "y1": 27.99
    },
    "analystTarget": 40.27,
    "analystHigh": 43.8,
@@ -5446,7 +5446,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 2.56,
-   "trailingEps": 6.25,
+   "trailingEps": 5.79,
    "quality": {
     "score": 4,
     "max": 5,
@@ -5461,16 +5461,16 @@
    "pe": "5.4x",
    "pb": "0.92x",
    "divYield": 3.17,
-   "fairValue": 41.9,
-   "fairRange": "31.21 - 57.32",
+   "fairValue": 42.23,
+   "fairRange": "31.21 - 57.74",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 37.6,
+    "fcffDcf": 37.99,
     "rim": 45.75,
     "oj": 34.27,
     "subIndPe": 31.21,
-    "blWarranted": 57.32,
-    "evEbitda": 41.83
+    "blWarranted": 57.74,
+    "evEbitda": 43.74
    },
    "peerGroup": "Industrials",
    "peerPe": "12.7x",
@@ -5478,7 +5478,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6472": {
    "code": "6472",
@@ -5488,12 +5488,12 @@
    "sector": "Healthcare",
    "industry": "Drug Manufacturers - Specialty & Generic",
    "perf": {
-    "basePrice": 272.0,
-    "baseDate": "2026-11-25",
-    "w1": -21.04,
-    "m1": -32.51,
-    "q1": -40.48,
-    "y1": -49.06
+    "basePrice": 284.0,
+    "baseDate": "2026-11-24",
+    "w1": -19.89,
+    "m1": -29.53,
+    "q1": -39.57,
+    "y1": -46.82
    },
    "analystTarget": 552.9,
    "analystHigh": 729.29,
@@ -5502,7 +5502,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 27.582,
-   "trailingEps": 13.05,
+   "trailingEps": 12.52,
    "quality": {
     "score": 5,
     "max": 5,
@@ -5518,24 +5518,24 @@
    "pe": "23.8x",
    "pb": "2.30x",
    "divYield": 3.52,
-   "fairValue": 519.04,
-   "fairRange": "191.55 - 765.12",
+   "fairValue": 527.93,
+   "fairRange": "191.55 - 766.06",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 689.82,
+    "fcffDcf": 725.88,
     "rim": 191.55,
     "oj": 524.0,
-    "subIndPe": 765.12,
-    "blWarranted": 394.3,
-    "evEbitda": 370.14
+    "subIndPe": 766.06,
+    "blWarranted": 393.62,
+    "evEbitda": 391.18
    },
    "peerGroup": "Healthcare",
-   "peerPe": "27.7x",
+   "peerPe": "27.8x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "1795": {
    "code": "1795",
@@ -5545,12 +5545,12 @@
    "sector": "Healthcare",
    "industry": "Drug Manufacturers - Specialty & Generic",
    "perf": {
-    "basePrice": 99.7,
-    "baseDate": "2026-11-25",
-    "w1": -17.94,
-    "m1": -42.2,
-    "q1": -48.34,
-    "y1": -66.56
+    "basePrice": 103.0,
+    "baseDate": "2026-11-24",
+    "w1": -18.25,
+    "m1": -40.29,
+    "q1": -46.22,
+    "y1": -65.45
    },
    "analystTarget": 281.44,
    "analystHigh": 493.58014,
@@ -5574,24 +5574,24 @@
    "pe": "12.3x",
    "pb": "1.10x",
    "divYield": 2.62,
-   "fairValue": 448.62,
+   "fairValue": 445.86,
    "fairRange": "137.86 - 747.21",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 747.21,
     "rim": 137.86,
     "oj": 330.26,
-    "subIndPe": 501.03,
-    "blWarranted": 299.11,
-    "evEbitda": 691.49
+    "subIndPe": 501.65,
+    "blWarranted": 299.46,
+    "evEbitda": 654.3
    },
    "peerGroup": "Healthcare",
-   "peerPe": "27.7x",
+   "peerPe": "27.8x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.88,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6589": {
    "code": "6589",
@@ -5601,12 +5601,12 @@
    "sector": "Healthcare",
    "industry": "Biotechnology",
    "perf": {
-    "basePrice": 43.8,
-    "baseDate": "2026-11-25",
-    "w1": -14.95,
-    "m1": -11.87,
-    "q1": -13.27,
-    "y1": -40.57
+    "basePrice": 44.9,
+    "baseDate": "2026-11-24",
+    "w1": -15.28,
+    "m1": -9.66,
+    "q1": -9.66,
+    "y1": -39.08
    },
    "analystTarget": 111.0,
    "analystHigh": 111.0,
@@ -5628,24 +5628,24 @@
     ]
    },
    "pb": "1.72x",
-   "fairValue": 14.97,
-   "fairRange": "3.93 - 18.37",
+   "fairValue": 15.0,
+   "fairRange": "3.91 - 18.37",
    "fairSource": "機構／學術 3 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 18.37,
     "oj": null,
-    "subIndPe": 3.93,
-    "blWarranted": 18.32,
+    "subIndPe": 3.91,
+    "blWarranted": 18.36,
     "evEbitda": null
    },
    "peerGroup": "Healthcare",
-   "peerPe": "9.9x",
+   "peerPe": "9.8x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "4147": {
    "code": "4147",
@@ -5655,12 +5655,12 @@
    "sector": "Healthcare",
    "industry": "Biotechnology",
    "perf": {
-    "basePrice": 52.4,
-    "baseDate": "2026-11-25",
-    "w1": -13.53,
-    "m1": -14.24,
-    "q1": -20.12,
-    "y1": -19.75
+    "basePrice": 53.1,
+    "baseDate": "2026-11-24",
+    "w1": -16.64,
+    "m1": -13.09,
+    "q1": -16.77,
+    "y1": -18.68
    },
    "analystTarget": 180.0,
    "analystHigh": 180.0,
@@ -5682,24 +5682,24 @@
    },
    "pb": "3.95x",
    "divYield": 0.0,
-   "fairValue": 13.19,
-   "fairRange": "6.90 - 16.33",
+   "fairValue": 13.23,
+   "fairRange": "6.90 - 16.39",
    "fairSource": "機構／學術 2 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 6.9,
     "oj": null,
     "subIndPe": null,
-    "blWarranted": 16.33,
+    "blWarranted": 16.39,
     "evEbitda": null
    },
    "peerGroup": "Healthcare",
-   "peerPe": "27.7x",
+   "peerPe": "27.8x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6547": {
    "code": "6547",
@@ -5709,12 +5709,12 @@
    "sector": "Healthcare",
    "industry": "Biotechnology",
    "perf": {
-    "basePrice": 40.5,
-    "baseDate": "2026-11-25",
-    "w1": -8.16,
-    "m1": -20.59,
-    "q1": -34.57,
-    "y1": 6.02
+    "basePrice": 41.85,
+    "baseDate": "2026-11-24",
+    "w1": -7.0,
+    "m1": -17.94,
+    "q1": -25.67,
+    "y1": 9.55
    },
    "analystTarget": 102.0,
    "analystHigh": 102.0,
@@ -5733,26 +5733,26 @@
      "預估盈餘成長"
     ]
    },
-   "pb": "3.39x",
+   "pb": "3.28x",
    "divYield": 0.0,
    "fairValue": 18.08,
-   "fairRange": "6.00 - 26.68",
+   "fairRange": "5.98 - 26.76",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 10.29,
     "rim": 14.5,
     "oj": 26.46,
-    "subIndPe": 14.4,
-    "blWarranted": 26.68,
-    "evEbitda": 6.0
+    "subIndPe": 14.32,
+    "blWarranted": 26.76,
+    "evEbitda": 5.98
    },
    "peerGroup": "Healthcare",
-   "peerPe": "9.9x",
+   "peerPe": "9.8x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3008": {
    "code": "3008",
@@ -5762,12 +5762,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 4000.0,
-    "baseDate": "2026-11-25",
-    "w1": -9.3,
-    "m1": -35.22,
-    "q1": -36.41,
-    "y1": 84.76
+    "basePrice": 3980.0,
+    "baseDate": "2026-11-24",
+    "w1": -11.85,
+    "m1": -35.55,
+    "q1": -30.42,
+    "y1": 83.83
    },
    "analystTarget": 7050.26,
    "analystHigh": 11830.0,
@@ -5792,16 +5792,16 @@
    "pe": "22.9x",
    "pb": "2.72x",
    "divYield": 2.01,
-   "fairValue": 2513.69,
-   "fairRange": "1,554.15 - 3,110.36",
+   "fairValue": 2506.77,
+   "fairRange": "1,556.47 - 3,110.36",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 3110.36,
     "rim": 1986.57,
     "oj": 2503.35,
-    "subIndPe": 1554.15,
-    "blWarranted": 2854.39,
-    "evEbitda": 2972.83
+    "subIndPe": 1556.47,
+    "blWarranted": 2835.99,
+    "evEbitda": 2936.36
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
@@ -5809,7 +5809,7 @@
    "wacc": 8.6,
    "betaAdj": 1.07,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3406": {
    "code": "3406",
@@ -5819,12 +5819,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 710.0,
-    "baseDate": "2026-11-25",
-    "w1": -11.25,
-    "m1": -38.79,
-    "q1": -6.46,
-    "y1": 56.73
+    "basePrice": 734.0,
+    "baseDate": "2026-11-24",
+    "w1": -10.49,
+    "m1": -36.72,
+    "q1": 6.38,
+    "y1": 62.03
    },
    "analystTarget": 1015.44,
    "analystHigh": 1500.0,
@@ -5849,24 +5849,24 @@
    "pe": "21.5x",
    "pb": "2.91x",
    "divYield": 2.32,
-   "fairValue": 535.15,
-   "fairRange": "340.72 - 763.03",
+   "fairValue": 533.76,
+   "fairRange": "339.45 - 762.47",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 675.74,
     "rim": 384.79,
     "oj": 579.21,
-    "subIndPe": 340.72,
-    "blWarranted": 529.97,
-    "evEbitda": 763.03
+    "subIndPe": 339.45,
+    "blWarranted": 525.35,
+    "evEbitda": 762.47
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 1.02,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2474": {
    "code": "2474",
@@ -5876,12 +5876,12 @@
    "sector": "Industrials",
    "industry": "Metal Fabrication",
    "perf": {
-    "basePrice": 202.0,
-    "baseDate": "2026-11-25",
-    "w1": 1.76,
-    "m1": 2.8,
-    "q1": -2.18,
-    "y1": -1.7
+    "basePrice": 206.0,
+    "baseDate": "2026-11-24",
+    "w1": 3.78,
+    "m1": 4.83,
+    "q1": 0.73,
+    "y1": 0.24
    },
    "analystTarget": 199.6,
    "analystHigh": 270.0,
@@ -5890,7 +5890,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 11.939,
-   "trailingEps": 11.45,
+   "trailingEps": 11.39,
    "quality": {
     "score": 3,
     "max": 5,
@@ -5904,16 +5904,16 @@
    "pe": "16.1x",
    "pb": "0.83x",
    "divYield": 4.99,
-   "fairValue": 191.4,
-   "fairRange": "4.61 - 239.07",
+   "fairValue": 191.44,
+   "fairRange": "3.96 - 239.19",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 237.81,
     "oj": 172.52,
     "subIndPe": 166.36,
-    "blWarranted": 239.07,
-    "evEbitda": 4.61
+    "blWarranted": 239.19,
+    "evEbitda": 3.96
    },
    "peerGroup": "Industrials",
    "peerPe": "12.5x",
@@ -5921,7 +5921,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3023": {
    "code": "3023",
@@ -5931,12 +5931,12 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 268.0,
-    "baseDate": "2026-11-25",
-    "w1": -2.37,
-    "m1": -10.07,
-    "q1": -14.79,
-    "y1": 25.53
+    "basePrice": 278.0,
+    "baseDate": "2026-11-24",
+    "w1": 3.73,
+    "m1": -6.71,
+    "q1": -13.26,
+    "y1": 30.21
    },
    "analystTarget": 356.62,
    "analystHigh": 410.0,
@@ -5960,16 +5960,16 @@
    "pe": "19.7x",
    "pb": "3.76x",
    "divYield": 3.6,
-   "fairValue": 206.99,
-   "fairRange": "133.59 - 284.02",
+   "fairValue": 206.33,
+   "fairRange": "133.55 - 284.04",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 254.39,
-    "rim": 133.59,
-    "oj": 284.02,
-    "subIndPe": 145.78,
-    "blWarranted": 201.56,
-    "evEbitda": 179.34
+    "fcffDcf": 254.43,
+    "rim": 133.55,
+    "oj": 284.04,
+    "subIndPe": 146.0,
+    "blWarranted": 199.64,
+    "evEbitda": 176.19
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
@@ -5977,7 +5977,7 @@
    "wacc": 8.4,
    "betaAdj": 0.84,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6533": {
    "code": "6533",
@@ -5987,12 +5987,12 @@
    "sector": "Technology",
    "industry": "Semiconductor Equipment & Materials",
    "perf": {
-    "basePrice": 200.5,
-    "baseDate": "2026-11-25",
-    "w1": -14.13,
-    "m1": -29.03,
-    "q1": -25.46,
-    "y1": -26.01
+    "basePrice": 222.0,
+    "baseDate": "2026-11-24",
+    "w1": -4.31,
+    "m1": -21.42,
+    "q1": -11.73,
+    "y1": -18.08
    },
    "analystTarget": 343.33,
    "analystHigh": 430.0,
@@ -6001,7 +6001,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 7.322,
-   "trailingEps": -4.84,
+   "trailingEps": -4.42,
    "quality": {
     "score": 4,
     "max": 5,
@@ -6014,24 +6014,24 @@
     ]
    },
    "pb": "2.54x",
-   "fairValue": 77.07,
-   "fairRange": "16.65 - 154.26",
+   "fairValue": 76.44,
+   "fairRange": "16.46 - 154.39",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 19.96,
     "rim": 99.65,
     "oj": null,
-    "subIndPe": 65.19,
-    "blWarranted": 154.26,
-    "evEbitda": 16.65
+    "subIndPe": 64.53,
+    "blWarranted": 154.39,
+    "evEbitda": 16.46
    },
    "peerGroup": "Technology",
-   "peerPe": "12.7x",
+   "peerPe": "12.6x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6789": {
    "code": "6789",
@@ -6041,12 +6041,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 310.5,
-    "baseDate": "2026-11-25",
-    "w1": -11.41,
-    "m1": -29.11,
-    "q1": -32.28,
-    "y1": 30.46
+    "basePrice": 334.5,
+    "baseDate": "2026-11-24",
+    "w1": -3.32,
+    "m1": -23.63,
+    "q1": -20.45,
+    "y1": 40.55
    },
    "analystTarget": 398.75,
    "analystHigh": 500.0,
@@ -6055,7 +6055,7 @@
    "consensusLabel": null,
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 7.142,
-   "trailingEps": 6.6,
+   "trailingEps": 6.01,
    "quality": {
     "score": 5,
     "max": 5,
@@ -6071,24 +6071,24 @@
    "pe": "55.6x",
    "pb": "5.59x",
    "divYield": 0.9,
-   "fairValue": 104.2,
-   "fairRange": "74.69 - 171.89",
+   "fairValue": 106.99,
+   "fairRange": "74.69 - 181.36",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 107.49,
+    "fcffDcf": 115.74,
     "rim": 74.69,
     "oj": 84.2,
-    "subIndPe": 88.62,
-    "blWarranted": 120.32,
-    "evEbitda": 171.89
+    "subIndPe": 89.28,
+    "blWarranted": 121.43,
+    "evEbitda": 181.36
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
+   "peerPe": "15.6x",
    "costOfEquity": 9.74,
-   "wacc": 9.5,
+   "wacc": 9.53,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6805": {
    "code": "6805",
@@ -6098,21 +6098,21 @@
    "sector": "Technology",
    "industry": "Electronic Components",
    "perf": {
-    "basePrice": 1550.0,
-    "baseDate": "2026-11-25",
-    "w1": -11.93,
-    "m1": -33.62,
-    "q1": -23.46,
-    "y1": 13.14
+    "basePrice": 1600.0,
+    "baseDate": "2026-11-24",
+    "w1": -3.61,
+    "m1": -31.48,
+    "q1": -13.28,
+    "y1": 16.79
    },
-   "analystTarget": 2940.35,
-   "analystHigh": 4010.8174,
-   "analystLow": 2401.8867,
+   "analystTarget": 2961.66,
+   "analystHigh": 4039.8848,
+   "analystLow": 2419.2937,
    "analystCount": 9,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 108.6,
-   "trailingEps": 60.26,
+   "trailingEps": 54.8,
    "quality": {
     "score": 5,
     "max": 5,
@@ -6128,24 +6128,24 @@
    "pe": "29.2x",
    "pb": "11.33x",
    "divYield": 0.78,
-   "fairValue": 2009.0,
-   "fairRange": "1,369.60 - 3,126.58",
+   "fairValue": 2070.43,
+   "fairRange": "1,417.65 - 3,125.43",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 2353.69,
+    "fcffDcf": 2571.78,
     "rim": null,
-    "oj": 3126.58,
-    "subIndPe": 1415.54,
-    "blWarranted": 1554.7,
-    "evEbitda": 1369.6
+    "oj": 3125.43,
+    "subIndPe": 1417.65,
+    "blWarranted": 1558.14,
+    "evEbitda": 1469.51
    },
    "peerGroup": "Electronic Components",
    "peerPe": "11.9x",
    "costOfEquity": 8.6,
-   "wacc": 8.52,
+   "wacc": 8.53,
    "betaAdj": 0.96,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3596": {
    "code": "3596",
@@ -6155,12 +6155,12 @@
    "sector": "Technology",
    "industry": "Communication Equipment",
    "perf": {
-    "basePrice": 131.5,
-    "baseDate": "2026-11-25",
-    "w1": -3.66,
-    "m1": -16.24,
-    "q1": -17.55,
-    "y1": -28.92
+    "basePrice": 138.5,
+    "baseDate": "2026-11-24",
+    "w1": 4.53,
+    "m1": -11.78,
+    "q1": -13.17,
+    "y1": -25.14
    },
    "analystTarget": 207.17,
    "analystHigh": 253.0,
@@ -6183,24 +6183,24 @@
    "pe": "10.6x",
    "pb": "1.77x",
    "divYield": 6.5,
-   "fairValue": 169.44,
+   "fairValue": 168.61,
    "fairRange": "126.22 - 211.18",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 196.6,
     "rim": 126.22,
     "oj": 211.18,
-    "subIndPe": 135.14,
-    "blWarranted": 162.81,
-    "evEbitda": 169.46
+    "subIndPe": 133.28,
+    "blWarranted": 161.18,
+    "evEbitda": 168.23
    },
    "peerGroup": "Technology",
-   "peerPe": "13.1x",
+   "peerPe": "12.9x",
    "costOfEquity": 8.6,
    "wacc": 8.4,
    "betaAdj": 0.83,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6409": {
    "code": "6409",
@@ -6210,12 +6210,12 @@
    "sector": "Industrials",
    "industry": "Electrical Equipment & Parts",
    "perf": {
-    "basePrice": 720.0,
-    "baseDate": "2026-11-25",
-    "w1": -8.28,
-    "m1": -20.88,
-    "q1": -30.1,
-    "y1": -32.39
+    "basePrice": 788.0,
+    "baseDate": "2026-11-24",
+    "w1": -0.25,
+    "m1": -13.41,
+    "q1": -22.75,
+    "y1": -26.01
    },
    "analystTarget": 1054.44,
    "analystHigh": 1600.0,
@@ -6239,16 +6239,16 @@
    "pe": "30.1x",
    "pb": "7.87x",
    "divYield": 4.67,
-   "fairValue": 872.82,
-   "fairRange": "260.74 - 1,275.78",
+   "fairValue": 868.45,
+   "fairRange": "260.74 - 1,267.83",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 1275.78,
+    "fcffDcf": 1267.83,
     "rim": 260.74,
     "oj": 1128.08,
     "subIndPe": 886.06,
-    "blWarranted": 573.72,
-    "evEbitda": 873.81
+    "blWarranted": 571.66,
+    "evEbitda": 852.53
    },
    "peerGroup": "Industrials",
    "peerPe": "12.5x",
@@ -6256,7 +6256,7 @@
    "wacc": 8.53,
    "betaAdj": 0.96,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "3701": {
    "code": "3701",
@@ -6266,12 +6266,12 @@
    "sector": "Technology",
    "industry": "Computer Hardware",
    "perf": {
-    "basePrice": 48.15,
-    "baseDate": "2026-11-25",
-    "w1": -23.81,
-    "m1": -11.65,
-    "q1": 16.16,
-    "y1": 58.65
+    "basePrice": 52.8,
+    "baseDate": "2026-11-24",
+    "w1": -8.17,
+    "m1": -3.12,
+    "q1": 29.57,
+    "y1": 73.97
    },
    "trailingEps": -3.44,
    "quality": {
@@ -6282,24 +6282,24 @@
    },
    "pb": "2.70x",
    "divYield": 0.38,
-   "fairValue": 15.31,
-   "fairRange": "8.34 - 18.80",
+   "fairValue": 15.07,
+   "fairRange": "8.34 - 18.43",
    "fairSource": "機構／學術 2 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 8.34,
     "oj": null,
     "subIndPe": null,
-    "blWarranted": 18.8,
+    "blWarranted": 18.43,
     "evEbitda": null
    },
    "peerGroup": "Computer Hardware",
-   "peerPe": "9.6x",
+   "peerPe": "9.5x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 1.0,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "4931": {
    "code": "4931",
@@ -6309,12 +6309,12 @@
    "sector": "Industrials",
    "industry": "Electrical Equipment & Parts",
    "perf": {
-    "basePrice": 130.0,
-    "baseDate": "2026-11-25",
-    "w1": -16.13,
-    "m1": -35.0,
-    "q1": -49.12,
-    "y1": 4.84
+    "basePrice": 141.0,
+    "baseDate": "2026-11-24",
+    "w1": -8.14,
+    "m1": -29.5,
+    "q1": -42.45,
+    "y1": 13.71
    },
    "trailingEps": 7.55,
    "quality": {
@@ -6328,10 +6328,10 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "18.1x",
-   "pb": "5.18x",
-   "divYield": 1.77,
-   "fairValue": 83.27,
+   "pe": "16.5x",
+   "pb": "4.74x",
+   "divYield": 1.94,
+   "fairValue": 83.2,
    "fairRange": "61.91 - 109.37",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
@@ -6339,8 +6339,8 @@
     "rim": 61.91,
     "oj": 109.37,
     "subIndPe": 66.12,
-    "blWarranted": 83.08,
-    "evEbitda": 70.14
+    "blWarranted": 83.24,
+    "evEbitda": 68.76
    },
    "peerGroup": "Industrials",
    "peerPe": "12.5x",
@@ -6348,7 +6348,7 @@
    "wacc": 8.4,
    "betaAdj": 0.84,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "2342": {
    "code": "2342",
@@ -6358,12 +6358,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 27.85,
-    "baseDate": "2026-11-25",
-    "w1": -11.87,
-    "m1": -31.23,
-    "q1": -32.65,
-    "y1": -4.62
+    "basePrice": 29.85,
+    "baseDate": "2026-11-24",
+    "w1": -5.39,
+    "m1": -26.3,
+    "q1": -23.95,
+    "y1": 2.23
    },
    "forwardEps": 1.84,
    "trailingEps": -0.47,
@@ -6378,24 +6378,24 @@
     ]
    },
    "pb": "2.04x",
-   "fairValue": 17.65,
-   "fairRange": "3.88 - 26.60",
+   "fairValue": 17.71,
+   "fairRange": "3.77 - 23.47",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 3.88,
-    "rim": 19.42,
-    "oj": 26.6,
-    "subIndPe": 19.94,
-    "blWarranted": 18.86,
-    "evEbitda": 4.1
+    "fcffDcf": 3.77,
+    "rim": 18.65,
+    "oj": 23.47,
+    "subIndPe": 20.2,
+    "blWarranted": 21.51,
+    "evEbitda": 4.05
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.5x",
-   "costOfEquity": 8.6,
-   "wacc": 8.4,
-   "betaAdj": 1.0,
+   "peerPe": "15.7x",
+   "costOfEquity": 9.46,
+   "wacc": 8.99,
+   "betaAdj": 1.25,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "4716": {
    "code": "4716",
@@ -6405,12 +6405,12 @@
    "sector": "Basic Materials",
    "industry": "Specialty Chemicals",
    "perf": {
-    "basePrice": 12.25,
-    "baseDate": "2026-11-25",
-    "w1": -26.2,
-    "m1": -39.21,
-    "q1": -28.15,
-    "y1": -18.87
+    "basePrice": 13.45,
+    "baseDate": "2026-11-24",
+    "w1": -22.92,
+    "m1": -33.25,
+    "q1": -20.65,
+    "y1": -10.93
    },
    "trailingEps": -0.12,
    "quality": {
@@ -6422,26 +6422,26 @@
      "現金含金量佳"
     ]
    },
-   "pb": "1.14x",
+   "pb": "1.09x",
    "divYield": 0.0,
-   "fairValue": 9.8,
-   "fairRange": "7.72 - 10.84",
+   "fairValue": 9.77,
+   "fairRange": "7.72 - 10.79",
    "fairSource": "機構／學術 2 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": 7.72,
     "oj": null,
     "subIndPe": null,
-    "blWarranted": 10.84,
+    "blWarranted": 10.79,
     "evEbitda": null
    },
    "peerGroup": "Basic Materials",
    "peerPe": "16.4x",
    "costOfEquity": 8.6,
    "wacc": null,
-   "betaAdj": 1.0,
+   "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "4989": {
    "code": "4989",
@@ -6451,14 +6451,14 @@
    "sector": "Basic Materials",
    "industry": "Copper",
    "perf": {
-    "basePrice": 41.4,
-    "baseDate": "2026-11-25",
-    "w1": -18.02,
-    "m1": -41.69,
-    "q1": -38.12,
-    "y1": 1.47
+    "basePrice": 45.1,
+    "baseDate": "2026-11-24",
+    "w1": -11.74,
+    "m1": -36.48,
+    "q1": -25.94,
+    "y1": 10.54
    },
-   "trailingEps": -0.58,
+   "trailingEps": -0.52,
    "quality": {
     "score": 0,
     "max": 5,
@@ -6466,15 +6466,15 @@
     "passed": []
    },
    "pb": "2.15x",
-   "fairValue": 19.61,
-   "fairRange": "12.84 - 22.99",
+   "fairValue": 19.86,
+   "fairRange": "13.07 - 23.25",
    "fairSource": "機構／學術 2 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
-    "rim": 12.84,
+    "rim": 13.07,
     "oj": null,
     "subIndPe": null,
-    "blWarranted": 22.99,
+    "blWarranted": 23.25,
     "evEbitda": null
    },
    "peerGroup": "Basic Materials",
@@ -6483,7 +6483,7 @@
    "wacc": null,
    "betaAdj": 1.26,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "6443": {
    "code": "6443",
@@ -6493,12 +6493,12 @@
    "sector": "Technology",
    "industry": "Solar",
    "perf": {
-    "basePrice": 22.4,
-    "baseDate": "2026-11-25",
-    "w1": -19.28,
-    "m1": -13.85,
-    "q1": -14.83,
-    "y1": 82.11
+    "basePrice": 24.75,
+    "baseDate": "2026-11-24",
+    "w1": -1.98,
+    "m1": -4.81,
+    "q1": -6.43,
+    "y1": 101.22
    },
    "forwardEps": 2.17,
    "trailingEps": -5.85,
@@ -6512,24 +6512,24 @@
     ]
    },
    "pb": "4.43x",
-   "fairValue": 9.53,
-   "fairRange": "8.39 - 12.48",
+   "fairValue": 9.51,
+   "fairRange": "8.30 - 12.48",
    "fairSource": "機構／學術 4 模型（公開財報估算・景氣循環常態化）",
    "models": {
     "fcffDcf": null,
     "rim": 8.78,
     "oj": 12.48,
-    "subIndPe": 8.6,
-    "blWarranted": 8.39,
+    "subIndPe": 8.65,
+    "blWarranted": 8.3,
     "evEbitda": null
    },
    "peerGroup": "Technology",
-   "peerPe": "12.2x",
+   "peerPe": "12.3x",
    "costOfEquity": 8.6,
    "wacc": null,
    "betaAdj": 0.9,
    "cyclicalNormalized": true,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "7203": {
    "code": "7203",
@@ -6539,12 +6539,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Auto Manufacturers",
    "perf": {
-    "basePrice": 3414.0,
-    "baseDate": "2026-11-25",
-    "w1": 0.68,
-    "m1": 9.53,
-    "q1": 11.21,
-    "y1": 10.95
+    "basePrice": 3311.0,
+    "baseDate": "2026-11-24",
+    "w1": -3.02,
+    "m1": 6.63,
+    "q1": 7.43,
+    "y1": 7.6
    },
    "analystTarget": 3798.16,
    "analystHigh": 4800.0,
@@ -6553,7 +6553,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 324.22,
-   "trailingEps": 345.05,
+   "trailingEps": 345.15,
    "quality": {
     "score": 4,
     "max": 5,
@@ -6567,16 +6567,16 @@
    },
    "pe": "9.9x",
    "pb": "1.07x",
-   "fairValue": 3767.4,
-   "fairRange": "902.50 - 5,037.27",
+   "fairValue": 3767.36,
+   "fairRange": "901.52 - 5,048.91",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 902.5,
+    "fcffDcf": 901.52,
     "rim": 3677.42,
     "oj": 4288.57,
-    "subIndPe": 5037.27,
-    "blWarranted": 4601.71,
-    "evEbitda": 2307.28
+    "subIndPe": 5048.91,
+    "blWarranted": 4595.37,
+    "evEbitda": 2299.57
    },
    "peerGroup": "Consumer Cyclical",
    "peerPe": "13.6x",
@@ -6584,7 +6584,7 @@
    "wacc": 8.4,
    "betaAdj": 0.78,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "0700": {
    "code": "0700",
@@ -6594,16 +6594,16 @@
    "sector": "Communication Services",
    "industry": "Internet Content & Information",
    "perf": {
-    "basePrice": 341.8,
-    "baseDate": "2026-11-25",
-    "w1": -8.32,
-    "m1": -11.54,
-    "q1": -23.26,
-    "y1": -45.31
+    "basePrice": 341.6,
+    "baseDate": "2026-11-24",
+    "w1": -9.15,
+    "m1": -11.5,
+    "q1": -22.71,
+    "y1": -45.34
    },
-   "analystTarget": 608.75,
-   "analystHigh": 782.5054,
-   "analystLow": 367.04858,
+   "analystTarget": 608.7,
+   "analystHigh": 782.4388,
+   "analystLow": 367.01736,
    "analystCount": 41,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
@@ -6620,17 +6620,17 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "12.0x",
-   "pb": "2.16x",
-   "fairValue": 384.58,
-   "fairRange": "281.22 - 474.83",
+   "pe": "11.9x",
+   "pb": "2.14x",
+   "fairValue": 386.11,
+   "fairRange": "282.11 - 478.00",
    "fairSource": "機構／學術 3 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": null,
     "oj": 367.59,
-    "subIndPe": 281.22,
-    "blWarranted": 474.83,
+    "subIndPe": 282.11,
+    "blWarranted": 478.0,
     "evEbitda": null
    },
    "peerGroup": "Market",
@@ -6639,7 +6639,7 @@
    "wacc": null,
    "betaAdj": 0.89,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "NVDA": {
    "code": "NVDA",
@@ -6649,21 +6649,21 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 155.38,
-    "baseDate": "2026-11-24",
-    "w1": -0.05,
-    "m1": -26.35,
-    "q1": -27.07,
-    "y1": -12.62
+    "basePrice": 145.921,
+    "baseDate": "2026-11-25",
+    "w1": -3.34,
+    "m1": -32.44,
+    "q1": -30.4,
+    "y1": -17.94
    },
-   "analystTarget": 244.71,
+   "analystTarget": 242.43,
    "analystHigh": 425.0,
    "analystLow": 130.0,
-   "analystCount": 58,
+   "analystCount": 59,
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 16.605,
-   "trailingEps": 8.76,
+   "trailingEps": 9.31,
    "quality": {
     "score": 5,
     "max": 5,
@@ -6676,26 +6676,26 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "17.7x",
-   "pb": "14.05x",
-   "fairValue": 322.44,
-   "fairRange": "264.70 - 389.05",
+   "pe": "15.7x",
+   "pb": "13.19x",
+   "fairValue": 311.95,
+   "fairRange": "250.81 - 381.32",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 266.27,
+    "fcffDcf": 250.81,
     "rim": null,
     "oj": 362.6,
-    "subIndPe": 264.7,
-    "blWarranted": 389.05,
-    "evEbitda": 302.63
+    "subIndPe": 254.23,
+    "blWarranted": 381.32,
+    "evEbitda": 272.59
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.6x",
+   "peerPe": "15.0x",
    "costOfEquity": 10.31,
    "wacc": 10.26,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "AAPL": {
    "code": "AAPL",
@@ -6705,12 +6705,12 @@
    "sector": "Technology",
    "industry": "Consumer Electronics",
    "perf": {
-    "basePrice": 354.07,
-    "baseDate": "2026-11-24",
-    "w1": 0.61,
-    "m1": 1.82,
-    "q1": 14.25,
-    "y1": 27.84
+    "basePrice": 353.35,
+    "baseDate": "2026-11-25",
+    "w1": 0.26,
+    "m1": 2.74,
+    "q1": 12.73,
+    "y1": 27.58
    },
    "analystTarget": 345.63,
    "analystHigh": 425.0,
@@ -6719,7 +6719,7 @@
    "consensusLabel": "買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 10.573,
-   "trailingEps": 9.11,
+   "trailingEps": 8.98,
    "quality": {
     "score": 5,
     "max": 5,
@@ -6732,26 +6732,26 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "38.9x",
-   "pb": "45.91x",
-   "fairValue": 145.98,
-   "fairRange": "115.55 - 179.19",
+   "pe": "39.3x",
+   "pb": "45.81x",
+   "fairValue": 143.67,
+   "fairRange": "111.00 - 179.19",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
-    "fcffDcf": 152.9,
+    "fcffDcf": 155.05,
     "rim": null,
     "oj": 179.19,
-    "subIndPe": 115.55,
-    "blWarranted": 138.84,
-    "evEbitda": 143.82
+    "subIndPe": 111.0,
+    "blWarranted": 132.67,
+    "evEbitda": 141.79
    },
    "peerGroup": "Technology",
-   "peerPe": "15.6x",
+   "peerPe": "15.0x",
    "costOfEquity": 9.09,
    "wacc": 8.81,
    "betaAdj": 1.04,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "TSLA": {
    "code": "TSLA",
@@ -6761,12 +6761,12 @@
    "sector": "Consumer Cyclical",
    "industry": "Auto Manufacturers",
    "perf": {
-    "basePrice": 384.68,
-    "baseDate": "2026-11-24",
-    "w1": 1.2,
-    "m1": 3.35,
-    "q1": 9.83,
-    "y1": -8.28
+    "basePrice": 371.46,
+    "baseDate": "2026-11-25",
+    "w1": -3.2,
+    "m1": -5.15,
+    "q1": 7.41,
+    "y1": -11.43
    },
    "analystTarget": 419.05,
    "analystHigh": 600.0,
@@ -6788,26 +6788,26 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "422.7x",
-   "pb": "17.03x",
-   "fairValue": 31.11,
-   "fairRange": "22.48 - 84.16",
+   "pe": "408.2x",
+   "pb": "16.45x",
+   "fairValue": 30.68,
+   "fairRange": "22.48 - 83.06",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 27.56,
     "rim": 22.48,
     "oj": 22.91,
-    "subIndPe": 30.97,
-    "blWarranted": 35.48,
-    "evEbitda": 84.16
+    "subIndPe": 30.08,
+    "blWarranted": 34.65,
+    "evEbitda": 83.06
    },
    "peerGroup": "Consumer Cyclical",
-   "peerPe": "17.7x",
+   "peerPe": "17.2x",
    "costOfEquity": 10.31,
    "wacc": 9.52,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "MSFT": {
    "code": "MSFT",
@@ -6817,12 +6817,12 @@
    "sector": "Technology",
    "industry": "Software - Infrastructure",
    "perf": {
-    "basePrice": 496.13,
-    "baseDate": "2026-11-24",
-    "w1": -2.0,
-    "m1": -5.41,
-    "q1": 0.9,
-    "y1": 4.01
+    "basePrice": 488.89,
+    "baseDate": "2026-11-25",
+    "w1": -3.82,
+    "m1": -8.21,
+    "q1": -1.51,
+    "y1": 2.49
    },
    "analystTarget": 637.36,
    "analystHigh": 870.0,
@@ -6830,7 +6830,7 @@
    "analystCount": 54,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 24.204,
+   "forwardEps": 24.201,
    "trailingEps": 19.16,
    "quality": {
     "score": 5,
@@ -6844,26 +6844,26 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "25.9x",
-   "pb": "7.83x",
-   "fairValue": 368.05,
-   "fairRange": "193.86 - 464.01",
+   "pe": "25.5x",
+   "pb": "7.72x",
+   "fairValue": 359.58,
+   "fairRange": "193.86 - 443.12",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 364.16,
     "rim": 193.86,
     "oj": 429.88,
-    "subIndPe": 264.12,
-    "blWarranted": 464.01,
-    "evEbitda": 445.89
+    "subIndPe": 253.73,
+    "blWarranted": 443.12,
+    "evEbitda": 426.09
    },
    "peerGroup": "Technology",
-   "peerPe": "15.6x",
+   "peerPe": "15.0x",
    "costOfEquity": 9.0,
    "wacc": 8.65,
    "betaAdj": 1.02,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "AMD": {
    "code": "AMD",
@@ -6873,20 +6873,20 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 413.27,
-    "baseDate": "2026-11-24",
-    "w1": -17.91,
-    "m1": -20.03,
-    "q1": -13.75,
-    "y1": 100.49
+    "basePrice": 391.225,
+    "baseDate": "2026-11-25",
+    "w1": -26.2,
+    "m1": -26.36,
+    "q1": -18.65,
+    "y1": 89.8
    },
-   "analystTarget": 656.21,
+   "analystTarget": 649.89,
    "analystHigh": 1250.0,
    "analystLow": 525.0,
    "analystCount": 49,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 17.616,
+   "forwardEps": 17.638,
    "trailingEps": 4.68,
    "quality": {
     "score": 5,
@@ -6900,26 +6900,26 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "88.3x",
-   "pb": "9.91x",
-   "fairValue": 253.82,
-   "fairRange": "134.28 - 341.98",
+   "pe": "83.6x",
+   "pb": "9.38x",
+   "fairValue": 249.5,
+   "fairRange": "134.21 - 341.81",
    "fairSource": "機構／學術 6 模型（公開財報估算）",
    "models": {
     "fcffDcf": 161.64,
-    "rim": 134.28,
-    "oj": 341.98,
-    "subIndPe": 272.05,
-    "blWarranted": 340.22,
-    "evEbitda": 165.06
+    "rim": 134.21,
+    "oj": 341.81,
+    "subIndPe": 260.81,
+    "blWarranted": 331.76,
+    "evEbitda": 162.17
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "14.9x",
+   "peerPe": "14.3x",
    "costOfEquity": 10.31,
    "wacc": 10.04,
    "betaAdj": 1.3,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "AVGO": {
    "code": "AVGO",
@@ -6929,12 +6929,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 301.08,
-    "baseDate": "2026-11-24",
-    "w1": -11.86,
-    "m1": -6.4,
-    "q1": -15.6,
-    "y1": -21.8
+    "basePrice": 289.23,
+    "baseDate": "2026-11-25",
+    "w1": -18.31,
+    "m1": -12.13,
+    "q1": -18.66,
+    "y1": -24.88
    },
    "analystTarget": 525.51,
    "analystHigh": 660.0,
@@ -6942,7 +6942,7 @@
    "analystCount": 47,
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
-   "forwardEps": 19.333,
+   "forwardEps": 19.386,
    "trailingEps": 7.83,
    "quality": {
     "score": 5,
@@ -6956,26 +6956,26 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "38.5x",
-   "pb": "14.42x",
-   "fairValue": 361.01,
-   "fairRange": "282.04 - 440.50",
+   "pe": "36.9x",
+   "pb": "13.85x",
+   "fairValue": 355.6,
+   "fairRange": "270.58 - 440.50",
    "fairSource": "機構／學術 5 模型（公開財報估算）",
    "models": {
     "fcffDcf": 336.94,
     "rim": null,
     "oj": 440.5,
-    "subIndPe": 282.04,
-    "blWarranted": 396.2,
-    "evEbitda": 314.44
+    "subIndPe": 270.58,
+    "blWarranted": 386.68,
+    "evEbitda": 309.26
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "14.9x",
+   "peerPe": "14.3x",
    "costOfEquity": 9.97,
    "wacc": 9.66,
    "betaAdj": 1.23,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   },
   "TSM": {
    "code": "TSM",
@@ -6985,12 +6985,12 @@
    "sector": "Technology",
    "industry": "Semiconductors",
    "perf": {
-    "basePrice": 349.2,
-    "baseDate": "2026-11-24",
-    "w1": -2.92,
-    "m1": -16.56,
-    "q1": -16.34,
-    "y1": 22.66
+    "basePrice": 334.91,
+    "baseDate": "2026-11-25",
+    "w1": -7.64,
+    "m1": -21.08,
+    "q1": -19.82,
+    "y1": 17.64
    },
    "analystTarget": 586.69,
    "analystHigh": 1000.0,
@@ -6999,7 +6999,7 @@
    "consensusLabel": "強力買入",
    "analystSource": "Yahoo Finance 分析師共識",
    "forwardEps": 23.385,
-   "trailingEps": 14.82,
+   "trailingEps": 15.43,
    "quality": {
     "score": 5,
     "max": 5,
@@ -7012,26 +7012,26 @@
      "預估盈餘成長"
     ]
    },
-   "pe": "23.6x",
-   "pb": "67.07x",
-   "fairValue": 394.58,
-   "fairRange": "289.47 - 449.84",
+   "pe": "21.7x",
+   "pb": "64.34x",
+   "fairValue": 385.45,
+   "fairRange": "278.14 - 449.84",
    "fairSource": "機構／學術 3 模型（公開財報估算）",
    "models": {
     "fcffDcf": null,
     "rim": null,
     "oj": 449.84,
-    "subIndPe": 289.47,
-    "blWarranted": 431.96,
+    "subIndPe": 278.14,
+    "blWarranted": 417.64,
     "evEbitda": null
    },
    "peerGroup": "Semiconductors",
-   "peerPe": "15.6x",
+   "peerPe": "15.0x",
    "costOfEquity": 9.39,
    "wacc": null,
    "betaAdj": 1.1,
    "cyclicalNormalized": false,
-   "updatedAt": "2026-11-25 12:58"
+   "updatedAt": "2026-11-26 01:55"
   }
  }
 }
