@@ -1,7 +1,7 @@
 {
   "version": "2.10.0",
-  "updatedAt": "2026-11-26 16:57:15",
-  "timestamp": 1795683435,
+  "updatedAt": "2026-11-27 06:39:20",
+  "timestamp": 1795732760,
   "total": 127,
   "marketSessions": {
     "TWSE": {
@@ -17,16 +17,16 @@
       "isLive": false
     },
     "NASDAQ": {
-      "status": "CLOSED",
-      "desc": "美股已收盤",
-      "hours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isLive": false
+      "status": "POST",
+      "desc": "美股盤後交易",
+      "hours": "美東 16:00~20:00 (Post-Market)",
+      "isLive": true
     },
     "NYSE": {
-      "status": "CLOSED",
-      "desc": "美股已收盤",
-      "hours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isLive": false
+      "status": "POST",
+      "desc": "美股盤後交易",
+      "hours": "美東 16:00~20:00 (Post-Market)",
+      "isLive": true
     },
     "HKEX": {
       "status": "CLOSED",
@@ -61,8 +61,8 @@
       "date": "20261126",
       "market": "TWSE",
       "currency": "NT$",
-      "shares": 25932370067,
-      "marketCapVal": 55624933793715,
+      "shares": 25932364970,
+      "marketCapVal": 55624922860650,
       "marketCap": "55.62 兆",
       "sessionStatus": "CLOSED",
       "sessionDesc": "今日已收盤",
@@ -3563,15 +3563,15 @@
       "high": 150.37,
       "low": 141.17,
       "volume": 359527027,
-      "time": "16:57:31",
+      "time": "06:39:33",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isSessionLive": false
+      "sessionStatus": "POST",
+      "sessionDesc": "美股盤後交易",
+      "sessionHours": "美東 16:00~20:00 (Post-Market)",
+      "isSessionLive": true
     },
     "AAPL": {
       "code": "AAPL",
@@ -3584,15 +3584,15 @@
       "high": 356.75,
       "low": 345.13,
       "volume": 53060252,
-      "time": "16:57:31",
+      "time": "06:39:33",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isSessionLive": false
+      "sessionStatus": "POST",
+      "sessionDesc": "美股盤後交易",
+      "sessionHours": "美東 16:00~20:00 (Post-Market)",
+      "isSessionLive": true
     },
     "TSLA": {
       "code": "TSLA",
@@ -3605,15 +3605,15 @@
       "high": 383.73,
       "low": 357.64,
       "volume": 33883019,
-      "time": "16:57:32",
+      "time": "06:39:33",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isSessionLive": false
+      "sessionStatus": "POST",
+      "sessionDesc": "美股盤後交易",
+      "sessionHours": "美東 16:00~20:00 (Post-Market)",
+      "isSessionLive": true
     },
     "MSFT": {
       "code": "MSFT",
@@ -3626,15 +3626,15 @@
       "high": 493.44,
       "low": 477.39,
       "volume": 26095270,
-      "time": "16:57:32",
+      "time": "06:39:33",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isSessionLive": false
+      "sessionStatus": "POST",
+      "sessionDesc": "美股盤後交易",
+      "sessionHours": "美東 16:00~20:00 (Post-Market)",
+      "isSessionLive": true
     },
     "AMD": {
       "code": "AMD",
@@ -3647,15 +3647,15 @@
       "high": 407.77,
       "low": 370.4,
       "volume": 51224876,
-      "time": "16:57:32",
+      "time": "06:39:33",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isSessionLive": false
+      "sessionStatus": "POST",
+      "sessionDesc": "美股盤後交易",
+      "sessionHours": "美東 16:00~20:00 (Post-Market)",
+      "isSessionLive": true
     },
     "AVGO": {
       "code": "AVGO",
@@ -3668,15 +3668,15 @@
       "high": 301.27,
       "low": 278.0,
       "volume": 33594318,
-      "time": "16:57:32",
+      "time": "06:39:34",
       "market": "NASDAQ",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isSessionLive": false
+      "sessionStatus": "POST",
+      "sessionDesc": "美股盤後交易",
+      "sessionHours": "美東 16:00~20:00 (Post-Market)",
+      "isSessionLive": true
     },
     "TSM": {
       "code": "TSM",
@@ -3689,15 +3689,15 @@
       "high": 343.17,
       "low": 321.1,
       "volume": 22685134,
-      "time": "16:57:32",
+      "time": "06:39:34",
       "market": "NYSE",
       "currency": "USD",
       "marketCap": "—",
       "marketCapVal": 0,
-      "sessionStatus": "CLOSED",
-      "sessionDesc": "美股已收盤",
-      "sessionHours": "美東 16:00 收盤 (今晚 22:30 開盤)",
-      "isSessionLive": false
+      "sessionStatus": "POST",
+      "sessionDesc": "美股盤後交易",
+      "sessionHours": "美東 16:00~20:00 (Post-Market)",
+      "isSessionLive": true
     },
     "0700": {
       "code": "0700",
@@ -3710,7 +3710,7 @@
       "high": 348.8,
       "low": 337.8,
       "volume": 22756984,
-      "time": "16:57:32",
+      "time": "06:39:34",
       "market": "HKEX",
       "currency": "HK$",
       "marketCap": "—",
@@ -3731,7 +3731,7 @@
       "high": 3449.0,
       "low": 3376.0,
       "volume": 15226400,
-      "time": "16:57:33",
+      "time": "06:39:34",
       "market": "TSE",
       "currency": "¥",
       "marketCap": "—",
