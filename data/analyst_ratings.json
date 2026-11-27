@@ -1,18 +1,18 @@
 {
   "version": "2.15.0",
-  "updatedAt": "2026-11-27 12:28:27",
-  "timestamp": 1795753707,
+  "updatedAt": "2026-11-28 01:27:03",
+  "timestamp": 1795800423,
   "total": 39,
   "freshFetched": {
     "us": 7,
-    "investing": 30
+    "investing": 9
   },
   "stocks": {
     "NVDA": {
       "code": "NVDA",
       "name": "英偉達 (NVIDIA)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Melius Research",
@@ -92,7 +92,7 @@
       "code": "AAPL",
       "name": "蘋果 (Apple)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "China Renaissance",
@@ -172,7 +172,7 @@
       "code": "TSLA",
       "name": "特斯拉 (Tesla)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "GLJ Research",
@@ -252,7 +252,7 @@
       "code": "MSFT",
       "name": "微軟 (Microsoft)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Bernstein",
@@ -332,7 +332,7 @@
       "code": "AMD",
       "name": "超微 (AMD)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "B of A Securities",
@@ -412,7 +412,7 @@
       "code": "AVGO",
       "name": "博通 (Broadcom)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Rosenblatt",
@@ -492,7 +492,7 @@
       "code": "TSM",
       "name": "台積電 ADR (TSM)",
       "source": "Yahoo Finance 華爾街投行評級紀錄",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Bernstein",
@@ -862,57 +862,57 @@
       "code": "2327",
       "name": "國巨*",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "JPMorgan",
           "rating": "買入",
           "target": "1,050.00",
           "targetNum": 1050.0,
-          "upside": "+203.47%",
+          "upside": "+205.23%",
           "prevTarget": "1,030.00",
           "action": "持平",
-          "date": "2026年10月30日"
+          "date": "2026年10月29日"
         },
         {
           "firm": "Nomura/Instinet",
           "rating": "買入",
           "target": "1,150.00",
           "targetNum": 1150.0,
-          "upside": "+232.37%",
+          "upside": "+234.30%",
           "prevTarget": "1,350.00",
           "action": "持平",
-          "date": "2026年10月30日"
+          "date": "2026年10月29日"
         },
         {
           "firm": "CLSA",
           "rating": "買入",
           "target": "800.00",
           "targetNum": 800.0,
-          "upside": "+131.21%",
+          "upside": "+132.56%",
           "prevTarget": "760.00",
           "action": "持平",
-          "date": "2026年10月30日"
+          "date": "2026年10月29日"
         },
         {
           "firm": "Goldman Sachs",
           "rating": "買入",
           "target": "1,280.00",
           "targetNum": 1280.0,
-          "upside": "+269.94%",
+          "upside": "+272.09%",
           "prevTarget": "1,490.00",
           "action": "持平",
-          "date": "2026年07月30日"
+          "date": "2026年07月29日"
         },
         {
           "firm": "JPMorgan",
           "rating": "買入",
           "target": "1,030.00",
           "targetNum": 1030.0,
-          "upside": "+197.69%",
+          "upside": "+199.42%",
           "prevTarget": "1,000.00",
           "action": "持平",
-          "date": "2026年07月30日"
+          "date": "2026年07月29日"
         }
       ]
     },
@@ -1190,57 +1190,57 @@
       "code": "2303",
       "name": "聯電",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "JPMorgan",
           "rating": "持有",
           "target": "135.00",
           "targetNum": 135.0,
-          "upside": "+52.89%",
+          "upside": "+54.29%",
           "prevTarget": "130.00",
           "action": "持平",
-          "date": "2026年10月29日"
+          "date": "2026年10月28日"
         },
         {
           "firm": "Nomura/Instinet",
           "rating": "買入",
           "target": "176.00",
           "targetNum": 176.0,
-          "upside": "+99.32%",
+          "upside": "+101.14%",
           "prevTarget": "140.00",
           "action": "持平",
-          "date": "2026年10月20日"
+          "date": "2026年10月19日"
         },
         {
           "firm": "Bernstein SocGen Group",
           "rating": "賣出",
           "target": "103.00",
           "targetNum": 103.0,
-          "upside": "+16.65%",
+          "upside": "+17.71%",
           "prevTarget": "88.00",
           "action": "持平",
-          "date": "2026年10月09日"
+          "date": "2026年10月08日"
         },
         {
           "firm": "Nomura/Instinet",
           "rating": "買入",
           "target": "140.00",
           "targetNum": 140.0,
-          "upside": "+58.55%",
+          "upside": "+60.00%",
           "prevTarget": "97.00",
           "action": "持平",
-          "date": "2026年07月30日"
+          "date": "2026年07月29日"
         },
         {
           "firm": "HSBC",
           "rating": "買入",
           "target": "212.00",
           "targetNum": 212.0,
-          "upside": "+140.09%",
+          "upside": "+142.29%",
           "prevTarget": "235.00",
           "action": "持平",
-          "date": "2026年07月30日"
+          "date": "2026年07月29日"
         }
       ]
     },
@@ -1248,57 +1248,57 @@
       "code": "2379",
       "name": "瑞昱",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Macquarie",
           "rating": "買入",
           "target": "815.00",
           "targetNum": 815.0,
-          "upside": "+8.52%",
+          "upside": "+7.95%",
           "prevTarget": "600.00",
           "action": "持平",
-          "date": "2026年08月03日"
+          "date": "2026年08月02日"
         },
         {
           "firm": "JPMorgan",
           "rating": "持有",
           "target": "660.00",
           "targetNum": 660.0,
-          "upside": "-12.12%",
+          "upside": "-12.58%",
           "prevTarget": "600.00",
           "action": "持平",
-          "date": "2026年07月31日"
+          "date": "2026年07月30日"
         },
         {
           "firm": "JPMorgan",
           "rating": "持有",
           "target": "600.00",
           "targetNum": 600.0,
-          "upside": "-20.11%",
+          "upside": "-20.53%",
           "prevTarget": "570.00",
           "action": "持平",
-          "date": "2026年05月04日"
+          "date": "2026年05月03日"
         },
         {
           "firm": "Goldman Sachs",
           "rating": "持有",
           "target": "560.00",
           "targetNum": 560.0,
-          "upside": "-25.43%",
+          "upside": "-25.83%",
           "prevTarget": "500.00",
           "action": "持平",
-          "date": "2026年05月01日"
+          "date": "2026年04月30日"
         },
         {
           "firm": "CLSA",
           "rating": "持有",
           "target": "490.00",
           "targetNum": 490.0,
-          "upside": "-34.75%",
+          "upside": "-35.10%",
           "prevTarget": "560.00",
           "action": "持平",
-          "date": "2026年03月05日"
+          "date": "2026年03月04日"
         }
       ]
     },
@@ -1682,57 +1682,57 @@
       "code": "1326",
       "name": "台化",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "JPMorgan",
           "rating": "買入",
           "target": "90.00",
           "targetNum": 90.0,
-          "upside": "+43.08%",
+          "upside": "+44.46%",
           "prevTarget": "80.00",
           "action": "持平",
-          "date": "2026年10月14日"
+          "date": "2026年10月13日"
         },
         {
           "firm": "JPMorgan",
           "rating": "買入",
           "target": "80.00",
           "targetNum": 80.0,
-          "upside": "+27.19%",
+          "upside": "+28.41%",
           "prevTarget": "70.00",
           "action": "持平",
-          "date": "2026年07月28日"
+          "date": "2026年07月27日"
         },
         {
           "firm": "JPMorgan",
           "rating": "買入",
           "target": "70.00",
           "targetNum": 70.0,
-          "upside": "+11.29%",
+          "upside": "+12.36%",
           "prevTarget": "60.00",
           "action": "持平",
-          "date": "2026年07月13日"
+          "date": "2026年07月12日"
         },
         {
           "firm": "JPMorgan",
           "rating": "買入",
           "target": "60.00",
           "targetNum": 60.0,
-          "upside": "-4.61%",
+          "upside": "-3.69%",
           "prevTarget": "55.00",
           "action": "持平",
-          "date": "2026年04月13日"
+          "date": "2026年04月12日"
         },
         {
           "firm": "JPMorgan",
           "rating": "買入",
           "target": "55.00",
           "targetNum": 55.0,
-          "upside": "-12.56%",
+          "upside": "-11.72%",
           "prevTarget": "25.00",
           "action": "升級",
-          "date": "2026年02月25日"
+          "date": "2026年02月24日"
         }
       ]
     },
@@ -1740,14 +1740,14 @@
       "code": "2002",
       "name": "中鋼",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Citi",
           "rating": "買入",
           "target": "21.50",
           "targetNum": 21.5,
-          "upside": "+24.28%",
+          "upside": "+24.64%",
           "prevTarget": "24.60",
           "action": "持平",
           "date": "2026年05月20日"
@@ -1816,47 +1816,47 @@
       "code": "2376",
       "name": "技嘉",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Citi",
           "rating": "買入",
           "target": "595.00",
           "targetNum": 595.0,
-          "upside": "+121.60%",
+          "upside": "+117.55%",
           "prevTarget": "480.00",
           "action": "持平",
-          "date": "2026年08月18日"
+          "date": "2026年08月17日"
         },
         {
           "firm": "Citi",
           "rating": "買入",
           "target": "480.00",
           "targetNum": 480.0,
-          "upside": "+78.77%",
+          "upside": "+75.50%",
           "prevTarget": "385.00",
           "action": "持平",
-          "date": "2026年05月19日"
+          "date": "2026年05月18日"
         },
         {
           "firm": "Nomura/Instinet",
           "rating": "買入",
           "target": "448.00",
           "targetNum": 448.0,
-          "upside": "+66.85%",
+          "upside": "+63.80%",
           "prevTarget": "368.00",
           "action": "持平",
-          "date": "2026年05月18日"
+          "date": "2026年05月17日"
         },
         {
           "firm": "Citi",
           "rating": "買入",
           "target": "375.00",
           "targetNum": 375.0,
-          "upside": "+39.66%",
+          "upside": "+37.11%",
           "prevTarget": "-",
           "action": "新納入",
-          "date": "2026年03月04日"
+          "date": "2026年03月03日"
         }
       ]
     },
@@ -2028,7 +2028,7 @@
       "code": "6488",
       "name": "環球晶",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Citi",
@@ -2038,7 +2038,7 @@
           "upside": "+77.61%",
           "prevTarget": "1,100.00",
           "action": "持平",
-          "date": "2026年11月04日"
+          "date": "2026年11月03日"
         },
         {
           "firm": "JPMorgan",
@@ -2048,7 +2048,7 @@
           "upside": "+54.44%",
           "prevTarget": "555.00",
           "action": "持平",
-          "date": "2026年08月06日"
+          "date": "2026年08月05日"
         },
         {
           "firm": "Nomura/Instinet",
@@ -2058,7 +2058,7 @@
           "upside": "+247.49%",
           "prevTarget": "1,200.00",
           "action": "持平",
-          "date": "2026年07月13日"
+          "date": "2026年07月12日"
         },
         {
           "firm": "Nomura/Instinet",
@@ -2068,7 +2068,7 @@
           "upside": "+131.66%",
           "prevTarget": "850.00",
           "action": "持平",
-          "date": "2026年06月30日"
+          "date": "2026年06月29日"
         },
         {
           "firm": "Nomura/Instinet",
@@ -2078,7 +2078,7 @@
           "upside": "+64.09%",
           "prevTarget": "480.00",
           "action": "升級",
-          "date": "2026年05月21日"
+          "date": "2026年05月20日"
         }
       ]
     },
@@ -2144,47 +2144,47 @@
       "code": "1216",
       "name": "統一",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 01:42",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Macquarie",
           "rating": "持有",
           "target": "77.00",
           "targetNum": 77.0,
-          "upside": "-1.91%",
+          "upside": "-1.16%",
           "prevTarget": "78.00",
           "action": "持平",
-          "date": "2026年11月09日"
+          "date": "2026年11月08日"
         },
         {
           "firm": "Macquarie",
           "rating": "持有",
           "target": "78.00",
           "targetNum": 78.0,
-          "upside": "-0.64%",
+          "upside": "+0.13%",
           "prevTarget": "73.00",
           "action": "持平",
-          "date": "2026年08月10日"
+          "date": "2026年08月09日"
         },
         {
           "firm": "Macquarie",
           "rating": "持有",
           "target": "73.00",
           "targetNum": 73.0,
-          "upside": "-7.01%",
+          "upside": "-6.29%",
           "prevTarget": "74.00",
           "action": "持平",
-          "date": "2026年05月11日"
+          "date": "2026年05月10日"
         },
         {
           "firm": "Macquarie",
           "rating": "持有",
           "target": "74.00",
           "targetNum": 74.0,
-          "upside": "-5.73%",
+          "upside": "-5.01%",
           "prevTarget": "78.00",
           "action": "持平",
-          "date": "2026年03月09日"
+          "date": "2026年03月08日"
         }
       ]
     },
@@ -2250,57 +2250,57 @@
       "code": "3443",
       "name": "創意",
       "source": "Investing.com 公開分析師共識表",
-      "updatedAt": "2026-11-27 12:28",
+      "updatedAt": "2026-11-28 01:27",
       "ratings": [
         {
           "firm": "Macquarie",
           "rating": "買入",
           "target": "10,064.00",
           "targetNum": 10064.0,
-          "upside": "+100.48%",
+          "upside": "+97.72%",
           "prevTarget": "4,902.00",
           "action": "持平",
-          "date": "2026年11月13日"
+          "date": "2026年11月12日"
         },
         {
           "firm": "JPMorgan",
           "rating": "買入",
           "target": "9,000.00",
           "targetNum": 9000.0,
-          "upside": "+79.28%",
+          "upside": "+76.82%",
           "prevTarget": "5,500.00",
           "action": "持平",
-          "date": "2026年10月30日"
+          "date": "2026年10月29日"
         },
         {
           "firm": "Nomura/Instinet",
           "rating": "買入",
           "target": "9,600.00",
           "targetNum": 9600.0,
-          "upside": "+91.24%",
+          "upside": "+88.61%",
           "prevTarget": "5,800.00",
           "action": "持平",
-          "date": "2026年10月20日"
+          "date": "2026年10月19日"
         },
         {
           "firm": "CLSA",
           "rating": "買入",
           "target": "7,800.00",
           "targetNum": 7800.0,
-          "upside": "+55.38%",
+          "upside": "+53.24%",
           "prevTarget": "7,500.00",
           "action": "持平",
-          "date": "2026年09月18日"
+          "date": "2026年09月17日"
         },
         {
           "firm": "Nomura/Instinet",
           "rating": "買入",
           "target": "5,800.00",
           "targetNum": 5800.0,
-          "upside": "+15.54%",
+          "upside": "+13.95%",
           "prevTarget": "4,600.00",
           "action": "升級",
-          "date": "2026年08月03日"
+          "date": "2026年08月02日"
         }
       ]
     }
